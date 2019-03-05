@@ -1,16 +1,10 @@
-import Header from './Header'
-
-const layoutStyle = {
-  margin: 20,
-  padding: 20,
-  border: '1px solid #DDD'
-}
+import Header from './Header';
 
 const Layout = ({children}) => (
-  <div style={layoutStyle}>
+  <div>
     <Header />
     {children}
   </div>
-)
+);
 
-export default Layout
+export default Layout;
