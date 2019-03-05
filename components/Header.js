@@ -1,36 +1,31 @@
-import Link from 'next/link'
+import Link from 'next/link';
+import styled from 'styled-components';
+import routes from '../data/routes';
 
-const linkStyle = {
-  marginRight: 15
-}
+const StyledLink = styled.a`
+  color: red;
+  background: blue;
+  margin-right: 20px;
+  cursor: pointer;
+`;
 
-const Header = () => (
-  <div>
-    <Link href="/map">
-      <a style={linkStyle}>Map</a>
+const generateLinks = () => {
+  return routes.map((page) => (
+    <Link key={`link-${page}`} href={`/${page}`}>
+      <StyledLink>{page.charAt(0).toUpperCase() + page.slice(1)}</StyledLink>
     </Link>
-    <Link href="/buildings">
-      <a style={linkStyle}>Buildings</a>
-    </Link>
-    <Link href="/retail">
-      <a style={linkStyle}>Retail</a>
-    </Link>
-    <Link href="/location">
-      <a style={linkStyle}>Location</a>
-    </Link>
-    <Link href="/story">
-      <a style={linkStyle}>Story</a>
-    </Link>
-    <Link href="/availability">
-      <a style={linkStyle}>Availability</a>
-    </Link>
-    <Link href="/contact">
-      <a style={linkStyle}>Contact</a>
-    </Link>
-    <Link href="/news">
-      <a style={linkStyle}>News</a>
-    </Link>
-  </div>
-)
+  ));
+};
 
-export default Header
+const Header = () => {
+  return (
+    <div>
+      <img src='/static/logo-hudson-1.png' alt='Hudson Square Properties Logo' />
+      <div>
+        {generateLinks()}
+      </div>
+    </div>
+  );
+};
+
+export default Header;
