@@ -2,20 +2,23 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import routes from '../data/routes';
 
+// import { pxToRem } from '../helpers/math';
+
 const HeaderWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: purple;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 60px;
 `;
 
 const HeaderLink = styled.a`
-  color: red;
+  color: inherit;
   text-decoration: none;
-  margin-right: 20px;
+  margin: 0 15px;
   
   &:hover {
     text-decoration: underline;
@@ -24,7 +27,10 @@ const HeaderLink = styled.a`
 
 const HeaderLogo = styled.img`
   align-self: center;
+  margin-left: 20px;
 `;
+
+
 
 const generateLinks = () => {
   const links = routes.map((page) => (

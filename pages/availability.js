@@ -1,9 +1,9 @@
-import Layout from '../components/Layout.js';
+import Layout from '../layouts/default';
 
 const AvailabilityPage = () => (
-  <Layout>
+  <Layout title='Availability'>
     <p>Availability Next.js</p>
   </Layout>
-)
+);
 
-export default AvailabilityPage
+export default AvailabilityPage;

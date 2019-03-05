@@ -1,9 +1,9 @@
-import Layout from '../components/Layout.js';
+import Layout from '../layouts/default';
 
 const LocationPage = () => (
   <Layout>
     <p>Location Next.js</p>
   </Layout>
-)
+);
 
-export default LocationPage
+export default LocationPage;
