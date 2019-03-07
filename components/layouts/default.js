@@ -4,11 +4,11 @@ import NProgress from 'nprogress';
 
 import { createGlobalStyle } from 'styled-components';
 
-import Header from '../components/Header';
+import Header from '../includes/header';
 
 NProgress.configure({ showSpinner: false });
 
-Router.onRouteChangeStart = url => {
+Router.onRouteChangeStart = () => {
   NProgress.start();
 };
 
@@ -36,7 +36,7 @@ const GlobalStyle = createGlobalStyle`
 const Layout = ({children, title}) => (
   <React.Fragment>
     <Head>
-      <title>{`${title} - Hudson Square Properties`}</title>
+      <title>{title ? `${title} - Hudson Square Properties` : 'Hudson Square Properties'}</title>
     </Head>
     <GlobalStyle />
     <Header />

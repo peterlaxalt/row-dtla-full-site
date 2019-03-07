@@ -1,4 +1,4 @@
-import Layout from '../layouts/default';
+import Layout from '../components/layouts/default';
 
 const AvailabilityPage = () => (
   <Layout title='Availability'>
