@@ -1,7 +1,7 @@
 import Layout from '../components/layouts/default';
 
 const ContactPage = () => (
-  <Layout>
+  <Layout title='Contact'>
     <p>Contact Next.js</p>
   </Layout>
 );

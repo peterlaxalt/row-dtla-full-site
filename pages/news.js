@@ -1,7 +1,7 @@
 import Layout from '../components/layouts/default';
 
 const NewsPage = () => (
-  <Layout>
+  <Layout title='News'>
     <p>News Next.js</p>
   </Layout>
 );

@@ -30,8 +30,6 @@ const HeaderLogo = styled.img`
   margin-left: 20px;
 `;
 
-
-
 const generateLinks = () => {
   const links = routes.map((page) => (
     <Link key={`link-${page}`} href={`/${page}`} passHref>

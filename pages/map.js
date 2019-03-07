@@ -1,7 +1,7 @@
 import Layout from '../components/layouts/default';
 
 const MapPage = () => (
-  <Layout>
+  <Layout title='Map'>
     <p>Map Next.js</p>
   </Layout>
 );

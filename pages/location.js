@@ -1,7 +1,7 @@
-import Layout from '../layouts/default';
+import Layout from '../components/layouts/default';
 
 const LocationPage = () => (
-  <Layout>
+  <Layout title='Location'>
     <p>Location Next.js</p>
   </Layout>
 );
