@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import routes from '../../data/routes';
+import routes from '../../../data/routes';
 
 // import { pxToRem } from '../helpers/math';
+
+import HamburgerMenu from './HamburgerMenu';
 
 const HeaderWrapper = styled.div`
   position: fixed;
@@ -13,12 +15,20 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 60px;
+  background: grey;
 `;
 
-const HeaderLink = styled.a`
+const NavUnorderedList = styled.ul`
+  display: flex;
+  align-items: center;
+`;
+
+const NavListItem = styled.li`
   color: inherit;
-  text-decoration: none;
+  cursor: pointer;
   margin: 0 15px;
+  list-style-type: none;
+  text-decoration: none;
   
   &:hover {
     text-decoration: underline;
@@ -26,19 +36,23 @@ const HeaderLink = styled.a`
 `;
 
 const HeaderLogo = styled.img`
-  align-self: center;
-  margin-left: 20px;
+  margin-left: 40px;
 `;
 
 const generateLinks = () => {
   const links = routes.map((page) => (
     <Link key={`link-${page}`} href={`/${page}`} passHref>
-      <HeaderLink>{page.toUpperCase()}</HeaderLink>
+      <NavListItem><a>{page.toUpperCase()}</a></NavListItem>
     </Link>
   ));
   
   return (
-    <ul>{links}</ul>
+    <div style={{ display: 'flex', height: '100%', background: 'red'}}>
+      <NavUnorderedList>
+        {links}
+      </NavUnorderedList>
+      <HamburgerMenu />
+    </div>
   );
 };
 
@@ -48,9 +62,7 @@ const Header = () => {
       <Link key='link-home' href={`/`}>
         <a><HeaderLogo src='/static/images/logos/hudson_square_properties_logo.png' alt='Hudson Square Properties Logo' /></a>
       </Link>
-      <div>
-        {generateLinks()}
-      </div>
+      {generateLinks()}
     </HeaderWrapper>
   );
 };
