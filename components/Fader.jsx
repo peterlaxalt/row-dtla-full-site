@@ -1,0 +1,126 @@
+import React from 'react';
+import Slider from 'react-slick';
+import styled from 'styled-components';
+
+const FaderContainer = styled.div`
+  & > .slick-slider {
+    height: 90vh;
+    width: 100%;
+  }
+  & > .slick-slider > .slick-list {
+    height: 100%;
+  }
+
+  & > .slick-slider > .slick-list > .slick-track {
+    height: 100%;
+  }
+  & > .slick-slider > .slick-list > .slick-track > .slick-slide {
+    height: 100%;
+  }
+  & > .slick-slider > .slick-list > .slick-track > .slick-slide > div {
+    height: 100%;
+  }
+  & > .slick-slider > .slick-dots {
+    bottom: 2%;
+  }
+  & > .slick-slider > .slick-dots > li {
+    height: 11px;
+    width: 11px;
+    border-radius: 100%;
+    background-color: #fff;
+    margin: 0 20px;
+    box-sizing: border-box;
+    &:hover {
+      background-color: #000;
+    }
+  }
+  & > .slick-slider > .slick-dots > .slick-active {
+    height: 15px;
+    width: 15px;
+    border: 2px solid #000;
+    &:hover {
+      background-color: #fff;
+    }
+  }
+  & > .slick-slider > .slick-arrow {
+    z-index: 10;
+  }
+  & > .slick-slider > .slick-next {
+    display: block;
+    height: 100%;
+    width: 10%;
+    right: 0;
+    &:hover {
+      background-image: linear-gradient(to left, #03a8f442, #ffff0000);
+    }
+  }
+  & > .slick-slider > .slick-prev {
+    display: block;
+    height: 100%;
+    width: 10%;
+    left: 0;
+    &:hover {
+      background-image: linear-gradient(to right, #03a8f442, #ffff0000);
+    }
+  }
+`;
+
+const FaderSlide = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const FaderIMG = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+`;
+
+const FaderDot = styled.a`
+  height: 15px;
+  width: 15px;
+`;
+
+const FaderDotInner = styled.div`
+  height: 15px;
+  width: 15px;
+  opacity: 0;
+`;
+
+export default class ImageFader extends React.Component {
+  render() {
+    const sliderContent = this.props.imgArray.map((el, idx) => {
+      return (
+        <FaderSlide key={idx}>
+          <FaderIMG src={el.imgUrl} alt={el.imgAlt} />
+        </FaderSlide>
+      );
+    });
+    var settings = {
+      customPaging: function(i) {
+        return (
+          <FaderDot>
+            <FaderDotInner>{i}</FaderDotInner>
+          </FaderDot>
+        );
+      },
+      dots: true,
+      infinite: true,
+      fade: true,
+      autoplay: true,
+      autoplaySpeed: 5000,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
+
+    return (
+      <FaderContainer>
+        <Slider {...settings}>{sliderContent}</Slider>
+      </FaderContainer>
+    );
+  }
+}

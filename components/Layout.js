@@ -1,10 +1,15 @@
 import Header from './Header';
+import styled from 'styled-components';
 
-const Layout = ({children}) => (
-  <div>
+const LayoutDiv = styled.div`
+  margin-top: 60px;
+`;
+
+const Layout = ({ children }) => (
+  <LayoutDiv>
     <Header />
     {children}
-  </div>
+  </LayoutDiv>
 );
 
 export default Layout;
