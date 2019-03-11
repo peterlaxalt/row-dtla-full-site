@@ -5,7 +5,7 @@ import BeforeAfter from '../components/BeforeAfter';
 import { testArray, testBefore, testAfter } from '../data/test.js';
 
 const BuildingsPage = () => (
-  <Layout>
+  <Layout title="Buildings">
     <p>Buildings Next.js</p>
     <ImageFader imgArray={testArray} />
     <ImageSlider imgArray={testArray} showQuotes={true} />

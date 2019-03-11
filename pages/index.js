@@ -1,9 +1,9 @@
-import Layout from '../components/Layout.js';
+import Layout from '../components/layouts/default';
 
 const Index = () => (
   <Layout>
-    <p>Home Next.js</p>
+    {/* <p>Home Next.js</p> */}
   </Layout>
-)
+);
 
-export default Index
+export default Index;
