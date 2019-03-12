@@ -20,7 +20,7 @@ const SliderContainer = styled.div`
     height: 100%;
   }
   & > .slick-slider > .slick-dots {
-    bottom: 12%;
+    bottom: ${props => (props.showQuotes ? '12%' : '2%')};
   }
   & > .slick-slider > .slick-dots > li {
     height: 11px;
@@ -34,9 +34,7 @@ const SliderContainer = styled.div`
     }
   }
   & > .slick-slider > .slick-dots > .slick-active {
-    height: 15px;
-    width: 15px;
-    border: 2px solid #000;
+    box-shadow: 0 0 0 2px #000;
     &:hover {
       background-color: #fff;
     }
@@ -46,20 +44,36 @@ const SliderContainer = styled.div`
   }
   & > .slick-slider > .slick-next {
     display: block;
-    height: 100%;
+    ${props => (props.showQuotes ? 'height: 90%;' : 'height: 100%;')}
+    ${props => (props.showQuotes ? 'top: 45%;' : '')}
     width: 10%;
     right: 0;
     &:hover {
       background-image: linear-gradient(to left, #03a8f442, #ffff0000);
     }
+    &::before {
+      font: normal normal normal 14px/1 FontAwesome;
+      content: '\\f105';
+      font-size: 32px;
+      position: absolute;
+      left: 50%;
+    }
   }
   & > .slick-slider > .slick-prev {
     display: block;
-    height: 100%;
+    ${props => (props.showQuotes ? 'height: 90%;' : 'height: 100%;')}
+    ${props => (props.showQuotes ? 'top: 45%;' : '')}
     width: 10%;
     left: 0;
     &:hover {
       background-image: linear-gradient(to right, #03a8f442, #ffff0000);
+    }
+    &::before {
+      font: normal normal normal 14px/1 FontAwesome;
+      content: '\\f104';
+      font-size: 32px;
+      position: absolute;
+      right: 50%;
     }
   }
 `;
@@ -73,8 +87,9 @@ const SliderSlide = styled.div`
 `;
 
 const SliderImg = styled.img`
-  height: 90%;
+  ${props => (props.showQuotes ? 'height: 90%;' : 'height: 100%;')}
   width: 100%;
+  object-fit: cover;
 `;
 
 const SliderQuote = styled.div`
@@ -102,8 +117,12 @@ export default class ImageSlider extends React.Component {
     const sliderContent = this.props.imgArray.map((el, idx) => {
       return (
         <SliderSlide key={idx}>
-          <SliderImg src={el.imgUrl} alt={el.imgAlt} />
-          <SliderQuote>{el.imgAlt}</SliderQuote>
+          <SliderImg
+            showQuotes={this.props.showQuotes}
+            src={el.imgUrl}
+            alt={el.imgAlt}
+          />
+          {this.props.showQuotes ? <SliderQuote>{el.imgAlt}</SliderQuote> : ''}
         </SliderSlide>
       );
     });
@@ -117,14 +136,14 @@ export default class ImageSlider extends React.Component {
       },
       dots: true,
       infinite: true,
-      autoplay: true,
+      autoplay: this.props.autoPlay,
       autoplaySpeed: 5000,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1
     };
     return (
-      <SliderContainer>
+      <SliderContainer showQuotes={this.props.showQuotes}>
         <Slider {...settings}>{sliderContent}</Slider>
       </SliderContainer>
     );
