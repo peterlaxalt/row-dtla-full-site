@@ -35,9 +35,7 @@ const FaderContainer = styled.div`
     }
   }
   & > .slick-slider > .slick-dots > .slick-active {
-    height: 15px;
-    width: 15px;
-    border: 2px solid #000;
+    box-shadow: 0 0 0 2px #000;
     &:hover {
       background-color: #fff;
     }
@@ -53,6 +51,13 @@ const FaderContainer = styled.div`
     &:hover {
       background-image: linear-gradient(to left, #03a8f442, #ffff0000);
     }
+    &::before {
+      font: normal normal normal 14px/1 FontAwesome;
+      content: '\\f105';
+      font-size: 32px;
+      position: absolute;
+      left: 50%;
+    }
   }
   & > .slick-slider > .slick-prev {
     display: block;
@@ -61,6 +66,13 @@ const FaderContainer = styled.div`
     left: 0;
     &:hover {
       background-image: linear-gradient(to right, #03a8f442, #ffff0000);
+    }
+    &::before {
+      font: normal normal normal 14px/1 FontAwesome;
+      content: '\\f104';
+      font-size: 32px;
+      position: absolute;
+      right: 50%;
     }
   }
 `;
@@ -77,6 +89,7 @@ const FaderIMG = styled.img`
   max-width: 100%;
   max-height: 100%;
   width: 100%;
+  object-fit: cover;
 `;
 
 const FaderDot = styled.a`
@@ -110,7 +123,7 @@ export default class ImageFader extends React.Component {
       dots: true,
       infinite: true,
       fade: true,
-      autoplay: true,
+      // autoplay: true,
       autoplaySpeed: 5000,
       speed: 500,
       slidesToShow: 1,

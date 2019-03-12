@@ -6,6 +6,30 @@ export const testArray = [
   {
     imgUrl: '/static/images/test/building2.jpg',
     imgAlt: 'TEST ALT'
+  },
+  {
+    imgUrl: '/static/images/test/building1.jpg',
+    imgAlt: 'TEST ALT'
+  },
+  {
+    imgUrl: '/static/images/test/building2.jpg',
+    imgAlt: 'TEST ALT'
+  },
+  {
+    imgUrl: '/static/images/test/building1.jpg',
+    imgAlt: 'TEST ALT'
+  },
+  {
+    imgUrl: '/static/images/test/building2.jpg',
+    imgAlt: 'TEST ALT'
+  },
+  {
+    imgUrl: '/static/images/test/building1.jpg',
+    imgAlt: 'TEST ALT'
+  },
+  {
+    imgUrl: '/static/images/test/building2.jpg',
+    imgAlt: 'TEST ALT'
   }
 ];
 export const testBefore = {

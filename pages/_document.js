@@ -36,6 +36,18 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css"
           />
+          <link
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            rel="stylesheet"
+          />
+          <link
+            href="/your-path-to-fontawesome/css/brands.css"
+            rel="stylesheet"
+          />
+          <link
+            href="/your-path-to-fontawesome/css/solid.css"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />
