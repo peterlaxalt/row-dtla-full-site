@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const HamburgerDiv = styled.div`
-  background: green;
-  width: 35px;
+  width: 30px;
   position: relative;
   margin: 0 20px;
+  margin-right: 40px;
   cursor: pointer;
 `;
 
@@ -16,19 +16,19 @@ const Line = styled.div`
   display: block;
   width: 100%;
   top: ${props => props.top};
-  transition: top 100ms ease;
+  transition: top 300ms ease;
 
   ${HamburgerDiv}:hover & {
-    top: 80%;
+    top: ${props => props.topHover || null};
   }
 `;
 
 const HamburgerMenu = () => {
   return (
     <HamburgerDiv>
-      <Line top='30%'/>
-      <Line top='48%'/>
-      <Line top='66%'/>
+      <Line top='25%' topHover='30%'/>
+      <Line top='45%' />
+      <Line top='65%' topHover='60%'/>
     </HamburgerDiv>
   );
 };

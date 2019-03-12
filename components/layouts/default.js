@@ -23,7 +23,7 @@ const Layout = ({children, title}) => (
     <GlobalStyles />
     <Header />
     <div className='container'>
-      {children}
+      <h1>{children}</h1>
     </div>
   </React.Fragment>
 );
