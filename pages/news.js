@@ -1,9 +1,7 @@
-import Layout from '../components/layouts/default';
-
 const NewsPage = () => (
-  <Layout title='News'>
+  <div title='News'>
     <p>News Next.js</p>
-  </Layout>
+  </div>
 );
 
 export default NewsPage;

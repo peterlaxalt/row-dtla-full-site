@@ -29,9 +29,9 @@ const NavUnorderedList = styled.ul`
     margin: 0 15px;
     list-style-type: none;
     text-decoration: none;
-    
-    &:hover {
-      text-decoration: underline;
+
+    a {
+      text-decoration: none;;
     }
   }
 `;
@@ -42,9 +42,11 @@ const HeaderLogo = styled.img`
 
 const generateTopHeaderLinks = () => {
   const links = routes.map(page => (
-    <Link key={`link-${page}`} href={`/${page}`} passHref>
-      <li><a>{page.toUpperCase()}</a></li>
-    </Link>
+    <li key={`link-${page}`}>
+      <Link href={`/${page}`}>
+        <a>{page.toUpperCase()}</a>
+      </Link>
+    </li>
   ));
   
   return (
@@ -77,13 +79,22 @@ const SecondaryHeader = styled.div`
     height: 100%;
     li {
       list-style-type: none;
+      cursor: pointer;
+      a {
+        text-decoration: none;
+        color: initial;
+      }
     }
   }
 `;
 
 const generateBottomHeader = () => {
   const buildingLinks = buildings.map(building => (
-    <li key={building.title}>{building.title}</li>
+    <li key={`building-${building}`}>
+      <Link  href={`/building/${building.slug}`}>
+        <a>{building.title.toUpperCase()}</a>
+      </Link>
+    </li>
   ));
 
   return (
@@ -105,7 +116,12 @@ class Header extends React.Component {
       <React.Fragment>
         <PrimaryHeader>
           <Link key='link-home' href={`/`}>
-            <a><HeaderLogo src='/static/images/logos/hudson_square_properties_logo.png' alt='Hudson Square Properties Logo' /></a>
+            <a>
+              <HeaderLogo 
+                src='/static/images/logos/hudson_square_properties_logo.png' 
+                alt='Hudson Square Properties Logo' 
+              />
+            </a>
           </Link>
           {generateTopHeaderLinks()}
         </PrimaryHeader>

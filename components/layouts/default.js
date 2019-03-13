@@ -2,9 +2,9 @@ import Head from 'next/head';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 
-import GlobalStyles from '../../styles/Global';
-
 import Header from '../includes/Header';
+
+import GlobalStyles from '../../styles/Global';
 
 NProgress.configure({ showSpinner: false });
 
