@@ -39,6 +39,13 @@ const RowHeading = styled.a`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  color: #000;
+  text-decoration: none;
+  &:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
 `;
 
 const RowTitle = styled.span`
@@ -72,8 +79,11 @@ const RowBody = styled.div`
 
 const BodyTitle = styled.span`
   font-size: 17px;
-  font-weight: 500;
+  font-weight: bold;
   height: 37px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 `;
 
 const ContactInfoList = styled.div`
@@ -91,12 +101,40 @@ const ContactListItem = styled.div`
   font-size: 18px;
   margin-bottom: ${props => (props.marginBottom ? '35px' : '0')};
   .contact-name {
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 10px;
   }
   .contact-phone {
     margin-bottom: 10px;
+    color: #000;
+    font-weight: 100;
+    text-decoration: none;
+    &:hover {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
   }
+  .contact-email {
+    color: #369bf7;
+    text-decoration: none;
+    font-weight: 100;
+    &:hover {
+      color: #369bf7;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+`;
+
+const CopyrightFooter = styled.div`
+  font-size: 12px;
+  line-height: 22px;
+  font-weight: lighter;
+  padding: 10px 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 export default class ContactPage extends React.Component {
@@ -462,6 +500,12 @@ export default class ContactPage extends React.Component {
             </RowBody>
           </ContactRow>
         </ContactList>
+        <CopyrightFooter>
+          Copyright © 2019. No part of this website (eg. pictures, graphs, logos
+          and others designing material) may be copied, disseminated or
+          published for commercial or advertising use without the prior written
+          permission from Hudson Square Properties.
+        </CopyrightFooter>
       </Layout>
     );
   }
