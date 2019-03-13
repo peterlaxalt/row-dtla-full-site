@@ -40,14 +40,6 @@ export default class MyDocument extends Document {
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             rel="stylesheet"
           />
-          <link
-            href="/your-path-to-fontawesome/css/brands.css"
-            rel="stylesheet"
-          />
-          <link
-            href="/your-path-to-fontawesome/css/solid.css"
-            rel="stylesheet"
-          />
         </Head>
         <body>
           <Main />
