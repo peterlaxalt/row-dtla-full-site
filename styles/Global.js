@@ -16,9 +16,6 @@ const GlobalStyles = createGlobalStyle`
   #__next {
     height: 100%;
   }
-  .container {
-    height: 100%;
-  }
 `;
 
 export default GlobalStyles;

@@ -1,11 +1,21 @@
 import { withRouter } from 'next/router';
+import buildings from '../data/buildings';
 
-const building = props => {
+const Building = props => {
+  const { building } = props;
+
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%'}}>
-      <h1>{props.router.query.slug}</h1>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: 'red'}}>
+      <h1>{building.title}</h1>
     </div>
   );
 };
 
-export default withRouter(building);
+Building.getInitialProps = async function(context) {
+  const { slug } = context.query;
+  const building = buildings.find(building => building.slug === slug);
+
+  return { building };
+};
+
+export default withRouter(Building);
