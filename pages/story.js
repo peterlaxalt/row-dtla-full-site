@@ -1,9 +1,7 @@
-import Layout from '../components/layouts/default';
-
 const StoryPage = () => (
-  <Layout title='Story'>
+  <div>
     <p>Story Next.js</p>
-  </Layout>
+  </div>
 );
 
 export default StoryPage;

@@ -1,9 +1,7 @@
-import Layout from '../components/layouts/default';
-
 const ContactPage = () => (
-  <Layout title='Contact'>
-    <p>Contact Next.js</p>
-  </Layout>
+  <div>
+    Contact Next.js
+  </div>
 );
 
 export default ContactPage;
