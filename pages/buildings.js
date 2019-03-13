@@ -4,7 +4,7 @@ import BeforeAfter from '../components/BeforeAfter';
 import ScrollUp from '../components/ScrollUp';
 import { testArray, testBefore, testAfter } from '../data/test.js';
 
-const BuildingsPage = () => (
+const Buildings = () => (
   <div>
     <p>Buildings Next.js</p>
     <ImageFader imgArray={testArray} autoPlay={true} />
@@ -14,4 +14,4 @@ const BuildingsPage = () => (
   </div>
 );
 
-export default BuildingsPage;
+export default Buildings;

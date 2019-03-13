@@ -1,7 +1,7 @@
-const ContactPage = () => (
+const Contact = () => (
   <div>
     Contact Next.js
   </div>
 );
 
-export default ContactPage;
+export default Contact;

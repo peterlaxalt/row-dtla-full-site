@@ -1,7 +1,7 @@
-const LocationPage = () => (
+const Location = () => (
   <div>
     <p>Location Next.js</p>
   </div>
 );
 
-export default LocationPage;
+export default Location;

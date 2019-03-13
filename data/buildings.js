@@ -1,11 +1,26 @@
 const titles = [
   {
     title: '75 Varick',
-    slug: '75-varick-street'
+    slug: '75-varick-street',
+    yearConstructed: '1931',
+    numFloors: 17,
+    totalBuildingArea: 978795,
+    floorSizes: '47,558 – 62,513 SF',
+    CeilingHeights: [
+      'Floors 2-16: 12′-4″',
+      'Floor 17: 12′-6″'
+    ]
   },
   {
     title: '160 Varick',
-    slug: '160-varick-street'
+    slug: '160-varick-street',
+    yearConstructed: '1927-1928',
+    numFloors: 12,
+    totalBuildingArea: 343020,
+    floorSizes: '3,388 – 29,096 SF',
+    CeilingHeights: [
+      '12′-4″'
+    ]
   },
   {
     title: '345 Hudson',

@@ -1,7 +1,7 @@
-const RetailPage = () => (
+const Retail = () => (
   <div title='Retail'>
     <p>Retail Next.js</p>
   </div>
 );
 
-export default RetailPage;
+export default Retail;

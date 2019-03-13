@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import routes from '../../../data/routes';
 import buildings from '../../../data/buildings';
 
-// import { pxToRem } from '../helpers/math';
-
 import HamburgerMenu from './HamburgerMenu';
 
 const PrimaryHeader = styled.div`
@@ -90,8 +88,8 @@ const SecondaryHeader = styled.div`
 
 const generateBottomHeader = () => {
   const buildingLinks = buildings.map(building => (
-    <li key={`building-${building}`}>
-      <Link  href={`/building/${building.slug}`}>
+    <li key={`building-${building.title}`}>
+      <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
         <a>{building.title.toUpperCase()}</a>
       </Link>
     </li>

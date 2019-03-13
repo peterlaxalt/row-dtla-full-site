@@ -1,7 +1,7 @@
-const StoryPage = () => (
+const Story = () => (
   <div>
     <p>Story Next.js</p>
   </div>
 );
 
-export default StoryPage;
+export default Story;
