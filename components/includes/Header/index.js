@@ -18,6 +18,7 @@ const PrimaryHeader = styled.div`
   align-items: center;
   height: 60px;
   background: grey;
+  z-index: 100;
 `;
 
 const NavUnorderedList = styled.ul`
@@ -29,7 +30,7 @@ const NavUnorderedList = styled.ul`
     margin: 0 15px;
     list-style-type: none;
     text-decoration: none;
-    
+
     &:hover {
       text-decoration: underline;
     }
@@ -43,15 +44,15 @@ const HeaderLogo = styled.img`
 const generateTopHeaderLinks = () => {
   const links = routes.map(page => (
     <Link key={`link-${page}`} href={`/${page}`} passHref>
-      <li><a>{page.toUpperCase()}</a></li>
+      <li>
+        <a>{page.toUpperCase()}</a>
+      </li>
     </Link>
   ));
-  
+
   return (
-    <div style={{ display: 'flex', height: '100%', background: 'red'}}>
-      <NavUnorderedList>
-        {links}
-      </NavUnorderedList>
+    <div style={{ display: 'flex', height: '100%', background: 'red' }}>
+      <NavUnorderedList>{links}</NavUnorderedList>
       <HamburgerMenu />
     </div>
   );
@@ -65,9 +66,10 @@ const SecondaryHeader = styled.div`
   margin-top: 60px;
   height: 45px;
   width: 100%;
+  z-index: 100;
   transition: all 200ms ease;
-  opacity: ${props => props.active ? 0 : 1};
-  visibility: ${props => props.active ? 'initial' : 'none'};
+  opacity: ${props => (props.active ? 0 : 1)};
+  visibility: ${props => (props.active ? 'initial' : 'none')};
   ul {
     display: flex;
     justify-content: space-between;
@@ -86,26 +88,29 @@ const generateBottomHeader = () => {
     <li key={building.title}>{building.title}</li>
   ));
 
-  return (
-    <ul>{buildingLinks}</ul>
-  );
+  return <ul>{buildingLinks}</ul>;
 };
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       secondaryActive: false
     };
   }
-  
+
   render() {
     return (
       <React.Fragment>
         <PrimaryHeader>
-          <Link key='link-home' href={`/`}>
-            <a><HeaderLogo src='/static/images/logos/hudson_square_properties_logo.png' alt='Hudson Square Properties Logo' /></a>
+          <Link key="link-home" href={`/`}>
+            <a>
+              <HeaderLogo
+                src="/static/images/logos/hudson_square_properties_logo.png"
+                alt="Hudson Square Properties Logo"
+              />
+            </a>
           </Link>
           {generateTopHeaderLinks()}
         </PrimaryHeader>
