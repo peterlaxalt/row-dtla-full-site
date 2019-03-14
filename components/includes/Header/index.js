@@ -16,6 +16,7 @@ const PrimaryHeader = styled.div`
   align-items: center;
   height: 60px;
   background: grey;
+  z-index: 100;
 `;
 
 const NavUnorderedList = styled.ul`
@@ -28,8 +29,9 @@ const NavUnorderedList = styled.ul`
     list-style-type: none;
     text-decoration: none;
 
+
     a {
-      text-decoration: none;;
+      text-decoration: none;
     }
   }
 `;
@@ -46,12 +48,10 @@ const generateTopHeaderLinks = () => {
       </Link>
     </li>
   ));
-  
+
   return (
-    <div style={{ display: 'flex', height: '100%', background: 'red'}}>
-      <NavUnorderedList>
-        {links}
-      </NavUnorderedList>
+    <div style={{ display: 'flex', height: '100%', background: 'red' }}>
+      <NavUnorderedList>{links}</NavUnorderedList>
       <HamburgerMenu />
     </div>
   );
@@ -65,9 +65,10 @@ const SecondaryHeader = styled.div`
   margin-top: 60px;
   height: 45px;
   width: 100%;
+  z-index: 100;
   transition: all 200ms ease;
-  opacity: ${props => props.active ? 0 : 1};
-  visibility: ${props => props.active ? 'initial' : 'none'};
+  opacity: ${props => (props.active ? 0 : 1)};
+  visibility: ${props => (props.active ? 'initial' : 'none')};
   ul {
     display: flex;
     justify-content: space-between;
@@ -95,20 +96,18 @@ const generateBottomHeader = () => {
     </li>
   ));
 
-  return (
-    <ul>{buildingLinks}</ul>
-  );
+  return <ul>{buildingLinks}</ul>;
 };
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       secondaryActive: false
     };
   }
-  
+
   render() {
     return (
       <React.Fragment>
