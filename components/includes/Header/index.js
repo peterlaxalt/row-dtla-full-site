@@ -15,7 +15,8 @@ const PrimaryHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  background: grey;
+  background: ${props => (props.active ? 'blue' : 'red')};
+  transition: background 200ms ease;
   z-index: 100;
 `;
 
@@ -29,7 +30,6 @@ const NavUnorderedList = styled.ul`
     list-style-type: none;
     text-decoration: none;
 
-
     a {
       text-decoration: none;
     }
@@ -39,23 +39,6 @@ const NavUnorderedList = styled.ul`
 const HeaderLogo = styled.img`
   margin-left: 40px;
 `;
-
-const generateTopHeaderLinks = () => {
-  const links = routes.map(page => (
-    <li key={`link-${page}`}>
-      <Link href={`/${page}`}>
-        <a>{page.toUpperCase()}</a>
-      </Link>
-    </li>
-  ));
-
-  return (
-    <div style={{ display: 'flex', height: '100%', background: 'red' }}>
-      <NavUnorderedList>{links}</NavUnorderedList>
-      <HamburgerMenu />
-    </div>
-  );
-};
 
 const SecondaryHeader = styled.div`
   background: green;
@@ -87,31 +70,52 @@ const SecondaryHeader = styled.div`
   }
 `;
 
-const generateBottomHeader = () => {
-  const buildingLinks = buildings.map(building => (
-    <li key={`building-${building.title}`}>
-      <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
-        <a>{building.title.toUpperCase()}</a>
-      </Link>
-    </li>
-  ));
 
-  return <ul>{buildingLinks}</ul>;
-};
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      hamburgerVisible: true,
+      desktopTopActive: false,
       secondaryActive: false
     };
+  }
+
+  generateTopHeaderLinks() {
+    const links = routes.map(page => (
+      <li key={`link-${page}`}>
+        <Link href={`/${page}`}>
+          <a>{page.toUpperCase()}</a>
+        </Link>
+      </li>
+    ));
+    
+    return (
+      <div style={{ display: 'flex', height: '100%' }}>
+        <NavUnorderedList>{links}</NavUnorderedList>
+        <HamburgerMenu toggleDesktopNav={() => this.setState({ desktopTopActive: !this.state.desktopTopActive })} />
+      </div>
+    );
+  }
+
+  generateBottomHeaderLinks() {
+    const buildingLinks = buildings.map(building => (
+      <li key={`building-${building.title}`}>
+        <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
+          <a>{building.title.toUpperCase()}</a>
+        </Link>
+      </li>
+    ));
+  
+    return <ul>{buildingLinks}</ul>;
   }
 
   render() {
     return (
       <React.Fragment>
-        <PrimaryHeader>
+        <PrimaryHeader active={this.state.desktopTopActive}>
           <Link key='link-home' href={`/`}>
             <a>
               <HeaderLogo 
@@ -120,10 +124,10 @@ class Header extends React.Component {
               />
             </a>
           </Link>
-          {generateTopHeaderLinks()}
+          {this.generateTopHeaderLinks()}
         </PrimaryHeader>
         <SecondaryHeader active={this.state.secondaryActive}>
-          {generateBottomHeader()}
+          {this.generateBottomHeaderLinks()}
         </SecondaryHeader>
       </React.Fragment>
     );

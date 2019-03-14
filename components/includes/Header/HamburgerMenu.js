@@ -23,9 +23,9 @@ const Line = styled.div`
   }
 `;
 
-const HamburgerMenu = () => {
+const HamburgerMenu = props => {
   return (
-    <HamburgerDiv>
+    <HamburgerDiv onClick={props.toggleDesktopNav}>
       <Line top='25%' topHover='30%'/>
       <Line top='45%' />
       <Line top='65%' topHover='60%'/>
