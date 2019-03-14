@@ -29,7 +29,7 @@ const ContactRow = styled.div`
   flex-direction: column;
   margin: 30px 0 0 0;
   padding: 0 0 30px 0;
-  border-bottom: 2px solid black;
+  border-bottom: 3px solid black;
   width: 100%;
 `;
 
@@ -66,15 +66,24 @@ const RowIcon = styled.i`
 `;
 
 const RowBody = styled.div`
-  display: flex;
+  display: block;
   flex-direction: column;
   width: 100%;
   overflow: hidden;
   box-sizing: content-box;
-  padding: ${props => (props.openRow ? '30px 0' : '0')};
+  padding-top: ${props => (props.openRow ? '30px' : '0')};
+  padding-bottom: ${props => {
+    if (props.paddingBottom) {
+      return '0';
+    } else if (props.openRow) {
+      return '30px';
+    } else {
+      return '0';
+    }
+  }};
   transition: max-height 0.25s ease-in-out, padding 0.25s ease-in-out;
   max-height: ${props =>
-    props.openRow ? Math.ceil(props.numChildren / 4) * 81 + 37 + 'px' : '0'};
+    props.openRow ? Math.ceil(props.numChildren / 4) * 116 + 97 + 'px' : '0'};
 `;
 
 const BodyTitle = styled.span`
@@ -99,7 +108,7 @@ const ContactListItem = styled.div`
   height: 81px;
   width: 25%;
   font-size: 18px;
-  margin-bottom: ${props => (props.marginBottom ? '35px' : '0')};
+  margin-bottom: ${props => (props.marginBottom ? '30px' : '0')};
   .contact-name {
     font-weight: bold;
     margin-bottom: 10px;
@@ -275,6 +284,7 @@ export default class ContactPage extends React.Component {
             <RowBody
               openRow={this.state.openRow === 0}
               numChildren={SeventyFiveVarick.length}
+              paddingBottom={SeventyFiveVarick.length > 4}
             >
               <BodyTitle>Exclusive Leasing Agents</BodyTitle>
               {this.createContactList(SeventyFiveVarick)}
@@ -295,6 +305,7 @@ export default class ContactPage extends React.Component {
             <RowBody
               openRow={this.state.openRow === 1}
               numChildren={OneSixtyVarick.length}
+              paddingBottom={OneSixtyVarick.length > 4}
             >
               <BodyTitle>Exclusive Leasing Agents</BodyTitle>
               {this.createContactList(OneSixtyVarick)}
@@ -315,6 +326,7 @@ export default class ContactPage extends React.Component {
             <RowBody
               openRow={this.state.openRow === 2}
               numChildren={ThreeFortyFiveHudson.length}
+              paddingBottom={ThreeFortyFiveHudson.length > 4}
             >
               <BodyTitle>Exclusive Leasing Agents</BodyTitle>
               {this.createContactList(ThreeFortyFiveHudson)}
@@ -335,6 +347,7 @@ export default class ContactPage extends React.Component {
             <RowBody
               openRow={this.state.openRow === 3}
               numChildren={ThreeFiftyHudson.length}
+              paddingBottom={ThreeFiftyHudson.length > 4}
             >
               <BodyTitle>Exclusive Leasing Agents</BodyTitle>
               {this.createContactList(ThreeFiftyHudson)}
@@ -355,6 +368,7 @@ export default class ContactPage extends React.Component {
             <RowBody
               openRow={this.state.openRow === 4}
               numChildren={ThreeSeventyFiveHudson.length}
+              paddingBottom={ThreeSeventyFiveHudson.length > 4}
             >
               <BodyTitle>Exclusive Leasing Agents</BodyTitle>
               {this.createContactList(ThreeSeventyFiveHudson)}
@@ -375,6 +389,7 @@ export default class ContactPage extends React.Component {
             <RowBody
               openRow={this.state.openRow === 5}
               numChildren={OneHundredAvenue.length}
+              paddingBottom={OneHundredAvenue.length > 4}
             >
               <BodyTitle>Exclusive Leasing Agents</BodyTitle>
               {this.createContactList(OneHundredAvenue)}
@@ -395,6 +410,7 @@ export default class ContactPage extends React.Component {
             <RowBody
               openRow={this.state.openRow === 6}
               numChildren={OneFiftyFiveAvenue.length}
+              paddingBottom={OneFiftyFiveAvenue.length > 4}
             >
               <BodyTitle>Exclusive Leasing Agents</BodyTitle>
               {this.createContactList(OneFiftyFiveAvenue)}
@@ -415,6 +431,7 @@ export default class ContactPage extends React.Component {
             <RowBody
               openRow={this.state.openRow === 7}
               numChildren={TwoHundredHudson.length}
+              paddingBottom={TwoHundredHudson.length > 4}
             >
               <BodyTitle>Exclusive Leasing Agents</BodyTitle>
               {this.createContactList(TwoHundredHudson)}
@@ -435,6 +452,7 @@ export default class ContactPage extends React.Component {
             <RowBody
               openRow={this.state.openRow === 8}
               numChildren={TwoOFiveHudson.length}
+              paddingBottom={TwoOFiveHudson.length > 4}
             >
               <BodyTitle>Exclusive Leasing Agents</BodyTitle>
               {this.createContactList(TwoOFiveHudson)}
@@ -455,6 +473,7 @@ export default class ContactPage extends React.Component {
             <RowBody
               openRow={this.state.openRow === 9}
               numChildren={TwoTwentyFiveVarick.length}
+              paddingBottom={TwoTwentyFiveVarick.length > 4}
             >
               <BodyTitle>Exclusive Leasing Agents</BodyTitle>
               {this.createContactList(TwoTwentyFiveVarick)}
@@ -475,6 +494,7 @@ export default class ContactPage extends React.Component {
             <RowBody
               openRow={this.state.openRow === 10}
               numChildren={FourThirtyFiveHudson.length}
+              paddingBottom={FourThirtyFiveHudson.length > 4}
             >
               <BodyTitle>Exclusive Leasing Agents</BodyTitle>
               {this.createContactList(FourThirtyFiveHudson)}
@@ -495,6 +515,7 @@ export default class ContactPage extends React.Component {
             <RowBody
               openRow={this.state.openRow === 11}
               numChildren={RetailLeasing.length}
+              paddingBottom={RetailLeasing.length > 4}
             >
               {this.createContactList(RetailLeasing)}
             </RowBody>
