@@ -1,9 +1,7 @@
-import Layout from '../components/layouts/default';
-
-const LocationPage = () => (
-  <Layout title='Location'>
+const Location = () => (
+  <div>
     <p>Location Next.js</p>
-  </Layout>
+  </div>
 );
 
-export default LocationPage;
+export default Location;

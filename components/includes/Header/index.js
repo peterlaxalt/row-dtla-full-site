@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import routes from '../../../data/routes';
 import buildings from '../../../data/buildings';
 
-// import { pxToRem } from '../helpers/math';
-
 import HamburgerMenu from './HamburgerMenu';
 
 const PrimaryHeader = styled.div`
@@ -31,8 +29,9 @@ const NavUnorderedList = styled.ul`
     list-style-type: none;
     text-decoration: none;
 
-    &:hover {
-      text-decoration: underline;
+
+    a {
+      text-decoration: none;
     }
   }
 `;
@@ -43,11 +42,11 @@ const HeaderLogo = styled.img`
 
 const generateTopHeaderLinks = () => {
   const links = routes.map(page => (
-    <Link key={`link-${page}`} href={`/${page}`} passHref>
-      <li>
+    <li key={`link-${page}`}>
+      <Link href={`/${page}`}>
         <a>{page.toUpperCase()}</a>
-      </li>
-    </Link>
+      </Link>
+    </li>
   ));
 
   return (
@@ -79,13 +78,22 @@ const SecondaryHeader = styled.div`
     height: 100%;
     li {
       list-style-type: none;
+      cursor: pointer;
+      a {
+        text-decoration: none;
+        color: initial;
+      }
     }
   }
 `;
 
 const generateBottomHeader = () => {
   const buildingLinks = buildings.map(building => (
-    <li key={building.title}>{building.title}</li>
+    <li key={`building-${building.title}`}>
+      <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
+        <a>{building.title.toUpperCase()}</a>
+      </Link>
+    </li>
   ));
 
   return <ul>{buildingLinks}</ul>;
@@ -104,11 +112,11 @@ class Header extends React.Component {
     return (
       <React.Fragment>
         <PrimaryHeader>
-          <Link key="link-home" href={`/`}>
+          <Link key='link-home' href={`/`}>
             <a>
-              <HeaderLogo
-                src="/static/images/logos/hudson_square_properties_logo.png"
-                alt="Hudson Square Properties Logo"
+              <HeaderLogo 
+                src='/static/images/logos/hudson_square_properties_logo.png' 
+                alt='Hudson Square Properties Logo' 
               />
             </a>
           </Link>

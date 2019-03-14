@@ -1,9 +1,7 @@
-import Layout from '../components/layouts/default';
-
-const RetailPage = () => (
-  <Layout title='Retail'>
+const Retail = () => (
+  <div title='Retail'>
     <p>Retail Next.js</p>
-  </Layout>
+  </div>
 );
 
-export default RetailPage;
+export default Retail;
