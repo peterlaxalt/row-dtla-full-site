@@ -2,6 +2,7 @@ import React from 'react';
 import App, { Container } from 'next/app';
 import Router from 'next/router';
 import NProgress from 'nprogress';
+import ContextProvider from '../provider/ContextProvider';
 
 import Layout from '../components/layouts/default';
 
@@ -18,16 +19,18 @@ Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteChangeError = () => NProgress.done();
 
 export default class MyApp extends App {
-  render () {
+  render() {
     const { Component, pageProps } = this.props;
     return (
-      <Container>
-        <Layout>
-          <GlobalStyles />
-          <TypographyStyles />
-          <Component {...pageProps} />
-        </Layout>
-      </Container>
+      <ContextProvider>
+        <Container>
+          <Layout>
+            <GlobalStyles />
+            <TypographyStyles />
+            <Component {...pageProps} />
+          </Layout>
+        </Container>
+      </ContextProvider>
     );
   }
 }
