@@ -19,12 +19,13 @@ Router.onRouteChangeError = () => NProgress.done();
 
 export default class MyApp extends App {
   render () {
+    
     const { Component, pageProps } = this.props;
     return (
       <Container>
+        <GlobalStyles />
+        <TypographyStyles />
         <Layout>
-          <GlobalStyles />
-          <TypographyStyles />
           <Component {...pageProps} />
         </Layout>
       </Container>
