@@ -18,7 +18,34 @@ Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteChangeError = () => NProgress.done();
 
 export default class MyApp extends App {
-  render () {
+  constructor(props) {
+    super(props);
+    this.state = {
+      windowDimensions: {
+        height: null,
+        width: null
+      }
+    };
+  }
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions = () => {
+    this.setState({
+      windowDimensions: {
+        height: window.innerHeight,
+        width: window.innerWidth
+      }
+    });
+  };
+
+  render() {
     const { Component, pageProps } = this.props;
     return (
       <Container>
