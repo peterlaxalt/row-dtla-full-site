@@ -2,6 +2,7 @@ import React from 'react';
 import App, { Container } from 'next/app';
 import Router from 'next/router';
 import NProgress from 'nprogress';
+import ContextProvider from '../provider/ContextProvider';
 
 import Layout from '../components/layouts/default';
 
@@ -22,13 +23,15 @@ export default class MyApp extends App {
     
     const { Component, pageProps } = this.props;
     return (
-      <Container>
-        <GlobalStyles />
-        <TypographyStyles />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </Container>
+      <ContextProvider>
+        <Container>
+          <GlobalStyles />
+          <TypographyStyles />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Container>
+      </ContextProvider>
     );
   }
 }
