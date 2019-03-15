@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
+  li {
+    font-size: 1rem;  
+  }
+  
   a {
     text-decoration: none;
     color: inherit;
