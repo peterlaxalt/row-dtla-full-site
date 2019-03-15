@@ -10,6 +10,10 @@ class ContextProvider extends Component {
         height: null,
         width: null
       },
+      navigation: {
+        homeNavActive: false,
+        buildingNavActive: false
+      },
       availabilityData: [],
       pressData: [],
       newsData: []

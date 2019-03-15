@@ -6,6 +6,7 @@ import routes from '../../../data/routes';
 import buildings from '../../../data/buildings';
 
 import HamburgerMenu from './HamburgerMenu';
+import Context from '../../../config/Context';
 
 const isUpperNavActive = (props) => {
   return props.route !== 'home' ? true : props.active;
@@ -136,22 +137,26 @@ class Header extends React.Component {
   render() {
     const route = this.props.router.pathname.replace('/', '') || 'home';
     return (
-      <React.Fragment>
-        <UpperNavigation active={this.state.homeNavActive} route={route}>
-          <Link key='link-home' href={`/`}>
-            <a>
-              <HeaderLogo 
-                src='/static/images/logos/hudson_square_properties_logo.png' 
-                alt='Hudson Square Properties Logo' 
-              />
-            </a>
-          </Link>
-          {this.generateUpperNavLinks(route)}
-        </UpperNavigation>
-        <BuildingNavigation route={route} active={this.state.buildingNavActive}>
-          {this.generateBuildingNavLinks()}
-        </BuildingNavigation>
-      </React.Fragment>
+      <Context.Consumer>
+        {context => (
+          <React.Fragment>
+            <UpperNavigation active={this.state.homeNavActive} route={route}>
+              <Link key='link-home' href={`/`}>
+                <a>
+                  <HeaderLogo 
+                    src='/static/images/logos/hudson_square_properties_logo.png' 
+                    alt='Hudson Square Properties Logo' 
+                  />
+                </a>
+              </Link>
+              {this.generateUpperNavLinks(route)}
+            </UpperNavigation>
+            <BuildingNavigation route={route} active={this.state.buildingNavActive}>
+              {this.generateBuildingNavLinks()}
+            </BuildingNavigation>
+          </React.Fragment>
+        )}
+      </Context.Consumer>
     );
   }
 }

@@ -8,7 +8,8 @@
         "plugin:react/recommended"
     ],
     "globals": {
-        "React": true
+        "React": true,
+        "window": true
     },
     "parser": "babel-eslint",
     "parserOptions": {
