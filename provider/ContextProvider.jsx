@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Context from '../config/Context';
-import $ from 'jquery';
+import fetch from 'isomorphic-unfetch';
 
 class ContextProvider extends Component {
   constructor(props) {
@@ -17,9 +17,9 @@ class ContextProvider extends Component {
   }
   componentDidMount() {
     this.updateWindowDimensions();
-    this.fetchAvailability();
-    this.fetchNews();
-    this.fetchPress();
+    this.isomorphicFetchAvailability();
+    this.isomorphicFetchNews();
+    this.isomorphicFetchPress();
     window.addEventListener('resize', this.updateWindowDimensions);
   }
 
@@ -36,51 +36,38 @@ class ContextProvider extends Component {
     });
   };
 
-  fetchAvailability = () => {
-    $.ajax({
-      url: 'https://cms.dbox.com/wp-json/wp/v2/hsp_availability'
-    }).then(data => {
-      data = data.map((el, idx) => {
+  isomorphicFetchAvailability = async function() {
+    const res = await fetch(
+      'https://cms.dbox.com/wp-json/wp/v2/hsp_availability'
+    );
+    const data = await res.json();
+
+    this.setState({
+      availabilityData: data.map(el => {
         return el.acf;
-      });
-      this.setState({
-        availabilityData: data
-      });
-      console.log(data);
+      })
     });
   };
 
-  fetchPress = () => {
-    $.ajax({
-      url: 'https://cms.dbox.com/wp-json/wp/v2/hsp_press'
-    }).then(data => {
-      data = data.map((el, idx) => {
+  isomorphicFetchPress = async function() {
+    const res = await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_press');
+    const data = await res.json();
+
+    this.setState({
+      pressData: data.map(el => {
         return el.acf;
-      });
-      data = data.sort((a, b) => {
-        return new Date(b.date) - new Date(a.date);
-      });
-      this.setState({
-        pressData: data
-      });
-      console.log(data);
+      })
     });
   };
 
-  fetchNews = () => {
-    $.ajax({
-      url: 'https://cms.dbox.com/wp-json/wp/v2/hsp_news'
-    }).then(data => {
-      data = data.map((el, idx) => {
+  isomorphicFetchNews = async function() {
+    const res = await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_news');
+    const data = await res.json();
+
+    this.setState({
+      newsData: data.map(el => {
         return el.acf;
-      });
-      data = data.sort((a, b) => {
-        return new Date(b.date) - new Date(a.date);
-      });
-      this.setState({
-        newsData: data
-      });
-      console.log(data);
+      })
     });
   };
 
