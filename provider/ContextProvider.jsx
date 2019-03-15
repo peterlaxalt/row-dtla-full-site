@@ -80,7 +80,18 @@ class ContextProvider extends Component {
       <Context.Provider
         value={{
           state: this.state,
-          updateWindowDimensions: () => this.updateWindowDimensions()
+          toggleDesktopNav: () => this.setState({ 
+            navigation: {
+              ...this.state.navigation,
+              homeNavActive: !this.state.navigation.homeNavActive,
+            }
+          }),
+          toggleBuildingNav: () => this.setState({ 
+            navigation: {
+              ...this.state.navigation,
+              buildingNavActive: !this.state.navigation.buildingNavActive,
+            }
+          }),
         }}
       >
         {this.props.children}

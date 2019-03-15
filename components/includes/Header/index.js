@@ -102,9 +102,9 @@ class Header extends React.Component {
     };
   }
 
-  generateUpperNavLinks(route) {
+  generateUpperNavLinks(context, route) {
     const links = routes.map(page => {
-      let link = page !== 'buildings' ? <a>{page.toUpperCase()}</a> : <a onMouseOver={() => this.setState({ buildingNavActive: true})} onMouseOut={() => this.setState({ buildingNavActive: false})}>{page.toUpperCase()}</a>;
+      let link = page !== 'buildings' ? <a>{page.toUpperCase()}</a> : <a onMouseOver={context.toggleBuildingNav}>{page.toUpperCase()}</a>;
       return (
         <li id={`desktop-link-${page}`} key={`link-${page}`}>
           <Link href={`/${page}`}>
@@ -113,11 +113,11 @@ class Header extends React.Component {
         </li>
       );
     });
-    
+
     return (
       <DesktopNav>
-        <NavUnorderedList route={route} active={this.state.homeNavActive}>{links}</NavUnorderedList>
-        { route === 'home' && <HamburgerMenu toggleDesktopNav={() => this.setState({ homeNavActive: !this.state.homeNavActive })}  /> }
+        <NavUnorderedList route={route} active={context.state.navigation.homeNavActive}>{links}</NavUnorderedList>
+        { route === 'home' && <HamburgerMenu toggleDesktopNav={context.toggleDesktopNav} /> }
       </DesktopNav>
     );
   }
@@ -140,7 +140,7 @@ class Header extends React.Component {
       <Context.Consumer>
         {context => (
           <React.Fragment>
-            <UpperNavigation active={this.state.homeNavActive} route={route}>
+            <UpperNavigation active={context.state.navigation.homeNavActive} route={route}>
               <Link key='link-home' href={`/`}>
                 <a>
                   <HeaderLogo 
@@ -149,9 +149,9 @@ class Header extends React.Component {
                   />
                 </a>
               </Link>
-              {this.generateUpperNavLinks(route)}
+              {this.generateUpperNavLinks(context, route)}
             </UpperNavigation>
-            <BuildingNavigation route={route} active={this.state.buildingNavActive}>
+            <BuildingNavigation route={route} active={context.state.navigation.buildingNavActive}>
               {this.generateBuildingNavLinks()}
             </BuildingNavigation>
           </React.Fragment>

@@ -20,8 +20,8 @@ Router.onRouteChangeError = () => NProgress.done();
 
 export default class MyApp extends App {
   render () {
-    
     const { Component, pageProps } = this.props;
+    
     return (
       <Container>
         <ContextProvider>

@@ -1,19 +1,30 @@
 import Head from 'next/head';
 import Header from '../includes/Header';
+import { withRouter } from 'next/router';
+import Context from '../../config/Context';
 
-const Layout = ({ children, title }) => (
-  <React.Fragment>
-    <Head>
-      <title>
-        {title
-          ? `${title} - Hudson Square Properties`
-          : 'Hudson Square Properties'}
-      </title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </Head>
-    <Header />
-    <div className="container">{children}</div>
-  </React.Fragment>
-);
+const Layout = (props) => {
+  const title = props.router.pathname.replace('/', '') || 'Home';
 
-export default Layout;
+  return (
+    <Context.Consumer>
+      {context => (
+        <React.Fragment>
+          <Head>
+            <title>
+              {title
+                ? `${title} - Hudson Square Properties`
+                : 'Hudson Square Properties'}
+            </title>
+          </Head>
+          <Header />
+          <div className="container">
+            {props.children}
+          </div>
+        </React.Fragment>
+      )}
+    </Context.Consumer>
+  );
+};
+
+export default withRouter(Layout);
