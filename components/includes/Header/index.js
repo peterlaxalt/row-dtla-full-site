@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 import styled from 'styled-components';
+import media from '~/styles/MediaQueries';
 
-import routes from '../../../data/routes';
-import buildings from '../../../data/buildings';
+import routes from '~/data/routes';
+import buildings from '~/data/buildings';
 
 import HamburgerMenu from './HamburgerMenu';
-import Context from '../../../config/Context';
+import Context from '~/config/Context';
 
 const isUpperNavActive = (props) => {
   return props.route !== 'home' ? true : props.active;
@@ -24,6 +25,10 @@ const UpperNavigation = styled.div`
   background: ${props => isUpperNavActive(props) ? '#fff' : 'transparent' };
   transition: background 200ms ease;
   z-index: 100;
+
+  ${media.desktop`
+    background: dodgerblue;
+  `}
 `;
 
 const DesktopNav = styled.div`
@@ -41,6 +46,7 @@ const NavUnorderedList = styled.ul`
   transition: all 200ms ease;
   opacity: ${props => isDesktopNavVisible(props) ? 1 : 0 };
   visibility: ${props => isDesktopNavVisible(props) ? 'visible' : 'hidden' };
+  
   li {
     color: inherit;
     cursor: pointer;
@@ -93,14 +99,6 @@ const BuildingNavigation = styled.div`
 `;
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      homeNavActive: false,
-      buildingNavActive: false
-    };
-  }
 
   generateUpperNavLinks(context, route) {
     const links = routes.map(page => {
