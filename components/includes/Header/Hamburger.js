@@ -1,12 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import { mediaMin, mediaMax } from '~/styles/MediaQueries';
 
 const HamburgerDiv = styled.div`
   width: 30px;
   position: relative;
   margin: 0 20px;
-  margin-right: 40px;
   cursor: pointer;
+
+  ${mediaMin.desktopSmall`
+    margin: 0 40px 0 20px;
+  `}
 `;
 
 const Line = styled.div`
@@ -23,7 +27,7 @@ const Line = styled.div`
   }
 `;
 
-const HamburgerMenu = props => {
+export const MobileHamburger = props => {
   return (
     <HamburgerDiv onClick={props.toggleDesktopNav}>
       <Line top='25%' topHover='30%'/>
@@ -33,4 +37,12 @@ const HamburgerMenu = props => {
   );
 };
 
-export default HamburgerMenu;
+export const DesktopHamburger = props => {
+  return (
+    <HamburgerDiv onClick={props.toggleDesktopNav}>
+      <Line top='25%' topHover='30%'/>
+      <Line top='45%' />
+      <Line top='65%' topHover='60%'/>
+    </HamburgerDiv>
+  );
+};
