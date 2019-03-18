@@ -1,0 +1,566 @@
+import React from 'react';
+import Link from 'next/link';
+import styled from 'styled-components';
+import Context from '../config/Context';
+
+const AvailabilityListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 5% 0 5%;
+  z-index: 1;
+`;
+
+const AvailabilityRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0 0 0;
+  padding: 0 0 30px 0;
+  border-bottom: 3px solid black;
+  width: 100%;
+`;
+
+const AvailabilityBody = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  .building,
+  .suite,
+  .floor,
+  .sqft,
+  .neighborhood,
+  .type {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .building {
+    width: 30%;
+  }
+  .suite {
+    width: 10%;
+  }
+  .floor {
+    width: 10%;
+  }
+  .sqft {
+    width: 10%;
+  }
+  .neighborhood {
+    width: 20%;
+  }
+  .type {
+    width: 15%;
+  }
+  .details {
+    width: 5%;
+  }
+`;
+
+const Heading = styled.span`
+  font-size: 24px;
+  font-weight: 500px;
+  line-height: 30px;
+`;
+
+const SortIcon = styled.i`  
+  height: 20px;
+  width: 20px;
+  margin-left: 8px;
+  &::before {
+    position: absolute;
+    content: ${props => {
+      if (props.sortDirection === null || props.sortDirection === 'up') {
+        return "'\\f0d8';";
+      } else {
+        return '';
+      }
+    }}
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 16px;
+    transform: translateY(-15%);
+  }
+  &::after {
+    position: absolute;
+    content: ${props => {
+      if (props.sortDirection === null || props.sortDirection === 'down') {
+        return "'\\f0dd';";
+      } else {
+        return '';
+      }
+    }}
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 16px;
+    transform: translateY(15%);
+  }
+  z-index: 1;
+  ${props => (props.listingsArrayLength > 1 ? '' : 'display: none')};
+  `;
+
+const PinIcon = styled.i`
+  height: 20px;
+  width: 20px;
+  margin-left: 8px;
+  &::before {
+    position: absolute;
+    content: '\\f3c5';
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 16px;
+  }
+`;
+
+const AvailabilitySection = styled.span`
+  font-size: 20px;
+  font-weight: 500px;
+  line-height: 30px;
+`;
+
+const AvailabilityLink = styled.a`
+  font-size: 16px;
+  font-weight: 500px;
+  line-height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .details {
+    width: 5%;
+  }
+`;
+
+const FilterHeading = styled.span`
+  font-size: 24px;
+  font-weight: 500px;
+  line-height: 30px;
+  color: #49a4f8;
+  cursor: pointer;
+`;
+
+const FilterBody = styled.div`
+  display: block;
+  overflow: hidden;
+  max-height: ${props => (props.filterOpen ? '210px' : '0')};
+  transition: 0.25s max-height ease-in-out;
+`;
+
+const FormRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-end;
+`;
+
+const FilterCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+`;
+
+const FormSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 30px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .form-title {
+    font-size: 24px;
+    line-height: 30px;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  .form-options {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    font-size: 16px;
+    line-height: 30px;
+    margin-bottom: 10px;
+    .form-label {
+      width: 50%;
+    }
+    .form-option {
+      margin-right: 16px;
+    }
+  }
+`;
+
+export default class AvailabilityList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      listingsArrayLength: 0,
+      filters: {
+        neighborhood: ['West Village', 'SoHo', 'Hudson Square', 'Tribecca'],
+        type: ['Retail', 'Office', 'Office / Pre-Built'],
+        squareFootage: [
+          '5,000-10,000',
+          '10,000-15,000',
+          '15,000-20,000',
+          'More than 20,000'
+        ]
+      },
+      sorting: {
+        building: null,
+        floor: null,
+        sqft: null,
+        neighborhood: null
+      }
+    };
+  }
+
+  sortColumn = column => {
+    let newSort = {
+      building: null,
+      floor: null,
+      sqft: null,
+      neighborhood: null
+    };
+    if (this.state.sorting[column] === 'up') {
+      newSort[column] = 'down';
+    } else if (this.state.sorting[column] === 'down') {
+      newSort[column] = 'up';
+    } else {
+      newSort[column] = 'up';
+    }
+    this.setState({
+      sorting: newSort
+    });
+  };
+
+  checkFilters = filterObj => {
+    if (
+      filterObj.neighborhood.length === 0 &&
+      filterObj.type.length === 0 &&
+      filterObj.squareFootage.length === 0
+    ) {
+      return 'empty';
+    } else {
+      return (
+        filterObj.neighborhood.length === 4 &&
+        filterObj.type.length === 3 &&
+        filterObj.squareFootage.length === 4
+      );
+    }
+  };
+  updateFilter = (parent, value) => {
+    console.log(parent, value);
+    let stateCopy = this.state.filters;
+    if (this.checkFilters(this.state.filters)) {
+      stateCopy = {
+        neighborhood: [],
+        type: [],
+        squareFootage: []
+      };
+      stateCopy[parent].push(value);
+      this.setState({
+        filters: stateCopy
+      });
+    } else {
+      if (stateCopy[parent].includes(value)) {
+        let index = stateCopy[parent].indexOf(value);
+        stateCopy[parent].splice(index, 1);
+      } else {
+        stateCopy[parent].push(value);
+      }
+      if (this.checkFilters(stateCopy) === 'empty') {
+        this.setState({
+          filters: {
+            neighborhood: ['West Village', 'SoHo', 'Hudson Square', 'Tribecca'],
+            type: ['Retail', 'Office', 'Office / Pre-Built'],
+            squareFootage: [
+              '5,000-10,000',
+              '10,000-15,000',
+              '15,000-20,000',
+              'More than 20,000'
+            ]
+          }
+        });
+      } else {
+        this.setState({
+          filters: stateCopy
+        });
+      }
+    }
+  };
+
+  createListingRows = (data, filter, building) => {
+    if (data.length > 0) {
+      let sortedAndFiltered = data;
+      if (building) {
+        sortedAndFiltered = sortedAndFiltered.filter(el => {
+          return el.building === building;
+        });
+      }
+      if (filter) {
+        sortedAndFiltered = sortedAndFiltered.filter(el => {
+          return this.state.filters['neighborhood'].includes(el.neighborhood);
+        });
+        sortedAndFiltered = sortedAndFiltered.filter(el => {
+          return this.state.filters['type'].includes(el.type);
+        });
+      }
+      if (this.state.listingsArrayLength !== sortedAndFiltered.length) {
+        this.setState({
+          listingsArrayLength: sortedAndFiltered.length
+        });
+      }
+      return sortedAndFiltered.map((el, idx) => {
+        return (
+          <AvailabilityRow key={idx}>
+            <AvailabilityBody>
+              <AvailabilitySection className="building">
+                {el.building} <PinIcon />
+              </AvailabilitySection>
+              <AvailabilitySection className="suite">
+                {el.suite}
+              </AvailabilitySection>
+              <AvailabilitySection className="floor">
+                {el.floor}
+              </AvailabilitySection>
+              <AvailabilitySection className="sqft">
+                {el.sqft}
+              </AvailabilitySection>
+              <AvailabilitySection className="neighborhood">
+                {el.neighborhood}
+              </AvailabilitySection>
+              <AvailabilitySection className="type">
+                {el.type}
+              </AvailabilitySection>
+              <AvailabilityLink className="details">
+                <span>View</span>
+                <span>Details</span>
+              </AvailabilityLink>
+            </AvailabilityBody>
+          </AvailabilityRow>
+        );
+      });
+    }
+  };
+
+  render() {
+    return (
+      <Context.Consumer>
+        {context => (
+          <AvailabilityListContainer>
+            <AvailabilityRow>
+              <Heading>Availability</Heading>
+            </AvailabilityRow>
+            {this.props.hasFilter ? (
+              <FilterRow updateFilter={this.updateFilter} />
+            ) : (
+              ''
+            )}
+            <AvailabilityRow>
+              <AvailabilityBody>
+                <Heading
+                  className="building"
+                  onClick={() => this.sortColumn('building')}
+                >
+                  Building
+                  <SortIcon
+                    listingsArrayLength={this.state.listingsArrayLength}
+                    sortDirection={this.state.sorting.building}
+                  />
+                </Heading>
+                <Heading className="suite">Suite</Heading>
+                <Heading
+                  className="floor"
+                  onClick={() => this.sortColumn('floor')}
+                >
+                  Floor
+                  <SortIcon
+                    listingsArrayLength={this.state.listingsArrayLength}
+                    sortDirection={this.state.sorting.floor}
+                  />
+                </Heading>
+                <Heading
+                  className="sqft"
+                  onClick={() => this.sortColumn('sqft')}
+                >
+                  Sq. ft.
+                  <SortIcon
+                    listingsArrayLength={this.state.listingsArrayLength}
+                    sortDirection={this.state.sorting.sqft}
+                  />
+                </Heading>
+                <Heading
+                  className="neighborhood"
+                  onClick={() => this.sortColumn('neighborhood')}
+                >
+                  Neighborhood
+                  <SortIcon
+                    listingsArrayLength={this.state.listingsArrayLength}
+                    sortDirection={this.state.sorting.neighborhood}
+                  />
+                </Heading>
+                <Heading className="type">Type</Heading>
+                <Heading className="details" />
+              </AvailabilityBody>
+            </AvailabilityRow>
+            {this.createListingRows(
+              context.state.availabilityData,
+              this.state.filters,
+              this.props.building
+            )}
+          </AvailabilityListContainer>
+        )}
+      </Context.Consumer>
+    );
+  }
+}
+
+class FilterRow extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filterOpen: false
+    };
+  }
+
+  toggleFilter = () => {
+    this.setState({
+      filterOpen: !this.state.filterOpen
+    });
+  };
+  handleChange = (parent, value) => {
+    // console.log(e.target.checked);
+    this.props.updateFilter(parent, value);
+  };
+  render() {
+    return (
+      <AvailabilityRow>
+        <FilterHeading onClick={this.toggleFilter}>+ Filters</FilterHeading>
+        <FilterBody filterOpen={this.state.filterOpen}>
+          <FormRow>
+            <FilterCol>
+              <FormSection>
+                <div className="form-title">Neighborhood</div>
+                <div className="form-options">
+                  <label className="form-label">
+                    <input
+                      onChange={() =>
+                        this.handleChange('neighborhood', 'West Village')
+                      }
+                      className="form-option"
+                      type="checkbox"
+                      value="West Village"
+                    />
+                    West Village
+                  </label>
+                  <label className="form-label">
+                    <input
+                      onChange={() => this.handleChange('neighborhood', 'SoHo')}
+                      className="form-option"
+                      type="checkbox"
+                      value="SoHo"
+                    />
+                    SoHo
+                  </label>
+                  <label className="form-label">
+                    <input
+                      onChange={() =>
+                        this.handleChange('neighborhood', 'Hudson Square')
+                      }
+                      className="form-option"
+                      type="checkbox"
+                      value="Hudson Square"
+                    />
+                    Hudson Square
+                  </label>
+                  <label className="form-label">
+                    <input
+                      onChange={() =>
+                        this.handleChange('neighborhood', 'Tribecca')
+                      }
+                      className="form-option"
+                      type="checkbox"
+                      value="Tribecca"
+                    />
+                    Tribecca
+                  </label>
+                </div>
+              </FormSection>
+              <FormSection>
+                <div className="form-title">Type</div>
+                <div className="form-options">
+                  <label className="form-label">
+                    <input
+                      onChange={() => this.handleChange('type', 'Retail')}
+                      className="form-option"
+                      type="checkbox"
+                      value="Retail"
+                    />
+                    Retail
+                  </label>
+                  <label className="form-label">
+                    <input
+                      onChange={() => this.handleChange('type', 'Office')}
+                      className="form-option"
+                      type="checkbox"
+                      value="Office"
+                    />
+                    Office
+                  </label>
+                </div>
+              </FormSection>
+            </FilterCol>
+            <FilterCol>
+              <FormSection>
+                <div className="form-title">Square Footage</div>
+                <div className="form-options">
+                  <label className="form-label">
+                    <input
+                      onChange={() =>
+                        this.handleChange('squareFootage', '5,000-10,000')
+                      }
+                      className="form-option"
+                      type="checkbox"
+                      value="5,000-10,000"
+                    />
+                    5,000-10,000
+                  </label>
+                  <label className="form-label">
+                    <input
+                      onChange={() =>
+                        this.handleChange('squareFootage', '10,000-15,000')
+                      }
+                      className="form-option"
+                      type="checkbox"
+                      value="10,000-15,000"
+                    />
+                    10,000-15,000
+                  </label>
+                  <label className="form-label">
+                    <input
+                      onChange={() =>
+                        this.handleChange('sqft', '15,000-20,000')
+                      }
+                      className="form-option"
+                      type="checkbox"
+                      value="15,000-20,000"
+                    />
+                    15,000-20,000
+                  </label>
+                  <label className="form-label">
+                    <input
+                      onChange={() =>
+                        this.handleChange('squareFootage', 'More than 20,000')
+                      }
+                      className="form-option"
+                      type="checkbox"
+                      value="More than 20,000"
+                    />
+                    More than 20,000
+                  </label>
+                </div>
+              </FormSection>
+            </FilterCol>
+          </FormRow>
+        </FilterBody>
+      </AvailabilityRow>
+    );
+  }
+}
