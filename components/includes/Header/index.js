@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 import styled from 'styled-components';
-import media from '~/styles/MediaQueries';
+import { mediaMin, mediaMax } from '~/styles/MediaQueries';
 
 import routes from '~/data/routes';
 import buildings from '~/data/buildings';
 
-import HamburgerMenu from './HamburgerMenu';
+import { MobileHamburger, DesktopHamburger } from './Hamburger';
 import Context from '~/config/Context';
 
 const isUpperNavActive = (props) => {
@@ -22,18 +22,37 @@ const UpperNavigation = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  background: ${props => isUpperNavActive(props) ? '#fff' : 'transparent' };
+  background: #fff;
   transition: background 200ms ease;
   z-index: 100;
 
-  ${media.desktop`
-    background: dodgerblue;
+  ${mediaMin.desktopSmall`
+    background: ${props => isUpperNavActive(props) ? '#fff' : 'transparent' };
+  `}
+`;
+
+const HeaderLogo = styled.img`
+  margin-left: 40px;
+  max-width: 100%;
+`;
+
+const MobileNav = styled.div`
+  display: flex;
+  height: 100%;
+  background: green;
+
+  ${mediaMin.desktopSmall`
+    display: none;
   `}
 `;
 
 const DesktopNav = styled.div`
   display: flex;
   height: 100%;
+
+  ${mediaMax.desktopSmall`
+    display: none;
+  `}
 `;
 
 const isDesktopNavVisible = (props) => {
@@ -58,10 +77,6 @@ const NavUnorderedList = styled.ul`
       text-decoration: none;
     }
   }
-`;
-
-const HeaderLogo = styled.img`
-  margin-left: 40px;
 `;
 
 const isBuildingNavVisible = (props) => {
@@ -99,8 +114,15 @@ const BuildingNavigation = styled.div`
 `;
 
 class Header extends React.Component {
+  generateMobileNav(context) {
+    return (
+      <MobileNav>
+        <MobileHamburger toggleDesktopNav={context.toggleDesktopNav} />
+      </MobileNav>
+    );
+  }
 
-  generateUpperNavLinks(context, route) {
+  generateDesktopNav(context, route) {
     const links = routes.map(page => {
       let link = page !== 'buildings' ? <a>{page.toUpperCase()}</a> : <a onMouseOver={context.toggleBuildingNav}>{page.toUpperCase()}</a>;
       return (
@@ -115,7 +137,7 @@ class Header extends React.Component {
     return (
       <DesktopNav>
         <NavUnorderedList route={route} active={context.state.navigation.homeNavActive}>{links}</NavUnorderedList>
-        { route === 'home' && <HamburgerMenu toggleDesktopNav={context.toggleDesktopNav} /> }
+        { route === 'home' && <DesktopHamburger toggleDesktopNav={context.toggleDesktopNav} /> }
       </DesktopNav>
     );
   }
@@ -147,7 +169,8 @@ class Header extends React.Component {
                   />
                 </a>
               </Link>
-              {this.generateUpperNavLinks(context, route)}
+              {this.generateDesktopNav(context, route)}
+              {this.generateMobileNav(context)}
             </UpperNavigation>
             <BuildingNavigation route={route} active={context.state.navigation.buildingNavActive}>
               {this.generateBuildingNavLinks()}
