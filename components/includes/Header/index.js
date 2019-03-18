@@ -6,7 +6,7 @@ import { mediaMin, mediaMax } from '~/styles/MediaQueries';
 import routes from '~/data/routes';
 import buildings from '~/data/buildings';
 
-import { MobileHamburger, DesktopHamburger } from './Hamburger';
+import { MobileHamburger, MobileClose, DesktopHamburger } from './Hamburger';
 import Context from '~/config/Context';
 
 const isUpperNavActive = (props) => {
@@ -21,25 +21,26 @@ const UpperNavigation = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  height: 50px;
   background: #fff;
   transition: background 200ms ease;
   z-index: 100;
 
   ${mediaMin.desktopSmall`
     background: ${props => isUpperNavActive(props) ? '#fff' : 'transparent' };
+    height: 60px;
   `}
 `;
 
 const HeaderLogo = styled.img`
   margin-left: 40px;
   max-width: 100%;
+  display: block;
 `;
 
-const MobileNav = styled.div`
+const MobileHamburgerContainer = styled.div`
   display: flex;
   height: 100%;
-  background: green;
 
   ${mediaMin.desktopSmall`
     display: none;
@@ -113,12 +114,32 @@ const BuildingNavigation = styled.div`
   }
 `;
 
+const MobileNav = styled.div`
+  background: #fff;
+  width: 300px;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  right: 0;
+  transition: right 300ms ease;
+`;
+
 class Header extends React.Component {
   generateMobileNav(context) {
+    const links = routes.map(page => <li key={`mobile-link-${page}`}>{page.toUpperCase()}</li>);
+
     return (
-      <MobileNav>
-        <MobileHamburger toggleDesktopNav={context.toggleDesktopNav} />
-      </MobileNav>
+      <React.Fragment>
+        <MobileHamburgerContainer>
+          <MobileHamburger toggleDesktopNav={context.toggleMobileNav} />
+        </MobileHamburgerContainer>
+        <MobileNav active={context.mobileNavActive}>
+          <MobileClose />
+          <ul>
+            {links}
+          </ul>
+        </MobileNav>
+      </React.Fragment>
     );
   }
 
@@ -136,7 +157,7 @@ class Header extends React.Component {
 
     return (
       <DesktopNav>
-        <NavUnorderedList route={route} active={context.state.navigation.homeNavActive}>{links}</NavUnorderedList>
+        <NavUnorderedList route={route} active={context.state.navigation.desktopNavActive}>{links}</NavUnorderedList>
         { route === 'home' && <DesktopHamburger toggleDesktopNav={context.toggleDesktopNav} /> }
       </DesktopNav>
     );
@@ -156,13 +177,14 @@ class Header extends React.Component {
 
   render() {
     const route = this.props.router.pathname.replace('/', '') || 'home';
+
     return (
       <Context.Consumer>
         {context => (
           <React.Fragment>
-            <UpperNavigation active={context.state.navigation.homeNavActive} route={route}>
+            <UpperNavigation active={context.state.navigation.desktopNavActive} route={route}>
               <Link key='link-home' href={`/`}>
-                <a>
+                <a style={{ margin: 'auto 0'}}>
                   <HeaderLogo 
                     src='/static/images/logos/hudson_square_properties_logo.png' 
                     alt='Hudson Square Properties Logo' 

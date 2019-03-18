@@ -2,12 +2,12 @@ import React from 'react';
 import App, { Container } from 'next/app';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import ContextProvider from '../provider/ContextProvider';
+import ContextProvider from '~/provider/ContextProvider';
 
-import Layout from '../components/layouts/default';
+import Layout from '~/components/layouts/default';
 
-import GlobalStyles from '../styles/Global';
-import TypographyStyles from '../styles/Typography';
+import GlobalStyles from '~/styles/global/Global';
+import TypographyStyles from '~/styles/global/Typography';
 
 NProgress.configure({ showSpinner: false });
 

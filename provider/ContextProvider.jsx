@@ -11,7 +11,7 @@ class ContextProvider extends Component {
         width: null
       },
       navigation: {
-        homeNavActive: true,
+        desktopNavActive: true,
         buildingNavActive: false
       },
       availabilityData: [],
