@@ -24,6 +24,7 @@ const AvailabilityBody = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+  padding: 0 5px;
   .building,
   .suite,
   .floor,
@@ -61,6 +62,10 @@ const Heading = styled.span`
   font-size: 24px;
   font-weight: 500px;
   line-height: 30px;
+  ${props =>
+    props.listingsArrayLength && props.listingsArrayLength > 1
+      ? 'cursor: pointer;'
+      : ''}
 `;
 
 const PlusMinus = styled.i`
@@ -336,6 +341,34 @@ export default class AvailabilityList extends React.Component {
       sortedAndFiltered = sortedAndFiltered.filter(el => {
         return this.state.filters['type'].includes(el.type);
       });
+      let filterSQFT = [];
+      if (this.state.filters.squareFootage.length !== 4) {
+        sortedAndFiltered.forEach(el => {
+          if (this.state.filters.squareFootage.includes('5,000-10,000')) {
+            if (el.sqft >= 5000 && el.sqft <= 10000) {
+              filterSQFT.push(el);
+            }
+          }
+          if (this.state.filters.squareFootage.includes('10,000-15,000')) {
+            if (el.sqft >= 10000 && el.sqft <= 15000) {
+              filterSQFT.push(el);
+            }
+          }
+          if (this.state.filters.squareFootage.includes('15,000-20,000')) {
+            if (el.sqft >= 15000 && el.sqft <= 20000) {
+              filterSQFT.push(el);
+            }
+          }
+          if (this.state.filters.squareFootage.includes('More than 20,000')) {
+            if (el.sqft > 20000) {
+              filterSQFT.push(el);
+            }
+          }
+        });
+        console.log(this.state.filters.squareFootage);
+        sortedAndFiltered = filterSQFT;
+      }
+      console.log(filterSQFT);
 
       //Sorting
       if (this.state.sorting.building !== null) {
@@ -397,36 +430,44 @@ export default class AvailabilityList extends React.Component {
           listingsArrayLength: sortedAndFiltered.length
         });
       }
-      return sortedAndFiltered.map((el, idx) => {
+      if (sortedAndFiltered.length !== 0) {
+        return sortedAndFiltered.map((el, idx) => {
+          return (
+            <AvailabilityRow key={idx}>
+              <AvailabilityBody>
+                <AvailabilitySection className="building">
+                  {el.building} <PinIcon />
+                </AvailabilitySection>
+                <AvailabilitySection className="suite">
+                  {el.suite}
+                </AvailabilitySection>
+                <AvailabilitySection className="floor">
+                  {el.floor}
+                </AvailabilitySection>
+                <AvailabilitySection className="sqft">
+                  {this.numberWithCommas(el.sqft)}
+                </AvailabilitySection>
+                <AvailabilitySection className="neighborhood">
+                  {el.neighborhood}
+                </AvailabilitySection>
+                <AvailabilitySection className="type">
+                  {el.type}
+                </AvailabilitySection>
+                <AvailabilityLink className="details">
+                  <span>View</span>
+                  <span>Details</span>
+                </AvailabilityLink>
+              </AvailabilityBody>
+            </AvailabilityRow>
+          );
+        });
+      } else {
         return (
-          <AvailabilityRow key={idx}>
-            <AvailabilityBody>
-              <AvailabilitySection className="building">
-                {el.building} <PinIcon />
-              </AvailabilitySection>
-              <AvailabilitySection className="suite">
-                {el.suite}
-              </AvailabilitySection>
-              <AvailabilitySection className="floor">
-                {el.floor}
-              </AvailabilitySection>
-              <AvailabilitySection className="sqft">
-                {this.numberWithCommas(el.sqft)}
-              </AvailabilitySection>
-              <AvailabilitySection className="neighborhood">
-                {el.neighborhood}
-              </AvailabilitySection>
-              <AvailabilitySection className="type">
-                {el.type}
-              </AvailabilitySection>
-              <AvailabilityLink className="details">
-                <span>View</span>
-                <span>Details</span>
-              </AvailabilityLink>
-            </AvailabilityBody>
+          <AvailabilityRow>
+            <AvailabilityBody>No matching records found</AvailabilityBody>
           </AvailabilityRow>
         );
-      });
+      }
     }
   };
 
@@ -447,6 +488,7 @@ export default class AvailabilityList extends React.Component {
               <AvailabilityBody>
                 <Heading
                   className="building"
+                  listingsArrayLength={this.state.listingsArrayLength}
                   onClick={() => this.sortColumn('building')}
                 >
                   Building
@@ -458,6 +500,7 @@ export default class AvailabilityList extends React.Component {
                 <Heading className="suite">Suite</Heading>
                 <Heading
                   className="floor"
+                  listingsArrayLength={this.state.listingsArrayLength}
                   onClick={() => this.sortColumn('floor')}
                 >
                   Floor
@@ -468,6 +511,7 @@ export default class AvailabilityList extends React.Component {
                 </Heading>
                 <Heading
                   className="sqft"
+                  listingsArrayLength={this.state.listingsArrayLength}
                   onClick={() => this.sortColumn('sqft')}
                 >
                   Sq. ft.
@@ -478,6 +522,7 @@ export default class AvailabilityList extends React.Component {
                 </Heading>
                 <Heading
                   className="neighborhood"
+                  listingsArrayLength={this.state.listingsArrayLength}
                   onClick={() => this.sortColumn('neighborhood')}
                 >
                   Neighborhood
@@ -629,7 +674,7 @@ class FilterRow extends React.Component {
                   <label className="form-label">
                     <input
                       onChange={() =>
-                        this.handleChange('sqft', '15,000-20,000')
+                        this.handleChange('squareFootage', '15,000-20,000')
                       }
                       className="form-option"
                       type="checkbox"
