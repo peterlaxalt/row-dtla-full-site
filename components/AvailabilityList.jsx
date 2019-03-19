@@ -63,6 +63,20 @@ const Heading = styled.span`
   line-height: 30px;
 `;
 
+const PlusMinus = styled.i`
+height: 16px;
+width: 16px;
+display: flex;
+flex-direction: row;
+margin-right: 8px;
+  &::before {
+    content: ${props => (props.filterOpen ? "'\\f068';" : "'\\f067';")}
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 16px;
+  }
+  z-index: 1;
+`;
+
 const SortIcon = styled.i`  
   height: 20px;
   width: 20px;
@@ -123,6 +137,10 @@ const AvailabilityLink = styled.a`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #49a4f8;
+  &:hover {
+    color: #000;
+  }
   .details {
     width: 5%;
   }
@@ -134,6 +152,12 @@ const FilterHeading = styled.span`
   line-height: 30px;
   color: #49a4f8;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
 `;
 
 const FilterBody = styled.div`
@@ -193,7 +217,7 @@ export default class AvailabilityList extends React.Component {
     this.state = {
       listingsArrayLength: 0,
       filters: {
-        neighborhood: ['West Village', 'SoHo', 'Hudson Square', 'Tribecca'],
+        neighborhood: ['West Village', 'SoHo', 'Hudson Square', 'Tribeca'],
         type: ['Retail', 'Office', 'Office / Pre-Built'],
         squareFootage: [
           '5,000-10,000',
@@ -277,7 +301,7 @@ export default class AvailabilityList extends React.Component {
           'West Village',
           'SoHo',
           'Hudson Square',
-          'Tribecca'
+          'Tribeca'
         ];
       } else if (this.checkFilters(stateCopy) === 'type') {
         stateCopy['type'] = ['Retail', 'Office', 'Office / Pre-Built'];
@@ -499,7 +523,9 @@ class FilterRow extends React.Component {
   render() {
     return (
       <AvailabilityRow>
-        <FilterHeading onClick={this.toggleFilter}>+ Filters</FilterHeading>
+        <FilterHeading onClick={this.toggleFilter}>
+          <PlusMinus filterOpen={this.state.filterOpen} /> Filters
+        </FilterHeading>
         <FilterBody filterOpen={this.state.filterOpen}>
           <FormRow>
             <FilterCol>
@@ -540,13 +566,13 @@ class FilterRow extends React.Component {
                   <label className="form-label">
                     <input
                       onChange={() =>
-                        this.handleChange('neighborhood', 'Tribecca')
+                        this.handleChange('neighborhood', 'Tribeca')
                       }
                       className="form-option"
                       type="checkbox"
-                      value="Tribecca"
+                      value="Tribeca"
                     />
-                    Tribecca
+                    Tribeca
                   </label>
                 </div>
               </FormSection>
