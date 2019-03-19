@@ -44,38 +44,47 @@ class ContextProvider extends Component {
     const res = await fetch(
       'https://cms.dbox.com/wp-json/wp/v2/hsp_availability'
     );
-    const data = await res.json();
-
+    let data = await res.json();
+    data = data.map(el => {
+      return el.acf;
+    });
     this.setState({
-      availabilityData: data.map(el => {
-        return el.acf;
-      })
+      availabilityData: data
     });
   };
 
   isomorphicFetchPress = async function() {
     const res = await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_press');
-    const data = await res.json();
+    let data = await res.json();
 
+    data = data.map(el => {
+      return el.acf;
+    });
+    data = data.sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    });
     this.setState({
-      pressData: data.map(el => {
-        return el.acf;
-      })
+      pressData: data
     });
   };
 
   isomorphicFetchNews = async function() {
     const res = await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_news');
-    const data = await res.json();
+    let data = await res.json();
 
+    data = data.map(el => {
+      return el.acf;
+    });
+    data = data.sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    });
     this.setState({
-      newsData: data.map(el => {
-        return el.acf;
-      })
+      newsData: data
     });
   };
 
   render() {
+    console.log(this.state.availabilityData);
     return (
       <Context.Provider
         value={{

@@ -1,6 +1,7 @@
 import { withRouter } from 'next/router';
 import buildings from '../data/buildings';
 import BuildingHeader from '../components/BuildingHeader';
+import AvailabilityList from '../components/AvailabilityList';
 
 const Building = props => {
   const { building } = props;
@@ -17,6 +18,7 @@ const Building = props => {
       }}
     >
       <BuildingHeader headerInfo={building.header} />
+      <AvailabilityList building={building.header.headerLogoAlt} />
       <div style={{ height: '200vh' }} />
     </div>
   );
