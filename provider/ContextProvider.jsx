@@ -11,7 +11,8 @@ class ContextProvider extends Component {
         width: null
       },
       navigation: {
-        homeNavActive: true,
+        mobileNavActive: true,
+        desktopNavActive: true,
         buildingNavActive: false
       },
       availabilityData: [],
@@ -89,10 +90,16 @@ class ContextProvider extends Component {
       <Context.Provider
         value={{
           state: this.state,
+          toggleMobileNav: () => this.setState({ 
+            navigation: {
+              ...this.state.navigation,
+              mobileNavActive: !this.state.navigation.mobileNavActive,
+            }
+          }),
           toggleDesktopNav: () => this.setState({ 
             navigation: {
               ...this.state.navigation,
-              homeNavActive: !this.state.navigation.homeNavActive,
+              desktopNavActive: !this.state.navigation.desktopNavActive,
             }
           }),
           toggleBuildingNav: () => this.setState({ 
@@ -100,7 +107,7 @@ class ContextProvider extends Component {
               ...this.state.navigation,
               buildingNavActive: !this.state.navigation.buildingNavActive,
             }
-          }),
+          })
         }}
       >
         {this.props.children}
