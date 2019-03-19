@@ -211,6 +211,10 @@ export default class AvailabilityList extends React.Component {
     };
   }
 
+  numberWithCommas = num => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
   sortColumn = column => {
     let newSort = {
       building: null,
@@ -231,12 +235,12 @@ export default class AvailabilityList extends React.Component {
   };
 
   checkFilters = filterObj => {
-    if (
-      filterObj.neighborhood.length === 0 &&
-      filterObj.type.length === 0 &&
-      filterObj.squareFootage.length === 0
-    ) {
-      return 'empty';
+    if (filterObj.neighborhood.length === 0) {
+      return 'neighborhood';
+    } else if (filterObj.type.length === 0) {
+      return 'type';
+    } else if (filterObj.squareFootage.length === 0) {
+      return 'squareFootage';
     } else {
       return (
         filterObj.neighborhood.length === 4 &&
@@ -245,63 +249,125 @@ export default class AvailabilityList extends React.Component {
       );
     }
   };
+
   updateFilter = (parent, value) => {
-    console.log(parent, value);
     let stateCopy = this.state.filters;
-    if (this.checkFilters(this.state.filters)) {
-      stateCopy = {
-        neighborhood: [],
-        type: [],
-        squareFootage: []
-      };
-      stateCopy[parent].push(value);
+    if (this.checkFilters(stateCopy)) {
+      stateCopy[parent] = [value];
       this.setState({
         filters: stateCopy
       });
     } else {
-      if (stateCopy[parent].includes(value)) {
-        let index = stateCopy[parent].indexOf(value);
-        stateCopy[parent].splice(index, 1);
+      if (parent === 'neighborhood' && stateCopy[parent].length === 4) {
+        stateCopy[parent] = [value];
+      } else if (parent === 'type' && stateCopy[parent].length === 3) {
+        stateCopy[parent] = [value];
+      } else if (parent === 'squareFootage' && stateCopy[parent].length === 4) {
+        stateCopy[parent] = [value];
       } else {
-        stateCopy[parent].push(value);
+        if (stateCopy[parent].includes(value)) {
+          let index = stateCopy[parent].indexOf(value);
+          stateCopy[parent].splice(index, 1);
+        } else {
+          stateCopy[parent].push(value);
+        }
       }
-      if (this.checkFilters(stateCopy) === 'empty') {
-        this.setState({
-          filters: {
-            neighborhood: ['West Village', 'SoHo', 'Hudson Square', 'Tribecca'],
-            type: ['Retail', 'Office', 'Office / Pre-Built'],
-            squareFootage: [
-              '5,000-10,000',
-              '10,000-15,000',
-              '15,000-20,000',
-              'More than 20,000'
-            ]
-          }
-        });
-      } else {
-        this.setState({
-          filters: stateCopy
-        });
+      if (this.checkFilters(stateCopy) === 'neighborhood') {
+        stateCopy['neighborhood'] = [
+          'West Village',
+          'SoHo',
+          'Hudson Square',
+          'Tribecca'
+        ];
+      } else if (this.checkFilters(stateCopy) === 'type') {
+        stateCopy['type'] = ['Retail', 'Office', 'Office / Pre-Built'];
+      } else if (this.checkFilters(stateCopy) === 'squareFootage') {
+        stateCopy['squareFootage'] = [
+          '5,000-10,000',
+          '10,000-15,000',
+          '15,000-20,000',
+          'More than 20,000'
+        ];
       }
+      this.setState({
+        filters: stateCopy
+      });
     }
   };
 
-  createListingRows = (data, filter, building) => {
+  createListingRows = (data, building) => {
     if (data.length > 0) {
       let sortedAndFiltered = data;
+      //Filter to Specific Building
       if (building) {
         sortedAndFiltered = sortedAndFiltered.filter(el => {
           return el.building === building;
         });
       }
-      if (filter) {
-        sortedAndFiltered = sortedAndFiltered.filter(el => {
-          return this.state.filters['neighborhood'].includes(el.neighborhood);
-        });
-        sortedAndFiltered = sortedAndFiltered.filter(el => {
-          return this.state.filters['type'].includes(el.type);
-        });
+
+      //Filtering
+      sortedAndFiltered = sortedAndFiltered.filter(el => {
+        return this.state.filters['neighborhood'].includes(el.neighborhood);
+      });
+      sortedAndFiltered = sortedAndFiltered.filter(el => {
+        return this.state.filters['type'].includes(el.type);
+      });
+
+      //Sorting
+      if (this.state.sorting.building !== null) {
+        if (this.state.sorting.building === 'up') {
+          sortedAndFiltered = sortedAndFiltered.sort((a, b) => {
+            return a['building'].localeCompare(b['building']);
+          });
+        } else {
+          sortedAndFiltered = sortedAndFiltered.sort((a, b) => {
+            return b['building'].localeCompare(a['building']);
+          });
+        }
       }
+      if (this.state.sorting.floor !== null) {
+        if (this.state.sorting.floor === 'up') {
+          sortedAndFiltered = sortedAndFiltered.sort((a, b) => {
+            let aCompare;
+            let bCompare;
+            a['floor'] === 'Ground' ? (aCompare = 1) : (aCompare = a['floor']);
+            b['floor'] === 'Ground' ? (bCompare = 1) : (bCompare = b['floor']);
+            return aCompare - bCompare;
+          });
+        } else {
+          sortedAndFiltered = sortedAndFiltered.sort((a, b) => {
+            let aCompare;
+            let bCompare;
+            a['floor'] === 'Ground' ? (aCompare = 1) : (aCompare = a['floor']);
+            b['floor'] === 'Ground' ? (bCompare = 1) : (bCompare = b['floor']);
+            return bCompare - aCompare;
+          });
+        }
+      }
+      if (this.state.sorting.sqft !== null) {
+        if (this.state.sorting.sqft === 'up') {
+          sortedAndFiltered = sortedAndFiltered.sort((a, b) => {
+            return a['sqft'] - b['sqft'];
+          });
+        } else {
+          sortedAndFiltered = sortedAndFiltered.sort((a, b) => {
+            return b['sqft'] - a['sqft'];
+          });
+        }
+      }
+      if (this.state.sorting.neighborhood !== null) {
+        if (this.state.sorting.neighborhood === 'up') {
+          sortedAndFiltered = sortedAndFiltered.sort((a, b) => {
+            return a['neighborhood'].localeCompare(b['neighborhood']);
+          });
+        } else {
+          sortedAndFiltered = sortedAndFiltered.sort((a, b) => {
+            return b['neighborhood'].localeCompare(a['neighborhood']);
+          });
+        }
+      }
+
+      //Updating Length in state for sort icons
       if (this.state.listingsArrayLength !== sortedAndFiltered.length) {
         this.setState({
           listingsArrayLength: sortedAndFiltered.length
@@ -321,7 +387,7 @@ export default class AvailabilityList extends React.Component {
                 {el.floor}
               </AvailabilitySection>
               <AvailabilitySection className="sqft">
-                {el.sqft}
+                {this.numberWithCommas(el.sqft)}
               </AvailabilitySection>
               <AvailabilitySection className="neighborhood">
                 {el.neighborhood}
@@ -402,7 +468,6 @@ export default class AvailabilityList extends React.Component {
             </AvailabilityRow>
             {this.createListingRows(
               context.state.availabilityData,
-              this.state.filters,
               this.props.building
             )}
           </AvailabilityListContainer>
@@ -426,7 +491,9 @@ class FilterRow extends React.Component {
     });
   };
   handleChange = (parent, value) => {
-    // console.log(e.target.checked);
+    if (value === 'Office') {
+      this.props.updateFilter(parent, 'Office / Pre-Built');
+    }
     this.props.updateFilter(parent, value);
   };
   render() {
