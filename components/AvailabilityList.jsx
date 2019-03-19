@@ -14,6 +14,7 @@ const AvailabilityListContainer = styled.div`
 const AvailabilityRow = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 40px;
   margin: 30px 0 0 0;
   padding: 0 0 30px 0;
   border-bottom: 3px solid black;
@@ -56,6 +57,15 @@ const AvailabilityBody = styled.div`
   .details {
     width: 5%;
   }
+  @media screen and (max-width: 1024px) {
+    justify-content: space-between;
+  }
+`;
+
+const MobileCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const Heading = styled.span`
@@ -132,6 +142,12 @@ const AvailabilitySection = styled.span`
   font-size: 20px;
   font-weight: 500px;
   line-height: 30px;
+  @media screen and (max-width: 1024px) {
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+    line-height: 22px;
+  }
 `;
 
 const AvailabilityLink = styled.a`
@@ -160,6 +176,7 @@ const FilterHeading = styled.span`
   display: flex;
   flex-direction: row;
   align-items: center;
+
 }
 
 
@@ -170,9 +187,13 @@ const FilterBody = styled.div`
   overflow: hidden;
   max-height: ${props => (props.filterOpen ? '210px' : '0')};
   transition: 0.25s max-height ease-in-out;
+  @media screen and (max-width: 1024px) {
+    max-height: ${props => (props.filterOpen ? '300px' : '0')};
+  }
 `;
 
 const FormRow = styled.div`
+  padding-top: 14px;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -183,6 +204,9 @@ const FilterCol = styled.div`
   display: flex;
   flex-direction: column;
   width: 33%;
+  @media screen and (max-width: 1024px) {
+    width: 50%;
+  }
 `;
 
 const FormSection = styled.div`
@@ -209,6 +233,9 @@ const FormSection = styled.div`
     margin-bottom: 10px;
     .form-label {
       width: 50%;
+      @media screen and (max-width: 1024px) {
+        width: 100%;
+      }
     }
     .form-option {
       margin-right: 16px;
@@ -324,7 +351,7 @@ export default class AvailabilityList extends React.Component {
     }
   };
 
-  createListingRows = (data, building) => {
+  createListingRows = (data, building, windowWidth) => {
     if (data.length > 0) {
       let sortedAndFiltered = data;
       //Filter to Specific Building
@@ -365,10 +392,8 @@ export default class AvailabilityList extends React.Component {
             }
           }
         });
-        console.log(this.state.filters.squareFootage);
         sortedAndFiltered = filterSQFT;
       }
-      console.log(filterSQFT);
 
       //Sorting
       if (this.state.sorting.building !== null) {
@@ -431,36 +456,64 @@ export default class AvailabilityList extends React.Component {
         });
       }
       if (sortedAndFiltered.length !== 0) {
-        return sortedAndFiltered.map((el, idx) => {
-          return (
-            <AvailabilityRow key={idx}>
-              <AvailabilityBody>
-                <AvailabilitySection className="building">
-                  {el.building} <PinIcon />
-                </AvailabilitySection>
-                <AvailabilitySection className="suite">
-                  {el.suite}
-                </AvailabilitySection>
-                <AvailabilitySection className="floor">
-                  {el.floor}
-                </AvailabilitySection>
-                <AvailabilitySection className="sqft">
-                  {this.numberWithCommas(el.sqft)}
-                </AvailabilitySection>
-                <AvailabilitySection className="neighborhood">
-                  {el.neighborhood}
-                </AvailabilitySection>
-                <AvailabilitySection className="type">
-                  {el.type}
-                </AvailabilitySection>
-                <AvailabilityLink className="details">
-                  <span>View</span>
-                  <span>Details</span>
-                </AvailabilityLink>
-              </AvailabilityBody>
-            </AvailabilityRow>
-          );
-        });
+        if (windowWidth > 1024) {
+          return sortedAndFiltered.map((el, idx) => {
+            return (
+              <AvailabilityRow key={idx}>
+                <AvailabilityBody>
+                  <AvailabilitySection className="building">
+                    {el.building} <PinIcon />
+                  </AvailabilitySection>
+                  <AvailabilitySection className="suite">
+                    {el.suite}
+                  </AvailabilitySection>
+                  <AvailabilitySection className="floor">
+                    {el.floor}
+                  </AvailabilitySection>
+                  <AvailabilitySection className="sqft">
+                    {this.numberWithCommas(el.sqft)}
+                  </AvailabilitySection>
+                  <AvailabilitySection className="neighborhood">
+                    {el.neighborhood}
+                  </AvailabilitySection>
+                  <AvailabilitySection className="type">
+                    {el.type}
+                  </AvailabilitySection>
+                  <AvailabilityLink className="details">
+                    <span>View</span>
+                    <span>Details</span>
+                  </AvailabilityLink>
+                </AvailabilityBody>
+              </AvailabilityRow>
+            );
+          });
+        } else {
+          return sortedAndFiltered.map((el, idx) => {
+            return (
+              <AvailabilityRow key={idx}>
+                <AvailabilityBody>
+                  <MobileCol>
+                    <AvailabilitySection>{el.building}</AvailabilitySection>
+                    <AvailabilitySection>{el.suite}</AvailabilitySection>
+                    <AvailabilitySection>
+                      {'SF: ' + this.numberWithCommas(el.sqft)}
+                    </AvailabilitySection>
+                    <AvailabilitySection>
+                      {'Neighborhood: ' + el.neighborhood}
+                    </AvailabilitySection>
+                  </MobileCol>
+                  <MobileCol>
+                    <AvailabilityLink className="details">
+                      <span>View</span>
+                      <span>Details</span>
+                    </AvailabilityLink>
+                  </MobileCol>
+                </AvailabilityBody>
+              </AvailabilityRow>
+            );
+          });
+          return;
+        }
       } else {
         return (
           <AvailabilityRow>
@@ -484,60 +537,65 @@ export default class AvailabilityList extends React.Component {
             ) : (
               ''
             )}
-            <AvailabilityRow>
-              <AvailabilityBody>
-                <Heading
-                  className="building"
-                  listingsArrayLength={this.state.listingsArrayLength}
-                  onClick={() => this.sortColumn('building')}
-                >
-                  Building
-                  <SortIcon
+            {context.state.windowDimensions.width > 1024 ? (
+              <AvailabilityRow>
+                <AvailabilityBody>
+                  <Heading
+                    className="building"
                     listingsArrayLength={this.state.listingsArrayLength}
-                    sortDirection={this.state.sorting.building}
-                  />
-                </Heading>
-                <Heading className="suite">Suite</Heading>
-                <Heading
-                  className="floor"
-                  listingsArrayLength={this.state.listingsArrayLength}
-                  onClick={() => this.sortColumn('floor')}
-                >
-                  Floor
-                  <SortIcon
+                    onClick={() => this.sortColumn('building')}
+                  >
+                    Building
+                    <SortIcon
+                      listingsArrayLength={this.state.listingsArrayLength}
+                      sortDirection={this.state.sorting.building}
+                    />
+                  </Heading>
+                  <Heading className="suite">Suite</Heading>
+                  <Heading
+                    className="floor"
                     listingsArrayLength={this.state.listingsArrayLength}
-                    sortDirection={this.state.sorting.floor}
-                  />
-                </Heading>
-                <Heading
-                  className="sqft"
-                  listingsArrayLength={this.state.listingsArrayLength}
-                  onClick={() => this.sortColumn('sqft')}
-                >
-                  Sq. ft.
-                  <SortIcon
+                    onClick={() => this.sortColumn('floor')}
+                  >
+                    Floor
+                    <SortIcon
+                      listingsArrayLength={this.state.listingsArrayLength}
+                      sortDirection={this.state.sorting.floor}
+                    />
+                  </Heading>
+                  <Heading
+                    className="sqft"
                     listingsArrayLength={this.state.listingsArrayLength}
-                    sortDirection={this.state.sorting.sqft}
-                  />
-                </Heading>
-                <Heading
-                  className="neighborhood"
-                  listingsArrayLength={this.state.listingsArrayLength}
-                  onClick={() => this.sortColumn('neighborhood')}
-                >
-                  Neighborhood
-                  <SortIcon
+                    onClick={() => this.sortColumn('sqft')}
+                  >
+                    Sq. ft.
+                    <SortIcon
+                      listingsArrayLength={this.state.listingsArrayLength}
+                      sortDirection={this.state.sorting.sqft}
+                    />
+                  </Heading>
+                  <Heading
+                    className="neighborhood"
                     listingsArrayLength={this.state.listingsArrayLength}
-                    sortDirection={this.state.sorting.neighborhood}
-                  />
-                </Heading>
-                <Heading className="type">Type</Heading>
-                <Heading className="details" />
-              </AvailabilityBody>
-            </AvailabilityRow>
+                    onClick={() => this.sortColumn('neighborhood')}
+                  >
+                    Neighborhood
+                    <SortIcon
+                      listingsArrayLength={this.state.listingsArrayLength}
+                      sortDirection={this.state.sorting.neighborhood}
+                    />
+                  </Heading>
+                  <Heading className="type">Type</Heading>
+                  <Heading className="details" />
+                </AvailabilityBody>
+              </AvailabilityRow>
+            ) : (
+              ''
+            )}
             {this.createListingRows(
               context.state.availabilityData,
-              this.props.building
+              this.props.building,
+              context.state.windowDimensions.width
             )}
           </AvailabilityListContainer>
         )}

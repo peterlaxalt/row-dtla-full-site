@@ -17,6 +17,12 @@ const ScrollUpButton = styled.div`
       ? 'opacity: 1; visibility: visible;'
       : 'opacity: 0; visibility: hidden;'}
   transition: 0.25s all ease-in-out;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    margin: 0 auto;
+  }
 `;
 
 export default class ScrollUp extends React.Component {

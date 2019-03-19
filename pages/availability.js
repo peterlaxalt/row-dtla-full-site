@@ -22,8 +22,8 @@ const AvailabilityPage = () => (
   <Layout title="Availability">
     <ImageSlider imgArray={imageArray} showQuotes={true} autoPlay={true} />
     <AvailabilityList hasFilter={true} />
-    <CopyrightFooter />
     <ScrollUp />
+    <CopyrightFooter />
   </Layout>
 );
 
