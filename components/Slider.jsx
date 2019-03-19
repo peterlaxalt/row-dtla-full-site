@@ -161,7 +161,7 @@ export default class ImageSlider extends React.Component {
       },
       dots: true,
       infinite: true,
-      // autoplay: this.props.autoPlay,
+      autoplay: this.props.autoPlay,
       autoplaySpeed: 5000,
       easing: true,
       speed: 1000,
