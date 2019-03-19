@@ -1,6 +1,8 @@
+import CopyrightFooter from '../components/CopyrightFooter';
 import Layout from '../components/layouts/default';
 import ImageSlider from '../components/Slider';
 import AvailabilityList from '../components/AvailabilityList';
+import ScrollUp from '../components/ScrollUp';
 const imageArray = [
   {
     imgUrl: '/static/images/availability/1_Landing_Carousel/1-availability.jpg',
@@ -15,10 +17,13 @@ const imageArray = [
     imgAlt: '205 Hudson Street pre-built space'
   }
 ];
+
 const AvailabilityPage = () => (
   <Layout title="Availability">
     <ImageSlider imgArray={imageArray} showQuotes={true} autoPlay={true} />
     <AvailabilityList hasFilter={true} />
+    <CopyrightFooter />
+    <ScrollUp />
   </Layout>
 );
 

@@ -7,7 +7,7 @@ const AvailabilityListContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0 5% 0 5%;
+  padding: 0 5% 70px 5%;
   z-index: 1;
 `;
 
