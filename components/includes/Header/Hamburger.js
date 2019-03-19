@@ -31,13 +31,15 @@ const Line = styled.div`
   }
 `;
 
-const CloseDiv = styled.div`
-  background: ${colors.babyBlue};
-  height: 30px;
-  width: 30px;
-  position: absolute;
-  right: 0;
-`;
+export const DesktopHamburger = props => {
+  return (
+    <HamburgerDiv onClick={props.toggleDesktopNav}>
+      <Line top='25%' topHover='30%'/>
+      <Line top='45%' />
+      <Line top='65%' topHover='60%'/>
+    </HamburgerDiv>
+  );
+};
 
 export const MobileHamburger = props => {
   return (
@@ -49,18 +51,29 @@ export const MobileHamburger = props => {
   );
 };
 
+const CloseDiv = styled.div`
+  background: ${colors.babyBlue};
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+`;
+
+const CloseLine = styled.div`
+  position: absolute;
+  height: 2px;
+  width: 80%;
+  top: ${props => props.top};
+  transform: rotate(${props => props.rotate}deg);
+  background: #fff;
+`;
+
 export const MobileClose = () => (
   <CloseDiv>
-
+    <CloseLine top='45%' rotate='-45' />
+    <CloseLine top='45%' rotate='45' />
   </CloseDiv>
 );
-
-export const DesktopHamburger = props => {
-  return (
-    <HamburgerDiv onClick={props.toggleDesktopNav}>
-      <Line top='25%' topHover='30%'/>
-      <Line top='45%' />
-      <Line top='65%' topHover='60%'/>
-    </HamburgerDiv>
-  );
-};
