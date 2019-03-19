@@ -6,9 +6,8 @@ import { mediaMin } from '~/styles/MediaQueries';
 import routes from '~/data/routes';
 import locations from '~/data/locations';
 
-import { generateBuildingNavLinks } from './navFunctions';
 import MobileNavigation from './MobileNav';
-import DesktopNavigation from './DesktopNav';
+import { BuildingNavigation, DesktopNavigation } from './DesktopNav';
 import Context from '~/config/Context';
 
 const isUpperNavActive = (props) => {
@@ -44,40 +43,6 @@ const HeaderLogo = styled.img`
   `}
 `;
 
-const isBuildingNavVisible = (props) => {
-  return props.route === 'buildings' ? true : props.active;
-};
-
-const BuildingNavigation = styled.div`
-  background: rgba(255, 255, 255, 0.9);
-  position: fixed;
-  top: 0;
-  left: 0;
-  margin-top: 60px;
-  height: 45px;
-  width: 100%;
-  z-index: 100;
-  transition: all 200ms ease;
-  opacity: ${props => isBuildingNavVisible(props) ? 1 : 0 };
-  visibility: ${props => isBuildingNavVisible(props) ? 'visible' : 'hidden' };
-  ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 50px;
-    margin: 0;
-    height: 100%;
-    li {
-      list-style-type: none;
-      cursor: pointer;
-      a {
-        text-decoration: none;
-        color: initial;
-      }
-    }
-  }
-`;
-
 class Header extends React.Component {
   render() {
     const route = this.props.router.pathname.replace('/', '') || 'home';
@@ -105,9 +70,7 @@ class Header extends React.Component {
                 routes={routes}
               />
             </HeaderWrapper>
-            <BuildingNavigation route={route} active={context.state.navigation.buildingNavActive}>
-              {generateBuildingNavLinks()}
-            </BuildingNavigation>
+            <BuildingNavigation route={route} />
           </React.Fragment>
         )}
       </Context.Consumer>

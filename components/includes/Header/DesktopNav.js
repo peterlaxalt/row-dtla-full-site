@@ -5,6 +5,9 @@ import Link from 'next/link';
 import { mediaMax } from '~/styles/MediaQueries';
 import Context from '~/config/Context';
 import { DesktopHamburger } from './Hamburgers';
+import { generateBuildingNavLinks } from './navFunctions';
+
+// Desktop Navigation
 
 const DesktopNav = styled.div`
   display: flex;
@@ -39,10 +42,11 @@ const NavUnorderedList = styled.ul`
   }
 `;
 
-const DesktopNavigation = props => {
+export const DesktopNavigation = props => {
   const generateLinks = (context) => {
     const links = props.routes.map(page => {
       let link = page !== 'buildings' ? <a>{page.toUpperCase()}</a> : <a onMouseOver={context.toggleBuildingNav}>{page.toUpperCase()}</a>;
+      
       return (
         <li id={`desktop-link-${page}`} key={`link-${page}`}>
           <Link href={`/${page}`}>
@@ -54,7 +58,6 @@ const DesktopNavigation = props => {
 
     return links;
   };
-  
 
   return (
     <Context.Consumer>
@@ -68,4 +71,54 @@ const DesktopNavigation = props => {
   );
 };
 
-export default DesktopNavigation;
+// Desktop Buildings Navigation
+
+const isBuildingNavVisible = (props) => {
+  return props.route === 'buildings' ? true : props.active;
+};
+
+const BuildingNav = styled.div`
+  background: rgba(255, 255, 255, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 60px;
+  height: 45px;
+  width: 100%;
+  z-index: 100;
+  transition: all 200ms ease;
+  opacity: ${props => isBuildingNavVisible(props) ? 1 : 0 };
+  visibility: ${props => isBuildingNavVisible(props) ? 'visible' : 'hidden' };
+  ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    margin: 0;
+    height: 100%;
+    li {
+      list-style-type: none;
+      cursor: pointer;
+      a {
+        text-decoration: none;
+        color: initial;
+      }
+    }
+  }
+`;
+
+export const BuildingNavigation = props => {
+  return (
+    <Context.Consumer>
+      {context => (
+        <BuildingNav 
+          active={context.state.navigation.buildingNavActive}
+          route={props.route} 
+        >
+          {generateBuildingNavLinks()}
+        </BuildingNav>
+      )}
+    </Context.Consumer>
+  );
+};
+

@@ -41,7 +41,7 @@ const MobileNav = styled.div`
 `;
 
 const MobileNavigation = props => {
-  const listRoutes = props.routes.map(page => {
+  const generateLinks = props.routes.map(page => {
     return (
       <li key={`mobile-link-${page}`}>
         <Link href={`/${page}`}>
@@ -61,7 +61,7 @@ const MobileNavigation = props => {
           <MobileNav active={context.state.navigation.mobileNavActive}>
             <MobileClose toggleMobileNav={context.toggleMobileNav} />
             <ul>
-              {listRoutes}
+              {generateLinks}
               {generateBuildingNavLinks()}
             </ul>
           </MobileNav>
