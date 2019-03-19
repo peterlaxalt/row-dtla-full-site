@@ -81,6 +81,12 @@ class ContextProvider extends Component {
       <Context.Provider
         value={{
           state: this.state,
+          toggleMobileNav: () => this.setState({ 
+            navigation: {
+              ...this.state.navigation,
+              mobileNavActive: !this.state.navigation.mobileNavActive,
+            }
+          }),
           toggleDesktopNav: () => this.setState({ 
             navigation: {
               ...this.state.navigation,

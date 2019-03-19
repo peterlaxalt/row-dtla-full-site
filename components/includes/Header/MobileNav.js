@@ -18,8 +18,9 @@ const MobileNav = styled.div`
   position: fixed;
   height: 100%;
   top: 0;
-  right: 0;
-  transition: right 300ms ease;
+  right: ${props => props.active ? 0 : '-300px' };
+  visibility: ${props => props.active ? 'visible' : 'hidden' };
+  transition: all 300ms ease;
 `;
 
 const MobileNavigation = props => {
@@ -30,10 +31,10 @@ const MobileNavigation = props => {
       {context => (
         <React.Fragment>
           <MobileHamburgerContainer>
-            <MobileHamburger toggleDesktopNav={context.toggleMobileNav} />
+            <MobileHamburger toggleMobileNav={context.toggleMobileNav} />
           </MobileHamburgerContainer>
-          <MobileNav active={context.mobileNavActive}>
-            <MobileClose />
+          <MobileNav active={context.state.navigation.mobileNavActive}>
+            <MobileClose toggleMobileNav={context.toggleMobileNav} />
             <ul>
               {links}
             </ul>

@@ -43,7 +43,7 @@ export const DesktopHamburger = props => {
 
 export const MobileHamburger = props => {
   return (
-    <HamburgerDiv onClick={props.toggleDesktopNav}>
+    <HamburgerDiv onClick={props.toggleMobileNav}>
       <Line top='30%' topHover='30%'/>
       <Line top='45%' />
       <Line top='61%' topHover='60%'/>
@@ -70,8 +70,8 @@ const CloseLine = styled.div`
   left: 50%;
 `;
 
-export const MobileClose = () => (
-  <CloseDiv>
+export const MobileClose = props => (
+  <CloseDiv onClick={props.toggleMobileNav}>
     <CloseLine top='45%' rotate='-45' />
     <CloseLine top='45%' rotate='45' />
   </CloseDiv>
