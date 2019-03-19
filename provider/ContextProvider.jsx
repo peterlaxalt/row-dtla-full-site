@@ -11,7 +11,7 @@ class ContextProvider extends Component {
         width: null
       },
       navigation: {
-        mobileNavActive: false,
+        mobileNavActive: true,
         desktopNavActive: true,
         buildingNavActive: false
       },
@@ -90,7 +90,7 @@ class ContextProvider extends Component {
           toggleDesktopNav: () => this.setState({ 
             navigation: {
               ...this.state.navigation,
-              homeNavActive: !this.state.navigation.homeNavActive,
+              desktopNavActive: !this.state.navigation.desktopNavActive,
             }
           }),
           toggleBuildingNav: () => this.setState({ 
@@ -98,7 +98,7 @@ class ContextProvider extends Component {
               ...this.state.navigation,
               buildingNavActive: !this.state.navigation.buildingNavActive,
             }
-          }),
+          })
         }}
       >
         {this.props.children}

@@ -1,20 +1,21 @@
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 import styled from 'styled-components';
-import { mediaMin, mediaMax } from '~/styles/MediaQueries';
+import { mediaMin } from '~/styles/MediaQueries';
 
 import routes from '~/data/routes';
-import buildings from '~/data/buildings';
+import locations from '~/data/locations';
 
+import { generateBuildingNavLinks } from './navFunctions';
 import MobileNavigation from './MobileNav';
-import { DesktopHamburger } from './Hamburger';
+import DesktopNavigation from './DesktopNav';
 import Context from '~/config/Context';
 
 const isUpperNavActive = (props) => {
   return props.route !== 'home' ? true : props.active;
 };
 
-const UpperNavigation = styled.div`
+const HeaderWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -34,42 +35,13 @@ const UpperNavigation = styled.div`
 `;
 
 const HeaderLogo = styled.img`
-  margin-left: 40px;
-  max-width: 100%;
   display: block;
-`;
+  max-width: 100%;
+  margin-left: 20px;
 
-const DesktopNav = styled.div`
-  display: flex;
-  height: 100%;
-
-  ${mediaMax.desktopSmall`
-    display: none;
+  ${mediaMin.phoneLarge`
+    margin-left: 40px;
   `}
-`;
-
-const isDesktopNavVisible = (props) => {
-  return props.route !== 'home' ? true : props.active;
-};
-
-const NavUnorderedList = styled.ul`
-  display: flex;
-  align-items: center;
-  transition: all 200ms ease;
-  opacity: ${props => isDesktopNavVisible(props) ? 1 : 0 };
-  visibility: ${props => isDesktopNavVisible(props) ? 'visible' : 'hidden' };
-  
-  li {
-    color: inherit;
-    cursor: pointer;
-    margin: 0 15px;
-    list-style-type: none;
-    text-decoration: none;
-
-    a {
-      text-decoration: none;
-    }
-  }
 `;
 
 const isBuildingNavVisible = (props) => {
@@ -106,48 +78,15 @@ const BuildingNavigation = styled.div`
   }
 `;
 
-
 class Header extends React.Component {
-  generateDesktopNav(context, route) {
-    const links = routes.map(page => {
-      let link = page !== 'buildings' ? <a>{page.toUpperCase()}</a> : <a onMouseOver={context.toggleBuildingNav}>{page.toUpperCase()}</a>;
-      return (
-        <li id={`desktop-link-${page}`} key={`link-${page}`}>
-          <Link href={`/${page}`}>
-            {link}
-          </Link>
-        </li>
-      );
-    });
-
-    return (
-      <DesktopNav>
-        <NavUnorderedList route={route} active={context.state.navigation.desktopNavActive}>{links}</NavUnorderedList>
-        { route === 'home' && <DesktopHamburger toggleDesktopNav={context.toggleDesktopNav} /> }
-      </DesktopNav>
-    );
-  }
-
-  generateBuildingNavLinks() {
-    const buildingLinks = buildings.map(building => (
-      <li key={`building-${building.title}`}>
-        <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
-          <a>{building.title.toUpperCase()}</a>
-        </Link>
-      </li>
-    ));
-  
-    return <ul>{buildingLinks}</ul>;
-  }
-
   render() {
     const route = this.props.router.pathname.replace('/', '') || 'home';
-
+    
     return (
       <Context.Consumer>
         {context => (
           <React.Fragment>
-            <UpperNavigation active={context.state.navigation.desktopNavActive} route={route}>
+            <HeaderWrapper active={context.state.navigation.desktopNavActive} route={route}>
               <Link key='link-home' href={`/`}>
                 <a style={{ margin: 'auto 0'}}>
                   <HeaderLogo 
@@ -156,11 +95,18 @@ class Header extends React.Component {
                   />
                 </a>
               </Link>
-              {this.generateDesktopNav(context, route)}
-              <MobileNavigation routes={routes} />
-            </UpperNavigation>
+              <DesktopNavigation 
+                locations={locations}
+                routes={routes}
+                route={route}
+              />
+              <MobileNavigation 
+                locations={locations}
+                routes={routes}
+              />
+            </HeaderWrapper>
             <BuildingNavigation route={route} active={context.state.navigation.buildingNavActive}>
-              {this.generateBuildingNavLinks()}
+              {generateBuildingNavLinks()}
             </BuildingNavigation>
           </React.Fragment>
         )}
