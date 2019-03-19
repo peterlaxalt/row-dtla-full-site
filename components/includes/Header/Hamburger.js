@@ -58,8 +58,6 @@ const CloseDiv = styled.div`
   position: absolute;
   right: 0;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
 `;
 
 const CloseLine = styled.div`
@@ -67,8 +65,9 @@ const CloseLine = styled.div`
   height: 2px;
   width: 80%;
   top: ${props => props.top};
-  transform: rotate(${props => props.rotate}deg);
+  transform: translateX(-50%) rotate(${props => props.rotate}deg);
   background: #fff;
+  left: 50%;
 `;
 
 export const MobileClose = () => (

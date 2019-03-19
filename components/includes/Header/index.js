@@ -6,7 +6,8 @@ import { mediaMin, mediaMax } from '~/styles/MediaQueries';
 import routes from '~/data/routes';
 import buildings from '~/data/buildings';
 
-import { MobileHamburger, MobileClose, DesktopHamburger } from './Hamburger';
+import MobileNavigation from './MobileNav';
+import { DesktopHamburger } from './Hamburger';
 import Context from '~/config/Context';
 
 const isUpperNavActive = (props) => {
@@ -36,15 +37,6 @@ const HeaderLogo = styled.img`
   margin-left: 40px;
   max-width: 100%;
   display: block;
-`;
-
-const MobileHamburgerContainer = styled.div`
-  display: flex;
-  height: 100%;
-
-  ${mediaMin.desktopSmall`
-    display: none;
-  `}
 `;
 
 const DesktopNav = styled.div`
@@ -114,35 +106,8 @@ const BuildingNavigation = styled.div`
   }
 `;
 
-const MobileNav = styled.div`
-  background: #fff;
-  width: 300px;
-  position: fixed;
-  height: 100%;
-  top: 0;
-  right: 0;
-  transition: right 300ms ease;
-`;
 
 class Header extends React.Component {
-  generateMobileNav(context) {
-    const links = routes.map(page => <li key={`mobile-link-${page}`}>{page.toUpperCase()}</li>);
-
-    return (
-      <React.Fragment>
-        <MobileHamburgerContainer>
-          <MobileHamburger toggleDesktopNav={context.toggleMobileNav} />
-        </MobileHamburgerContainer>
-        <MobileNav active={context.mobileNavActive}>
-          <MobileClose />
-          <ul>
-            {links}
-          </ul>
-        </MobileNav>
-      </React.Fragment>
-    );
-  }
-
   generateDesktopNav(context, route) {
     const links = routes.map(page => {
       let link = page !== 'buildings' ? <a>{page.toUpperCase()}</a> : <a onMouseOver={context.toggleBuildingNav}>{page.toUpperCase()}</a>;
@@ -192,7 +157,7 @@ class Header extends React.Component {
                 </a>
               </Link>
               {this.generateDesktopNav(context, route)}
-              {this.generateMobileNav(context)}
+              <MobileNavigation routes={routes} />
             </UpperNavigation>
             <BuildingNavigation route={route} active={context.state.navigation.buildingNavActive}>
               {this.generateBuildingNavLinks()}

@@ -11,6 +11,7 @@ class ContextProvider extends Component {
         width: null
       },
       navigation: {
+        mobileNavActive: false,
         desktopNavActive: true,
         buildingNavActive: false
       },
