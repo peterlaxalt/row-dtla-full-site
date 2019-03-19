@@ -6,6 +6,9 @@ const FaderContainer = styled.div`
   & > .slick-slider {
     height: 90vh;
     width: 100%;
+    @media screen and (max-width: 1024px) {
+      height: 30vh;
+    }
   }
   & > .slick-slider > .slick-list {
     height: 100%;
@@ -32,6 +35,11 @@ const FaderContainer = styled.div`
     box-sizing: border-box;
     &:hover {
       background-color: #000;
+    }
+    @media screen and (max-width: 1024px) {
+      height: 8px;
+      width: 8px;
+      margin: 0 10px;
     }
   }
   & > .slick-slider > .slick-dots > .slick-active {

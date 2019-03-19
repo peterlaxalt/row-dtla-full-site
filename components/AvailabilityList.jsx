@@ -17,7 +17,7 @@ const AvailabilityRow = styled.div`
   min-height: 40px;
   margin: 30px 0 0 0;
   padding: 0 0 30px 0;
-  border-bottom: 3px solid black;
+  border-bottom: ${props => (props.noBorder ? '' : '3px solid black')};
   width: 100%;
 `;
 
@@ -56,6 +56,14 @@ const AvailabilityBody = styled.div`
   }
   .details {
     width: 5%;
+    @media screen and (max-width: 1024px) {
+      border: 2px solid black;
+      border-radius: 50%;
+      padding: 15px;
+      height: 45px;
+      width: 45px;
+      box-sizing: content-box;
+    }
   }
   @media screen and (max-width: 1024px) {
     justify-content: space-between;
@@ -490,7 +498,7 @@ export default class AvailabilityList extends React.Component {
         } else {
           return sortedAndFiltered.map((el, idx) => {
             return (
-              <AvailabilityRow key={idx}>
+              <AvailabilityRow noBorder={true} key={idx}>
                 <AvailabilityBody>
                   <MobileCol>
                     <AvailabilitySection>{el.building}</AvailabilitySection>

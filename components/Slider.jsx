@@ -6,6 +6,9 @@ const SliderContainer = styled.div`
   & > .slick-slider {
     height: 90vh;
     width: 100%;
+    @media screen and (max-width: 1024px) {
+      height: 30vh;
+    }
   }
   & > .slick-slider > .slick-list {
     height: 100%;
@@ -20,7 +23,10 @@ const SliderContainer = styled.div`
     height: 100%;
   }
   & > .slick-slider > .slick-dots {
-    bottom: ${props => (props.showQuotes ? '12%' : '2%')};
+    bottom: ${props => (props.showQuotes ? '7%' : '2%')};
+    @media screen and (max-width: 1024px) {
+      bottom: ${props => (props.showQuotes ? '17%' : '2%')};
+    }
   }
   & > .slick-slider > .slick-dots > li {
     height: 11px;
@@ -31,6 +37,11 @@ const SliderContainer = styled.div`
     box-sizing: border-box;
     &:hover {
       background-color: #000;
+    }
+    @media screen and (max-width: 1024px) {
+      height: 8px;
+      width: 8px;
+      margin: 0 10px;
     }
   }
   & > .slick-slider > .slick-dots > .slick-active {
@@ -44,8 +55,8 @@ const SliderContainer = styled.div`
   }
   & > .slick-slider > .slick-next {
     display: block;
-    ${props => (props.showQuotes ? 'height: 90%;' : 'height: 100%;')}
-    ${props => (props.showQuotes ? 'top: 45%;' : '')}
+    ${props => (props.showQuotes ? 'height: 95%;' : 'height: 100%;')}
+    ${props => (props.showQuotes ? 'top: 47.5%;' : '')}
     width: 10%;
     right: 0;
     &:hover {
@@ -58,11 +69,15 @@ const SliderContainer = styled.div`
       position: absolute;
       left: 50%;
     }
+    @media screen and (max-width: 1024px) {
+      ${props => (props.showQuotes ? 'height: 85%;' : 'height: 100%;')}
+      ${props => (props.showQuotes ? 'top: 42.5%;' : '')}
+    }
   }
   & > .slick-slider > .slick-prev {
     display: block;
-    ${props => (props.showQuotes ? 'height: 90%;' : 'height: 100%;')}
-    ${props => (props.showQuotes ? 'top: 45%;' : '')}
+    ${props => (props.showQuotes ? 'height: 95%;' : 'height: 100%;')}
+    ${props => (props.showQuotes ? 'top: 47.5%;' : '')}
     width: 10%;
     left: 0;
     &:hover {
@@ -74,6 +89,10 @@ const SliderContainer = styled.div`
       font-size: 32px;
       position: absolute;
       right: 50%;
+    }
+    @media screen and (max-width: 1024px) {
+      ${props => (props.showQuotes ? 'height: 85%;' : 'height: 100%;')}
+      ${props => (props.showQuotes ? 'top: 42.5%;' : '')}
     }
   }
 `;
@@ -87,18 +106,24 @@ const SliderSlide = styled.div`
 `;
 
 const SliderImg = styled.img`
-  ${props => (props.showQuotes ? 'height: 90%;' : 'height: 100%;')}
+  ${props => (props.showQuotes ? 'height: 95%;' : 'height: 100%;')}
   width: 100%;
   object-fit: cover;
+  @media screen and (max-width: 1024px) {
+    ${props => (props.showQuotes ? 'height: 85%;' : 'height: 100%;')}
+  }
 `;
 
 const SliderQuote = styled.div`
-  height: 10%;
+  height: 5%;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 1024px) {
+    height: 15%;
+  }
 `;
 
 const SliderDot = styled.a`
@@ -136,9 +161,10 @@ export default class ImageSlider extends React.Component {
       },
       dots: true,
       infinite: true,
-      autoplay: this.props.autoPlay,
+      // autoplay: this.props.autoPlay,
       autoplaySpeed: 5000,
-      speed: 500,
+      easing: true,
+      speed: 1000,
       slidesToShow: 1,
       slidesToScroll: 1
     };
