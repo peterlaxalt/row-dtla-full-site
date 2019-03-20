@@ -13,7 +13,8 @@ class ContextProvider extends Component {
       navigation: {
         mobileNavActive: true,
         desktopNavActive: true,
-        buildingNavActive: false
+        buildingNavActive: false,
+        activeSubNav: ''
       },
       availabilityData: [],
       pressData: [],
@@ -85,7 +86,6 @@ class ContextProvider extends Component {
   };
 
   render() {
-    console.log(this.state.availabilityData);
     return (
       <Context.Provider
         value={{
@@ -107,7 +107,16 @@ class ContextProvider extends Component {
               ...this.state.navigation,
               buildingNavActive: !this.state.navigation.buildingNavActive,
             }
-          })
+          }),
+          toggleSubNav: section => {
+            let activeSection = this.state.navigation.activeSubNav === section ? false : section;
+            this.setState({
+              navigation: {
+                ...this.state.navigation,
+                activeSubNav: activeSection
+              }
+            });
+          }
         }}
       >
         {this.props.children}

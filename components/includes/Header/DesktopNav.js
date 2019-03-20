@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { mediaMax } from '~/styles/MediaQueries';
 import Context from '~/config/Context';
 import { DesktopHamburger } from './Hamburgers';
-import { generateBuildingNavLinks } from './navFunctions';
+import { generateDesktopBuildingLinks } from './SubNav';
 
 // Desktop Navigation
 
@@ -89,6 +89,11 @@ const BuildingNav = styled.div`
   transition: all 200ms ease;
   opacity: ${props => isBuildingNavVisible(props) ? 1 : 0 };
   visibility: ${props => isBuildingNavVisible(props) ? 'visible' : 'hidden' };
+
+  ${mediaMax.desktopSmall`
+    display: none;
+  `}
+  
   ul {
     display: flex;
     justify-content: space-between;
@@ -115,7 +120,7 @@ export const BuildingNavigation = props => {
           active={context.state.navigation.buildingNavActive}
           route={props.route} 
         >
-          {generateBuildingNavLinks()}
+          {generateDesktopBuildingLinks()}
         </BuildingNav>
       )}
     </Context.Consumer>

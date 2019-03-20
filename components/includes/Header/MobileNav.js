@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import { MobileHamburger, MobileClose } from './Hamburgers';
-import { generateBuildingNavLinks } from './navFunctions';
+import { generateBuildingLinks, generateLocationLinks, generateNewsLink } from './SubNav';
 import { mediaMin } from '~/styles/MediaQueries';
 import Context from '~/config/Context';
 
@@ -29,26 +29,63 @@ const MobileNav = styled.div`
     display: none;
   `}
 
-  ul {
+  ul.main-nav-ul {
     padding-top: 20px;
     padding-right: 40px;
-    li {
+    li.main-nav-li:nth-child(10) {
+      border-bottom: none;
+    }
+
+    li.main-nav-li {
       list-style-type: none;
       padding: 17px 0;
       border-bottom: 2px solid rgba(200,200,200,.2);
+      position: relative;
+      i {
+        position: absolute;
+        right: 0;
+        color: rgba(51,51,51,0.27);
+        cursor: pointer;
+        transition: transform 200ms ease;
+        transform: rotate(0);
+        &.active {
+          transform: rotate(45deg)
+        }
+      }
+    }
+    li.main-nav-li:nth-child(8) {
+      border-bottom: none;
     }
   }
 `;
 
 const MobileNavigation = props => {
+  const context = React.useContext(Context);
+  
   const generateLinks = props.routes.map(page => {
-    return (
-      <li key={`mobile-link-${page}`}>
+    let pageLink = (page, subNav = null) => (
+      <li className='main-nav-li' key={`mobile-link-${page}`}>
         <Link href={`/${page}`}>
           <a>{page.charAt(0).toUpperCase() + page.slice(1)}</a>
         </Link>
+        {subNav && 
+        <i 
+          className={`fas fa-plus ${context.state.navigation.activeSubNav === page ? 'active' : null}`} 
+          onClick={() => context.toggleSubNav(page)}
+        />}
+        {subNav}
       </li>
     );
+
+    if (page === 'buildings') {
+      return pageLink(page, generateBuildingLinks());
+    } else if (page === 'location') {
+      return pageLink(page, generateLocationLinks());
+    } else if (page === 'news') {
+      return pageLink(page, generateNewsLink());
+    } else {
+      return pageLink(page);
+    }
   });
   
   return (
@@ -60,9 +97,8 @@ const MobileNavigation = props => {
           </MobileHamburgerContainer>
           <MobileNav active={context.state.navigation.mobileNavActive}>
             <MobileClose toggleMobileNav={context.toggleMobileNav} />
-            <ul>
+            <ul className='main-nav-ul'>
               {generateLinks}
-              {generateBuildingNavLinks()}
             </ul>
           </MobileNav>
         </React.Fragment>
