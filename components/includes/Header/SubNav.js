@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import buildings from '~/data/buildings';
 import locations from '~/data/locations';
+import Context from '~/config/Context';
 
 // Desktop Subnavs
 export const generateDesktopBuildingLinks = () => {
@@ -21,10 +22,9 @@ export const generateDesktopBuildingLinks = () => {
 // Mobile Subnavs
 
 const SubNavUl = styled.ul`
-  background: grey;
   overflow: hidden;
   transition: max-height 300ms ease;
-  ${'' /* max-height: ${props => !props.active ? 0 : props.maxHeight + 'px' }; */}
+  max-height: ${props => props.active ? props.maxHeight : 0 };
   li {
     list-style-type: none;
     padding: 10px 0;
@@ -40,7 +40,18 @@ export const generateBuildingLinks = () => {
     </li>
   ));
 
-  return <SubNavUl>{buildingLinks}</SubNavUl>;
+  return (
+    <Context.Consumer>
+      {context => (
+        <SubNavUl 
+          active={context.state.navigation.activeSubNav === 'buildings'}
+          maxHeight='470px'
+        >
+          {buildingLinks}
+        </SubNavUl>
+      )}
+    </Context.Consumer>
+  );
 };
 
 export const generateLocationLinks = () => {
@@ -52,7 +63,18 @@ export const generateLocationLinks = () => {
     </li>
   ));
 
-  return <SubNavUl>{locationLinks}</SubNavUl>;
+  return (
+    <Context.Consumer>
+      {context => (
+        <SubNavUl 
+          active={context.state.navigation.activeSubNav === 'location'}
+          maxHeight='157px'
+        >
+          {locationLinks}
+        </SubNavUl>
+      )}
+    </Context.Consumer>
+  );
 };
 
 export const generateNewsLink = () => {
@@ -63,5 +85,17 @@ export const generateNewsLink = () => {
       </Link>
     </li>
   );
-  return <SubNavUl>{newsLink}</SubNavUl>;
+
+  return (
+    <Context.Consumer>
+      {context => (
+        <SubNavUl 
+          active={context.state.navigation.activeSubNav === 'news'}
+          maxHeight='40px'
+        >
+          {newsLink}
+        </SubNavUl>
+      )}
+    </Context.Consumer>
+  );
 };

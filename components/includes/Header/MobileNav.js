@@ -40,18 +40,37 @@ const MobileNav = styled.div`
       list-style-type: none;
       padding: 17px 0;
       border-bottom: 2px solid rgba(200,200,200,.2);
+      position: relative;
+      i {
+        position: absolute;
+        right: 0;
+        color: rgba(51,51,51,0.27);
+        cursor: pointer;
+        transition: transform 200ms ease;
+        transform: rotate(0);
+        &.active {
+          transform: rotate(45deg)
+        }
+      }
     }
   }
 `;
 
 const MobileNavigation = props => {
+  const context = React.useContext(Context);
+  
   const generateLinks = props.routes.map(page => {
-    let pageLink = (page, fun = null) => (
+    let pageLink = (page, subNav = null) => (
       <li className='main-nav-li' key={`mobile-link-${page}`}>
         <Link href={`/${page}`}>
           <a>{page.charAt(0).toUpperCase() + page.slice(1)}</a>
         </Link>
-        {fun ? fun : null}
+        {subNav && 
+        <i 
+          className={`fas fa-plus ${context.state.navigation.activeSubNav === page ? 'active' : null}`} 
+          onClick={() => context.toggleSubNav(page)}
+        />}
+        {subNav}
       </li>
     );
 
