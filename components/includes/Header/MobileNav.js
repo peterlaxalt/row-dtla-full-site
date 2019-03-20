@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import { MobileHamburger, MobileClose } from './Hamburgers';
-import { generateBuildingNavLinks } from './navFunctions';
+import { generateBuildingLinks, generateLocationLinks, generateNewsLink } from './SubNav';
 import { mediaMin } from '~/styles/MediaQueries';
 import Context from '~/config/Context';
 
@@ -29,10 +29,14 @@ const MobileNav = styled.div`
     display: none;
   `}
 
-  ul {
+  ul.main-nav-ul {
     padding-top: 20px;
     padding-right: 40px;
-    li {
+    li.main-nav-li:nth-child(10) {
+      border-bottom: none;
+    }
+
+    li.main-nav-li {
       list-style-type: none;
       padding: 17px 0;
       border-bottom: 2px solid rgba(200,200,200,.2);
@@ -42,13 +46,24 @@ const MobileNav = styled.div`
 
 const MobileNavigation = props => {
   const generateLinks = props.routes.map(page => {
-    return (
-      <li key={`mobile-link-${page}`}>
+    let pageLink = (page, fun = null) => (
+      <li className='main-nav-li' key={`mobile-link-${page}`}>
         <Link href={`/${page}`}>
           <a>{page.charAt(0).toUpperCase() + page.slice(1)}</a>
         </Link>
+        {fun ? fun : null}
       </li>
     );
+
+    if (page === 'buildings') {
+      return pageLink(page, generateBuildingLinks());
+    } else if (page === 'location') {
+      return pageLink(page, generateLocationLinks());
+    } else if (page === 'news') {
+      return pageLink(page, generateNewsLink());
+    } else {
+      return pageLink(page);
+    }
   });
   
   return (
@@ -60,9 +75,8 @@ const MobileNavigation = props => {
           </MobileHamburgerContainer>
           <MobileNav active={context.state.navigation.mobileNavActive}>
             <MobileClose toggleMobileNav={context.toggleMobileNav} />
-            <ul>
+            <ul className='main-nav-ul'>
               {generateLinks}
-              {generateBuildingNavLinks()}
             </ul>
           </MobileNav>
         </React.Fragment>
