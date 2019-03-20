@@ -53,6 +53,9 @@ const MobileNav = styled.div`
         }
       }
     }
+    li.main-nav-li:nth-child(8) {
+      border-bottom: none;
+    }
   }
 `;
 

@@ -108,12 +108,15 @@ class ContextProvider extends Component {
               buildingNavActive: !this.state.navigation.buildingNavActive,
             }
           }),
-          toggleSubNav: (section) => this.setState({
-            navigation: {
-              ...this.state.navigation,
-              activeSubNav: section
-            }
-          })
+          toggleSubNav: section => {
+            let activeSection = this.state.navigation.activeSubNav === section ? false : section;
+            this.setState({
+              navigation: {
+                ...this.state.navigation,
+                activeSubNav: activeSection
+              }
+            });
+          }
         }}
       >
         {this.props.children}
