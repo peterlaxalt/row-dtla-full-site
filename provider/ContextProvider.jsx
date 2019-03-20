@@ -84,23 +84,25 @@ class ContextProvider extends Component {
   };
 
   render() {
-    console.log(this.state.availabilityData);
+    // console.log(this.state);
     return (
       <Context.Provider
         value={{
           state: this.state,
-          toggleDesktopNav: () => this.setState({ 
-            navigation: {
-              ...this.state.navigation,
-              homeNavActive: !this.state.navigation.homeNavActive,
-            }
-          }),
-          toggleBuildingNav: () => this.setState({ 
-            navigation: {
-              ...this.state.navigation,
-              buildingNavActive: !this.state.navigation.buildingNavActive,
-            }
-          }),
+          toggleDesktopNav: () =>
+            this.setState({
+              navigation: {
+                ...this.state.navigation,
+                homeNavActive: !this.state.navigation.homeNavActive
+              }
+            }),
+          toggleBuildingNav: () =>
+            this.setState({
+              navigation: {
+                ...this.state.navigation,
+                buildingNavActive: !this.state.navigation.buildingNavActive
+              }
+            })
         }}
       >
         {this.props.children}
