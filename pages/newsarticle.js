@@ -5,6 +5,8 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import ImageSlider from '../components/Slider';
 import Context from '../config/Context';
+import CopyrightFooter from '../components/CopyrightFooter';
+import ScrollUp from '../components/ScrollUp';
 
 const BackButtonInnner = styled.a`
   display: flex;
@@ -19,8 +21,49 @@ const BackButtonInnner = styled.a`
   color: #fff;
   span {
     cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
+const Article = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 30px;
+  width: 100%;
+`;
+const ArticleTitle = styled.h2`
+  width: 100%;
+  font-size: 30px;
+  padding-bottom: 30px;
+  border-bottom: 3px solid black;
+`;
+const ArticleBody = styled.p`
+  width: 100%;
+  font-size: 19px;
+  line-height: 28px;
+  margin-bottom: 60px;
+  a {
+    color: #369bf7;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+const NewsArticleContainer = props => {
+  return (
+    <Context.Consumer>
+      {context => (
+        <NewsArticle
+          context={context}
+          slug={props.router.query.slug}
+          title={props.router.query.title}
+        />
+      )}
+    </Context.Consumer>
+  );
+};
 
 const BackButton = () => {
   return (
@@ -33,12 +76,85 @@ const BackButton = () => {
 };
 
 class NewsArticle extends React.Component {
-  getCurrentData = (allNewsItems, title) => {
-    for (let i = 0; i < allNewsItems.length; i++) {
-      if (allNewsItems[i].title == title) {
-        return allNewsItems[i];
+  constructor(props) {
+    super(props);
+    this.state = {
+      articleData: false
+    };
+  }
+  componentDidMount() {
+    if (
+      this.props.context.state.newsData !== [] &&
+      this.state.articleData === false
+    ) {
+      console.log('mount');
+      if (this.props.title !== undefined) {
+        let articleData = this.getCurrentData(
+          this.props.context.state.newsData,
+          this.createSlug(this.props.title)
+        );
+        this.setState({
+          articleData
+        });
+      } else {
+        let articleData = this.getCurrentData(
+          this.props.context.state.newsData,
+          this.props.slug
+        );
+        this.setState({
+          articleData
+        });
       }
     }
+  }
+  componentDidUpdate() {
+    if (
+      this.props.context.state.newsData !== [] &&
+      this.state.articleData == false
+    ) {
+      console.log('update');
+      if (this.props.title !== undefined) {
+        let articleData = this.getCurrentData(
+          this.props.context.state.newsData,
+          this.createSlug(this.props.title)
+        );
+        if (articleData) {
+          this.setState({
+            articleData
+          });
+        }
+      } else {
+        let articleData = this.getCurrentData(
+          this.props.context.state.newsData,
+          this.props.slug
+        );
+        if (articleData) {
+          this.setState({
+            articleData
+          });
+        }
+      }
+    }
+  }
+
+  createSlug = string => {
+    return string
+      .toLowerCase()
+      .split(' ')
+      .join('-');
+  };
+
+  getCurrentData = (allNewsItems, slug) => {
+    for (let i = 0; i < allNewsItems.length; i++) {
+      if (this.createSlug(allNewsItems[i].title) == slug) {
+        if (allNewsItems[i] !== undefined) {
+          return allNewsItems[i];
+        } else {
+          return false;
+        }
+      }
+    }
+    return false;
   };
 
   createImageArray = articleData => {
@@ -62,30 +178,29 @@ class NewsArticle extends React.Component {
   };
 
   render() {
-    return (
-      <Context.Consumer>
-        {context => {
-          console.log(context);
-          let articleData = this.getCurrentData(
-            context.state.newsData,
-            this.props.router.query.title
-          );
-          let imageArray = this.createImageArray(articleData);
-          console.log(imageArray);
-          return (
-            <Layout>
-              <BackButton />
-              <ImageSlider
-                imgArray={imageArray}
-                showQuotes={true}
-                autoPlay={true}
-              />
-              <h1>{articleData.title}</h1>
-            </Layout>
-          );
-        }}
-      </Context.Consumer>
-    );
+    if (this.state.articleData) {
+      return (
+        <Layout>
+          <BackButton />
+          <ImageSlider
+            imgArray={this.createImageArray(this.state.articleData)}
+            showQuotes={true}
+            autoPlay={true}
+            height="75vh"
+          />
+          <Article>
+            <ArticleTitle>{this.state.articleData.title}</ArticleTitle>
+            <ArticleBody
+              dangerouslySetInnerHTML={{ __html: this.state.articleData.body }}
+            />
+          </Article>
+          <ScrollUp />
+          <CopyrightFooter />
+        </Layout>
+      );
+    } else {
+      return <div />;
+    }
   }
 }
-export default withRouter(NewsArticle);
+export default withRouter(NewsArticleContainer);

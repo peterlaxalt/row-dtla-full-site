@@ -20,7 +20,7 @@ const NewsList = styled.div`
 const ListItem = styled.div`
   box-sizing: border-box;
   width: 50%;
-  height: 40vh;
+  height: 55vh;
   padding: 15px 25px;
   display: flex;
   flex-direction: column;

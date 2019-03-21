@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const SliderContainer = styled.div`
   & > .slick-slider {
-    height: 90vh;
+    height: ${props => (props.height ? props.height : '90vh')};
     width: 100%;
     @media screen and (max-width: 1024px) {
       height: 30vh;
@@ -169,7 +169,10 @@ export default class ImageSlider extends React.Component {
       slidesToScroll: 1
     };
     return (
-      <SliderContainer showQuotes={this.props.showQuotes}>
+      <SliderContainer
+        height={this.props.height}
+        showQuotes={this.props.showQuotes}
+      >
         <Slider {...settings}>{sliderContent}</Slider>
       </SliderContainer>
     );
