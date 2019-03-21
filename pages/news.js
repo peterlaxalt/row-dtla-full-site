@@ -14,7 +14,7 @@ const NewsList = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 0 15px;
+  padding: 60px 15px;
 `;
 
 const ListItem = styled.div`

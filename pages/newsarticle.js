@@ -49,6 +49,14 @@ const ArticleBody = styled.p`
       text-decoration: underline;
     }
   }
+  blockquote {
+    padding: 20px 25px;
+    border: 1px solid black;
+    font-size: 24px;
+    line-height: 36px;
+    margin-left: 0;
+    margin-right: 0;
+  }
 `;
 
 const NewsArticleContainer = props => {
