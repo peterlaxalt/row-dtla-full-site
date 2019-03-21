@@ -7,6 +7,7 @@ import ImageSlider from '../components/Slider';
 import Context from '../config/Context';
 import CopyrightFooter from '../components/CopyrightFooter';
 import ScrollUp from '../components/ScrollUp';
+import ArtProgram from '../components/ArtProgram';
 
 const BackButtonInnner = styled.a`
   display: flex;
@@ -187,20 +188,35 @@ class NewsArticle extends React.Component {
 
   render() {
     if (this.state.articleData) {
+      console.log(
+        this.state.articleData.title ==
+          'Hudson Square Properties Lobby Art Program'
+      );
       return (
         <Layout>
           <BackButton />
-          <ImageSlider
-            imgArray={this.createImageArray(this.state.articleData)}
-            showQuotes={true}
-            autoPlay={true}
-            height="75vh"
-          />
+          {this.state.articleData.title !==
+          'Hudson Square Properties Lobby Art Program' ? (
+            <ImageSlider
+              imgArray={this.createImageArray(this.state.articleData)}
+              showQuotes={true}
+              autoPlay={true}
+              height="75vh"
+            />
+          ) : (
+            ''
+          )}
           <Article>
             <ArticleTitle>{this.state.articleData.title}</ArticleTitle>
             <ArticleBody
               dangerouslySetInnerHTML={{ __html: this.state.articleData.body }}
             />
+            {this.state.articleData.title ==
+            'Hudson Square Properties Lobby Art Program' ? (
+              <ArtProgram />
+            ) : (
+              ''
+            )}
           </Article>
           <ScrollUp />
           <CopyrightFooter />
