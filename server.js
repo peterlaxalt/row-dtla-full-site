@@ -22,6 +22,11 @@ app
       app.render(req, res, page, queryParams);
     });
 
+    server.get('/press/', (req, res) => {
+      const page = '/press';
+      app.render(req, res, page);
+    });
+
     server.get('*', (req, res) => {
       return handle(req, res);
     });
