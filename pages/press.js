@@ -26,9 +26,13 @@ const PressList = styled.div`
   margin-top: 60px;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   width: 100%;
   padding: 0 25px;
+  @media screen and (max-width: 1024px) {
+    margin-top: 0;
+    flex-direction: column;
+    flex-wrap: no-wrap;
+  }
 `;
 
 const PressItem = styled.a`
@@ -39,11 +43,16 @@ const PressItem = styled.a`
   border: 1px solid #eaeaea;
   padding: 28px;
   margin: 0 25px;
+  @media screen and (max-width: 1024px) {
+    width: calc(100%);
+    margin: 15px 0;
+  }
 `;
 
 const Publication = styled.span`
 font-size: 25px;
 line-height: 44px
+min-height: 44px;
 margin-bottom: 10px;`;
 
 const Title = styled.span`

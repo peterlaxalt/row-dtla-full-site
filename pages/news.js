@@ -26,6 +26,11 @@ const ListItem = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  @media screen and (max-width: 1024px) {
+    height: 40vh;
+    width: 100%;
+    padding: 0;
+  }
   div {
     width: 100%;
     height: 100%;
