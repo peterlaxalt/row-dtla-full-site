@@ -10,6 +10,9 @@ const ArtRow = styled.div`
   flex-direction: row;
   width: 100%;
   margin-bottom: ${props => (props.spacer ? '50px' : '0')};
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+  }
 `;
 
 const Title = styled.h3`
@@ -19,6 +22,10 @@ const Title = styled.h3`
   font-size: 24px;
   line-height: 30px;
   padding: 0 25px;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    padding: 0;
+  }
 `;
 
 const LeftCol = styled.div`
@@ -37,6 +44,18 @@ const LeftCol = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    margin-top: 15px;
+  }
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin-bottom: 5vh;
+    span {
+      height: auto;
+      min-height: 30px;
+    }
   }
 `;
 
@@ -53,6 +72,10 @@ const RightCol = styled.div`
     &:hover {
       text-decoration: underline;
     }
+  }
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    padding: 0;
   }
 `;
 const ArtProgram = () => {
