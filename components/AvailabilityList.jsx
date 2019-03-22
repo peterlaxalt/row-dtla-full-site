@@ -601,7 +601,7 @@ export default class AvailabilityList extends React.Component {
               ''
             )}
             {this.createListingRows(
-              context.state.availabilityData,
+              context.availabilityData,
               this.props.building,
               context.state.windowDimensions.width
             )}
