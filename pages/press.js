@@ -91,7 +91,7 @@ export default class Press extends React.Component {
           <React.Fragment>
             <BackButton />
             <PressList>
-              {this.createPressItems(context.state.pressData)}
+              {this.createPressItems(context.pressData)}
             </PressList>
             <ScrollUp />
             <CopyrightFooter />

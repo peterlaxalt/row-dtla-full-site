@@ -5,13 +5,6 @@ import Link from 'next/link';
 import CopyrightFooter from '../components/CopyrightFooter';
 import ScrollUp from '../components/ScrollUp';
 
-const createSlug = string => {
-  return string
-    .toLowerCase()
-    .split(' ')
-    .join('-');
-};
-
 const NewsList = styled.div`
   display: flex;
   flex-direction: row;
@@ -36,9 +29,7 @@ const ListItem = styled.div`
   div {
     width: 100%;
     height: 100%;
-    background-image: url(${props => {
-      return props.imgURL;
-    }});
+    background-image: url(${props => ( props.imgURL )});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -123,7 +114,7 @@ export default class News extends React.Component {
       <Context.Consumer>
         {context => (
           <React.Fragment>
-            <NewsList>{this.createListItems(context.state.newsData)}</NewsList>
+            <NewsList>{this.createListItems(context.newsData)}</NewsList>
             <ScrollUp />
             <CopyrightFooter />
           </React.Fragment>
