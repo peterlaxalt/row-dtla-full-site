@@ -93,13 +93,13 @@ class NewsArticle extends React.Component {
   }
   componentDidMount() {
     if (
-      this.props.context.state.newsData !== [] &&
+      this.props.context.newsData !== [] &&
       this.state.articleData === false
     ) {
       console.log('mount');
       if (this.props.title !== undefined) {
         let articleData = this.getCurrentData(
-          this.props.context.state.newsData,
+          this.props.context.newsData,
           this.createSlug(this.props.title)
         );
         this.setState({
@@ -107,7 +107,7 @@ class NewsArticle extends React.Component {
         });
       } else {
         let articleData = this.getCurrentData(
-          this.props.context.state.newsData,
+          this.props.context.newsData,
           this.props.slug
         );
         this.setState({
@@ -118,13 +118,13 @@ class NewsArticle extends React.Component {
   }
   componentDidUpdate() {
     if (
-      this.props.context.state.newsData !== [] &&
+      this.props.context.newsData !== [] &&
       this.state.articleData == false
     ) {
       console.log('update');
       if (this.props.title !== undefined) {
         let articleData = this.getCurrentData(
-          this.props.context.state.newsData,
+          this.props.context.newsData,
           this.createSlug(this.props.title)
         );
         if (articleData) {
@@ -134,7 +134,7 @@ class NewsArticle extends React.Component {
         }
       } else {
         let articleData = this.getCurrentData(
-          this.props.context.state.newsData,
+          this.props.context.newsData,
           this.props.slug
         );
         if (articleData) {
