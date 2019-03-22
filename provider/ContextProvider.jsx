@@ -61,7 +61,7 @@ class ContextProvider extends Component {
     });
 
     this.setState({
-      pressData: results
+      availabilityData: results
     });
   };
 
@@ -107,7 +107,7 @@ class ContextProvider extends Component {
     });
 
     this.setState({
-      pressData: results
+      newsData: results
     });
   };
 
