@@ -41,15 +41,27 @@ class ContextProvider extends Component {
   };
 
   isomorphicFetchAvailability = async function() {
+    let results = [];
     const res = await fetch(
       'https://cms.dbox.com/wp-json/wp/v2/hsp_availability'
     );
-    let data = await res.json();
-    data = data.map(el => {
+    const pages = res.headers.get('x-wp-totalpages');
+    for (var i = 1; i <= pages; i++) {
+      results.push(
+        await fetch(
+          'https://cms.dbox.com/wp-json/wp/v2/hsp_availability?page=' + i
+        ).then(res => {
+          return res.json();
+        })
+      );
+    }
+    results = results.flat();
+    results = results.map(el => {
       return el.acf;
     });
+
     this.setState({
-      availabilityData: data
+      pressData: results
     });
   };
 
@@ -71,21 +83,31 @@ class ContextProvider extends Component {
       return el.acf;
     });
 
-    console.log(results);
     this.setState({
       pressData: results
     });
   };
 
   isomorphicFetchNews = async function() {
+    let results = [];
     const res = await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_news');
-    let data = await res.json();
-
-    data = data.map(el => {
+    const pages = res.headers.get('x-wp-totalpages');
+    for (var i = 1; i <= pages; i++) {
+      results.push(
+        await fetch(
+          'https://cms.dbox.com/wp-json/wp/v2/hsp_news?page=' + i
+        ).then(res => {
+          return res.json();
+        })
+      );
+    }
+    results = results.flat();
+    results = results.map(el => {
       return el.acf;
     });
+
     this.setState({
-      newsData: data
+      pressData: results
     });
   };
 
