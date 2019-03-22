@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Context from '../config/Context';
 import Link from 'next/link';
+import CopyrightFooter from '../components/CopyrightFooter';
+import ScrollUp from '../components/ScrollUp';
 
 const createSlug = string => {
   return string
@@ -120,7 +122,11 @@ export default class News extends React.Component {
     return (
       <Context.Consumer>
         {context => (
-          <NewsList>{this.createListItems(context.state.newsData)}</NewsList>
+          <React.Fragment>
+            <NewsList>{this.createListItems(context.state.newsData)}</NewsList>
+            <ScrollUp />
+            <CopyrightFooter />
+          </React.Fragment>
         )}
       </Context.Consumer>
     );

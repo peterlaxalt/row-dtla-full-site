@@ -12,6 +12,7 @@ const ScrollUpButton = styled.div`
   color: #000;
   bottom: 1%;
   right: 1%;
+  z-index: 100;
   ${props =>
     props.showButton
       ? 'opacity: 1; visibility: visible;'

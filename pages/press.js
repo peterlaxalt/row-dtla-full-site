@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Context from '../config/Context';
 import Link from 'next/link';
+import CopyrightFooter from '../components/CopyrightFooter';
+import ScrollUp from '../components/ScrollUp';
 
 const BackButtonInnner = styled.a`
   display: flex;
@@ -23,9 +25,10 @@ const BackButtonInnner = styled.a`
 `;
 
 const PressList = styled.div`
-  margin-top: 60px;
+  margin: 60px 0;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   width: 100%;
   padding: 0 25px;
   @media screen and (max-width: 1024px) {
@@ -42,7 +45,7 @@ const PressItem = styled.a`
   background-color: #f7f7f7;
   border: 1px solid #eaeaea;
   padding: 28px;
-  margin: 0 25px;
+  margin: 0 25px 25px 25px;
   @media screen and (max-width: 1024px) {
     width: calc(100%);
     margin: 15px 0;
@@ -90,6 +93,8 @@ export default class Press extends React.Component {
             <PressList>
               {this.createPressItems(context.state.pressData)}
             </PressList>
+            <ScrollUp />
+            <CopyrightFooter />
           </React.Fragment>
         )}
       </Context.Consumer>
