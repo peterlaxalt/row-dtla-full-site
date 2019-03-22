@@ -43,45 +43,73 @@ class ContextProvider extends Component {
   };
 
   isomorphicFetchAvailability = async function() {
+    let results = [];
     const res = await fetch(
       'https://cms.dbox.com/wp-json/wp/v2/hsp_availability'
     );
-    let data = await res.json();
-    data = data.map(el => {
+    const pages = res.headers.get('x-wp-totalpages');
+    for (var i = 1; i <= pages; i++) {
+      results.push(
+        await fetch(
+          'https://cms.dbox.com/wp-json/wp/v2/hsp_availability?page=' + i
+        ).then(res => {
+          return res.json();
+        })
+      );
+    }
+    results = results.flat();
+    results = results.map(el => {
       return el.acf;
     });
+
     this.setState({
-      availabilityData: data
+      availabilityData: results
     });
   };
 
   isomorphicFetchPress = async function() {
+    let results = [];
     const res = await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_press');
-    let data = await res.json();
-
-    data = data.map(el => {
+    const pages = res.headers.get('x-wp-totalpages');
+    for (var i = 1; i <= pages; i++) {
+      results.push(
+        await fetch(
+          'https://cms.dbox.com/wp-json/wp/v2/hsp_press?page=' + i
+        ).then(res => {
+          return res.json();
+        })
+      );
+    }
+    results = results.flat();
+    results = results.map(el => {
       return el.acf;
     });
-    data = data.sort((a, b) => {
-      return new Date(b.date) - new Date(a.date);
-    });
+
     this.setState({
-      pressData: data
+      pressData: results
     });
   };
 
   isomorphicFetchNews = async function() {
+    let results = [];
     const res = await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_news');
-    let data = await res.json();
-
-    data = data.map(el => {
+    const pages = res.headers.get('x-wp-totalpages');
+    for (var i = 1; i <= pages; i++) {
+      results.push(
+        await fetch(
+          'https://cms.dbox.com/wp-json/wp/v2/hsp_news?page=' + i
+        ).then(res => {
+          return res.json();
+        })
+      );
+    }
+    results = results.flat();
+    results = results.map(el => {
       return el.acf;
     });
-    data = data.sort((a, b) => {
-      return new Date(b.date) - new Date(a.date);
-    });
+
     this.setState({
-      newsData: data
+      newsData: results
     });
   };
 

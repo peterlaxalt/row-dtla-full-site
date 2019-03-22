@@ -12,6 +12,7 @@ const ScrollUpButton = styled.div`
   color: #000;
   bottom: 1%;
   right: 1%;
+  z-index: 100;
   ${props =>
     props.showButton
       ? 'opacity: 1; visibility: visible;'
@@ -29,7 +30,8 @@ export default class ScrollUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showButton: false
+      showButton: false,
+      lastScroll: 1000000000
     };
   }
   componentDidMount() {
@@ -51,8 +53,17 @@ export default class ScrollUp extends React.Component {
     }
   };
   scrollStep = () => {
-    if (window.pageYOffset === 0) {
+    this.setState({
+      lastScroll: window.pageYOffset
+    });
+    if (
+      window.pageYOffset === 0 ||
+      window.pageYOffset > this.state.lastScroll
+    ) {
       clearInterval(this.state.intervalId);
+      this.setState({
+        lastScroll: 1000000000
+      });
     }
     window.scroll(0, window.pageYOffset - 75);
   };
