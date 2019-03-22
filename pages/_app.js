@@ -19,12 +19,74 @@ Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteChangeError = () => NProgress.done();
 
 export default class MyApp extends App {
+  static async getInitialProps() {
+    // Get Availability Data
+    let availabilityData = [];
+    const availabilityRes = await fetch(
+      'https://cms.dbox.com/wp-json/wp/v2/hsp_availability'
+    );
+    const pages = availabilityRes.headers.get('x-wp-totalpages');
+    for (let i = 1; i <= pages; i++) {
+      availabilityData.push(
+        await fetch(
+          'https://cms.dbox.com/wp-json/wp/v2/hsp_availability?page=' + i
+        ).then(availabilityRes => {
+          return availabilityRes.json();
+        })
+      );
+    }
+    
+    availabilityData = availabilityData.reduce((acc, curr) => acc.push(...curr) && acc, []);
+    availabilityData = availabilityData.map(el => {
+      return el.acf;
+    });
+
+    // Get News Data
+    let newsData = [];
+    const newsRes = await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_news');
+    const newsPages = newsRes.headers.get('x-wp-totalpages');
+    for (let i = 1; i <= newsPages; i++) {
+      newsData.push(
+        await fetch(
+          'https://cms.dbox.com/wp-json/wp/v2/hsp_news?page=' + i
+        ).then(newsRes => {
+          return newsRes.json();
+        })
+      );
+    }
+    newsData = newsData.reduce((acc, curr) => acc.push(...curr) && acc, []);
+    newsData = newsData.map(el => {
+      return el.acf;
+    });
+
+    // // Get Press Data
+    let pressData = [];
+    const pressRes = await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_press');
+    const pressPages = pressRes.headers.get('x-wp-totalpages');
+    for (let i = 1; i <= pressPages; i++) {
+      pressData.push(
+        await fetch(
+          'https://cms.dbox.com/wp-json/wp/v2/hsp_press?page=' + i
+        ).then(pressRes => {
+          return pressRes.json();
+        })
+      );
+    }
+
+    pressData = pressData.reduce((acc, curr) => acc.push(...curr) && acc, []);
+    pressData = pressData.map(el => {
+      return el.acf;
+    });
+
+    return { availabilityData, newsData, pressData };
+  }
+  
   render () {
     const { Component, pageProps } = this.props;
     
     return (
       <Container>
-        <ContextProvider>
+        <ContextProvider {...this.props} >
           <GlobalStyles />
           <TypographyStyles />
           <Layout>
