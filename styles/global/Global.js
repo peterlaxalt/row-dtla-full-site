@@ -13,12 +13,10 @@ const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
+    padding-top: 60px;
   }
   #__next {
     height: 100%;
-  }
-  .container {
-    padding-top: 60px;
   }
 `;
 
