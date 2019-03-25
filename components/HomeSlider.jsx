@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import Link from 'next/link';
+import MediaQuery from 'react-responsive';
 
 const SliderContainer = styled.div`
   & > .slick-slider {
@@ -103,6 +104,13 @@ const SliderSlide = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 1.5vh;
+    height: 30vh;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 `;
 
 const SliderImg = styled.img`
@@ -125,6 +133,9 @@ const TitleText = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  @media screen and (max-width: 1024px) {
+    font-size: 24px;
+  }
 `;
 
 const TitleImage = styled.img`
@@ -165,6 +176,12 @@ const InnerImageFader = styled.div`
   }
 `;
 
+const MobileSlideList = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
 export default class HomeSlider extends React.Component {
   constructor(props) {
     super(props);
@@ -172,8 +189,9 @@ export default class HomeSlider extends React.Component {
       currentIndex: 0
     };
   }
-  render() {
-    const sliderContent = this.props.imgArray.map((el, idx) => {
+
+  createSlides = () => {
+    return this.props.imgArray.map((el, idx) => {
       return (
         <SliderSlide key={idx}>
           <InnerFader
@@ -184,12 +202,37 @@ export default class HomeSlider extends React.Component {
             {el.titleImg !== undefined ? (
               <TitleImage src={el.titleImg} />
             ) : (
-              <TitleText titleText={el.titleText}>{el.titleText}</TitleText>
+              <TitleText
+                showTitle={this.state.showTitle}
+                titleText={el.titleText}
+              >
+                {el.titleText}
+              </TitleText>
             )}
           </Link>
         </SliderSlide>
       );
     });
+  };
+
+  createMobileSlides = () => {
+    return this.props.mobileArray.map((el, idx) => {
+      return (
+        <Link href={el.link}>
+          <SliderSlide>
+            <SliderImg src={el.imgUrl} alt={el.imgAlt} />
+            <TitleText
+              showTitle={this.state.showTitle}
+              titleText={el.titleText}
+            >
+              {el.titleText}
+            </TitleText>
+          </SliderSlide>
+        </Link>
+      );
+    });
+  };
+  render() {
     var settings = {
       customPaging: function(i) {
         return (
@@ -215,7 +258,12 @@ export default class HomeSlider extends React.Component {
     };
     return (
       <SliderContainer>
-        <Slider {...settings}>{sliderContent}</Slider>
+        <MediaQuery minWidth={1025}>
+          <Slider {...settings}>{this.createSlides()}</Slider>
+        </MediaQuery>
+        <MediaQuery maxWidth={1024}>
+          <MobileSlideList>{this.createMobileSlides()}</MobileSlideList>
+        </MediaQuery>
       </SliderContainer>
     );
   }

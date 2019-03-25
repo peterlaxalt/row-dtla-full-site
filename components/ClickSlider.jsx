@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import Link from 'next/link';
+import MediaQuery from 'react-responsive';
 
 const SliderContainer = styled.div`
   & > .slick-slider {
@@ -104,6 +105,10 @@ const SliderSlide = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  @media screen and (max-width: 1024px) {
+    height: 30vh;
+    margin-bottom: 1.5vh;
+  }
 `;
 
 const SliderImg = styled.img`
@@ -134,6 +139,9 @@ const TitleImage = styled.img`
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
+  @media screen and (max-width: 1024px) {
+    width: 40vw;
+  }
 `;
 
 const SliderDot = styled.a`
@@ -147,9 +155,15 @@ const SliderDotInner = styled.div`
   opacity: 0;
 `;
 
+const MobileSlideList = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
 export default class ClickSlider extends React.Component {
-  render() {
-    const sliderContent = this.props.imgArray.map((el, idx) => {
+  createSlides = () => {
+    return this.props.imgArray.map((el, idx) => {
       return (
         <SliderSlide key={idx}>
           <SliderImg
@@ -167,6 +181,9 @@ export default class ClickSlider extends React.Component {
         </SliderSlide>
       );
     });
+  };
+
+  render() {
     var settings = {
       customPaging: function(i) {
         return (
@@ -186,7 +203,12 @@ export default class ClickSlider extends React.Component {
     };
     return (
       <SliderContainer index={this.props.index}>
-        <Slider {...settings}>{sliderContent}</Slider>
+        <MediaQuery minWidth={1025}>
+          <Slider {...settings}>{this.createSlides()}</Slider>
+        </MediaQuery>
+        <MediaQuery maxWidth={1025}>
+          <MobileSlideList>{this.createSlides()}</MobileSlideList>
+        </MediaQuery>
       </SliderContainer>
     );
   }
