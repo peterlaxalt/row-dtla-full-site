@@ -1,4 +1,4 @@
-import ClickSlider from '../components/ClickSlider';
+import HomeSlider from '../components/HomeSlider';
 import { indexArray } from '../data/index.js';
 import styled from 'styled-components';
 
@@ -14,7 +14,7 @@ const Copyright = styled.div`
 
 const Index = () => (
   <React.Fragment>
-    <ClickSlider imgArray={indexArray} index={true} autoPlay={true} />
+    <HomeSlider imgArray={indexArray} autoPlay={true} />
     <Copyright>
       Copyright © 2019. No part of this website (eg. pictures, graphs, logos and
       others designing material) may be copied, disseminated or published for

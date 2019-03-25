@@ -5,8 +5,7 @@ import Link from 'next/link';
 
 const SliderContainer = styled.div`
   & > .slick-slider {
-    ${props => (props.index ? 'position: fixed; top: 0;' : '')}
-    height: ${props => (props.index ? '100vh' : '90vh')};
+    height: 70vh;
     width: 100%;
     @media screen and (max-width: 1024px) {
       height: 30vh;
@@ -25,9 +24,9 @@ const SliderContainer = styled.div`
     height: 100%;
   }
   & > .slick-slider > .slick-dots {
-    bottom: ${props => (props.index ? '7%' : '2%')};
+    bottom: 2%;
     @media screen and (max-width: 1024px) {
-      bottom: ${props => (props.index ? '17%' : '2%')};
+      bottom: 2%;
     }
   }
   & > .slick-slider > .slick-dots > li {
@@ -176,7 +175,6 @@ export default class ClickSlider extends React.Component {
           </SliderDot>
         );
       },
-      fade: this.props.index ? true : false,
       dots: true,
       infinite: true,
       autoplay: this.props.autoPlay,

@@ -1,4 +1,4 @@
-const titles = [
+const buildings = [
   {
     title: '75 Varick',
     slug: '75-varick-street',
@@ -131,4 +131,79 @@ const titles = [
   }
 ];
 
-export default titles;
+const buildingsSlider = [
+  {
+    imgUrl: '/static/images/buildings/Landing_Carousel/1_75_Varick.jpg',
+    imgAlt: '75 Varick Street',
+    titleImg: '/static/images/logos/logo-75-varick-street-white.svg',
+    link: '/buildings/75-varick-street/'
+  },
+  {
+    imgUrl: '/static/images/buildings/Landing_Carousel/2_160_Varick.jpg',
+    imgAlt: '160 Varick Street',
+    titleImg: '/static/images/logos/logo-160-varick-street-white.svg',
+    link: '/buildings/160-varick-street/'
+  },
+  {
+    imgUrl: '/static/images/buildings/Landing_Carousel/3_345_Hudson.jpg',
+    imgAlt: '345 Hudson Street',
+    titleImg: '/static/images/logos/logo-345-hudson-street-white.svg',
+    link: '/buildings/345-hudson-street/'
+  },
+  {
+    imgUrl: '/static/images/buildings/Landing_Carousel/4_350_Hudson.jpg',
+    imgAlt: '350 Hudson Street',
+    titleImg: '/static/images/logos/logo-350-hudson-street-white.svg',
+    link: '/buildings/350-hudson-street/'
+  },
+  {
+    imgUrl: '/static/images/buildings/Landing_Carousel/5_375_Hudson.jpg',
+    imgAlt: '375 Hudson Street',
+    titleImg: '/static/images/logos/logo-375-hudson-street-white.svg',
+    link: '/buildings/375-hudson-street/'
+  },
+  {
+    imgUrl: '/static/images/buildings/Landing_Carousel/6_155_AoA.jpg',
+    imgAlt: '155 Avenue of the Americas',
+    titleImg: '/static/images/logos/logo-155-aoa-white.svg',
+    link: '/buildings/155-avenue-of-the-americas/'
+  },
+  {
+    imgUrl: '/static/images/buildings/Landing_Carousel/7_100_AoA.jpg',
+    imgAlt: '100 Avenue of the Americas',
+    titleImg: '/static/images/logos/logo-100-aoa-white.svg',
+    link: '/buildings/100-avenue-of-the-americas/'
+  },
+  {
+    imgUrl: '/static/images/buildings/Landing_Carousel/8_200_Hudson.jpg',
+    imgAlt: '200 Hudson Street',
+    titleImg: '/static/images/logos/logo-200-hudson-street-white.svg',
+    link: '/buildings/200-hudson-street/'
+  },
+  {
+    imgUrl: '/static/images/buildings/Landing_Carousel/9_205_Hudson.jpg',
+    imgAlt: '205 Hudson Street',
+    titleImg: '/static/images/logos/logo-205-hudson-street-white.svg',
+    link: '/buildings/205-hudson-street/'
+  },
+  {
+    imgUrl: '/static/images/buildings/Landing_Carousel/10_12_16_Vestry.jpg',
+    imgAlt: '12-16 Vestry Street',
+    titleImg: '/static/images/logos/logo-12-16-vestry-street.png',
+    link: '/buildings/12-16-vestry-street/'
+  },
+  {
+    imgUrl: '/static/images/buildings/Landing_Carousel/11_225_Varick.jpg',
+    imgAlt: '225 Varick Street',
+    titleImg: '/static/images/logos/logo-225-varick-street-white.svg',
+    link: '/buildings/225-varick-street/'
+  },
+  {
+    imgUrl: '/static/images/buildings/Landing_Carousel/12_435_Hudson.jpg',
+    imgAlt: '435 Hudson Street',
+    titleImg: '/static/images/logos/logo-435-hudson-street-white.svg',
+    link: '/buildings/435-hudson-street/'
+  }
+];
+
+export { buildingsSlider, buildings };
