@@ -7,7 +7,7 @@ import { buildingsSlider } from '../data/buildings';
 
 const Buildings = () => (
   <div>
-    <ClickSlider imgArray={buildingsSlider} index={true} autoPlay={true} />
+    <ClickSlider imgArray={buildingsSlider} autoPlay={true} />
     <BrandSpinner />
     <ScrollUp />
   </div>
