@@ -1,15 +1,18 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import buildings from '~/data/buildings';
+import { buildings } from '~/data/buildings';
 import locations from '~/data/locations';
 import Context from '~/config/Context';
 
 // Desktop Subnavs
 export const generateDesktopBuildingLinks = () => {
   const buildingLinks = buildings.map(building => (
-    <li className='mobile-nav-sublink' key={`building-${building.title}`}>
-      <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
+    <li className="mobile-nav-sublink" key={`building-${building.title}`}>
+      <Link
+        as={`/buildings/${building.slug}/`}
+        href={`/building?slug=${building.slug}`}
+      >
         <a>{building.title}</a>
       </Link>
     </li>
@@ -18,13 +21,12 @@ export const generateDesktopBuildingLinks = () => {
   return <ul>{buildingLinks}</ul>;
 };
 
-
 // Mobile Subnavs
 
 const SubNavUl = styled.ul`
   overflow: hidden;
   transition: max-height 300ms ease;
-  max-height: ${props => props.active ? props.maxHeight : 0 };
+  max-height: ${props => (props.active ? props.maxHeight : 0)};
   li {
     list-style-type: none;
     padding: 10px 0;
@@ -33,8 +35,11 @@ const SubNavUl = styled.ul`
 
 export const generateBuildingLinks = () => {
   const buildingLinks = buildings.map(building => (
-    <li className='mobile-nav-sublink' key={`building-${building.title}`}>
-      <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
+    <li className="mobile-nav-sublink" key={`building-${building.title}`}>
+      <Link
+        as={`/buildings/${building.slug}/`}
+        href={`/building?slug=${building.slug}`}
+      >
         <a>{building.title}</a>
       </Link>
     </li>
@@ -43,9 +48,9 @@ export const generateBuildingLinks = () => {
   return (
     <Context.Consumer>
       {context => (
-        <SubNavUl 
+        <SubNavUl
           active={context.state.navigation.activeSubNav === 'buildings'}
-          maxHeight='470px'
+          maxHeight="470px"
         >
           {buildingLinks}
         </SubNavUl>
@@ -56,7 +61,7 @@ export const generateBuildingLinks = () => {
 
 export const generateLocationLinks = () => {
   const locationLinks = locations.map(location => (
-    <li className='mobile-nav-sublink' key={`location-${location}`}>
+    <li className="mobile-nav-sublink" key={`location-${location}`}>
       <Link href={`/neighborhood#section-neighborhood-${location}`}>
         <a>{location}</a>
       </Link>
@@ -66,9 +71,9 @@ export const generateLocationLinks = () => {
   return (
     <Context.Consumer>
       {context => (
-        <SubNavUl 
+        <SubNavUl
           active={context.state.navigation.activeSubNav === 'location'}
-          maxHeight='157px'
+          maxHeight="157px"
         >
           {locationLinks}
         </SubNavUl>
@@ -79,8 +84,8 @@ export const generateLocationLinks = () => {
 
 export const generateNewsLink = () => {
   let newsLink = (
-    <li className='mobile-nav-sublink' key={`press-navlink`}>
-      <Link href='/press'>
+    <li className="mobile-nav-sublink" key={`press-navlink`}>
+      <Link href="/press">
         <a>Hudson Square Press</a>
       </Link>
     </li>
@@ -89,9 +94,9 @@ export const generateNewsLink = () => {
   return (
     <Context.Consumer>
       {context => (
-        <SubNavUl 
+        <SubNavUl
           active={context.state.navigation.activeSubNav === 'news'}
-          maxHeight='40px'
+          maxHeight="40px"
         >
           {newsLink}
         </SubNavUl>
