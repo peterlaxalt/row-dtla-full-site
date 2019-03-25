@@ -14,6 +14,9 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     padding-top: 60px;
+    @media screen and (max-width: 1024px){
+      padding-top: 50px;
+    }
   }
   #__next {
     height: 100%;
