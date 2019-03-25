@@ -152,7 +152,7 @@ const InnerImageFader = styled.div`
   position: relative;
   img {
     opacity: 0;
-    transition: 1s opacity ease-in-out;
+    transition: 1.5s opacity ease-in-out;
     min-width: 100%;
     min-height: 100%;
     position: absolute;
