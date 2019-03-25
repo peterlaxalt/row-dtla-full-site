@@ -2,7 +2,6 @@ import React from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import Link from 'next/link';
-import MediaQuery from 'react-responsive';
 
 const SliderContainer = styled.div`
   & > .slick-slider {
@@ -258,12 +257,11 @@ export default class HomeSlider extends React.Component {
     };
     return (
       <SliderContainer>
-        <MediaQuery minWidth={1025}>
+        {this.props.windowWidth > 1024 ? (
           <Slider {...settings}>{this.createSlides()}</Slider>
-        </MediaQuery>
-        <MediaQuery maxWidth={1024}>
+        ) : (
           <MobileSlideList>{this.createMobileSlides()}</MobileSlideList>
-        </MediaQuery>
+        )}
       </SliderContainer>
     );
   }
