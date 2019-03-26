@@ -147,80 +147,81 @@ export default class ContactPage extends React.Component {
 
   componentDidMount() {
     let startURL = window.location.href.split('#');
-    console.log(startURL[1]);
     switch (startURL[1]) {
-      case undefined:
-        break;
+    case undefined:
+      break;
 
-      case '75-varick-street':
-        this.setState({
-          openRow: 0
-        });
-      case '160-varick-street':
-        this.setState({
-          openRow: 1
-        });
-        break;
+    case '75-varick-street':
+      this.setState({
+        openRow: 0
+      });
+      break;
+      
+    case '160-varick-street':
+      this.setState({
+        openRow: 1
+      });
+      break;
 
-      case '345-hudson-street':
-        this.setState({
-          openRow: 2
-        });
-        break;
+    case '345-hudson-street':
+      this.setState({
+        openRow: 2
+      });
+      break;
 
-      case '350-hudson-street':
-        this.setState({
-          openRow: 3
-        });
-        break;
+    case '350-hudson-street':
+      this.setState({
+        openRow: 3
+      });
+      break;
 
-      case '375-hudson-street':
-        this.setState({
-          openRow: 4
-        });
-        break;
+    case '375-hudson-street':
+      this.setState({
+        openRow: 4
+      });
+      break;
 
-      case '100-avenue-of-the-americas':
-        this.setState({
-          openRow: 5
-        });
-        break;
+    case '100-avenue-of-the-americas':
+      this.setState({
+        openRow: 5
+      });
+      break;
 
-      case '155-avenue-of-the-americas':
-        this.setState({
-          openRow: 6
-        });
-        break;
+    case '155-avenue-of-the-americas':
+      this.setState({
+        openRow: 6
+      });
+      break;
 
-      case '200-hudson-street':
-        this.setState({
-          openRow: 7
-        });
-        break;
+    case '200-hudson-street':
+      this.setState({
+        openRow: 7
+      });
+      break;
 
-      case '205-hudson-street':
-        this.setState({
-          openRow: 8
-        });
-        break;
+    case '205-hudson-street':
+      this.setState({
+        openRow: 8
+      });
+      break;
 
-      case '225-varick-street':
-        this.setState({
-          openRow: 9
-        });
-        break;
+    case '225-varick-street':
+      this.setState({
+        openRow: 9
+      });
+      break;
 
-      case '435-hudson-street':
-        this.setState({
-          openRow: 10
-        });
-        break;
+    case '435-hudson-street':
+      this.setState({
+        openRow: 10
+      });
+      break;
 
-      case 'retail-leasing-inquiries':
-        this.setState({
-          openRow: 11
-        });
-        break;
+    case 'retail-leasing-inquiries':
+      this.setState({
+        openRow: 11
+      });
+      break;
     }
   }
 

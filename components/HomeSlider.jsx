@@ -217,7 +217,7 @@ export default class HomeSlider extends React.Component {
   createMobileSlides = () => {
     return this.props.mobileArray.map((el, idx) => {
       return (
-        <Link href={el.link}>
+        <Link key={`home-slider-link-${idx}`} href={el.link}>
           <SliderSlide>
             <SliderImg src={el.imgUrl} alt={el.imgAlt} />
             <TitleText

@@ -98,91 +98,55 @@ const BrandItem = styled.img`
   transition: transform 0.5s ease;
   ${props => {
     switch (props.position) {
-      case 0:
-        return `transform: translate(${PosZero});`;
-        break;
-      case 1:
-        return `transform: translate(${PosOne(props.width)}) scale(.8);`;
-        break;
-      case 2:
-        return `transform: translate(${PosTwo(props.width)}) scale(.6);`;
-        break;
-      case 3:
-        return `transform: translate(${PosThree(props.width)}) scale(.5);`;
-        break;
-      case 4:
-        return `transform: translate(${PosFour(props.width)}) scale(.45);`;
-        break;
-      case 5:
-        return `transform: translate(${PosFive}) scale(.4);`;
-        break;
-      case 6:
-        return `transform: translate(${PosSix(props.width)}) scale(.45);`;
-        break;
-      case 7:
-        return `transform: translate(${PosSeven(props.width)}) scale(.5);`;
-        break;
-      case 8:
-        return `transform: translate(${PosEight(props.width)}) scale(.6);`;
-        break;
-      case 9:
-        return `transform: translate(${PosNine(props.width)}) scale(.8);`;
-        break;
+    case 0:
+      return `transform: translate(${PosZero});`;
+    case 1:
+      return `transform: translate(${PosOne(props.width)}) scale(.8);`;
+    case 2:
+      return `transform: translate(${PosTwo(props.width)}) scale(.6);`;
+    case 3:
+      return `transform: translate(${PosThree(props.width)}) scale(.5);`;
+    case 4:
+      return `transform: translate(${PosFour(props.width)}) scale(.45);`;
+    case 5:
+      return `transform: translate(${PosFive}) scale(.4);`;
+    case 6:
+      return `transform: translate(${PosSix(props.width)}) scale(.45);`;
+    case 7:
+      return `transform: translate(${PosSeven(props.width)}) scale(.5);`;
+    case 8:
+      return `transform: translate(${PosEight(props.width)}) scale(.6);`;
+    case 9:
+      return `transform: translate(${PosNine(props.width)}) scale(.8);`;
     }
   }};
   @media screen and (max-width: 1024px) {
     height: 50px;
     width: 150px;
     ${props => {
-      switch (props.position) {
-        case 0:
-          return `transform: translate(${PosZeroMobile});`;
-          break;
-        case 1:
-          return `transform: translate(${PosOneMobile(
-            props.width
-          )}) scale(.8);`;
-          break;
-        case 2:
-          return `transform: translate(${PosTwoMobile(
-            props.width
-          )}) scale(.6);`;
-          break;
-        case 3:
-          return `transform: translate(${PosThreeMobile(
-            props.width
-          )}) scale(.5);`;
-          break;
-        case 4:
-          return `transform: translate(${PosFourMobile(
-            props.width
-          )}) scale(.45);`;
-          break;
-        case 5:
-          return `transform: translate(${PosFiveMobile}) scale(.4);`;
-          break;
-        case 6:
-          return `transform: translate(${PosSixMobile(
-            props.width
-          )}) scale(.45);`;
-          break;
-        case 7:
-          return `transform: translate(${PosSevenMobile(
-            props.width
-          )}) scale(.5);`;
-          break;
-        case 8:
-          return `transform: translate(${PosEightMobile(
-            props.width
-          )}) scale(.6);`;
-          break;
-        case 9:
-          return `transform: translate(${PosNineMobile(
-            props.width
-          )}) scale(.8);`;
-          break;
-      }
-    }};
+    switch (props.position) {
+    case 0:
+      return `transform: translate(${PosZeroMobile});`;
+    case 1:
+      return `transform: translate(${PosOneMobile(props.width)}) scale(.8);`;
+    case 2:
+      return `transform: translate(${PosTwoMobile(props.width)}) scale(.6);`;
+    case 3:
+      return `transform: translate(${PosThreeMobile(props.width)}) scale(.5);`;
+    case 4:
+      return `transform: translate(${PosFourMobile(props.width)}) scale(.45);`;
+    case 5:
+      return `transform: translate(${PosFiveMobile}) scale(.4);`;
+    case 6:
+      return `transform: translate(${PosSixMobile(props.width)}) scale(.45);`;
+    case 7:
+      return `transform: translate(${PosSevenMobile(props.width)}) scale(.5);`;
+    case 8:
+      return `transform: translate(${PosEightMobile(props.width)}) scale(.6);`;
+    case 9:
+      return `transform: translate(${PosNineMobile(props.width)}) scale(.8);`;
+    }
+  }};
   }
 `;
 
