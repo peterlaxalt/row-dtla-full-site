@@ -112,9 +112,6 @@ const SliderSlide = styled.div`
   @media screen and (max-width: 1024px) {
     margin-bottom: 1.5vh;
     height: 30vh;
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 `;
 
