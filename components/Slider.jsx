@@ -155,6 +155,8 @@ export default class ImageSlider extends React.Component {
           </SliderDot>
         );
       },
+      lazyLoad: true,
+      fade: this.props.fade ? true : false,
       dots: true,
       infinite: true,
       autoplay: this.props.autoPlay,

@@ -6,12 +6,6 @@ import CopyrightFooter from '../components/CopyrightFooter';
 import ScrollUp from '../components/ScrollUp';
 import Context from '../config/Context';
 
-const MainCol = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  margin-bottom: 200px;
-`;
 const MobileCol = styled.div`
   display: flex;
   flex-direction: column;
@@ -19,13 +13,14 @@ const MobileCol = styled.div`
   margin-bottom: 100px;
 `;
 
-const LeftCol = styled.div`
+const MainCol = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 50%;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 200px;
 `;
 
-const RightCol = styled.div`
+const InnerCol = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -106,7 +101,7 @@ const Retail = () => (
             showQuotes={true}
           />
           <MainCol>
-            <LeftCol>
+            <InnerCol>
               <TextSection>
                 <h2 className="text-heading">RETAIL</h2>
                 <p className="text-body">
@@ -130,10 +125,10 @@ const Retail = () => (
                 </p>
               </TextSection>
               <img src="/static/images/retail/retail-banner-left.png" />
-            </LeftCol>
-            <RightCol>
+            </InnerCol>
+            <InnerCol>
               <img src="/static/images/retail/retail-banner-right.png" />
-            </RightCol>
+            </InnerCol>
           </MainCol>
           <BottomCol>
             <ContactRow>

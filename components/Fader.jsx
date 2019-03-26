@@ -128,6 +128,7 @@ export default class ImageFader extends React.Component {
           </FaderDot>
         );
       },
+      lazyLoad: true,
       dots: true,
       infinite: true,
       fade: true,

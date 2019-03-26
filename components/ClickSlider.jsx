@@ -187,6 +187,7 @@ export default class ClickSlider extends React.Component {
           </SliderDot>
         );
       },
+      lazyLoad: true,
       dots: true,
       infinite: true,
       autoplay: this.props.autoPlay,
