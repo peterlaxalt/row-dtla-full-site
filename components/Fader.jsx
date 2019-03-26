@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
+import ResponsiveImage from './ResponsiveImage';
 
 const FaderContainer = styled.div`
   & > .slick-slider {
@@ -91,13 +92,12 @@ const FaderSlide = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-
-const FaderIMG = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-  width: 100%;
-  object-fit: cover;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
 `;
 
 const FaderDot = styled.a`
@@ -116,7 +116,7 @@ export default class ImageFader extends React.Component {
     const sliderContent = this.props.imgArray.map((el, idx) => {
       return (
         <FaderSlide key={idx}>
-          <FaderIMG src={el.imgUrl} alt={el.imgAlt} />
+          <ResponsiveImage srcPath={el.imgUrl} imgAlt={el.imgAlt} />
         </FaderSlide>
       );
     });
