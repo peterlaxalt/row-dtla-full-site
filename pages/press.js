@@ -74,10 +74,9 @@ const BackButton = () => {
 };
 export default class Press extends React.Component {
   createPressItems = pressData => {
-    console.log(pressData);
     return pressData.map((el, idx) => {
       return (
-        <PressItem href={el.link} target="_blank">
+        <PressItem key={`press-item-${idx}`} href={el.link} target="_blank">
           <Publication>{el.publication}</Publication>
           <Title>{el.title}</Title>
         </PressItem>

@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import styled from 'styled-components';
 import Context from '../config/Context';
 
@@ -107,32 +106,32 @@ const SortIcon = styled.i`
   &::before {
     position: absolute;
     content: ${props => {
-      if (props.sortDirection === null || props.sortDirection === 'up') {
-        return "'\\f0d8';";
-      } else {
-        return '';
-      }
-    }}
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: 16px;
-    transform: translateY(-15%);
+    if (props.sortDirection === null || props.sortDirection === 'up') {
+      return "'\\f0d8';";
+    } else {
+      return '';
+    }
+  }}
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 16px;
+  transform: translateY(-15%);
   }
   &::after {
     position: absolute;
     content: ${props => {
-      if (props.sortDirection === null || props.sortDirection === 'down') {
-        return "'\\f0dd';";
-      } else {
-        return '';
-      }
-    }}
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: 16px;
-    transform: translateY(15%);
+    if (props.sortDirection === null || props.sortDirection === 'down') {
+      return "'\\f0dd';";
+    } else {
+      return '';
+    }
+  }}
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 16px;
+  transform: translateY(15%);
   }
   z-index: 1;
   ${props => (props.listingsArrayLength > 1 ? '' : 'display: none')};
-  `;
+`;
 
 const PinIcon = styled.i`
   height: 20px;
@@ -520,7 +519,6 @@ export default class AvailabilityList extends React.Component {
               </AvailabilityRow>
             );
           });
-          return;
         }
       } else {
         return (
