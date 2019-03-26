@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
+import ResponsiveImage from './ResponsiveImage';
 
 const SliderContainer = styled.div`
   & > .slick-slider {
@@ -103,14 +104,13 @@ const SliderSlide = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-
-const SliderImg = styled.img`
-  ${props => (props.showQuotes ? 'height: 95%;' : 'height: 100%;')}
-  width: 100%;
-  object-fit: cover;
-  @media screen and (max-width: 1024px) {
-    ${props => (props.showQuotes ? 'height: 85%;' : 'height: 100%;')}
+  img {
+    ${props => (props.showQuotes ? 'height: 95%;' : 'height: 100%;')}
+    width: 100%;
+    object-fit: cover;
+    @media screen and (max-width: 1024px) {
+      ${props => (props.showQuotes ? 'height: 85%;' : 'height: 100%;')}
+    }
   }
 `;
 
@@ -141,12 +141,8 @@ export default class ImageSlider extends React.Component {
   render() {
     const sliderContent = this.props.imgArray.map((el, idx) => {
       return (
-        <SliderSlide key={idx}>
-          <SliderImg
-            showQuotes={this.props.showQuotes}
-            src={el.imgUrl}
-            alt={el.imgAlt}
-          />
+        <SliderSlide key={idx} showQuotes={this.props.showQuotes}>
+          <ResponsiveImage srcPath={el.imgUrl} imgAlt={el.imgAlt} />
           {this.props.showQuotes ? <SliderQuote>{el.imgAlt}</SliderQuote> : ''}
         </SliderSlide>
       );

@@ -7,7 +7,7 @@ const AvailabilityListContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0 5% 70px 5%;
+  padding: 0 0 70px 0;
   z-index: 1;
 `;
 
@@ -273,6 +273,22 @@ export default class AvailabilityList extends React.Component {
         neighborhood: null
       }
     };
+  }
+  componentDidMount() {
+    if (this.props.retail) {
+      this.setState({
+        filters: {
+          neighborhood: ['West Village', 'SoHo', 'Hudson Square', 'Tribeca'],
+          type: ['Retail'],
+          squareFootage: [
+            '5,000-10,000',
+            '10,000-15,000',
+            '15,000-20,000',
+            'More than 20,000'
+          ]
+        }
+      });
+    }
   }
 
   numberWithCommas = num => {
