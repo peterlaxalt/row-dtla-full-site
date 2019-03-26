@@ -24,6 +24,7 @@ const AvailabilityPage = () => (
     <AvailabilityList hasFilter={true} />
     <ScrollUp />
     <CopyrightFooter />
+    <h1>Hello World</h1>
   </Layout>
 );
 
