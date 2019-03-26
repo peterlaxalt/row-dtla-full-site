@@ -19,9 +19,23 @@ const MainCol = styled.div`
   margin-bottom: 200px;
   @media screen and (max-width: 1024px) {
     flex-direction: column;
+    margin-bottom: 100px;
   }
 `;
-
+const MobileHeading = styled.h2`
+  margin: 0;
+  height: 30px;
+  padding: 10px 0;
+  margin: 0 15px 30px 15px;
+  border-bottom: 3px solid black;
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  @media screen and (min-width: 1025px) {
+    display: none;
+  }
+`;
 const InnerCol = styled.div`
   display: flex;
   flex-direction: column;
@@ -58,6 +72,9 @@ const BrandSection = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 40px;
+  @media screen and (max-width: 1024px) {
+    padding: 0 15px;
+  }
 `;
 
 const BrandHeading = styled.div`
@@ -88,11 +105,20 @@ const BrandRow = styled.div`
     justify-content: space-between;
   }
 `;
+const Spacer = styled.div`
+  height: 100px;
+  width: 100%;
+  @media screen and (max-width: 1024px) {
+    height: 50px;
+  }
+`;
 
 const Location = () => (
   <Context.Consumer>
     {context => (
       <div>
+        <MobileHeading>Location</MobileHeading>
+
         <ImageSlider
           height="95vh"
           imgArray={locationArrayOne}
@@ -100,12 +126,14 @@ const Location = () => (
           showQuotes={true}
           fade={true}
         />
+        <Spacer />
         <ImageSlider
           height="95vh"
           imgArray={locationArrayTwo}
           autoPlay={true}
           showQuotes={true}
         />
+        <Spacer />
         {context.state.windowDimensions.width > 1024 ? (
           <MainCol id="section-neighborhood-hudson">
             <InnerCol>
