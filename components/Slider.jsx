@@ -8,7 +8,7 @@ const SliderContainer = styled.div`
     height: ${props => (props.height ? props.height : '90vh')};
     width: 100%;
     @media screen and (max-width: 1024px) {
-      height: 30vh;
+      height: 40vh;
     }
   }
   & > .slick-slider > .slick-list {
@@ -26,7 +26,7 @@ const SliderContainer = styled.div`
   & > .slick-slider > .slick-dots {
     bottom: ${props => (props.showQuotes ? '7%' : '2%')};
     @media screen and (max-width: 1024px) {
-      bottom: ${props => (props.showQuotes ? '17%' : '2%')};
+      bottom: ${props => (props.showQuotes ? '20%' : '2%')};
     }
   }
   & > .slick-slider > .slick-dots > li {
@@ -71,8 +71,8 @@ const SliderContainer = styled.div`
       left: 50%;
     }
     @media screen and (max-width: 1024px) {
-      ${props => (props.showQuotes ? 'height: 85%;' : 'height: 100%;')}
-      ${props => (props.showQuotes ? 'top: 42.5%;' : '')}
+      ${props => (props.showQuotes ? 'height: 80%;' : 'height: 100%;')}
+      ${props => (props.showQuotes ? 'top: 40%;' : '')}
     }
   }
   & > .slick-slider > .slick-prev {
@@ -92,8 +92,8 @@ const SliderContainer = styled.div`
       right: 50%;
     }
     @media screen and (max-width: 1024px) {
-      ${props => (props.showQuotes ? 'height: 85%;' : 'height: 100%;')}
-      ${props => (props.showQuotes ? 'top: 42.5%;' : '')}
+      ${props => (props.showQuotes ? 'height: 80%;' : 'height: 100%;')}
+      ${props => (props.showQuotes ? 'top: 40%;' : '')}
     }
   }
 `;
@@ -109,7 +109,7 @@ const SliderSlide = styled.div`
     width: 100%;
     object-fit: cover;
     @media screen and (max-width: 1024px) {
-      ${props => (props.showQuotes ? 'height: 85%;' : 'height: 100%;')}
+      ${props => (props.showQuotes ? 'height: 80%;' : 'height: 100%;')}
     }
   }
 `;
@@ -121,8 +121,10 @@ const SliderQuote = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  text-align: center;
   @media screen and (max-width: 1024px) {
-    height: 15%;
+    height: 20%;
+    padding: 0 15px;
   }
 `;
 
@@ -155,6 +157,8 @@ export default class ImageSlider extends React.Component {
           </SliderDot>
         );
       },
+      lazyLoad: true,
+      fade: this.props.fade ? true : false,
       dots: true,
       infinite: true,
       autoplay: this.props.autoPlay,

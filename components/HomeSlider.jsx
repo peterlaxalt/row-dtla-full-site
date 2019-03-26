@@ -237,6 +237,7 @@ export default class HomeSlider extends React.Component {
           </SliderDot>
         );
       },
+      lazyLoad: true,
       fade: true,
       dots: true,
       infinite: true,
