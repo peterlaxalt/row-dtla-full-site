@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import Link from 'next/link';
+import ResponsiveImage from './ResponsiveImage';
 
 const SliderContainer = styled.div`
   & > .slick-slider {
@@ -103,6 +104,11 @@ const SliderSlide = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  .responsive-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
   @media screen and (max-width: 1024px) {
     margin-bottom: 1.5vh;
     height: 30vh;
@@ -110,12 +116,6 @@ const SliderSlide = styled.div`
       margin-bottom: 0;
     }
   }
-`;
-
-const SliderImg = styled.img`
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
 `;
 
 const TitleText = styled.div`
@@ -160,7 +160,7 @@ const InnerImageFader = styled.div`
   height: 100%;
   width: 100%;
   position: relative;
-  img {
+  .responsive-image {
     opacity: 0;
     transition: 1.5s opacity ease-in-out;
     min-width: 100%;
@@ -219,7 +219,7 @@ export default class HomeSlider extends React.Component {
       return (
         <Link href={el.link}>
           <SliderSlide>
-            <SliderImg src={el.imgUrl} alt={el.imgAlt} />
+            <ResponsiveImage srcPath={el.imgUrl} imgAlt={el.imgAlt} />
             <TitleText
               showTitle={this.state.showTitle}
               titleText={el.titleText}
@@ -302,11 +302,11 @@ class InnerFader extends React.Component {
   createImages = () => {
     return this.props.imgArray.map((el, key) => {
       return (
-        <img
+        <ResponsiveImage
           key={key}
-          className={this.state.currentImage >= key ? 'active' : ''}
-          src={el.imgUrl}
-          alt={el.alt}
+          imgClass={this.state.currentImage >= key ? 'active' : ''}
+          srcPath={el.imgUrl}
+          imgAlt={el.alt}
         />
       );
     });
