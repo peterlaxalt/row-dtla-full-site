@@ -7,7 +7,7 @@ class ContextProvider extends Component {
     this.state = {
       windowDimensions: {
         height: null,
-        width: null
+        width: 2000
       },
       navigation: {
         mobileNavActive: false,
@@ -41,26 +41,30 @@ class ContextProvider extends Component {
         value={{
           ...this.props,
           state: this.state,
-          toggleMobileNav: () => this.setState({ 
-            navigation: {
-              ...this.state.navigation,
-              mobileNavActive: !this.state.navigation.mobileNavActive,
-            }
-          }),
-          toggleDesktopNav: () => this.setState({ 
-            navigation: {
-              ...this.state.navigation,
-              desktopNavActive: !this.state.navigation.desktopNavActive,
-            }
-          }),
-          toggleBuildingNav: () => this.setState({ 
-            navigation: {
-              ...this.state.navigation,
-              buildingNavActive: !this.state.navigation.buildingNavActive,
-            }
-          }),
+          toggleMobileNav: () =>
+            this.setState({
+              navigation: {
+                ...this.state.navigation,
+                mobileNavActive: !this.state.navigation.mobileNavActive
+              }
+            }),
+          toggleDesktopNav: () =>
+            this.setState({
+              navigation: {
+                ...this.state.navigation,
+                desktopNavActive: !this.state.navigation.desktopNavActive
+              }
+            }),
+          toggleBuildingNav: () =>
+            this.setState({
+              navigation: {
+                ...this.state.navigation,
+                buildingNavActive: !this.state.navigation.buildingNavActive
+              }
+            }),
           toggleSubNav: section => {
-            let activeSection = this.state.navigation.activeSubNav === section ? false : section;
+            let activeSection =
+              this.state.navigation.activeSubNav === section ? false : section;
             this.setState({
               navigation: {
                 ...this.state.navigation,

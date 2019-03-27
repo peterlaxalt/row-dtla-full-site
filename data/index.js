@@ -57,7 +57,7 @@ export const indexArray = [
   {
     imgArray: [
       {
-        imgUrl: '/static/images/landing_page/4_Our_Story/1_Aerial.png',
+        imgUrl: '/static/images/landing_page/4_Our_Story/1_Aerial',
         imgAlt: 'Story 1'
       },
       {
