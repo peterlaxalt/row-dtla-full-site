@@ -20,7 +20,7 @@ Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteChangeError = () => NProgress.done();
 
 export default class MyApp extends App {
-  static async getInitialProps() {
+  static async getInitialProps({ Component, ctx }) {
     // Get Availability Data
     let availabilityData = [];
     const availabilityRes = await fetch(
@@ -79,7 +79,13 @@ export default class MyApp extends App {
       return el.acf;
     });
 
-    return { availabilityData, newsData, pressData };
+    let pageProps = {};
+
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
+    }
+
+    return { availabilityData, newsData, pressData, pageProps };
   }
   
   render () {
