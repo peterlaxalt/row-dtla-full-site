@@ -20,6 +20,7 @@ const MainCol = styled.div`
   @media screen and (max-width: 1024px) {
     flex-direction: column;
     margin-bottom: 100px;
+    padding: 0 15px;
   }
 `;
 const MobileHeading = styled.h2`
@@ -64,7 +65,7 @@ const TextSection = styled.div`
     line-height: 28px;
   }
   @media screen and (max-width: 1024px) {
-    padding: 100px 15px 0 15px;
+    padding: 100px 0 0 0;
   }
 `;
 
