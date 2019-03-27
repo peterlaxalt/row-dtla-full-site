@@ -3,7 +3,7 @@ import Layout from '../components/layouts/default';
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import ImageSlider from '../components/Slider';
+import ImageSlider from '../components/NonResponsiveSlider';
 import Context from '../config/Context';
 import CopyrightFooter from '../components/CopyrightFooter';
 import ScrollUp from '../components/ScrollUp';
@@ -116,10 +116,7 @@ class NewsArticle extends React.Component {
     }
   }
   componentDidUpdate() {
-    if (
-      this.props.context.newsData !== [] &&
-      this.state.articleData == false
-    ) {
+    if (this.props.context.newsData !== [] && this.state.articleData == false) {
       if (this.props.title !== undefined) {
         let articleData = this.getCurrentData(
           this.props.context.newsData,
@@ -191,15 +188,15 @@ class NewsArticle extends React.Component {
           <BackButton />
           {this.state.articleData.title !==
           'Hudson Square Properties Lobby Art Program' ? (
-              <ImageSlider
-                imgArray={this.createImageArray(this.state.articleData)}
-                showQuotes={true}
-                autoPlay={true}
-                height="75vh"
-              />
-            ) : (
-              ''
-            )}
+            <ImageSlider
+              imgArray={this.createImageArray(this.state.articleData)}
+              showQuotes={true}
+              autoPlay={true}
+              height="75vh"
+            />
+          ) : (
+            ''
+          )}
           <Article>
             <ArticleTitle>{this.state.articleData.title}</ArticleTitle>
             <ArticleBody
@@ -207,10 +204,10 @@ class NewsArticle extends React.Component {
             />
             {this.state.articleData.title ==
             'Hudson Square Properties Lobby Art Program' ? (
-                <ArtProgram />
-              ) : (
-                ''
-              )}
+              <ArtProgram />
+            ) : (
+              ''
+            )}
           </Article>
           <ScrollUp />
           <CopyrightFooter />
