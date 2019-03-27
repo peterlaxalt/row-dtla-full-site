@@ -1,5 +1,5 @@
 import { withRouter } from 'next/router';
-import buildings from '../data/buildings';
+import { buildings } from '../data/buildings';
 import BuildingHeader from '../components/BuildingHeader';
 import AvailabilityList from '../components/AvailabilityList';
 

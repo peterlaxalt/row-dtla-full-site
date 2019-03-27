@@ -5,12 +5,14 @@ import AvailabilityList from '../components/AvailabilityList';
 import CopyrightFooter from '../components/CopyrightFooter';
 import ScrollUp from '../components/ScrollUp';
 import Context from '../config/Context';
+import ResponsiveImage from '../components/ResponsiveImage';
 
 const MobileCol = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-bottom: 100px;
+  padding: 0 15px;
 `;
 
 const MainCol = styled.div`
@@ -24,6 +26,10 @@ const InnerCol = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
+  .responsive-image {
+    max-height: 100%;
+    max-width: 100%;
+  }
 `;
 
 const TextSection = styled.div`
@@ -39,7 +45,7 @@ const TextSection = styled.div`
     line-height: 28px;
   }
   @media screen and (max-width: 1024px) {
-    padding: 100px 15px 0 15px;
+    padding: 100px 0 0 0;
   }
 `;
 
@@ -124,10 +130,10 @@ const Retail = () => (
                   that bring innovative spaces to fruition. Come join us.
                 </p>
               </TextSection>
-              <img src="/static/images/retail/retail-banner-left.png" />
+              <ResponsiveImage srcPath="/static/images/retail/retail-banner-left" />
             </InnerCol>
             <InnerCol>
-              <img src="/static/images/retail/retail-banner-right.png" />
+              <ResponsiveImage srcPath="/static/images/retail/retail-banner-right" />
             </InnerCol>
           </MainCol>
           <BottomCol>
@@ -179,7 +185,7 @@ const Retail = () => (
                 spaces to fruition. Come join us.
               </p>
             </TextSection>
-            <img src="/static/images/retail/retail-banner-mobile.png" />
+            <ResponsiveImage srcPath="/static/images/retail/retail-banner-mobile" />
           </MobileCol>
           <BottomCol>
             <ContactRow>
