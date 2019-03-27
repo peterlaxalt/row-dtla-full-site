@@ -12,6 +12,9 @@ const BeforeAfterContainer = styled.div`
     min-width: 100%;
     min-height: 100%;
   }
+  @media screen and (max-width: 1024px) {
+    height: 40vh;
+  }
 `;
 
 const SliderIconContainer = styled.div`
