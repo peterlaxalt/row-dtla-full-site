@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import ImageSlider from '../components/Slider';
 import BeforeAfter from '../components/BeforeAfter';
 import ScrollUp from '../components/ScrollUp';
 import CopyrightFooter from '../components/CopyrightFooter';
@@ -252,7 +251,7 @@ const Story = () => (
                   week at its historic sanctuaries, Trinity Church and St.
                   Paul’s Chapel, the cornerstones of the parish’s community
                   life, worship, and mission, and online at
-                  <a target="_blank" href="https://www.trinitywallstreet.org/">
+                  <a target="_blank" rel="noopener noreferrer" href="https://www.trinitywallstreet.org/">
                     trinitywallstreet.org
                   </a>
                   . The parish welcomes approximately 2.5 million visitors per
@@ -309,7 +308,7 @@ const Story = () => (
                   estate investments across 22 million square feet of office and
                   retail properties in New York City, Boston, Washington DC and
                   San Francisco. Visit
-                  <a href="https://www.nbim.no/" target="_blank">
+                  <a href="https://www.nbim.no/" target="_blank" rel="noopener noreferrer">
                     https://www.nbim.no/
                   </a>
                   for more information.
@@ -360,7 +359,7 @@ const Story = () => (
                   to sustainability, Hines is one of the largest and
                   most-respected real estate organizations in the world.
                   Visit&nbsp;
-                  <a target="_blank" href="https://www.hines.com/">
+                  <a target="_blank" rel="noopener noreferrer" href="https://www.hines.com/">
                     www.hines.com
                   </a>
                   &nbsp;for more information.
@@ -481,7 +480,7 @@ const Story = () => (
                   week at its historic sanctuaries, Trinity Church and St.
                   Paul’s Chapel, the cornerstones of the parish’s community
                   life, worship, and mission, and online at&nbsp;
-                  <a target="_blank" href="https://www.trinitywallstreet.org/">
+                  <a target="_blank" rel="noopener noreferrer" href="https://www.trinitywallstreet.org/">
                     trinitywallstreet.org
                   </a>
                   . The parish welcomes approximately 2.5 million visitors per
@@ -533,7 +532,7 @@ const Story = () => (
                   estate investments across 22 million square feet of office and
                   retail properties in New York City, Boston, Washington DC and
                   San Francisco. Visit&nbsp;
-                  <a href="https://www.nbim.no/" target="_blank">
+                  <a href="https://www.nbim.no/" target="_blank" rel="noopener noreferrer">
                     https://www.nbim.no/
                   </a>
                   &nbsp;for more information.
@@ -577,7 +576,7 @@ const Story = () => (
                   pioneering commitment to sustainability, Hines is one of the
                   largest and most-respected real estate organizations in the
                   world. Visit&nbsp;
-                  <a target="_blank" href="https://www.hines.com/">
+                  <a target="_blank" rel="noopener noreferrer" href="https://www.hines.com/">
                     www.hines.com
                   </a>
                   &nbsp;for more information.

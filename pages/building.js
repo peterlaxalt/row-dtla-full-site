@@ -14,7 +14,7 @@ const Building = props => {
         alignItems: 'center',
         justifyContent: 'center',
         height: '100%',
-        background: 'red'
+        background: 'grey'
       }}
     >
       <BuildingHeader headerInfo={building.header} />
