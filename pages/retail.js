@@ -12,6 +12,7 @@ const MobileCol = styled.div`
   flex-direction: column;
   width: 100%;
   margin-bottom: 100px;
+  padding: 0 15px;
 `;
 
 const MainCol = styled.div`
@@ -44,7 +45,7 @@ const TextSection = styled.div`
     line-height: 28px;
   }
   @media screen and (max-width: 1024px) {
-    padding: 100px 15px 0 15px;
+    padding: 100px 0 0 0;
   }
 `;
 
