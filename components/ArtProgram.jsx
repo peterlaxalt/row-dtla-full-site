@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import ResponsiveImage from './ResponsiveImage';
 
 const ArtContainer = styled.div`
   display: flex;
@@ -86,9 +87,9 @@ const ArtProgram = () => {
       </ArtRow>
       <ArtRow spacer={true}>
         <LeftCol>
-          <img
-            src="/static/images/news/lobby_art/1_75 Varick Street Petra Cortright.jpg"
-            alt=""
+          <ResponsiveImage
+            srcPath="/static/images/news/lobby_art/1_lobby_art"
+            imgAlt=""
           />
           <span className="caption">
             1998 MTV Music Awards_baby doll dress “fs5x aircraft” by Petra
@@ -117,9 +118,9 @@ const ArtProgram = () => {
       </ArtRow>
       <ArtRow spacer={true}>
         <LeftCol>
-          <img
-            src="/static/images/news/lobby_art/2_160 Varick Street Serge Attukwei Clottey and Moffat Takadiwa.jpg"
-            alt=""
+          <ResponsiveImage
+            srcPath="/static/images/news/lobby_art/2_lobby_art"
+            imgAlt=""
           />
           <span className="caption">
             Generation Bond by Serge Attukwei Clottey, on display at 160 Varick
@@ -144,9 +145,9 @@ const ArtProgram = () => {
       </ArtRow>
       <ArtRow spacer={true}>
         <LeftCol>
-          <img
-            src="/static/images/news/lobby_art/3_160 Varick Street Serge Attukwei Clottey and Moffat Takadiwa.jpg"
-            alt=""
+          <ResponsiveImage
+            srcPath="/static/images/news/lobby_art/3_lobby_art"
+            imgAlt=""
           />
           <span className="caption">
             Superhighway of Coloniality by Moffat Takadiwa, on display at 160
@@ -171,9 +172,9 @@ const ArtProgram = () => {
       </ArtRow>
       <ArtRow spacer={true}>
         <LeftCol>
-          <img
-            src="/static/images/news/lobby_art/4_160 Varick Street Serge Attukwei Clottey and Moffat Takadiwa.jpg"
-            alt=""
+          <ResponsiveImage
+            srcPath="/static/images/news/lobby_art/4_lobby_art"
+            imgAlt=""
           />
           <span className="caption">
             Oh So Delicate by Kour Pour, on display at 225 Varick Street
@@ -205,9 +206,9 @@ const ArtProgram = () => {
       </ArtRow>
       <ArtRow spacer={true}>
         <LeftCol>
-          <img
-            src="/static/images/news/lobby_art/5_155 Avenue of the Americas Oscar Murillo.jpg"
-            alt=""
+          <ResponsiveImage
+            srcPath="/static/images/news/lobby_art/5_lobby_art"
+            imgAlt=""
           />
           <span className="caption">
             Untitled (La era de la sinceridad) by Oscar Murillo on display at
@@ -238,9 +239,9 @@ const ArtProgram = () => {
       </ArtRow>
       <ArtRow spacer={true}>
         <LeftCol>
-          <img
-            src="/static/images/news/lobby_art/6_375 Hudson Street Robert Kushner and Robert Swain.jpg"
-            alt=""
+          <ResponsiveImage
+            srcPath="/static/images/news/lobby_art/6_lobby_art"
+            imgAlt=""
           />
           <span className="caption">Malinalco (detail) by Robert Kushner</span>
         </LeftCol>
@@ -275,9 +276,9 @@ const ArtProgram = () => {
       </ArtRow>
       <ArtRow spacer={true}>
         <LeftCol>
-          <img
-            src="/static/images/news/lobby_art/7_375 Hudson Street Robert Kushner and Robert Swain.jpg.jpg"
-            alt=""
+          <ResponsiveImage
+            srcPath="/static/images/news/lobby_art/7_lobby_art"
+            imgAlt=""
           />
           <span className="caption">The work of Robert Swain</span>
         </LeftCol>
