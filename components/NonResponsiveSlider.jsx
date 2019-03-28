@@ -1,7 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
-import ResponsiveImage from './ResponsiveImage';
 
 const SliderContainer = styled.div`
   & > .slick-slider {

@@ -200,7 +200,9 @@ class NewsArticle extends React.Component {
           <Article>
             <ArticleTitle>{this.state.articleData.title}</ArticleTitle>
             <ArticleBody
-              dangerouslySetInnerHTML={{ __html: this.state.articleData.body }}
+              dangerouslySetInnerHTML={{
+                __html: this.state.articleData.body
+              }}
             />
             {this.state.articleData.title ==
             'Hudson Square Properties Lobby Art Program' ? (
