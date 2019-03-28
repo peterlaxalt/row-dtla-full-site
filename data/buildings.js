@@ -1,3 +1,17 @@
+import {
+  SeventyFiveVarick,
+  OneSixtyVarick,
+  ThreeFortyFiveHudson,
+  ThreeFiftyHudson,
+  ThreeSeventyFiveHudson,
+  OneHundredAvenue,
+  OneFiftyFiveAvenue,
+  TwoHundredHudson,
+  TwoOFiveHudson,
+  TwoTwentyFiveVarick,
+  FourThirtyFiveHudson
+} from '../data/contact';
+
 const buildings = [
   {
     title: '75 Varick Street',
@@ -19,7 +33,73 @@ const buildings = [
       headerBackground:
         '/static/images/buildings/1_75_Varick/1_Hero/75_Varick_Hero.jpg'
     },
-    sliderArray: [{ imgUrl: '', imgAlt: '' }]
+    sliderArray: [
+      {
+        imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/1-75varick',
+        imgAlt: '75 Varick Street lobby'
+      },
+      {
+        imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/2-75varick',
+        imgAlt: '75 Varick Street lobby, featuring Blue Bottle Cafe'
+      },
+      {
+        imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/3-75varick',
+        imgAlt: 'Tenant Amenity Roof Deck (Currently Under Construction)'
+      },
+      {
+        imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/4-75varick',
+        imgAlt: 'Tenant Amenity Roof Deck (Currently Under Construction)'
+      },
+      {
+        imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/5-75varick',
+        imgAlt: '75 Varick Street tenant, Horizon Media'
+      },
+      {
+        imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/6-75varick',
+        imgAlt: '75 Varick Street tenant, Horizon Media'
+      },
+      {
+        imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/7-75varick',
+        imgAlt: '75 Varick Street tenant, Horizon Media'
+      },
+      {
+        imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/8-75varick',
+        imgAlt: 'View from 75 Varick Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/9-75varick',
+        imgAlt: "75 Varick Street tenant, Harry's Razors"
+      },
+      {
+        imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/10-75varick',
+        imgAlt: ''
+      },
+      {
+        imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/11-75varick',
+        imgAlt: 'View from 75 Varick Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/12-75varick',
+        imgAlt: 'EET Cafe on the 3rd floor is open to all tenants'
+      }
+    ],
+    beforeAfter: {
+      before: {
+        path: '/static/images/buildings/1_75_Varick/3_Slider/old',
+        alt: ''
+      },
+      after: {
+        path: '/static/images/buildings/1_75_Varick/3_Slider/new',
+        alt: ''
+      }
+    },
+    footerImage: {
+      imgUrl: '/static/images/buildings/1_75_Varick/75-varick-footer',
+      imgAlt: '',
+      footerText: 'Hudson Square',
+      footerLink: '/neighborhood/#section-neighborhood-hudson'
+    },
+    contactArray: SeventyFiveVarick
   },
   {
     title: '160 Varick Street',
@@ -37,7 +117,65 @@ const buildings = [
       headerBackground:
         '/static/images/buildings/2_160_Varick/1_Hero/160_Varick_Hero.jpg'
     },
-    sliderArray: [{ imgUrl: '', imgAlt: '' }]
+    sliderArray: [
+      {
+        imgUrl: '/static/images/buildings/2_160_Varick/2_Carousel/1',
+        imgAlt: '160 Varick Street lobby'
+      },
+      {
+        imgUrl: '/static/images/buildings/2_160_Varick/2_Carousel/2',
+        imgAlt: '160 Varick Street lobby'
+      },
+      {
+        imgUrl: '/static/images/buildings/2_160_Varick/2_Carousel/3',
+        imgAlt: 'Exterior detail of 160 Varick Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/2_160_Varick/2_Carousel/4',
+        imgAlt: 'View from 160 Varick Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/2_160_Varick/2_Carousel/5',
+        imgAlt: '160 Varick Street corridor'
+      },
+      {
+        imgUrl: '/static/images/buildings/2_160_Varick/2_Carousel/6',
+        imgAlt: '160 Varick Street white boxed space'
+      },
+      {
+        imgUrl: '/static/images/buildings/2_160_Varick/2_Carousel/7',
+        imgAlt: '160 Varick Street white boxed space'
+      },
+      {
+        imgUrl: '/static/images/buildings/2_160_Varick/2_Carousel/8',
+        imgAlt: 'View from 160 Varick Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/2_160_Varick/2_Carousel/9',
+        imgAlt: 'Precedent pre-built units'
+      },
+      {
+        imgUrl: '/static/images/buildings/2_160_Varick/2_Carousel/10',
+        imgAlt: 'Precedent pre-built units'
+      }
+    ],
+    beforeAfter: {
+      before: {
+        path: '/static/images/buildings/2_160_Varick/3_Slider/old',
+        alt: ''
+      },
+      after: {
+        path: '/static/images/buildings/2_160_Varick/3_Slider/new',
+        alt: ''
+      }
+    },
+    footerImage: {
+      imgUrl: '/static/images/buildings/2_160_Varick/160-varick-street-footer',
+      imgAlt: '',
+      footerText: 'Hudson Square',
+      footerLink: '/neighborhood/#section-neighborhood-hudson'
+    },
+    contactArray: OneSixtyVarick
   },
   {
     title: '345 Hudson Street',
@@ -55,7 +193,40 @@ const buildings = [
       headerBackground:
         '/static/images/buildings/3_345_Hudson/1_Hero/345_Hudson_Hero.jpg'
     },
-    sliderArray: [{ imgUrl: '', imgAlt: '' }]
+    sliderArray: [
+      {
+        imgUrl: '/static/images/buildings/3_345_Hudson/2_Carousel/1',
+        imgAlt: 'Outdoor space at 345 Hudson Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/3_345_Hudson/2_Carousel/2',
+        imgAlt: '345 Hudson Street tenant, Hines'
+      },
+      {
+        imgUrl: '/static/images/buildings/3_345_Hudson/2_Carousel/3',
+        imgAlt: '345 Hudson Street tenant, Hines'
+      },
+      {
+        imgUrl: '/static/images/buildings/3_345_Hudson/2_Carousel/4',
+        imgAlt: 'View from 345 Hudson Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/3_345_Hudson/2_Carousel/5',
+        imgAlt: 'View from 345 Hudson Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/3_345_Hudson/2_Carousel/6',
+        imgAlt: 'View from 345 Hudson Street'
+      }
+    ],
+    beforeAfter: false,
+    footerImage: {
+      imgUrl: '/static/images/buildings/3_345_Hudson/345-hudson-street-footer',
+      imgAlt: '',
+      footerText: 'Hudson Square',
+      footerLink: '/neighborhood/#section-neighborhood-hudson'
+    },
+    contactArray: ThreeFortyFiveHudson
   },
   {
     title: '350 Hudson Street',
@@ -73,7 +244,36 @@ const buildings = [
       headerBackground:
         '/static/images/buildings/4_350_Hudson/1_Hero/350_Hudson_Hero.jpg'
     },
-    sliderArray: [{ imgUrl: '', imgAlt: '' }]
+    sliderArray: [
+      {
+        imgUrl: '/static/images/buildings/4_350_Hudson/2_Carousel/1',
+        imgAlt: '350 Hudson Street lobby'
+      },
+      {
+        imgUrl: '/static/images/buildings/4_350_Hudson/2_Carousel/2',
+        imgAlt: 'Exterior of 350 Hudson Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/4_350_Hudson/2_Carousel/3',
+        imgAlt: '350 Hudson Street tenant, Pret a Manger'
+      },
+      {
+        imgUrl: '/static/images/buildings/4_350_Hudson/2_Carousel/4',
+        imgAlt: "350 Hudson Street tenant, Gregory's Coffee"
+      },
+      {
+        imgUrl: '/static/images/buildings/4_350_Hudson/2_Carousel/5',
+        imgAlt: '350 Hudson Street tenant, Dig Inn'
+      }
+    ],
+    beforeAfter: false,
+    footerImage: {
+      imgUrl: '/static/images/buildings/4_350_Hudson/350-hudson-street-footer',
+      imgAlt: '',
+      footerText: 'Hudson Square',
+      footerLink: '/neighborhood/#section-neighborhood-hudson'
+    },
+    contactArray: ThreeFiftyHudson
   },
   {
     title: '375 Hudson Street',
@@ -91,7 +291,40 @@ const buildings = [
       headerBackground:
         '/static/images/buildings/5_375_Hudson/1_Hero/375_Hudson_Hero.jpg'
     },
-    sliderArray: [{ imgUrl: '', imgAlt: '' }]
+    sliderArray: [
+      {
+        imgUrl: '/static/images/buildings/5_375_Hudson/2_Carousel/1',
+        imgAlt: '375 Hudson Street lobby'
+      },
+      {
+        imgUrl: '/static/images/buildings/5_375_Hudson/2_Carousel/2',
+        imgAlt: '375 Hudson Street lobby art installation'
+      },
+      {
+        imgUrl: '/static/images/buildings/5_375_Hudson/2_Carousel/3',
+        imgAlt: 'Exterior of 375 Hudson Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/5_375_Hudson/2_Carousel/4',
+        imgAlt: 'View from 375 Hudson Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/5_375_Hudson/2_Carousel/5',
+        imgAlt: '375 Hudson Street tenant, Chalait'
+      },
+      {
+        imgUrl: '/static/images/buildings/5_375_Hudson/2_Carousel/6',
+        imgAlt: '375 Hudson Street tenant, Le Pain Quotidien'
+      }
+    ],
+    beforeAfter: false,
+    footerImage: {
+      imgUrl: '/static/images/buildings/5_375_Hudson/375-hudson-street-footer',
+      imgAlt: '',
+      footerText: 'Hudson Square',
+      footerLink: '/neighborhood/#section-neighborhood-hudson'
+    },
+    contactArray: ThreeSeventyFiveHudson
   },
   {
     title: '155 AoA Street',
@@ -109,7 +342,62 @@ const buildings = [
       headerBackground:
         '/static/images/buildings/6_155_AoA/1_Hero/155_AoA_Hero.jpg'
     },
-    sliderArray: [{ imgUrl: '', imgAlt: '' }]
+    sliderArray: [
+      {
+        imgUrl: '/static/images/buildings/6_155_AoA/2_Carousel/1',
+        imgAlt: '155 Avenue of the Americas lobby'
+      },
+      {
+        imgUrl: '/static/images/buildings/6_155_AoA/2_Carousel/2',
+        imgAlt: '155 Avenue of the Americas lobby'
+      },
+      {
+        imgUrl: '/static/images/buildings/6_155_AoA/2_Carousel/3',
+        imgAlt: 'Tenant Amenity Roof Deck (Currently Under Construction)'
+      },
+      {
+        imgUrl: '/static/images/buildings/6_155_AoA/2_Carousel/4',
+        imgAlt: 'Spring Street Park at 155 Avenue of the Americas'
+      },
+      {
+        imgUrl: '/static/images/buildings/6_155_AoA/2_Carousel/5',
+        imgAlt: 'View from 155 Avenue of the Americas'
+      },
+      {
+        imgUrl: '/static/images/buildings/6_155_AoA/2_Carousel/6',
+        imgAlt: '155 Avenue of the Americas pre-built space'
+      },
+      {
+        imgUrl: '/static/images/buildings/6_155_AoA/2_Carousel/7',
+        imgAlt: 'View from 155 Avenue of the Americas'
+      },
+      {
+        imgUrl: '/static/images/buildings/6_155_AoA/2_Carousel/8',
+        imgAlt: 'View from 155 Avenue of the Americas'
+      },
+      {
+        imgUrl: '/static/images/buildings/6_155_AoA/2_Carousel/9',
+        imgAlt: 'Updated amenities at 155 Avenue of the Americas'
+      }
+    ],
+    beforeAfter: {
+      before: {
+        path: '/static/images/buildings/6_155_AoA/3_Slider/old',
+        alt: ''
+      },
+      after: {
+        path: '/static/images/buildings/6_155_AoA/3_Slider/new',
+        alt: ''
+      }
+    },
+    footerImage: {
+      imgUrl:
+        '/static/images/buildings/6_155_AoA/155-avenue-of-the-americas-footer',
+      imgAlt: '',
+      footerText: 'SoHo',
+      footerLink: '/neighborhood/#section-neighborhood-soho'
+    },
+    contactArray: OneFiftyFiveAvenue
   },
   {
     title: '100 AoA Street',
@@ -127,7 +415,45 @@ const buildings = [
       headerBackground:
         '/static/images/buildings/7_100_AoA/1_Hero/100_AoA_Hero.jpg'
     },
-    sliderArray: [{ imgUrl: '', imgAlt: '' }]
+    sliderArray: [
+      {
+        imgUrl: '/static/images/buildings/7_100_AoA/2_Carousel/1',
+        imgAlt: 'Exterior detail of 100 Avenue of the Americas'
+      },
+      {
+        imgUrl: '/static/images/buildings/7_100_AoA/2_Carousel/2',
+        imgAlt: 'Exterior detail of 100 Avenue of the Americas'
+      },
+      {
+        imgUrl: '/static/images/buildings/7_100_AoA/2_Carousel/3',
+        imgAlt: 'View from 100 Avenue of the Americas'
+      },
+      {
+        imgUrl: '/static/images/buildings/7_100_AoA/2_Carousel/4',
+        imgAlt: 'View from 100 Avenue of the Americas'
+      },
+      {
+        imgUrl: '/static/images/buildings/7_100_AoA/2_Carousel/5',
+        imgAlt: '100 Avenue of the Americas white boxed space'
+      },
+      {
+        imgUrl: '/static/images/buildings/7_100_AoA/2_Carousel/6',
+        imgAlt: 'View from 100 Avenue of the Americas'
+      },
+      {
+        imgUrl: '/static/images/buildings/7_100_AoA/2_Carousel/7',
+        imgAlt: 'View from 100 Avenue of the Americas'
+      }
+    ],
+    beforeAfter: false,
+    footerImage: {
+      imgUrl:
+        '/static/images/buildings/7_100_AoA/100-avenue-of-the-americas-footer',
+      imgAlt: '',
+      footerText: 'SoHo',
+      footerLink: '/neighborhood/#section-neighborhood-soho'
+    },
+    contactArray: OneHundredAvenue
   },
   {
     title: '200 Hudson Street',
@@ -145,7 +471,41 @@ const buildings = [
       headerBackground:
         '/static/images/buildings/8_200_Hudson/1_Hero/200_Hudson_Hero.jpg'
     },
-    sliderArray: [{ imgUrl: '', imgAlt: '' }]
+    sliderArray: [
+      {
+        imgUrl: '/static/images/buildings/8_200_Hudson/2_Carousel/1',
+        imgAlt: '200 Hudson Street lobby'
+      },
+      {
+        imgUrl: '/static/images/buildings/8_200_Hudson/2_Carousel/2',
+        imgAlt: '200 Hudson Street vacant space on 9th floor'
+      },
+      {
+        imgUrl: '/static/images/buildings/8_200_Hudson/2_Carousel/3',
+        imgAlt: 'View from 200 Hudson Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/8_200_Hudson/2_Carousel/4',
+        imgAlt: 'View from 200 Hudson Street'
+      }
+    ],
+    beforeAfter: {
+      before: {
+        path: '/static/images/buildings/8_200_Hudson/3_Slider/old',
+        alt: ''
+      },
+      after: {
+        path: '/static/images/buildings/8_200_Hudson/3_Slider/new',
+        alt: ''
+      }
+    },
+    footerImage: {
+      imgUrl: '/static/images/buildings/8_200_Hudson/200-hudson-footer',
+      imgAlt: '',
+      footerText: 'Tribeca',
+      footerLink: '/neighborhood/#section-neighborhood-tribeca'
+    },
+    contactArray: TwoHundredHudson
   },
   {
     title: '205 Hudson Street',
@@ -163,7 +523,53 @@ const buildings = [
       headerBackground:
         '/static/images/buildings/9_205_Hudson/1_Hero/205_Hudson_Hero.jpg'
     },
-    sliderArray: [{ imgUrl: '', imgAlt: '' }]
+    sliderArray: [
+      {
+        imgUrl: '/static/images/buildings/9_205_Hudson/2_Carousel/1',
+        imgAlt: '205 Hudson Street tenant, Maman Bakery'
+      },
+      {
+        imgUrl: '/static/images/buildings/9_205_Hudson/2_Carousel/2',
+        imgAlt: '205 Hudson Street tenant, Maman Bakery'
+      },
+      {
+        imgUrl: '/static/images/buildings/9_205_Hudson/2_Carousel/3',
+        imgAlt: 'View from 205 Hudson Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/9_205_Hudson/2_Carousel/4',
+        imgAlt: 'View from 205 Hudson Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/9_205_Hudson/2_Carousel/5',
+        imgAlt: '205 Hudson Street pre-built space'
+      },
+      {
+        imgUrl: '/static/images/buildings/9_205_Hudson/2_Carousel/6',
+        imgAlt: '205 Hudson Street pre-built space'
+      },
+      {
+        imgUrl: '/static/images/buildings/9_205_Hudson/2_Carousel/7',
+        imgAlt: 'View from 205 Hudson Street'
+      }
+    ],
+    beforeAfter: {
+      before: {
+        path: '/static/images/buildings/9_205_Hudson/3_Slider/old',
+        alt: ''
+      },
+      after: {
+        path: '/static/images/buildings/9_205_Hudson/3_Slider/new',
+        alt: ''
+      }
+    },
+    footerImage: {
+      imgUrl: '/static/images/buildings/9_205_Hudson/205-hudson-street-footer',
+      imgAlt: '',
+      footerText: 'SoHo',
+      footerLink: '/neighborhood/#section-neighborhood-soho'
+    },
+    contactArray: TwoOFiveHudson
   },
   {
     title: '12-16 Vestry Street',
@@ -181,7 +587,23 @@ const buildings = [
       headerBackground:
         '/static/images/buildings/10_12_16_Vestry/1_Hero/12_16_Vestry_Hero.jpg'
     },
-    sliderArray: [{ imgUrl: '', imgAlt: '' }]
+    sliderArray: [
+      {
+        imgUrl: '/static/images/buildings/10_12_16_Vestry/2_Carousel/1',
+        imgAlt: 'Exterior of 12-16 Vestry Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/10_12_16_Vestry/2_Carousel/2',
+        imgAlt: 'Exterior detail of 12-16 Vestry Street'
+      }
+    ],
+    beforeAfter: false,
+    footerImage: {
+      imgUrl: '/static/images/buildings/10_12_16_Vestry/12-16-vestry-footer',
+      imgAlt: '',
+      footerLink: '/neighborhood/#section-neighborhood-tribeca'
+    },
+    contactArray: false
   },
   {
     title: '225 Varick Street',
@@ -199,7 +621,65 @@ const buildings = [
       headerBackground:
         '/static/images/buildings/11_225_Varick/1_Hero/225_Varick_Hero.jpg'
     },
-    sliderArray: [{ imgUrl: '', imgAlt: '' }]
+    sliderArray: [
+      {
+        imgUrl: '/static/images/buildings/11_225_Varick/2_Carousel/1',
+        imgAlt: '225 Varick Street lobby'
+      },
+      {
+        imgUrl: '/static/images/buildings/11_225_Varick/2_Carousel/2',
+        imgAlt: '225 Varick Street lobby'
+      },
+      {
+        imgUrl: '/static/images/buildings/11_225_Varick/2_Carousel/3',
+        imgAlt: '225 Varick Street tenant, Squarespace'
+      },
+      {
+        imgUrl: '/static/images/buildings/11_225_Varick/2_Carousel/4',
+        imgAlt: '225 Varick Street tenant, Squarespace'
+      },
+      {
+        imgUrl: '/static/images/buildings/11_225_Varick/2_Carousel/5',
+        imgAlt: '225 Varick Street tenant, Squarespace Roof Deck'
+      },
+      {
+        imgUrl: '/static/images/buildings/11_225_Varick/2_Carousel/6',
+        imgAlt: 'View from 225 Varick Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/11_225_Varick/2_Carousel/7',
+        imgAlt: '225 Varick Street tenant, Squarespace'
+      },
+      {
+        imgUrl: '/static/images/buildings/11_225_Varick/2_Carousel/8',
+        imgAlt: '225 Varick Street tenant, Squarespace'
+      },
+      {
+        imgUrl: '/static/images/buildings/11_225_Varick/2_Carousel/9',
+        imgAlt: '225 Varick Street tenant, Squarespace Roof Deck'
+      },
+      {
+        imgUrl: '/static/images/buildings/11_225_Varick/2_Carousel/10',
+        imgAlt: 'View from 225 Varick Street'
+      }
+    ],
+    beforeAfter: {
+      before: {
+        path: '/static/images/buildings/11_225_Varick/3_Slider/old',
+        alt: ''
+      },
+      after: {
+        path: '/static/images/buildings/11_225_Varick/3_Slider/new',
+        alt: ''
+      }
+    },
+    footerImage: {
+      imgUrl: '/static/images/buildings/11_225_Varick/225-varick-footer',
+      imgAlt: '',
+      footerText: 'Hudson Square',
+      footerLink: '/neighborhood/#section-neighborhood-hudson'
+    },
+    contactArray: TwoTwentyFiveVarick
   },
   {
     title: '435 Hudson Street',
@@ -217,7 +697,36 @@ const buildings = [
       headerBackground:
         '/static/images/buildings/12_435_Hudson/1_Hero/435_Hudson_Hero.jpg'
     },
-    sliderArray: [{ imgUrl: '', imgAlt: '' }]
+    sliderArray: [
+      {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/1',
+        imgAlt: '435 Hudson Street white boxed space'
+      },
+      {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/2',
+        imgAlt: 'View from 435 Hudson Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/3',
+        imgAlt: 'Tenant Amenity Roof Deck (Currently Under Construction)'
+      },
+      {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/4',
+        imgAlt: 'View from 435 Hudson Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/5',
+        imgAlt: 'View from 435 Hudson Street'
+      }
+    ],
+    beforeAfter: false,
+    footerImage: {
+      imgUrl: '/static/images/buildings/12_435_Hudson/435-hudson-street-footer',
+      imgAlt: '',
+      footerText: 'West Village',
+      footerLink: '/neighborhood/#section-neighborhood-west-village'
+    },
+    contactArray: FourThirtyFiveHudson
   }
 ];
 

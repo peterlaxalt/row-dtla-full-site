@@ -9,8 +9,8 @@ const BeforeAfterContainer = styled.div`
     height: 100%;
   }
   .responsive-image {
-    min-width: 100%;
-    min-height: 100%;
+    // min-width: 100%;
+    // min-height: 100%;
   }
   @media screen and (max-width: 1024px) {
     height: 40vh;
