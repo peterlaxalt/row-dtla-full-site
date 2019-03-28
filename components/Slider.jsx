@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import ResponsiveImage from './ResponsiveImage';
 
 const SliderContainer = styled.div`
+  width: 100%;
   & > .slick-slider {
     height: ${props => (props.height ? props.height : '90vh')};
     width: 100%;
