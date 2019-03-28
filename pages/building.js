@@ -19,6 +19,11 @@ const PaddingCol = styled.div`
   padding: 0 40px;
 `;
 
+const Spacer = styled.div`
+  width: 100%;
+  height: ${props => (props.height ? props.height : '50px')};
+`;
+
 const FooterOverlay = styled.div`
   display: flex;
   flex-direction: column;
@@ -47,7 +52,6 @@ const ContactRow = styled.div`
   flex-direction: column;
   margin: 30px 0 0 0;
   padding: 0 0 30px 0;
-  border-bottom: 3px solid black;
   width: 100%;
 `;
 
@@ -59,6 +63,9 @@ const RowHeading = styled.a`
   width: 100%;
   color: #000;
   text-decoration: none;
+  padding: 0 0 30px 0;
+  margin: 30px 0 0 0;
+  border-bottom: 3px solid black;
   &:hover {
     color: #000;
     text-decoration: none;
@@ -150,11 +157,13 @@ const Building = props => {
   return (
     <BuildingCol>
       <BuildingHeader headerInfo={building.header} />
+      <Spacer />
       <ImageSlider
         height="70vh"
         imgArray={building.sliderArray}
         showQuotes={true}
       />
+      <Spacer />
       {building.beforeAfter === false ? (
         ''
       ) : (
@@ -163,6 +172,7 @@ const Building = props => {
           after={building.beforeAfter.after}
         />
       )}
+      <Spacer />
       <ResponsiveImage
         srcPath={building.footerImage.imgUrl}
         imgAlt={building.footerImage.imgAlt}
@@ -174,14 +184,18 @@ const Building = props => {
         </Link>
       </FooterOverlay>
       <PaddingCol>
-        <ContactRow>
-          <RowHeading>
-            <RowTitle>Leasing Contacts</RowTitle>
-          </RowHeading>
-          <RowBody numChildren={building.contactArray.length}>
-            {createContactList(building.contactArray)}
-          </RowBody>
-        </ContactRow>
+        {building.contactArray === false ? (
+          ''
+        ) : (
+          <ContactRow>
+            <RowHeading>
+              <RowTitle>Leasing Contacts</RowTitle>
+            </RowHeading>
+            <RowBody numChildren={building.contactArray.length}>
+              {createContactList(building.contactArray)}
+            </RowBody>
+          </ContactRow>
+        )}
         <AvailabilityList building={building.header.headerLogoAlt} />
       </PaddingCol>
     </BuildingCol>
