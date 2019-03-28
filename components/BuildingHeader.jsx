@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const HeaderContainer = styled.div`
   position: relative;
@@ -49,12 +50,28 @@ const HeaderLogo = styled.div`
   }
 `;
 
+const BackLink = styled.span`
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 export default class BuildingHeader extends React.Component {
   render() {
     let { headerBackground, headerLogo, headerLogoAlt } = this.props.headerInfo;
     return (
       <HeaderContainer headerBackgroundPath={headerBackground}>
         <LogoContainer>
+          <Link href="/buildings">
+            <BackLink>Back to our Buildings</BackLink>
+          </Link>
           <HeaderLogo>
             <img src={headerLogo} alt={headerLogoAlt} />
           </HeaderLogo>

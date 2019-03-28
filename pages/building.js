@@ -150,7 +150,11 @@ const Building = props => {
   return (
     <BuildingCol>
       <BuildingHeader headerInfo={building.header} />
-      <ImageSlider imgArray={building.sliderArray} showQuotes={true} />
+      <ImageSlider
+        height="70vh"
+        imgArray={building.sliderArray}
+        showQuotes={true}
+      />
       {building.beforeAfter === false ? (
         ''
       ) : (
