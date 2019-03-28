@@ -12,8 +12,13 @@ const BuildingCol = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: grey;
+  background: white;
 `;
+const PaddingCol = styled.div`
+  width: 100%;
+  padding: 0 40px;
+`;
+
 const FooterOverlay = styled.div`
   display: flex;
   flex-direction: column;
@@ -164,15 +169,17 @@ const Building = props => {
           <span className="link">Discover the Neighborhood</span>
         </Link>
       </FooterOverlay>
-      <ContactRow>
-        <RowHeading>
-          <RowTitle>Leasing Contacts</RowTitle>
-        </RowHeading>
-        <RowBody numChildren={building.contactArray.length}>
-          {createContactList(building.contactArray)}
-        </RowBody>
-      </ContactRow>
-      <AvailabilityList building={building.header.headerLogoAlt} />
+      <PaddingCol>
+        <ContactRow>
+          <RowHeading>
+            <RowTitle>Leasing Contacts</RowTitle>
+          </RowHeading>
+          <RowBody numChildren={building.contactArray.length}>
+            {createContactList(building.contactArray)}
+          </RowBody>
+        </ContactRow>
+        <AvailabilityList building={building.header.headerLogoAlt} />
+      </PaddingCol>
     </BuildingCol>
   );
 };
