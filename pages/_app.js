@@ -23,20 +23,16 @@ export default class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     // Get Availability Data
     let availabilityData = [];
-    const availabilityRes = await fetch(
-      'https://cms.dbox.com/wp-json/wp/v2/hsp_availability'
-    );
+    const availabilityRes = await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_availability');
     const pages = availabilityRes.headers.get('x-wp-totalpages');
     for (let i = 1; i <= pages; i++) {
       availabilityData.push(
-        await fetch(
-          'https://cms.dbox.com/wp-json/wp/v2/hsp_availability?page=' + i
-        ).then(availabilityRes => {
+        await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_availability?page=' + i).then(availabilityRes => {
           return availabilityRes.json();
         })
       );
     }
-    
+
     availabilityData = availabilityData.reduce((acc, curr) => acc.push(...curr) && acc, []);
     availabilityData = availabilityData.map(el => {
       return el.acf;
@@ -48,9 +44,7 @@ export default class MyApp extends App {
     const newsPages = newsRes.headers.get('x-wp-totalpages');
     for (let i = 1; i <= newsPages; i++) {
       newsData.push(
-        await fetch(
-          'https://cms.dbox.com/wp-json/wp/v2/hsp_news?page=' + i
-        ).then(newsRes => {
+        await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_news?page=' + i).then(newsRes => {
           return newsRes.json();
         })
       );
@@ -66,9 +60,7 @@ export default class MyApp extends App {
     const pressPages = pressRes.headers.get('x-wp-totalpages');
     for (let i = 1; i <= pressPages; i++) {
       pressData.push(
-        await fetch(
-          'https://cms.dbox.com/wp-json/wp/v2/hsp_press?page=' + i
-        ).then(pressRes => {
+        await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_press?page=' + i).then(pressRes => {
           return pressRes.json();
         })
       );
@@ -87,13 +79,13 @@ export default class MyApp extends App {
 
     return { availabilityData, newsData, pressData, pageProps };
   }
-  
-  render () {
+
+  render() {
     const { Component, pageProps } = this.props;
-    
+
     return (
       <Container>
-        <ContextProvider {...this.props} >
+        <ContextProvider {...this.props}>
           <GlobalStyles />
           <TypographyStyles />
           <Layout>
