@@ -79,10 +79,7 @@ const Heading = styled.span`
   font-size: 24px;
   font-weight: 500;
   line-height: 30px;
-  ${props =>
-    props.listingsArrayLength && props.listingsArrayLength > 1
-      ? 'cursor: pointer;'
-      : ''}
+  ${props => (props.listingsArrayLength && props.listingsArrayLength > 1 ? 'cursor: pointer;' : '')}
 `;
 
 const PlusMinus = styled.i`
@@ -165,9 +162,16 @@ const AvailabilityLink = styled.a`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #49a4f8;
+  width: 4vw !important;
+  height: 4vw !important;
+  cursor: pointer;
+  .span {
+  }
   &:hover {
     color: #000;
+    border-radius: 50%;
+    background: #369bf766;
+    box-shadow: 0 0 20px #369bf7;
   }
   .details {
     width: 5%;
@@ -258,12 +262,7 @@ export default class AvailabilityList extends React.Component {
       filters: {
         neighborhood: ['West Village', 'SoHo', 'Hudson Square', 'Tribeca'],
         type: ['Retail', 'Office', 'Office / Pre-Built'],
-        squareFootage: [
-          '5,000-10,000',
-          '10,000-15,000',
-          '15,000-20,000',
-          'More than 20,000'
-        ]
+        squareFootage: ['5,000-10,000', '10,000-15,000', '15,000-20,000', 'More than 20,000']
       },
       sorting: {
         building: null,
@@ -279,12 +278,7 @@ export default class AvailabilityList extends React.Component {
         filters: {
           neighborhood: ['West Village', 'SoHo', 'Hudson Square', 'Tribeca'],
           type: ['Retail'],
-          squareFootage: [
-            '5,000-10,000',
-            '10,000-15,000',
-            '15,000-20,000',
-            'More than 20,000'
-          ]
+          squareFootage: ['5,000-10,000', '10,000-15,000', '15,000-20,000', 'More than 20,000']
         }
       });
     }
@@ -321,11 +315,7 @@ export default class AvailabilityList extends React.Component {
     } else if (filterObj.squareFootage.length === 0) {
       return 'squareFootage';
     } else {
-      return (
-        filterObj.neighborhood.length === 4 &&
-        filterObj.type.length === 3 &&
-        filterObj.squareFootage.length === 4
-      );
+      return filterObj.neighborhood.length === 4 && filterObj.type.length === 3 && filterObj.squareFootage.length === 4;
     }
   };
 
@@ -352,21 +342,11 @@ export default class AvailabilityList extends React.Component {
         }
       }
       if (this.checkFilters(stateCopy) === 'neighborhood') {
-        stateCopy['neighborhood'] = [
-          'West Village',
-          'SoHo',
-          'Hudson Square',
-          'Tribeca'
-        ];
+        stateCopy['neighborhood'] = ['West Village', 'SoHo', 'Hudson Square', 'Tribeca'];
       } else if (this.checkFilters(stateCopy) === 'type') {
         stateCopy['type'] = ['Retail', 'Office', 'Office / Pre-Built'];
       } else if (this.checkFilters(stateCopy) === 'squareFootage') {
-        stateCopy['squareFootage'] = [
-          '5,000-10,000',
-          '10,000-15,000',
-          '15,000-20,000',
-          'More than 20,000'
-        ];
+        stateCopy['squareFootage'] = ['5,000-10,000', '10,000-15,000', '15,000-20,000', 'More than 20,000'];
       }
       this.setState({
         filters: stateCopy
@@ -487,21 +467,11 @@ export default class AvailabilityList extends React.Component {
                   <AvailabilitySection className="building">
                     {el.building} <PinIcon />
                   </AvailabilitySection>
-                  <AvailabilitySection className="suite">
-                    {el.suite}
-                  </AvailabilitySection>
-                  <AvailabilitySection className="floor">
-                    {el.floor}
-                  </AvailabilitySection>
-                  <AvailabilitySection className="sqft">
-                    {this.numberWithCommas(el.sqft)}
-                  </AvailabilitySection>
-                  <AvailabilitySection className="neighborhood">
-                    {el.neighborhood}
-                  </AvailabilitySection>
-                  <AvailabilitySection className="type">
-                    {el.type}
-                  </AvailabilitySection>
+                  <AvailabilitySection className="suite">{el.suite}</AvailabilitySection>
+                  <AvailabilitySection className="floor">{el.floor}</AvailabilitySection>
+                  <AvailabilitySection className="sqft">{this.numberWithCommas(el.sqft)}</AvailabilitySection>
+                  <AvailabilitySection className="neighborhood">{el.neighborhood}</AvailabilitySection>
+                  <AvailabilitySection className="type">{el.type}</AvailabilitySection>
                   <AvailabilityLink className="details">
                     <span>View</span>
                     <span>Details</span>
@@ -518,12 +488,8 @@ export default class AvailabilityList extends React.Component {
                   <MobileCol>
                     <AvailabilitySection>{el.building}</AvailabilitySection>
                     <AvailabilitySection>{el.suite}</AvailabilitySection>
-                    <AvailabilitySection>
-                      {'SF: ' + this.numberWithCommas(el.sqft)}
-                    </AvailabilitySection>
-                    <AvailabilitySection>
-                      {'Neighborhood: ' + el.neighborhood}
-                    </AvailabilitySection>
+                    <AvailabilitySection>{'SF: ' + this.numberWithCommas(el.sqft)}</AvailabilitySection>
+                    <AvailabilitySection>{'Neighborhood: ' + el.neighborhood}</AvailabilitySection>
                   </MobileCol>
                   <MobileCol>
                     <AvailabilityLink className="details">
@@ -554,11 +520,7 @@ export default class AvailabilityList extends React.Component {
             <AvailabilityRow>
               <Heading>Availability</Heading>
             </AvailabilityRow>
-            {this.props.hasFilter ? (
-              <FilterRow updateFilter={this.updateFilter} />
-            ) : (
-              ''
-            )}
+            {this.props.hasFilter ? <FilterRow updateFilter={this.updateFilter} /> : ''}
             {context.state.windowDimensions.width > 1024 ? (
               <AvailabilityRow>
                 <AvailabilityBody>
@@ -659,9 +621,7 @@ class FilterRow extends React.Component {
                 <div className="form-options">
                   <label className="form-label">
                     <input
-                      onChange={() =>
-                        this.handleChange('neighborhood', 'West Village')
-                      }
+                      onChange={() => this.handleChange('neighborhood', 'West Village')}
                       className="form-option"
                       type="checkbox"
                       value="West Village"
@@ -679,9 +639,7 @@ class FilterRow extends React.Component {
                   </label>
                   <label className="form-label">
                     <input
-                      onChange={() =>
-                        this.handleChange('neighborhood', 'Hudson Square')
-                      }
+                      onChange={() => this.handleChange('neighborhood', 'Hudson Square')}
                       className="form-option"
                       type="checkbox"
                       value="Hudson Square"
@@ -690,9 +648,7 @@ class FilterRow extends React.Component {
                   </label>
                   <label className="form-label">
                     <input
-                      onChange={() =>
-                        this.handleChange('neighborhood', 'Tribeca')
-                      }
+                      onChange={() => this.handleChange('neighborhood', 'Tribeca')}
                       className="form-option"
                       type="checkbox"
                       value="Tribeca"
@@ -731,9 +687,7 @@ class FilterRow extends React.Component {
                 <div className="form-options">
                   <label className="form-label">
                     <input
-                      onChange={() =>
-                        this.handleChange('squareFootage', '5,000-10,000')
-                      }
+                      onChange={() => this.handleChange('squareFootage', '5,000-10,000')}
                       className="form-option"
                       type="checkbox"
                       value="5,000-10,000"
@@ -742,9 +696,7 @@ class FilterRow extends React.Component {
                   </label>
                   <label className="form-label">
                     <input
-                      onChange={() =>
-                        this.handleChange('squareFootage', '10,000-15,000')
-                      }
+                      onChange={() => this.handleChange('squareFootage', '10,000-15,000')}
                       className="form-option"
                       type="checkbox"
                       value="10,000-15,000"
@@ -753,9 +705,7 @@ class FilterRow extends React.Component {
                   </label>
                   <label className="form-label">
                     <input
-                      onChange={() =>
-                        this.handleChange('squareFootage', '15,000-20,000')
-                      }
+                      onChange={() => this.handleChange('squareFootage', '15,000-20,000')}
                       className="form-option"
                       type="checkbox"
                       value="15,000-20,000"
@@ -764,9 +714,7 @@ class FilterRow extends React.Component {
                   </label>
                   <label className="form-label">
                     <input
-                      onChange={() =>
-                        this.handleChange('squareFootage', 'More than 20,000')
-                      }
+                      onChange={() => this.handleChange('squareFootage', 'More than 20,000')}
                       className="form-option"
                       type="checkbox"
                       value="More than 20,000"
