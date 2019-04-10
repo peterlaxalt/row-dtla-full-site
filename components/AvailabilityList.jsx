@@ -77,7 +77,7 @@ const MobileCol = styled.div`
 
 const Heading = styled.span`
   font-size: 24px;
-  font-weight: 500px;
+  font-weight: 500;
   line-height: 30px;
   ${props =>
     props.listingsArrayLength && props.listingsArrayLength > 1
@@ -106,12 +106,12 @@ const SortIcon = styled.i`
   &::before {
     position: absolute;
     content: ${props => {
-    if (props.sortDirection === null || props.sortDirection === 'up') {
-      return "'\\f0d8';";
-    } else {
-      return '';
-    }
-  }}
+      if (props.sortDirection === null || props.sortDirection === 'up') {
+        return "'\\f0d8';";
+      } else {
+        return '';
+      }
+    }}
   font: normal normal normal 14px/1 FontAwesome;
   font-size: 16px;
   transform: translateY(-15%);
@@ -119,12 +119,12 @@ const SortIcon = styled.i`
   &::after {
     position: absolute;
     content: ${props => {
-    if (props.sortDirection === null || props.sortDirection === 'down') {
-      return "'\\f0dd';";
-    } else {
-      return '';
-    }
-  }}
+      if (props.sortDirection === null || props.sortDirection === 'down') {
+        return "'\\f0dd';";
+      } else {
+        return '';
+      }
+    }}
   font: normal normal normal 14px/1 FontAwesome;
   font-size: 16px;
   transform: translateY(15%);
