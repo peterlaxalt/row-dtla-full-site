@@ -52,14 +52,16 @@ const HeaderLogo = styled.div`
 
 const BackLink = styled.span`
   position: absolute;
-  top: 16px;
-  left: 16px;
+  top: 64px;
+  left: 40px;
   color: #fff;
   cursor: pointer;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 400;
+  padding: 0 0 4px 0;
+  letter-spacing: 1px;
   &:hover {
-    text-decoration: underline;
+    border-bottom: 2px solid #fff;
   }
   @media screen and (max-width: 1024px) {
     display: none;

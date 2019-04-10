@@ -42,6 +42,10 @@ const NavUnorderedList = styled.ul`
       font-size: 0.8em;
       text-decoration: none;
       letter-spacing: 1px;
+      cursor: pointer;
+      &:hover {
+        color: ${colors.babyBlue};
+      }
     }
   }
 `;
