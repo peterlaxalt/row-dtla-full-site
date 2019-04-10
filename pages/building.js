@@ -4,6 +4,8 @@ import BuildingHeader from '../components/BuildingHeader';
 import AvailabilityList from '../components/AvailabilityList';
 import ImageSlider from '../components/Slider';
 import BeforeAfter from '../components/BeforeAfter';
+import CopyrightFooter from '../components/CopyrightFooter';
+import ScrollUp from '../components/ScrollUp';
 import styled from 'styled-components';
 import ResponsiveImage from '../components/ResponsiveImage';
 import Link from 'next/link';
@@ -298,6 +300,8 @@ const Building = props => {
         )}
         <AvailabilityList building={building.header.headerLogoAlt} />
       </PaddingCol>
+      <CopyrightFooter />
+      <ScrollUp />
     </BuildingCol>
   );
 };
