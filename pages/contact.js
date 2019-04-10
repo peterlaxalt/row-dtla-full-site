@@ -42,6 +42,7 @@ const RowHeading = styled.a`
   width: 100%;
   color: #000;
   text-decoration: none;
+  font-weight: 600;
   &:hover {
     color: #000;
     text-decoration: none;
@@ -50,6 +51,7 @@ const RowHeading = styled.a`
 `;
 
 const RowTitle = styled.span`
+  font-weight: 500;
   font-size: 22px;
 `;
 
@@ -93,7 +95,7 @@ const RowBody = styled.div`
 
 const BodyTitle = styled.span`
   font-size: 17px;
-  font-weight: bold;
+  font-weight: 600;
   height: 37px;
   display: flex;
   flex-direction: row;
@@ -119,13 +121,13 @@ const ContactListItem = styled.div`
     margin-bottom: 30px;
   }
   .contact-name {
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 10px;
   }
   .contact-phone {
+    font-weight: 400;
     margin-bottom: 10px;
     color: #000;
-    font-weight: 100;
     text-decoration: none;
     &:hover {
       color: #000;
@@ -134,9 +136,9 @@ const ContactListItem = styled.div`
     }
   }
   .contact-email {
+    font-weight: 400;
     color: #369bf7;
     text-decoration: none;
-    font-weight: 100;
     &:hover {
       color: #369bf7;
       text-decoration: none;

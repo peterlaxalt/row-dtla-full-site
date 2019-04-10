@@ -7,6 +7,7 @@ import BeforeAfter from '../components/BeforeAfter';
 import styled from 'styled-components';
 import ResponsiveImage from '../components/ResponsiveImage';
 import Link from 'next/link';
+import { colors } from '../styles/Colors';
 
 const BuildingCol = styled.div`
   display: flex;
@@ -17,6 +18,9 @@ const BuildingCol = styled.div`
 const PaddingCol = styled.div`
   width: 100%;
   padding: 0 40px;
+  @media screen and (max-width: 1024px) {
+    padding: 0 15px;
+  }
 `;
 
 const Spacer = styled.div`
@@ -44,6 +48,13 @@ const FooterOverlay = styled.div`
     &:hover {
       text-decoration: underline;
     }
+  }
+  @media screen and (max-width: 1024px) {
+    font-size: 17px;
+    line-height: 1.5;
+    transform: translate(0, 0);
+    align-self: flex-start;
+    padding: 0 15px;
   }
 `;
 
@@ -85,9 +96,7 @@ const RowBody = styled.div`
   box-sizing: content-box;
   padding-top: 30px;
   padding-bottom: 30px;
-
   transition: max-height 0.25s ease-in-out, padding 0.25s ease-in-out;
-  max-height: ${props => Math.ceil(props.numChildren / 4) * 116 + 97 + 'px'};
 `;
 
 const ContactInfoList = styled.div`
@@ -104,14 +113,17 @@ const ContactListItem = styled.div`
   width: 25%;
   font-size: 18px;
   margin-bottom: 30px;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
   .contact-name {
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 10px;
   }
   .contact-phone {
     margin-bottom: 10px;
     color: #000;
-    font-weight: 100;
+    font-weight: 400;
     text-decoration: none;
     &:hover {
       color: #000;
@@ -122,11 +134,58 @@ const ContactListItem = styled.div`
   .contact-email {
     color: #369bf7;
     text-decoration: none;
-    font-weight: 100;
+    font-weight: 400;
     &:hover {
       color: #369bf7;
-      text-decoration: none;
+      text-decoration: underline;
       cursor: pointer;
+    }
+  }
+`;
+
+const AboutSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  h3 {
+    font-weight: 500;
+    font-style: normal;
+    border-bottom: 3px solid black;
+    width: 100%;
+    font-size: 24px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+  p {
+    font-size: 19px;
+    line-height: 29px;
+    margin-bottom: 40px;
+  }
+`;
+const FactRowContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+`;
+
+const FactRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 75%;
+`;
+
+const Fact = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 19px;
+  line-height: 29px;
+  width: 33%;
+  margin-bottom: 40px;
+  a {
+    color: ${colors.babyBlue};
+    &:hover {
+      text-decoration: underline;
     }
   }
 `;
@@ -157,6 +216,47 @@ const Building = props => {
   return (
     <BuildingCol>
       <BuildingHeader headerInfo={building.header} />
+      <PaddingCol>
+        <AboutSection>
+          <h3>About {building.title}</h3>
+          <p>{building.about}</p>
+          <FactRowContainer>
+            <FactRow>
+              <Fact>
+                <span>Year Constructed:</span>
+                <span>{building.yearConstructed}</span>
+              </Fact>
+              <Fact>
+                <span>Total Building Area:</span>
+                <span>{building.totalBuildingArea}</span>
+              </Fact>
+              <Fact>
+                <span>Ceiling Heights:</span>
+                {building.ceilingHeights.map(el => {
+                  return <span key={el}>{el}</span>;
+                })}
+              </Fact>
+              <Fact>
+                <span>Number of Floors:</span>
+                <span>{building.numFloors}</span>
+              </Fact>
+              <Fact>
+                <span>Floor Sizes:</span>
+                <span>{building.floorSizes}</span>
+              </Fact>
+              <Fact>
+                <a
+                  href={building.factSheet}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Floor Plans and Detailed Specs
+                </a>
+              </Fact>
+            </FactRow>
+          </FactRowContainer>
+        </AboutSection>
+      </PaddingCol>
       <Spacer />
       <ImageSlider
         height="70vh"

@@ -8,12 +8,12 @@ import Context from '~/config/Context';
 // Desktop Subnavs
 export const generateDesktopBuildingLinks = () => {
   const buildingLinks = buildings.map(building => (
-    <li className="mobile-nav-sublink" key={`building-${building.title}`}>
+    <li className="mobile-nav-sublink" key={`building-${building.navTitle}`}>
       <Link
         as={`/buildings/${building.slug}/`}
         href={`/building?slug=${building.slug}`}
       >
-        <a>{building.title}</a>
+        <a>{building.navTitle}</a>
       </Link>
     </li>
   ));
@@ -30,17 +30,21 @@ const SubNavUl = styled.ul`
   li {
     list-style-type: none;
     padding: 10px 0;
+    a {
+      font-weight: 500;
+      font-size: 0.8em;
+    }
   }
 `;
 
 export const generateBuildingLinks = () => {
   const buildingLinks = buildings.map(building => (
-    <li className="mobile-nav-sublink" key={`building-${building.title}`}>
+    <li className="mobile-nav-sublink" key={`building-${building.navTitle}`}>
       <Link
         as={`/buildings/${building.slug}/`}
         href={`/building?slug=${building.slug}`}
       >
-        <a>{building.title}</a>
+        <a>{building.navTitle}</a>
       </Link>
     </li>
   ));

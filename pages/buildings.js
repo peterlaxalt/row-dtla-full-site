@@ -12,16 +12,21 @@ const BuildingsCol = styled.div`
   flex-direction: column;
   width: 100%;
 `;
+
 const PaddingCol = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   padding: 0 40px;
   .responsive-image {
+    width: 75%;
     max-width: 100%;
     max-height: 100%;
   }
 `;
+
 const SectionHeader = styled.span`
   font-size: 24px;
   line-height: 30px;
@@ -31,6 +36,7 @@ const SectionHeader = styled.span`
   border-bottom: 3px solid black;
   margin-bottom: 30px;
 `;
+
 const Buildings = () => (
   <Context.Consumer>
     {context => (

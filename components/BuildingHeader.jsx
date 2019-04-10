@@ -61,6 +61,9 @@ const BackLink = styled.span`
   &:hover {
     text-decoration: underline;
   }
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 export default class BuildingHeader extends React.Component {
