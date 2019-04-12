@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import ResponsiveImage from '../components/ResponsiveImage';
 import Link from 'next/link';
 import { colors } from '../styles/Colors';
+import MiniMap from '../components/MiniMap';
 
 const BuildingCol = styled.div`
   display: flex;
@@ -174,7 +175,7 @@ const FactRow = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 75%;
+  width: 65%;
 `;
 
 const Fact = styled.div`
@@ -197,10 +198,7 @@ const createContactList = contactInfoArray => {
     return (
       <ContactListItem key={idx}>
         <span className="contact-name">{el.name}</span>
-        <a
-          href={`tel:${el.phone.split('.').join('')}`}
-          className="contact-phone"
-        >
+        <a href={`tel:${el.phone.split('.').join('')}`} className="contact-phone">
           {el.phone}
         </a>
         <a href={`mailto:${el.email}`} className="contact-email">
@@ -247,38 +245,25 @@ const Building = props => {
                 <span>{building.floorSizes}</span>
               </Fact>
               <Fact>
-                <a
-                  href={building.factSheet}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={building.factSheet} target="_blank" rel="noopener noreferrer">
                   View Floor Plans and Detailed Specs
                 </a>
               </Fact>
             </FactRow>
+            <MiniMap mapCenter={building.mapCenter} />
           </FactRowContainer>
         </AboutSection>
       </PaddingCol>
       <Spacer />
-      <ImageSlider
-        height="70vh"
-        imgArray={building.sliderArray}
-        showQuotes={true}
-      />
+      <ImageSlider height="70vh" imgArray={building.sliderArray} showQuotes={true} />
       <Spacer />
       {building.beforeAfter === false ? (
         ''
       ) : (
-        <BeforeAfter
-          before={building.beforeAfter.before}
-          after={building.beforeAfter.after}
-        />
+        <BeforeAfter before={building.beforeAfter.before} after={building.beforeAfter.after} />
       )}
       <Spacer />
-      <ResponsiveImage
-        srcPath={building.footerImage.imgUrl}
-        imgAlt={building.footerImage.imgAlt}
-      />
+      <ResponsiveImage srcPath={building.footerImage.imgUrl} imgAlt={building.footerImage.imgAlt} />
       <FooterOverlay>
         <span>{building.footerImage.footerText}</span>
         <Link href={building.footerImage.footerLink}>
@@ -293,9 +278,7 @@ const Building = props => {
             <RowHeading>
               <RowTitle>Leasing Contacts</RowTitle>
             </RowHeading>
-            <RowBody numChildren={building.contactArray.length}>
-              {createContactList(building.contactArray)}
-            </RowBody>
+            <RowBody numChildren={building.contactArray.length}>{createContactList(building.contactArray)}</RowBody>
           </ContactRow>
         )}
         <AvailabilityList building={building.header.headerLogoAlt} />
