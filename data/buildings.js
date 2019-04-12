@@ -242,7 +242,7 @@ const buildings = [
     ceilingHeights: ['12′-0″ typical'],
     about:
       '350 Hudson Street occupies the entire block between Charlton and King Streets, with a total building size over 324,000 square feet. Tenants can enjoy a modern office environment coupled with the charm found only in pre-war buildings. A recently renovated lobby welcomes tenants and guests, while the 12-foot slab-to-slab height creates impressive office floors. An added ninth floor provides a spectacular terrace enjoyed by current tenant, Medidata. Popular “grab and go” retailers Dig Inn, Pret-a-Manger and Hale and Hearty Soups are on the ground floor.',
-    mapCenter: { lat: 40.723416, lng: -74.006834 },
+    mapCenter: { lat: 40.72767, lng: -74.00682 },
     header: {
       headerLogo: '/static/images/logos/logo-350-hudson-street-white.svg',
       headerLogoAlt: '350 Hudson Street',

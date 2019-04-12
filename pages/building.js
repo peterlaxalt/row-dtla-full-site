@@ -165,6 +165,20 @@ const AboutSection = styled.div`
     margin-bottom: 40px;
   }
 `;
+
+const MapLink = styled.a`
+  text-align: end;
+  margin: 24px 0;
+  cursor: pointer;
+  color: ${colors.babyBlue};
+  &:hover {
+    text-decoration: underline;
+  }
+  &:visited {
+    color: ${colors.babyBlue};
+  }
+`;
+
 const FactRowContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -250,8 +264,9 @@ const Building = props => {
                 </a>
               </Fact>
             </FactRow>
-            <MiniMap mapCenter={building.mapCenter} />
+            <MiniMap mapCenter={building.mapCenter} building={building.title} />
           </FactRowContainer>
+          <MapLink href="/map">View Full Map</MapLink>
         </AboutSection>
       </PaddingCol>
       <Spacer />
