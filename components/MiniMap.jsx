@@ -624,35 +624,4 @@ const MiniMap = compose(
   );
 });
 
-// class MiniMapContainer extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       mapCenter: {
-//         lat: null,
-//         lng: null
-//       }
-//     };
-//   }
-//   componentDidMount() {
-//     const { mapCenter } = this.props;
-//     this.recenterMap(mapCenter);
-//   }
-
-//   componentDidUpdate(prevProps) {
-//     const { mapCenter, building } = this.props;
-//     if (prevProps.building !== building) {
-//       this.recenterMap(mapCenter);
-//     }
-//   }
-
-//   recenterMap = mapCenter => {
-//     this.setState({ mapCenter });
-//   };
-
-//   render() {
-//     const { building } = this.props;
-//     return <MiniMap building={building} mapCenter={this.state.mapCenter} />;
-//   }
-// }
 export default MiniMap;
