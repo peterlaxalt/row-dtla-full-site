@@ -1,9 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const ResponsiveImageContainer = styled.img`
+  max-width: 100%;
+`;
 
 export default class ResponsiveImage extends React.Component {
   render() {
     return (
-      <img
+      <ResponsiveImageContainer
+        style={{ maxWidth: '100% '}}
         src={`${this.props.srcPath}.jpg`}
         srcSet={`${this.props.srcPath}_400.jpg 400w, ${
           this.props.srcPath

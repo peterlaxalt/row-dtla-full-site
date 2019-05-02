@@ -214,7 +214,7 @@ const createContactList = contactInfoArray => {
 
 const Building = props => {
   const { building } = props;
-
+  
   return (
     <BuildingCol>
       <BuildingHeader headerInfo={building.header} />

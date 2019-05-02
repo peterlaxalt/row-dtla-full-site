@@ -5,6 +5,7 @@ import ResponsiveImage from './ResponsiveImage';
 
 const BeforeAfterContainer = styled.div`
   height: 90vh;
+  width: 100%;
   div {
     height: 100%;
   }

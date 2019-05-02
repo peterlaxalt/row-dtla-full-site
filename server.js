@@ -10,9 +10,18 @@ app
   .then(() => {
     const server = express();
 
-    server.get('/buildings/:slug', (req, res) => {
+    server.get('/buildings/:building_slug/:suite_floor_slug', (req, res) => {
+      const page = '/listing';
+      const queryParams = {
+        building_slug: req.params.building_slug,
+        suite_floor_slug: req.params.suite_floor_slug
+      };
+      app.render(req, res, page, queryParams);
+    });
+
+    server.get('/buildings/:building_slug', (req, res) => {
       const page = '/building';
-      const queryParams = { slug: req.params.slug };
+      const queryParams = { slug: req.params.building_slug };
       app.render(req, res, page, queryParams);
     });
 
