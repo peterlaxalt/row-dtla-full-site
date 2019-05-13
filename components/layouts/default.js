@@ -15,9 +15,7 @@ const Layout = (props) => {
         </title>
       </Head>
       <Header />
-      <div className="container">
-        {props.children}
-      </div>
+      {props.children}
     </React.Fragment>
   );
 };
