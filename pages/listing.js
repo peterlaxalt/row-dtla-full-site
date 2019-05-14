@@ -164,7 +164,6 @@ const Listing = () => {
 Listing.getInitialProps = async function(ctx) {
   const { building_slug, suite_floor_slug } = ctx.query;
   const building = buildings.find(building => building.slug === building_slug);
-  console.log('this:', this.props);
 
   return {
     building,
