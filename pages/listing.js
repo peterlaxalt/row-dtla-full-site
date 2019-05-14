@@ -102,8 +102,6 @@ const Listing = () => {
     return building_slug === obj.building_slug && suite_floor_slug === obj.suite_floor_slug;
   });
 
-  console.log(listing);
-
   const { availability, axon, core_shell, floor, floorplan, pdf_download, suite, sqft, test_fit, views } = listing;
 
   return (
@@ -166,6 +164,7 @@ const Listing = () => {
 Listing.getInitialProps = async function(ctx) {
   const { building_slug, suite_floor_slug } = ctx.query;
   const building = buildings.find(building => building.slug === building_slug);
+  console.log('this:', this.props);
 
   return {
     building,
