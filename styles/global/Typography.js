@@ -1,6 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
+  html, body {
+    font-size: 100%;
+    font-family: 'Berthold Akzindenz Grotesk';
+  }
+
   li {
     font-size: 1rem;  
   }

@@ -14,6 +14,11 @@ class ContextProvider extends Component {
         desktopNavActive: false,
         buildingNavActive: false,
         activeSubNav: ''
+      },
+      listing: {
+        core: true,
+        floorplan: false,
+        testfit: false
       }
     };
   }
@@ -63,12 +68,18 @@ class ContextProvider extends Component {
               }
             }),
           toggleSubNav: section => {
-            let activeSection =
-              this.state.navigation.activeSubNav === section ? false : section;
+            let activeSection = this.state.navigation.activeSubNav === section ? false : section;
             this.setState({
               navigation: {
                 ...this.state.navigation,
                 activeSubNav: activeSection
+              }
+            });
+          },
+          toggleListingSection: section => {
+            this.setState({
+              listing: {
+                [section]: !this.state.listing[section]
               }
             });
           }

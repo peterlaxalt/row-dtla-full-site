@@ -10,7 +10,6 @@ const GlobalStyles = createGlobalStyle`
     height: 100%;
     font-size: 100%;
     background: #fff;
-    font-family: 'Berthold Akzindenz Grotesk';
   }
   body {
     margin: 0;
@@ -19,9 +18,6 @@ const GlobalStyles = createGlobalStyle`
     ${mediaMin.tabletLandscape`
       padding-top: 60px;
     `}
-  }
-  #__next {
-    height: 100%;
   }
 `;
 
