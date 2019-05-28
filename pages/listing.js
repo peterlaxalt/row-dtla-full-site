@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Context from '~/config/Context';
 import { buildings } from '../data/buildings';
 import { mediaMin } from '../styles/MediaQueries';
+import ListingSection from '../components/pages/listing/ListingSection';
 
 const ListingWrapper = styled.div`
   margin-top: 10px;
@@ -134,7 +135,7 @@ const Listing = () => {
           <p>Neighborhood:</p>
           <p> {availability}</p>
           <p>Views:</p>
-          <p> {views} SF</p>
+          <p> {views}</p>
         </div>
         <div className="detail-column">
           <img src={axon} alt={`Axon for ${suite} in ${building.navTitle}`} />
@@ -143,9 +144,7 @@ const Listing = () => {
       <div className="floorplan-wrapper">
         <div className="floorplan-nav">
           <div className="links">
-            <button onClick={() => context.toggleListingSection('core')}>Core & Shell</button>
-            <button onClick={() => context.toggleListingSection('floorplan')}>Floorplan</button>
-            <button onClick={() => context.toggleListingSection('testfit')}>Test Fit</button>
+            <ListingSection listing={listing} />
           </div>
           <a href={pdf_download} target="_blank" rel="noopener noreferrer">
             View / Download Floor Plans and Detailed Specs

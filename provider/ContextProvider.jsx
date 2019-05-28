@@ -14,11 +14,6 @@ class ContextProvider extends Component {
         desktopNavActive: false,
         buildingNavActive: false,
         activeSubNav: ''
-      },
-      listing: {
-        core: true,
-        floorplan: false,
-        testfit: false
       }
     };
   }
@@ -73,13 +68,6 @@ class ContextProvider extends Component {
               navigation: {
                 ...this.state.navigation,
                 activeSubNav: activeSection
-              }
-            });
-          },
-          toggleListingSection: section => {
-            this.setState({
-              listing: {
-                [section]: !this.state.listing[section]
               }
             });
           }
