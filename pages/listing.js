@@ -4,17 +4,14 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 import Context from '~/config/Context';
 import { buildings } from '../data/buildings';
-import { mediaMin } from '../styles/MediaQueries';
-import ListingSection from '../components/pages/listing/ListingSection';
+// import { mediaMin } from '../styles/MediaQueries';
+import FloorplanSection from '../components/pages/listing/FloorplanSection';
+import NonResponsiveSlider from '../components/NonResponsiveSlider';
 
 const ListingWrapper = styled.div`
   margin-top: 10px;
   width: 100%;
-  padding: 0 15px;
   font-family: 'Open Sans', Helvetica, Arial, Verdana, sans-serif;
-  ${mediaMin.tabletLandscape`
-    padding: 0 40px;
-  `}
   .logo-wrapper {
     position: relative;
     display: flex;
@@ -68,30 +65,6 @@ const ListingWrapper = styled.div`
       width: 25%;
     }
   }
-  .floorplan-wrapper {
-    .floorplan-nav {
-      border-bottom: 3px solid black;
-      padding: 10px 0;
-      display: flex;
-      position: relative;
-      a {
-        position: absolute;
-        transform: translateX(-50%);
-        left: 50%;
-        color: #369bf7;
-        padding: 5px 0;
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
-    .floorplan-container {
-      img {
-        display: block;
-        margin: 0 auto;
-      }
-    }
-  }
 `;
 
 const Listing = () => {
@@ -103,10 +76,19 @@ const Listing = () => {
     return building_slug === obj.building_slug && suite_floor_slug === obj.suite_floor_slug;
   });
 
-  const { availability, axon, core_shell, floor, floorplan, pdf_download, suite, sqft, test_fit, views } = listing;
+  const listingSliderArray = [listing.photo_1, listing.photo_2, listing.photo_3, listing.photo_4, listing.photo_5]
+    .filter(obj => obj)
+    .map(obj => {
+      return {
+        imgUrl: obj.url,
+        imgAlt: obj.alt
+      };
+    });
+
+  const { availability, axon, floor, suite, sqft, views } = listing;
 
   return (
-    <ListingWrapper>
+    <ListingWrapper className="container">
       <div className="logo-wrapper">
         <img
           className="building-logo"
@@ -141,21 +123,8 @@ const Listing = () => {
           <img src={axon} alt={`Axon for ${suite} in ${building.navTitle}`} />
         </div>
       </div>
-      <div className="floorplan-wrapper">
-        <div className="floorplan-nav">
-          <div className="links">
-            <ListingSection listing={listing} />
-          </div>
-          <a href={pdf_download} target="_blank" rel="noopener noreferrer">
-            View / Download Floor Plans and Detailed Specs
-          </a>
-        </div>
-        <div className="floorplan-container">
-          {core_shell && <img src={core_shell} alt={`Core Shell for ${suite} in ${building.navTitle}`} />}
-          {floorplan && <img src={floorplan} alt={`Floorplan for ${suite} in ${building.navTitle}`} />}
-          {test_fit && <img src={test_fit} alt={`Test Fit for ${suite} in ${building.navTitle}`} />}
-        </div>
-      </div>
+      <FloorplanSection listing={listing} />
+      <NonResponsiveSlider imgArray={listingSliderArray} />
     </ListingWrapper>
   );
 };

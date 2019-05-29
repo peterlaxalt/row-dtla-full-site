@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { mediaMin } from '~/styles/MediaQueries';
-import { colors } from '~/styles/Colors';
+import variables from '~/styles/Variables';
 
 const HamburgerDiv = styled.div`
   width: 25px;
@@ -34,9 +34,9 @@ const Line = styled.div`
 export const DesktopHamburger = props => {
   return (
     <HamburgerDiv onClick={props.toggleDesktopNav}>
-      <Line top='25%' topHover='30%'/>
-      <Line top='45%' />
-      <Line top='65%' topHover='60%'/>
+      <Line top="25%" topHover="30%" />
+      <Line top="45%" />
+      <Line top="65%" topHover="60%" />
     </HamburgerDiv>
   );
 };
@@ -44,15 +44,15 @@ export const DesktopHamburger = props => {
 export const MobileHamburger = props => {
   return (
     <HamburgerDiv onClick={props.toggleMobileNav}>
-      <Line top='30%' topHover='30%'/>
-      <Line top='45%' />
-      <Line top='61%' topHover='60%'/>
+      <Line top="30%" topHover="30%" />
+      <Line top="45%" />
+      <Line top="61%" topHover="60%" />
     </HamburgerDiv>
   );
 };
 
 const CloseDiv = styled.div`
-  background: ${colors.babyBlue};
+  background: ${variables.colors.babyBlue};
   height: 30px;
   width: 30px;
   position: absolute;
@@ -72,7 +72,7 @@ const CloseLine = styled.div`
 
 export const MobileClose = props => (
   <CloseDiv onClick={props.toggleMobileNav}>
-    <CloseLine top='45%' rotate='-45' />
-    <CloseLine top='45%' rotate='45' />
+    <CloseLine top="45%" rotate="-45" />
+    <CloseLine top="45%" rotate="45" />
   </CloseDiv>
 );

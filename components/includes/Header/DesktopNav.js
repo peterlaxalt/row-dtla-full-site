@@ -6,7 +6,7 @@ import { mediaMax } from '~/styles/MediaQueries';
 import Context from '~/config/Context';
 import { DesktopHamburger } from './Hamburgers';
 import { generateDesktopBuildingLinks } from './SubNav';
-import { colors } from '~/styles/Colors';
+import variables from '~/styles/Variables';
 
 // Desktop Navigation
 
@@ -29,7 +29,7 @@ const NavUnorderedList = styled.ul`
   transition: all 200ms ease;
   opacity: ${props => (isDesktopNavVisible(props) ? 1 : 0)};
   visibility: ${props => (isDesktopNavVisible(props) ? 'visible' : 'hidden')};
-
+  padding-right: 30px;
   li {
     color: inherit;
     cursor: pointer;
@@ -44,7 +44,7 @@ const NavUnorderedList = styled.ul`
       letter-spacing: 1px;
       cursor: pointer;
       &:hover {
-        color: ${colors.babyBlue};
+        color: ${variables.colors.babyBlue};
       }
     }
   }
@@ -74,15 +74,10 @@ export const DesktopNavigation = props => {
     <Context.Consumer>
       {context => (
         <DesktopNav>
-          <NavUnorderedList
-            route={props.route}
-            active={context.state.navigation.desktopNavActive}
-          >
+          <NavUnorderedList route={props.route} active={context.state.navigation.desktopNavActive}>
             {generateLinks(context)}
           </NavUnorderedList>
-          {props.route === 'home' && (
-            <DesktopHamburger toggleDesktopNav={context.toggleDesktopNav} />
-          )}
+          {props.route === 'home' && <DesktopHamburger toggleDesktopNav={context.toggleDesktopNav} />}
         </DesktopNav>
       )}
     </Context.Consumer>
@@ -128,7 +123,7 @@ const BuildingNav = styled.div`
         font-weight: 500;
         font-size: 0.8em;
         letter-spacing: 1px;
-        color: ${colors.babyBlue};
+        color: ${variables.colors.babyBlue};
       }
     }
   }
@@ -138,10 +133,7 @@ export const BuildingNavigation = props => {
   return (
     <Context.Consumer>
       {context => (
-        <BuildingNav
-          active={context.state.navigation.buildingNavActive}
-          route={props.route}
-        >
+        <BuildingNav active={context.state.navigation.buildingNavActive} route={props.route}>
           {generateDesktopBuildingLinks()}
         </BuildingNav>
       )}
