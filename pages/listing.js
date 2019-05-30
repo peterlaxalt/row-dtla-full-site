@@ -70,6 +70,7 @@ const ListingWrapper = styled.div`
 const Listing = () => {
   const context = useContext(Context);
   const { availabilityData, pageProps } = context;
+  console.log(context);
   const { building, building_slug, suite_floor_slug } = pageProps;
 
   const listing = availabilityData.find(obj => {
@@ -86,6 +87,7 @@ const Listing = () => {
     });
 
   const { availability, axon, floor, suite, sqft, views } = listing;
+  console.log(listing);
 
   return (
     <ListingWrapper className="container">

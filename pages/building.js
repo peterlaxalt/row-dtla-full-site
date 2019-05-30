@@ -9,7 +9,7 @@ import ScrollUp from '../components/ScrollUp';
 import styled from 'styled-components';
 import ResponsiveImage from '../components/ResponsiveImage';
 import Link from 'next/link';
-import { colors } from '../styles/Colors';
+import variables from '../styles/Variables';
 
 const BuildingCol = styled.div`
   display: flex;
@@ -186,7 +186,7 @@ const Fact = styled.div`
   width: 33%;
   margin-bottom: 40px;
   a {
-    color: ${colors.babyBlue};
+    color: ${variables.colors.babyBlue};
     &:hover {
       text-decoration: underline;
     }
