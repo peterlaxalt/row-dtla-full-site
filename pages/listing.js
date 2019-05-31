@@ -7,6 +7,7 @@ import { buildings } from '../data/buildings';
 // import { mediaMin } from '../styles/MediaQueries';
 import FloorplanSection from '../components/pages/listing/FloorplanSection';
 import NonResponsiveSlider from '../components/NonResponsiveSlider';
+import ContactSection from '../components/pages/listing/ContactSection';
 
 const ListingWrapper = styled.div`
   margin-top: 10px;
@@ -69,13 +70,15 @@ const ListingWrapper = styled.div`
 
 const Listing = () => {
   const context = useContext(Context);
-  const { availabilityData, pageProps } = context;
-  console.log(context);
+  const { contactData, fullAvailabilityData, pageProps } = context;
   const { building, building_slug, suite_floor_slug } = pageProps;
 
-  const listing = availabilityData.find(obj => {
-    return building_slug === obj.building_slug && suite_floor_slug === obj.suite_floor_slug;
+  let listing = fullAvailabilityData.find(obj => {
+    return building_slug === obj.acf.building_slug && suite_floor_slug === obj.acf.suite_floor_slug;
   });
+
+  const listingID = listing.id;
+  listing = listing.acf;
 
   const listingSliderArray = [listing.photo_1, listing.photo_2, listing.photo_3, listing.photo_4, listing.photo_5]
     .filter(obj => obj)
@@ -86,8 +89,24 @@ const Listing = () => {
       };
     });
 
+  const filteredContactData = contactData
+    .map(contact => {
+      const { full_name, phone_number, email_address } = contact;
+      const idArray = [];
+
+      const { associated_listings } = contact;
+      associated_listings.length > 0 && associated_listings.forEach(listing => idArray.push(listing.ID));
+
+      return {
+        full_name,
+        phone_number,
+        email_address,
+        idArray
+      };
+    })
+    .filter(contact => contact.idArray.includes(listingID));
+
   const { availability, axon, floor, suite, sqft, views } = listing;
-  console.log(listing);
 
   return (
     <ListingWrapper className="container">
@@ -127,6 +146,7 @@ const Listing = () => {
       </div>
       <FloorplanSection listing={listing} />
       <NonResponsiveSlider imgArray={listingSliderArray} />
+      <ContactSection contactData={filteredContactData} />
     </ListingWrapper>
   );
 };

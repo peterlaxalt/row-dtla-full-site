@@ -35,6 +35,8 @@ export default class MyApp extends App {
     }
 
     availabilityData = availabilityData.reduce((acc, curr) => acc.push(...curr) && acc, []);
+    const fullAvailabilityData = availabilityData;
+
     availabilityData = availabilityData.map(el => {
       return el.acf;
     });
@@ -95,7 +97,7 @@ export default class MyApp extends App {
       pageProps = await Component.getInitialProps(ctx);
     }
 
-    return { contactData, availabilityData, newsData, pressData, pageProps };
+    return { contactData, availabilityData, fullAvailabilityData, newsData, pressData, pageProps };
   }
 
   render() {
