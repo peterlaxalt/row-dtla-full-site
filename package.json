@@ -40,7 +40,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx eslint . --ext .js --ext .jsx"
+      "pre-commit": "npx eslint . --ext .js --ext .jsx --quiet"
     }
   }
 }

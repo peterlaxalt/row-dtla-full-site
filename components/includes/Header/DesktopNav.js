@@ -57,7 +57,9 @@ export const DesktopNavigation = props => {
         page !== 'buildings' ? (
           <a>{page.toUpperCase()}</a>
         ) : (
-          <a onMouseOver={context.toggleBuildingNav}>{page.toUpperCase()}</a>
+          <a onMouseOver={context.toggleBuildingNav} onFocus={context.toggleBuildingNav}>
+            {page.toUpperCase()}
+          </a>
         );
 
       return (
