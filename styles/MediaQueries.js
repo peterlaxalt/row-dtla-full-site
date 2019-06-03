@@ -2,8 +2,8 @@ import { css } from 'styled-components';
 
 const sizes = {
   phone: 992,
-  phoneLarge: 768,
-  tablet: 576,
+  phoneLarge: 576,
+  tablet: 768,
   tabletLandscape: 992,
   desktopSmall: 1250,
   desktop: 1440,

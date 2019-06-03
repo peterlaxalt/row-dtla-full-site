@@ -1,18 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import variables from '~/styles/Variables';
+import { mediaMin } from '~/styles/MediaQueries';
 
 const ContactCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 25%;
-  font-size: 18px;
-  margin-bottom: 30px;
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-  }
+  width: 100%;
+  font-size: 1rem;
+  margin: 1.4rem 0;
+  ${mediaMin.tablet`
+    width: 25%;
+    margin: 1.8rem 0;
+  `}
   .contact-name {
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 10px;
   }
   .contact-phone {
@@ -58,6 +60,7 @@ const renderContactCards = contactData => {
 };
 
 const ContactSectionWrapper = styled.div`
+  margin: 2rem 0;
   h2 {
     border-bottom: 3px solid black;
     padding: 10px 0;

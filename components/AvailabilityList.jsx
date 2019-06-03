@@ -494,10 +494,16 @@ export default class AvailabilityList extends React.Component {
                     <AvailabilitySection>{'Neighborhood: ' + el.neighborhood}</AvailabilitySection>
                   </MobileCol>
                   <MobileCol>
-                    <AvailabilityLink className="details" href="https://google.com">
-                      <span>View</span>
-                      <span>Details</span>
-                    </AvailabilityLink>
+                    <Link
+                      as={`/buildings/${el.building_slug}/${el.suite_floor_slug}`}
+                      href={`/listing?building_slug=${el.building_slug}&suite_floor_slug=${el.suite_floor_slug}`}
+                      passHref
+                    >
+                      <AvailabilityLink className="details">
+                        <span>View</span>
+                        <span>Details</span>
+                      </AvailabilityLink>
+                    </Link>
                   </MobileCol>
                 </AvailabilityBody>
               </AvailabilityRow>

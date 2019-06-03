@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import styled from 'styled-components';
 import variables from '~/styles/Variables';
+import { mediaMin } from '~/styles/MediaQueries';
 
 const possibleBtnValues = [
   {
@@ -35,6 +36,7 @@ const FloorplanSectionWrapper = styled.div`
     padding: 10px 0;
     display: flex;
     position: relative;
+    margin-bottom: 15px;
     button {
       font-family: ${variables.typography.default};
       font-weight: 500;
@@ -44,8 +46,15 @@ const FloorplanSectionWrapper = styled.div`
       font-size: 1.2rem;
       border-right: 3px solid black;
       padding: 0 1em;
+      font-size: 1rem;
+      ${mediaMin.desktopSmall`
+        font-size: 1.2rem;
+      `}
       &:nth-last-child(2) {
         border-right: none;
+      }
+      &.first {
+        padding: 0 1em 0 0;
       }
       &.active {
         color: ${variables.colors.babyBlue};
@@ -53,10 +62,13 @@ const FloorplanSectionWrapper = styled.div`
     }
     a {
       position: absolute;
-      transform: translateX(-50%);
-      left: 50%;
+      right: 0;
       color: #369bf7;
       padding: 5px 0;
+      font-size: 1.2rem;
+      ${mediaMin.desktopSmall`
+        right: 20%;
+      `}
       &:hover {
         text-decoration: underline;
       }
@@ -70,6 +82,7 @@ const FloorplanSectionWrapper = styled.div`
       transform: translateX(-50%);
       opacity: 0;
       transition: opacity 200ms ease;
+      max-width: 100%;
       &:nth-child(1) {
         position: relative;
       }
@@ -78,6 +91,19 @@ const FloorplanSectionWrapper = styled.div`
         opacity: 1;
       }
     }
+  }
+  .mobile-link {
+    color: ${variables.colors.babyBlue};
+    font-size: 0.8rem;
+    ${mediaMin.desktopSmall`
+      display: none;
+    `}
+  }
+  .desktop-link {
+    display: none;
+    ${mediaMin.desktopSmall`
+      display: initial;
+    `}
   }
 `;
 
@@ -111,12 +137,12 @@ class FloorplanSection extends Component {
   generateButtons() {
     const { activeSection, availableSections } = this.state;
 
-    const buttons = availableSections.map(value => {
+    const buttons = availableSections.map((value, idx) => {
       const { slug } = value;
 
       return (
         <button
-          className={activeSection === slug ? 'active' : null}
+          className={`${activeSection === slug ? 'active' : ''} ${idx === 0 ? 'first' : ''}`}
           key={slug}
           onClick={() => this.setState({ activeSection: slug })}
         >
@@ -152,10 +178,13 @@ class FloorplanSection extends Component {
       <FloorplanSectionWrapper>
         <div className="floorplan-nav">
           {this.generateButtons()}
-          <a href={pdf_download} target="_blank" rel="noopener noreferrer">
+          <a className="desktop-link" href={pdf_download} target="_blank" rel="noopener noreferrer">
             View / Download Floor Plans and Detailed Specs
           </a>
         </div>
+        <a className="mobile-link" href={pdf_download} target="_blank" rel="noopener noreferrer">
+          View / Download Floor Plans and Detailed Specs
+        </a>
         <div className="floorplan-container">{this.renderImages()}</div>
       </FloorplanSectionWrapper>
     );

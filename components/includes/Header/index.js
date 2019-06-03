@@ -10,7 +10,7 @@ import MobileNavigation from './MobileNav';
 import { BuildingNavigation, DesktopNavigation } from './DesktopNav';
 import Context from '~/config/Context';
 
-const isUpperNavActive = (props) => {
+const isUpperNavActive = props => {
   return props.route !== 'home' ? true : props.active;
 };
 
@@ -28,7 +28,7 @@ const HeaderWrapper = styled.div`
   z-index: 100;
 
   ${mediaMin.desktopSmall`
-    background: ${props => isUpperNavActive(props) ? '#fff' : 'transparent' };
+    background: ${props => (isUpperNavActive(props) ? '#fff' : 'transparent')};
     height: 60px;
   `}
 `;
@@ -36,9 +36,9 @@ const HeaderWrapper = styled.div`
 const HeaderLogo = styled.img`
   display: block;
   max-width: 100%;
-  margin-left: 20px;
+  margin-left: 15px;
 
-  ${mediaMin.phoneLarge`
+  ${mediaMin.tabletLandscape`
     margin-left: 40px;
   `}
 `;
@@ -46,29 +46,22 @@ const HeaderLogo = styled.img`
 class Header extends React.Component {
   render() {
     const route = this.props.router.pathname.replace('/', '') || 'home';
-    
+
     return (
       <Context.Consumer>
         {context => (
           <React.Fragment>
             <HeaderWrapper active={context.state.navigation.desktopNavActive} route={route}>
-              <Link key='link-home' href={`/`}>
-                <a style={{ margin: 'auto 0'}}>
-                  <HeaderLogo 
-                    src='/static/images/logos/hudson_square_properties_logo.png' 
-                    alt='Hudson Square Properties Logo' 
+              <Link key="link-home" href={`/`}>
+                <a style={{ margin: 'auto 0' }}>
+                  <HeaderLogo
+                    src="/static/images/logos/hudson_square_properties_logo.png"
+                    alt="Hudson Square Properties Logo"
                   />
                 </a>
               </Link>
-              <DesktopNavigation 
-                locations={locations}
-                routes={routes}
-                route={route}
-              />
-              <MobileNavigation 
-                locations={locations}
-                routes={routes}
-              />
+              <DesktopNavigation locations={locations} routes={routes} route={route} />
+              <MobileNavigation locations={locations} routes={routes} />
             </HeaderWrapper>
             <BuildingNavigation route={route} />
           </React.Fragment>

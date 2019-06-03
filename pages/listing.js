@@ -3,11 +3,13 @@ import { withRouter } from 'next/router';
 import { useContext } from 'react';
 import styled from 'styled-components';
 import Context from '~/config/Context';
-import { buildings } from '../data/buildings';
-// import { mediaMin } from '../styles/MediaQueries';
-import FloorplanSection from '../components/pages/listing/FloorplanSection';
-import NonResponsiveSlider from '../components/NonResponsiveSlider';
-import ContactSection from '../components/pages/listing/ContactSection';
+import { buildings } from '~/data/buildings';
+import { mediaMin } from '../styles/MediaQueries';
+import FloorplanSection from '~/components/pages/listing/FloorplanSection';
+import NonResponsiveSlider from '~/components/NonResponsiveSlider';
+import ContactSection from '~/components/pages/listing/ContactSection';
+
+import { addOrdinalSuffix, insertCommas } from '~/helpers/math';
 
 const ListingWrapper = styled.div`
   margin-top: 10px;
@@ -16,9 +18,20 @@ const ListingWrapper = styled.div`
   .logo-wrapper {
     position: relative;
     display: flex;
-    height: 70px;
+    height: 50px;
     align-items: center;
     border-bottom: 3px solid black;
+    ${mediaMin.tablet`
+      height: 70px;
+    `}
+    .floor-info-mobile {
+      position: absolute;
+      right: 30px;
+      ${mediaMin.tablet`
+        display: none;
+      `}
+    }
+
     img.building-logo {
       width: 105px;
       margin-right: 25px;
@@ -27,15 +40,23 @@ const ListingWrapper = styled.div`
       display: block;
       font-size: 1.5rem;
       height: 25px;
+      display: none;
+      ${mediaMin.tablet`
+        display: initial;
+      `}
     }
     button {
       position: absolute;
       right: 0;
-      width: 30px;
-      height: 30px;
+      width: 20px;
+      height: 20px;
       cursor: pointer;
       background: none;
       border: none;
+      ${mediaMin.tablet`
+        width: 30px;
+        height: 30px;
+      `}
       &:hover::before,
       &:hover::after {
         background: #369bf7;
@@ -62,8 +83,54 @@ const ListingWrapper = styled.div`
   .detail-wrapper {
     display: flex;
     width: 100%;
+    padding: 20px 0;
     .detail-column {
-      width: 25%;
+      width: 50%;
+
+      ${mediaMin.tablet`
+        width: 25%;
+      `}
+
+      &.mobile {
+        ${mediaMin.tablet`
+          display: none;
+        `}
+      }
+
+      &.desktop {
+        display: none;
+        ${mediaMin.tablet`
+          display: initial;
+        `}
+      }
+
+      .floor-info-desktop {
+        display: none;
+        margin-top: 0.5em;
+        ${mediaMin.tablet`
+          display: initial;
+        `}
+      }
+
+      .detail-column__section {
+        margin-bottom: 1.5em;
+        p {
+          font-size: 1rem;
+          margin: 0;
+          ${mediaMin.tablet`
+            margin: 0.5em 0;
+            font-size: 1.1rem;
+          `}
+        }
+        h2 {
+          margin-top: 0;
+        }
+      }
+      img {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+      }
     }
   }
 `;
@@ -106,7 +173,7 @@ const Listing = () => {
     })
     .filter(contact => contact.idArray.includes(listingID));
 
-  const { availability, axon, floor, suite, sqft, views } = listing;
+  const { availability, neighborhood, axon, floor, suite, sqft, views } = listing;
 
   return (
     <ListingWrapper className="container">
@@ -117,28 +184,65 @@ const Listing = () => {
           alt={`Logo for building ${building.navTitle}`}
         />
         <i className="fas fa-map-marker-alt" />
+        <h3 className="floor-info-mobile">
+          {suite} {floor && `${addOrdinalSuffix(floor)} Floor`}
+        </h3>
         <Link as={`/buildings/${building_slug}/`} href={`/building?slug=${building_slug}`}>
           <button aria-label={`Back to building page: ${building.navTitle}`} title="Go Back" />
         </Link>
       </div>
       <div className="detail-wrapper">
-        <div className="detail-column">
-          <h2>
-            {suite} {floor}
+        <div className="detail-column mobile">
+          <h2 className="floor-info-desktop">
+            {suite} {floor && `${addOrdinalSuffix(floor)} Floor`}
           </h2>
-          <p>Type: {listing.type}</p>
+          <div className="detail-column__section">
+            <p>Type: {listing.type}</p>
+          </div>
+          <div className="detail-column__section">
+            <p>Availability:</p>
+            <p> {availability}</p>
+          </div>
+          <div className="detail-column__section">
+            <p>Sq. Ft:</p>
+            <p> {insertCommas(sqft)} SF</p>
+          </div>
+          <div className="detail-column__section">
+            <p>Neighborhood:</p>
+            <p> {neighborhood}</p>
+          </div>
+          <div className="detail-column__section">
+            <p>Views:</p>
+            <p> {views}</p>
+          </div>
         </div>
-        <div className="detail-column">
-          <p>Availability:</p>
-          <p> {availability}</p>
-          <p>Sq. Ft:</p>
-          <p> {sqft} SF</p>
+        <div className="detail-column desktop">
+          <div className="detail-column__section">
+            <h2 className="floor-info-desktop">
+              {suite} {floor && `${addOrdinalSuffix(floor)} Floor`}
+            </h2>
+            <p>Type: {listing.type}</p>
+          </div>
         </div>
-        <div className="detail-column">
-          <p>Neighborhood:</p>
-          <p> {availability}</p>
-          <p>Views:</p>
-          <p> {views}</p>
+        <div className="detail-column desktop">
+          <div className="detail-column__section">
+            <p>Availability:</p>
+            <p> {availability}</p>
+          </div>
+          <div className="detail-column__section">
+            <p>Sq. Ft:</p>
+            <p> {insertCommas(sqft)} SF</p>
+          </div>
+        </div>
+        <div className="detail-column desktop">
+          <div className="detail-column__section">
+            <p>Neighborhood:</p>
+            <p> {neighborhood}</p>
+          </div>
+          <div className="detail-column__section">
+            <p>Views:</p>
+            <p> {views}</p>
+          </div>
         </div>
         <div className="detail-column">
           <img src={axon} alt={`Axon for ${suite} in ${building.navTitle}`} />
