@@ -7,9 +7,9 @@ import fetch from 'isomorphic-unfetch';
 
 import Layout from '~/components/layouts/default';
 
-import GlobalStyles from '~/styles/global/Global';
-import TypographyStyles from '~/styles/global/Typography';
-import MapStyles from '~/styles/global/Map';
+import GlobalStyles from '~/styles/inline/Global';
+import TypographyStyles from '~/styles/inline/Typography';
+import MapStyles from '~/styles/inline/Map';
 import ContainerStyles from '~/styles/inline/Containers';
 
 NProgress.configure({ showSpinner: false });

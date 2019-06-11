@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
-import { colors } from '../Colors';
+import variables from '../Variables';
+
+const { colors } = variables;
 
 const MapStyles = createGlobalStyle`
     .gm-style-iw{
