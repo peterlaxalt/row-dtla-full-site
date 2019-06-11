@@ -1,8 +1,9 @@
 import { css } from 'styled-components';
 
 const sizes = {
-  phone: 992,
-  phoneLarge: 576,
+  phone: 375,
+  phoneLarge: 414,
+  phoneXL: 550,
   tablet: 768,
   tabletLandscape: 992,
   desktopSmall: 1250,

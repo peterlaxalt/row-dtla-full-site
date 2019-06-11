@@ -33,7 +33,7 @@ const ListingWrapper = styled.div`
     }
 
     img.building-logo {
-      width: 105px;
+      height: 32px;
       margin-right: 25px;
     }
     i {
@@ -193,9 +193,6 @@ const Listing = () => {
       </div>
       <div className="detail-wrapper">
         <div className="detail-column mobile">
-          <h2 className="floor-info-desktop">
-            {suite} {floor && `${addOrdinalSuffix(floor)} Floor`}
-          </h2>
           <div className="detail-column__section">
             <p>Type: {listing.type}</p>
           </div>

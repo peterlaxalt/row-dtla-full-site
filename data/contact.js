@@ -1,290 +1,290 @@
 export const SeventyFiveVarick = [
   {
-    name: 'Pete Shimkin',
-    phone: '212.372.2150',
-    email: 'pshimkin@ngkf.com'
+    full_name: 'Pete Shimkin',
+    phone_number: '212.372.2150',
+    email_address: 'pshimkin@ngkf.com'
   },
   {
-    name: 'Ben Shapiro',
-    phone: '212.372.2421',
-    email: 'bshapiro@ngkf.com'
+    full_name: 'Ben Shapiro',
+    phone_number: '212.372.2421',
+    email_address: 'bshapiro@ngkf.com'
   },
   {
-    name: 'Kyle Ciminelli',
-    phone: '212.372.2208',
-    email: 'kciminelli@ngkf.com'
+    full_name: 'Kyle Ciminelli',
+    phone_number: '212.372.2208',
+    email_address: 'kciminelli@ngkf.com'
   },
   {
-    name: 'Brittany Silver',
-    phone: '212.372.2219',
-    email: 'bsilver@ngkf.com'
+    full_name: 'Brittany Silver',
+    phone_number: '212.372.2219',
+    email_address: 'bsilver@ngkf.com'
   },
   {
-    name: 'Jonathan Franzel',
-    phone: '646.441.3815',
-    email: 'jfranzel@ngkf.com'
+    full_name: 'Jonathan Franzel',
+    phone_number: '646.441.3815',
+    email_address: 'jfranzel@ngkf.com'
   },
   {
-    name: 'David Falk',
-    phone: '212.372.2271',
-    email: 'dfalk@ngkf.com'
+    full_name: 'David Falk',
+    phone_number: '212.372.2271',
+    email_address: 'dfalk@ngkf.com'
   }
 ];
 
 export const OneSixtyVarick = [
   {
-    name: 'Zak Snider',
-    phone: '212.984.6625',
-    email: 'zak.snider@cbre.com'
+    full_name: 'Zak Snider',
+    phone_number: '212.984.6625',
+    email_address: 'zak.snider@cbre.com'
   },
   {
-    name: 'Benjamin Joseph',
-    phone: '212.984.8206',
-    email: 'benjamin.joseph@cbre.com'
+    full_name: 'Benjamin Joseph',
+    phone_number: '212.984.8206',
+    email_address: 'benjamin.joseph@cbre.com'
   }
 ];
 
 export const ThreeFortyFiveHudson = [
   {
-    name: 'Paul Amrich',
-    phone: '212.984.8122',
-    email: 'paul.amrich@cbre.com'
+    full_name: 'Paul Amrich',
+    phone_number: '212.984.8122',
+    email_address: 'paul.amrich@cbre.com'
   },
   {
-    name: 'Howard Fiddle',
-    phone: '212.984.6525',
-    email: 'howard.fiddle@cbre.com'
+    full_name: 'Howard Fiddle',
+    phone_number: '212.984.6525',
+    email_address: 'howard.fiddle@cbre.com'
   },
   {
-    name: 'Zachary Price',
-    phone: '212.618.7080',
-    email: 'zachary.price@cbre.com'
+    full_name: 'Zachary Price',
+    phone_number: '212.618.7080',
+    email_address: 'zachary.price@cbre.com'
   },
   {
-    name: 'Benjamin Joseph',
-    phone: '212.984.8206',
-    email: 'benjamin.joseph@cbre.com'
+    full_name: 'Benjamin Joseph',
+    phone_number: '212.984.8206',
+    email_address: 'benjamin.joseph@cbre.com'
   }
 ];
 
 export const ThreeFiftyHudson = [
   {
-    name: 'Michael F. Rizzo',
-    phone: '212.618.7077',
-    email: 'michael.rizzo@cbre.com'
+    full_name: 'Michael F. Rizzo',
+    phone_number: '212.618.7077',
+    email_address: 'michael.rizzo@cbre.com'
   },
   {
-    name: 'Zachary Price',
-    phone: '212.618.7080',
-    email: 'zachary.price@cbre.com'
+    full_name: 'Zachary Price',
+    phone_number: '212.618.7080',
+    email_address: 'zachary.price@cbre.com'
   },
   {
-    name: 'Benjamin Joseph',
-    phone: '212.984.8206',
-    email: 'benjamin.joseph@cbre.com'
+    full_name: 'Benjamin Joseph',
+    phone_number: '212.984.8206',
+    email_address: 'benjamin.joseph@cbre.com'
   }
 ];
 
 export const ThreeSeventyFiveHudson = [
   {
-    name: 'Paul Amrich',
-    phone: '212.984.8122',
-    email: 'paul.amrich@cbre.com'
+    full_name: 'Paul Amrich',
+    phone_number: '212.984.8122',
+    email_address: 'paul.amrich@cbre.com'
   },
   {
-    name: 'Howard Fiddle',
-    phone: '212.984.6525',
-    email: 'howard.fiddle@cbre.com'
+    full_name: 'Howard Fiddle',
+    phone_number: '212.984.6525',
+    email_address: 'howard.fiddle@cbre.com'
   },
   {
-    name: 'Zachary Price',
-    phone: '212.618.7080',
-    email: 'zachary.price@cbre.com'
+    full_name: 'Zachary Price',
+    phone_number: '212.618.7080',
+    email_address: 'zachary.price@cbre.com'
   },
   {
-    name: 'Benjamin Joseph',
-    phone: '212.984.8206',
-    email: 'benjamin.joseph@cbre.com'
+    full_name: 'Benjamin Joseph',
+    phone_number: '212.984.8206',
+    email_address: 'benjamin.joseph@cbre.com'
   }
 ];
 
 export const OneHundredAvenue = [
   {
-    name: 'Pete Shimkin',
-    phone: '212.372.2150',
-    email: 'pshimkin@ngkf.com'
+    full_name: 'Pete Shimkin',
+    phone_number: '212.372.2150',
+    email_address: 'pshimkin@ngkf.com'
   },
   {
-    name: 'Ben Shapiro',
-    phone: '212.372.2421',
-    email: 'bshapiro@ngkf.com'
+    full_name: 'Ben Shapiro',
+    phone_number: '212.372.2421',
+    email_address: 'bshapiro@ngkf.com'
   },
   {
-    name: 'Kyle Ciminelli',
-    phone: '212.372.2208',
-    email: 'kciminelli@ngkf.com'
+    full_name: 'Kyle Ciminelli',
+    phone_number: '212.372.2208',
+    email_address: 'kciminelli@ngkf.com'
   },
   {
-    name: 'Brittany Silver',
-    phone: '212.372.2219',
-    email: 'bsilver@ngkf.com'
+    full_name: 'Brittany Silver',
+    phone_number: '212.372.2219',
+    email_address: 'bsilver@ngkf.com'
   },
   {
-    name: 'Jonathan Franzel',
-    phone: '646.441.3815',
-    email: 'jfranzel@ngkf.com'
+    full_name: 'Jonathan Franzel',
+    phone_number: '646.441.3815',
+    email_address: 'jfranzel@ngkf.com'
   },
   {
-    name: 'David Falk',
-    phone: '212.372.2271',
-    email: 'dfalk@ngkf.com'
+    full_name: 'David Falk',
+    phone_number: '212.372.2271',
+    email_address: 'dfalk@ngkf.com'
   }
 ];
 
 export const OneFiftyFiveAvenue = [
   {
-    name: 'Pete Shimkin',
-    phone: '212.372.2150',
-    email: 'pshimkin@ngkf.com'
+    full_name: 'Pete Shimkin',
+    phone_number: '212.372.2150',
+    email_address: 'pshimkin@ngkf.com'
   },
   {
-    name: 'Ben Shapiro',
-    phone: '212.372.2421',
-    email: 'bshapiro@ngkf.com'
+    full_name: 'Ben Shapiro',
+    phone_number: '212.372.2421',
+    email_address: 'bshapiro@ngkf.com'
   },
   {
-    name: 'Kyle Ciminelli',
-    phone: '212.372.2208',
-    email: 'kciminelli@ngkf.com'
+    full_name: 'Kyle Ciminelli',
+    phone_number: '212.372.2208',
+    email_address: 'kciminelli@ngkf.com'
   },
   {
-    name: 'Brittany Silver',
-    phone: '212.372.2219',
-    email: 'bsilver@ngkf.com'
+    full_name: 'Brittany Silver',
+    phone_number: '212.372.2219',
+    email_address: 'bsilver@ngkf.com'
   },
   {
-    name: 'Jonathan Franzel',
-    phone: '646.441.3815',
-    email: 'jfranzel@ngkf.com'
+    full_name: 'Jonathan Franzel',
+    phone_number: '646.441.3815',
+    email_address: 'jfranzel@ngkf.com'
   },
   {
-    name: 'David Falk',
-    phone: '212.372.2271',
-    email: 'dfalk@ngkf.com'
+    full_name: 'David Falk',
+    phone_number: '212.372.2271',
+    email_address: 'dfalk@ngkf.com'
   }
 ];
 
 export const TwoHundredHudson = [
   {
-    name: 'Pete Shimkin',
-    phone: '212.372.2150',
-    email: 'pshimkin@ngkf.com'
+    full_name: 'Pete Shimkin',
+    phone_number: '212.372.2150',
+    email_address: 'pshimkin@ngkf.com'
   },
   {
-    name: 'Ben Shapiro',
-    phone: '212.372.2421',
-    email: 'bshapiro@ngkf.com'
+    full_name: 'Ben Shapiro',
+    phone_number: '212.372.2421',
+    email_address: 'bshapiro@ngkf.com'
   },
   {
-    name: 'Kyle Ciminelli',
-    phone: '212.372.2208',
-    email: 'kciminelli@ngkf.com'
+    full_name: 'Kyle Ciminelli',
+    phone_number: '212.372.2208',
+    email_address: 'kciminelli@ngkf.com'
   },
   {
-    name: 'Brittany Silver',
-    phone: '212.372.2219',
-    email: 'bsilver@ngkf.com'
+    full_name: 'Brittany Silver',
+    phone_number: '212.372.2219',
+    email_address: 'bsilver@ngkf.com'
   },
   {
-    name: 'Jonathan Franzel',
-    phone: '646.441.3815',
-    email: 'jfranzel@ngkf.com'
+    full_name: 'Jonathan Franzel',
+    phone_number: '646.441.3815',
+    email_address: 'jfranzel@ngkf.com'
   },
   {
-    name: 'David Falk',
-    phone: '212.372.2271',
-    email: 'dfalk@ngkf.com'
+    full_name: 'David Falk',
+    phone_number: '212.372.2271',
+    email_address: 'dfalk@ngkf.com'
   }
 ];
 
 export const TwoOFiveHudson = [
   {
-    name: 'Pete Shimkin',
-    phone: '212.372.2150',
-    email: 'pshimkin@ngkf.com'
+    full_name: 'Pete Shimkin',
+    phone_number: '212.372.2150',
+    email_address: 'pshimkin@ngkf.com'
   },
   {
-    name: 'Ben Shapiro',
-    phone: '212.372.2421',
-    email: 'bshapiro@ngkf.com'
+    full_name: 'Ben Shapiro',
+    phone_number: '212.372.2421',
+    email_address: 'bshapiro@ngkf.com'
   },
   {
-    name: 'Kyle Ciminelli',
-    phone: '212.372.2208',
-    email: 'kciminelli@ngkf.com'
+    full_name: 'Kyle Ciminelli',
+    phone_number: '212.372.2208',
+    email_address: 'kciminelli@ngkf.com'
   },
   {
-    name: 'Brittany Silver',
-    phone: '212.372.2219',
-    email: 'bsilver@ngkf.com'
+    full_name: 'Brittany Silver',
+    phone_number: '212.372.2219',
+    email_address: 'bsilver@ngkf.com'
   },
   {
-    name: 'Jonathan Franzel',
-    phone: '646.441.3815',
-    email: 'jfranzel@ngkf.com'
+    full_name: 'Jonathan Franzel',
+    phone_number: '646.441.3815',
+    email_address: 'jfranzel@ngkf.com'
   },
   {
-    name: 'David Falk',
-    phone: '212.372.2271',
-    email: 'dfalk@ngkf.com'
+    full_name: 'David Falk',
+    phone_number: '212.372.2271',
+    email_address: 'dfalk@ngkf.com'
   }
 ];
 
 export const TwoTwentyFiveVarick = [
   {
-    name: 'Patrice Meagher',
-    phone: '212.984.7112',
-    email: 'patrice.meagher@cbre.com'
+    full_name: 'Patrice Meagher',
+    phone_number: '212.984.7112',
+    email_address: 'patrice.meagher@cbre.com'
   },
   {
-    name: 'Zak Snider',
-    phone: '212.984.6625',
-    email: 'zak.snider@cbre.com'
+    full_name: 'Zak Snider',
+    phone_number: '212.984.6625',
+    email_address: 'zak.snider@cbre.com'
   },
   {
-    name: 'Stuart Siegel',
-    phone: '212.984.8149',
-    email: 'stuart.siegel@cbre.com'
+    full_name: 'Stuart Siegel',
+    phone_number: '212.984.8149',
+    email_address: 'stuart.siegel@cbre.com'
   },
   {
-    name: 'Benjamin Joseph',
-    phone: '212.984.8206',
-    email: 'benjamin.joseph@cbre.com'
+    full_name: 'Benjamin Joseph',
+    phone_number: '212.984.8206',
+    email_address: 'benjamin.joseph@cbre.com'
   }
 ];
 
 export const FourThirtyFiveHudson = [
   {
-    name: 'Neil King',
-    phone: '212.984.8352',
-    email: 'neil.king@cbre.com'
+    full_name: 'Neil King',
+    phone_number: '212.984.8352',
+    email_address: 'neil.king@cbre.com'
   },
   {
-    name: 'Rob Wizenberg',
-    phone: '212.618.7039',
-    email: 'robert.wizenberg@cbre.com'
+    full_name: 'Rob Wizenberg',
+    phone_number: '212.618.7039',
+    email_address: 'robert.wizenberg@cbre.com'
   },
   {
-    name: 'Benjamin Joseph',
-    phone: '212.984.8206',
-    email: 'benjamin.joseph@cbre.com'
+    full_name: 'Benjamin Joseph',
+    phone_number: '212.984.8206',
+    email_address: 'benjamin.joseph@cbre.com'
   }
 ];
 
 export const RetailLeasing = [
   {
-    name: 'Frank Reiser',
-    phone: '914.714.0444',
-    email: 'freiser@tungstenproperty.com'
+    full_name: 'Frank Reiser',
+    phone_number: '914.714.0444',
+    email_address: 'freiser@tungstenproperty.com'
   }
 ];

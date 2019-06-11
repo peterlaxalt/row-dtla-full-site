@@ -1,15 +1,16 @@
 import { withRouter } from 'next/router';
-import { buildings } from '../data/buildings';
-import BuildingHeader from '../components/BuildingHeader';
-import AvailabilityList from '../components/AvailabilityList';
-import ImageSlider from '../components/Slider';
-import BeforeAfter from '../components/BeforeAfter';
-import CopyrightFooter from '../components/CopyrightFooter';
-import ScrollUp from '../components/ScrollUp';
+import { buildings } from '~/data/buildings';
+import BuildingHeader from '~/components/BuildingHeader';
+import AvailabilityList from '~/components/AvailabilityList';
+import ImageSlider from '~/components/Slider';
+import BeforeAfter from '~/components/BeforeAfter';
+import CopyrightFooter from '~/components/CopyrightFooter';
+import ScrollUp from '~/components/ScrollUp';
 import styled from 'styled-components';
-import ResponsiveImage from '../components/ResponsiveImage';
+import ResponsiveImage from '~/components/ResponsiveImage';
 import Link from 'next/link';
-import variables from '../styles/Variables';
+import variables from '~/styles/Variables';
+import ContactCard from '~/components/ContactCard';
 
 const BuildingCol = styled.div`
   display: flex;
@@ -109,43 +110,6 @@ const ContactInfoList = styled.div`
   width: 100%;
 `;
 
-const ContactListItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 81px;
-  width: 25%;
-  font-size: 18px;
-  margin-bottom: 30px;
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-  }
-  .contact-name {
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-  .contact-phone {
-    margin-bottom: 10px;
-    color: #000;
-    font-weight: 400;
-    text-decoration: none;
-    &:hover {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
-    }
-  }
-  .contact-email {
-    color: #369bf7;
-    text-decoration: none;
-    font-weight: 400;
-    &:hover {
-      color: #369bf7;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-  }
-`;
-
 const AboutSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -165,6 +129,7 @@ const AboutSection = styled.div`
     margin-bottom: 40px;
   }
 `;
+
 const FactRowContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -195,17 +160,7 @@ const Fact = styled.div`
 
 const createContactList = contactInfoArray => {
   let contactListItems = contactInfoArray.map((el, idx) => {
-    return (
-      <ContactListItem key={idx}>
-        <span className="contact-name">{el.name}</span>
-        <a href={`tel:${el.phone.split('.').join('')}`} className="contact-phone">
-          {el.phone}
-        </a>
-        <a href={`mailto:${el.email}`} className="contact-email">
-          {el.email}
-        </a>
-      </ContactListItem>
-    );
+    return <ContactCard key={`contact-card-${idx}`} cardData={el} />;
   });
   return <ContactInfoList>{contactListItems}</ContactInfoList>;
 };
