@@ -66,8 +66,12 @@ const FloorplanSectionWrapper = styled.div`
       color: #369bf7;
       padding: 5px 0;
       font-size: 1.2rem;
-      ${mediaMin.desktopSmall`
+      ${mediaMin.tablet`
         right: 20%;
+      `}
+      ${mediaMin.desktop`
+        right: 50%;
+        transform: translateX(50%);
       `}
       &:hover {
         text-decoration: underline;
