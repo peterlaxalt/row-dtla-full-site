@@ -7,8 +7,9 @@ import fetch from 'isomorphic-unfetch';
 
 import Layout from '~/components/layouts/default';
 
-import GlobalStyles from '~/styles/global/Global';
-import TypographyStyles from '~/styles/global/Typography';
+import ContainerStyles from '~/styles/inline/Containers';
+import GlobalStyles from '~/styles/inline/Global';
+import TypographyStyles from '~/styles/inline/Typography';
 
 NProgress.configure({ showSpinner: false });
 
@@ -27,13 +28,15 @@ export default class MyApp extends App {
     const pages = availabilityRes.headers.get('x-wp-totalpages');
     for (let i = 1; i <= pages; i++) {
       availabilityData.push(
-        await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_availability?page=' + i).then(availabilityRes => {
-          return availabilityRes.json();
+        await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_availability?page=' + i).then(availabilityData => {
+          return availabilityData.json();
         })
       );
     }
 
     availabilityData = availabilityData.reduce((acc, curr) => acc.push(...curr) && acc, []);
+    const fullAvailabilityData = availabilityData;
+
     availabilityData = availabilityData.map(el => {
       return el.acf;
     });
@@ -44,8 +47,8 @@ export default class MyApp extends App {
     const newsPages = newsRes.headers.get('x-wp-totalpages');
     for (let i = 1; i <= newsPages; i++) {
       newsData.push(
-        await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_news?page=' + i).then(newsRes => {
-          return newsRes.json();
+        await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_news?page=' + i).then(newsData => {
+          return newsData.json();
         })
       );
     }
@@ -54,14 +57,14 @@ export default class MyApp extends App {
       return el.acf;
     });
 
-    // // Get Press Data
+    // Get Press Data
     let pressData = [];
     const pressRes = await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_press');
     const pressPages = pressRes.headers.get('x-wp-totalpages');
     for (let i = 1; i <= pressPages; i++) {
       pressData.push(
-        await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_press?page=' + i).then(pressRes => {
-          return pressRes.json();
+        await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_press?page=' + i).then(pressData => {
+          return pressData.json();
         })
       );
     }
@@ -71,13 +74,30 @@ export default class MyApp extends App {
       return el.acf;
     });
 
+    // Get Contact Data
+    let contactData = [];
+    const contactRes = await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_contacts');
+    const contactPages = contactRes.headers.get('x-wp-totalpages');
+    for (let i = 1; i <= contactPages; i++) {
+      contactData.push(
+        await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_contacts?page=' + i).then(contactData => {
+          return contactData.json();
+        })
+      );
+    }
+
+    contactData = contactData.reduce((acc, curr) => acc.push(...curr) && acc, []);
+    contactData = contactData.map(el => {
+      return el.acf;
+    });
+
     let pageProps = {};
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
 
-    return { availabilityData, newsData, pressData, pageProps };
+    return { contactData, availabilityData, fullAvailabilityData, newsData, pressData, pageProps };
   }
 
   render() {
@@ -86,6 +106,7 @@ export default class MyApp extends App {
     return (
       <Container>
         <ContextProvider {...this.props}>
+          <ContainerStyles />
           <GlobalStyles />
           <TypographyStyles />
           <Layout>

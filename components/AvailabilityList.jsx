@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
 import Context from '../config/Context';
 
@@ -156,7 +157,6 @@ const AvailabilitySection = styled.span`
 
 const AvailabilityLink = styled.a`
   font-size: 16px;
-  font-weight: 500px;
   line-height: 20px;
   display: flex;
   flex-direction: column;
@@ -187,10 +187,6 @@ const FilterHeading = styled.span`
   display: flex;
   flex-direction: row;
   align-items: center;
-
-}
-
-
 `;
 
 const FilterBody = styled.div`
@@ -472,10 +468,16 @@ export default class AvailabilityList extends React.Component {
                   <AvailabilitySection className="sqft">{this.numberWithCommas(el.sqft)}</AvailabilitySection>
                   <AvailabilitySection className="neighborhood">{el.neighborhood}</AvailabilitySection>
                   <AvailabilitySection className="type">{el.type}</AvailabilitySection>
-                  <AvailabilityLink className="details">
-                    <span>View</span>
-                    <span>Details</span>
-                  </AvailabilityLink>
+                  <Link
+                    as={`/buildings/${el.building_slug}/${el.suite_floor_slug}`}
+                    href={`/listing?building_slug=${el.building_slug}&suite_floor_slug=${el.suite_floor_slug}`}
+                    passHref
+                  >
+                    <AvailabilityLink className="details">
+                      <span>View</span>
+                      <span>Details</span>
+                    </AvailabilityLink>
+                  </Link>
                 </AvailabilityBody>
               </AvailabilityRow>
             );
@@ -492,10 +494,16 @@ export default class AvailabilityList extends React.Component {
                     <AvailabilitySection>{'Neighborhood: ' + el.neighborhood}</AvailabilitySection>
                   </MobileCol>
                   <MobileCol>
-                    <AvailabilityLink className="details">
-                      <span>View</span>
-                      <span>Details</span>
-                    </AvailabilityLink>
+                    <Link
+                      as={`/buildings/${el.building_slug}/${el.suite_floor_slug}`}
+                      href={`/listing?building_slug=${el.building_slug}&suite_floor_slug=${el.suite_floor_slug}`}
+                      passHref
+                    >
+                      <AvailabilityLink className="details">
+                        <span>View</span>
+                        <span>Details</span>
+                      </AvailabilityLink>
+                    </Link>
                   </MobileCol>
                 </AvailabilityBody>
               </AvailabilityRow>

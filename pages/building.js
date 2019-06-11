@@ -9,7 +9,7 @@ import ScrollUp from '../components/ScrollUp';
 import styled from 'styled-components';
 import ResponsiveImage from '../components/ResponsiveImage';
 import Link from 'next/link';
-import { colors } from '../styles/Colors';
+import variables from '../styles/Variables';
 
 const BuildingCol = styled.div`
   display: flex;
@@ -17,6 +17,7 @@ const BuildingCol = styled.div`
   align-items: center;
   background: white;
 `;
+
 const PaddingCol = styled.div`
   width: 100%;
   padding: 0 40px;
@@ -185,7 +186,7 @@ const Fact = styled.div`
   width: 33%;
   margin-bottom: 40px;
   a {
-    color: ${colors.babyBlue};
+    color: ${variables.colors.babyBlue};
     &:hover {
       text-decoration: underline;
     }
@@ -197,10 +198,7 @@ const createContactList = contactInfoArray => {
     return (
       <ContactListItem key={idx}>
         <span className="contact-name">{el.name}</span>
-        <a
-          href={`tel:${el.phone.split('.').join('')}`}
-          className="contact-phone"
-        >
+        <a href={`tel:${el.phone.split('.').join('')}`} className="contact-phone">
           {el.phone}
         </a>
         <a href={`mailto:${el.email}`} className="contact-email">
@@ -247,11 +245,7 @@ const Building = props => {
                 <span>{building.floorSizes}</span>
               </Fact>
               <Fact>
-                <a
-                  href={building.factSheet}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={building.factSheet} target="_blank" rel="noopener noreferrer">
                   View Floor Plans and Detailed Specs
                 </a>
               </Fact>
@@ -260,25 +254,15 @@ const Building = props => {
         </AboutSection>
       </PaddingCol>
       <Spacer />
-      <ImageSlider
-        height="70vh"
-        imgArray={building.sliderArray}
-        showQuotes={true}
-      />
+      <ImageSlider height="70vh" imgArray={building.sliderArray} showQuotes={true} />
       <Spacer />
       {building.beforeAfter === false ? (
         ''
       ) : (
-        <BeforeAfter
-          before={building.beforeAfter.before}
-          after={building.beforeAfter.after}
-        />
+        <BeforeAfter before={building.beforeAfter.before} after={building.beforeAfter.after} />
       )}
       <Spacer />
-      <ResponsiveImage
-        srcPath={building.footerImage.imgUrl}
-        imgAlt={building.footerImage.imgAlt}
-      />
+      <ResponsiveImage srcPath={building.footerImage.imgUrl} imgAlt={building.footerImage.imgAlt} />
       <FooterOverlay>
         <span>{building.footerImage.footerText}</span>
         <Link href={building.footerImage.footerLink}>
@@ -293,9 +277,7 @@ const Building = props => {
             <RowHeading>
               <RowTitle>Leasing Contacts</RowTitle>
             </RowHeading>
-            <RowBody numChildren={building.contactArray.length}>
-              {createContactList(building.contactArray)}
-            </RowBody>
+            <RowBody numChildren={building.contactArray.length}>{createContactList(building.contactArray)}</RowBody>
           </ContactRow>
         )}
         <AvailabilityList building={building.header.headerLogoAlt} />
