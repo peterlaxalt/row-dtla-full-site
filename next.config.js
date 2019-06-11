@@ -1,9 +1,5 @@
 const withCSS = require('@zeit/next-css');
-module.exports = withCSS({
-  webpack(config) {
-    return config;
-  }
-});
+module.exports = withCSS();
 
 const withFonts = require('next-fonts');
 module.exports = withFonts();

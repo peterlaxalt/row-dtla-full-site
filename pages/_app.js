@@ -9,6 +9,7 @@ import Layout from '~/components/layouts/default';
 
 import GlobalStyles from '~/styles/global/Global';
 import TypographyStyles from '~/styles/global/Typography';
+import MapStyles from '~/styles/global/Map';
 
 NProgress.configure({ showSpinner: false });
 
@@ -88,6 +89,7 @@ export default class MyApp extends App {
         <ContextProvider {...this.props}>
           <GlobalStyles />
           <TypographyStyles />
+          <MapStyles />
           <Layout>
             <Component {...pageProps} />
           </Layout>
