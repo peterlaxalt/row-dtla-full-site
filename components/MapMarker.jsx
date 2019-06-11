@@ -134,7 +134,7 @@ export default class MapMarker extends React.Component {
         {showInfo ? (
           <InfoWindow onCloseClick={this.toggleShowInfo}>
             <StyledInfoWindow>
-              <img src={moreInfo.photos[0].getUrl()} alt={`Photo of ${moreInfo.name}`} />
+              <img src={moreInfo.photos[0].getUrl()} alt={`${moreInfo.name}`} />
               <h5>{moreInfo.name}</h5>
               <a href={moreInfo.url} target="_blank" rel="noopener noreferrer">
                 Website

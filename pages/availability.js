@@ -31,7 +31,6 @@ const AvailabilityPage = () => (
     </PaddingCol>
     <ScrollUp />
     <CopyrightFooter />
-    <h1>Hello World</h1>
   </Layout>
 );
 

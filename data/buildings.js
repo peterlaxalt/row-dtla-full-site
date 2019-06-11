@@ -28,6 +28,7 @@ const buildings = [
     mapCenter: { lat: 40.723416, lng: -74.006834 },
     header: {
       headerLogo: '/static/images/logos/logo-75-varick-street-white.svg',
+      headerLogoBlack: '/static/images/logos/logo-75-varick-street-black.svg',
       headerLogoAlt: '75 Varick Street',
       headerBackground: '/static/images/buildings/1_75_Varick/1_Hero/75_Varick_Hero.jpg'
     },
@@ -114,6 +115,7 @@ const buildings = [
     mapCenter: { lat: 40.726917, lng: -74.005998 },
     header: {
       headerLogo: '/static/images/logos/logo-160-varick-street-white.svg',
+      headerLogoBlack: '/static/images/logos/logo-160-varick-street-black.svg',
       headerLogoAlt: '160 Varick Street',
       headerBackground: '/static/images/buildings/2_160_Varick/1_Hero/160_Varick_Hero.jpg'
     },
@@ -192,6 +194,7 @@ const buildings = [
     mapCenter: { lat: 40.72769, lng: -74.00804 },
     header: {
       headerLogo: '/static/images/logos/logo-345-hudson-street-white.svg',
+      headerLogoBlack: '/static/images/logos/logo-345-hudson-street-black.svg',
       headerLogoAlt: '345 Hudson Street',
       headerBackground: '/static/images/buildings/3_345_Hudson/1_Hero/345_Hudson_Hero.jpg'
     },
@@ -245,6 +248,7 @@ const buildings = [
     mapCenter: { lat: 40.72767, lng: -74.00682 },
     header: {
       headerLogo: '/static/images/logos/logo-350-hudson-street-white.svg',
+      headerLogoBlack: '/static/images/logos/logo-350-hudson-street-white.svg',
       headerLogoAlt: '350 Hudson Street',
       headerBackground: '/static/images/buildings/4_350_Hudson/1_Hero/350_Hudson_Hero.jpg'
     },
@@ -294,6 +298,7 @@ const buildings = [
     mapCenter: { lat: 40.72853, lng: -74.00794 },
     header: {
       headerLogo: '/static/images/logos/logo-375-hudson-street-white.svg',
+      headerLogoBlack: '/static/images/logos/logo-375-hudson-street-black.svg',
       headerLogoAlt: '375 Hudson Street',
       headerBackground: '/static/images/buildings/5_375_Hudson/1_Hero/375_Hudson_Hero.jpg'
     },
@@ -347,6 +352,7 @@ const buildings = [
     mapCenter: { lat: 40.7254, lng: -74.00489 },
     header: {
       headerLogo: '/static/images/logos/logo-155-aoa-white.svg',
+      headerLogoBlack: '/static/images/logos/logo-155-aoa-black.svg',
       headerLogoAlt: '155 Avenue of the Americas',
       headerBackground: '/static/images/buildings/6_155_AoA/1_Hero/155_AoA_Hero.jpg'
     },
@@ -421,6 +427,7 @@ const buildings = [
     mapCenter: { lat: 40.7233, lng: -74.00444 },
     header: {
       headerLogo: '/static/images/logos/logo-100-aoa-white.svg',
+      headerLogoBlack: '/static/images/logos/logo-100-aoa-black.svg',
       headerLogoAlt: '100 Avenue of the Americas',
       headerBackground: '/static/images/buildings/7_100_AoA/1_Hero/100_AoA_Hero.jpg'
     },
@@ -478,6 +485,7 @@ const buildings = [
     mapCenter: { lat: 40.72293, lng: -74.00768 },
     header: {
       headerLogo: '/static/images/logos/logo-200-hudson-street-white.svg',
+      headerLogoBlack: '/static/images/logos/logo-200-hudson-street-black.svg',
       headerLogoAlt: '200 Hudson Street',
       headerBackground: '/static/images/buildings/8_200_Hudson/1_Hero/200_Hudson_Hero.jpg'
     },
@@ -532,6 +540,7 @@ const buildings = [
     mapCenter: { lat: 40.723925, lng: -74.007386 },
     header: {
       headerLogo: '/static/images/logos/logo-205-hudson-street-white.svg',
+      headerLogoBlack: '/static/images/logos/logo-205-hudson-street-black.svg',
       headerLogoAlt: '205 Hudson Street',
       headerBackground: '/static/images/buildings/9_205_Hudson/1_Hero/205_Hudson_Hero.jpg'
     },
@@ -597,7 +606,8 @@ const buildings = [
       'Ideal for smaller businesses preferring a full floor presence, 12-16 Vestry is conveniently located just below Canal Street on a charming cobblestone section of Vestry Street in Tribeca. 12-16 Vestry’s seven stories offer floorplates of approximately 8,200 square feet. Twelve-foot ceiling heights, boutique floor plates, and above-standard 140 lb. per square foot floor load capacities create a truly unique environment in a market dominated by larger assets.',
     mapCenter: { lat: 40.72276, lng: -74.00731 },
     header: {
-      headerLogo: '/static/images/logos/logo-12-16-vestry-street.png',
+      headerLogo: '/static/images/logos/logo-12-16-vestry-street-white.svg',
+      headerLogoBlack: '/static/images/logos/logo-12-16-vestry-street-black.svg',
       headerLogoAlt: '12-16 Vestry Street',
       headerBackground: '/static/images/buildings/10_12_16_Vestry/1_Hero/12_16_Vestry_Hero.jpg'
     },
@@ -634,6 +644,7 @@ const buildings = [
     mapCenter: { lat: 40.728641, lng: -74.006152 },
     header: {
       headerLogo: '/static/images/logos/logo-225-varick-street-white.svg',
+      headerLogoBlack: '/static/images/logos/logo-225-varick-street-black.svg',
       headerLogoAlt: '225 Varick Street',
       headerBackground: '/static/images/buildings/11_225_Varick/1_Hero/225_Varick_Hero.jpg'
     },
@@ -712,6 +723,7 @@ const buildings = [
     mapCenter: { lat: 40.73061, lng: -74.00715 },
     header: {
       headerLogo: '/static/images/logos/logo-435-hudson-street-white.svg',
+      headerLogoBlack: '/static/images/logos/logo-435-hudson-street-black.svg',
       headerLogoAlt: '435 Hudson Street',
       headerBackground: '/static/images/buildings/12_435_Hudson/1_Hero/435_Hudson_Hero.jpg'
     },

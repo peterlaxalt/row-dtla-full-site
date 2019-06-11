@@ -11,6 +11,7 @@ import ResponsiveImage from '../components/ResponsiveImage';
 import Link from 'next/link';
 import { colors } from '../styles/Colors';
 import MiniMap from '../components/MiniMap';
+import variables from '../styles/Variables';
 
 const BuildingCol = styled.div`
   display: flex;
@@ -18,6 +19,7 @@ const BuildingCol = styled.div`
   align-items: center;
   background: white;
 `;
+
 const PaddingCol = styled.div`
   width: 100%;
   padding: 0 40px;
@@ -200,7 +202,7 @@ const Fact = styled.div`
   width: 33%;
   margin-bottom: 40px;
   a {
-    color: ${colors.babyBlue};
+    color: ${variables.colors.babyBlue};
     &:hover {
       text-decoration: underline;
     }

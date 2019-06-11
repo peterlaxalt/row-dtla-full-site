@@ -337,6 +337,8 @@ const Map = withScriptjs(
               onMouseOut={() => {
                 toggleNeighborhoodVisibility('westVillage');
               }}
+              onFocus={() => {}}
+              onBlur={() => {}}
             />
 
             <Polygon
@@ -371,6 +373,8 @@ const Map = withScriptjs(
               onMouseOut={() => {
                 toggleNeighborhoodVisibility('tribeca');
               }}
+              onFocus={() => {}}
+              onBlur={() => {}}
             />
             <Polygon
               path={[
@@ -405,6 +409,8 @@ const Map = withScriptjs(
               onMouseOut={() => {
                 toggleNeighborhoodVisibility('hudsonSquare');
               }}
+              onFocus={() => {}}
+              onBlur={() => {}}
             />
             <Polygon
               path={[
@@ -441,6 +447,8 @@ const Map = withScriptjs(
               onMouseOut={() => {
                 toggleNeighborhoodVisibility('soho');
               }}
+              onFocus={() => {}}
+              onBlur={() => {}}
             />
             {generateBuildings()}
           </React.Fragment>

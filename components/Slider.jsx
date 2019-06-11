@@ -170,10 +170,7 @@ export default class ImageSlider extends React.Component {
       slidesToScroll: 1
     };
     return (
-      <SliderContainer
-        height={this.props.height}
-        showQuotes={this.props.showQuotes}
-      >
+      <SliderContainer height={this.props.height} showQuotes={this.props.showQuotes}>
         <Slider {...settings}>{sliderContent}</Slider>
       </SliderContainer>
     );
