@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Map from '../components/Map';
 import styled from 'styled-components';
-import { colors } from '../styles/Colors';
+import variables from '../styles/Variables';
 import CopyrightFooter from '../components/CopyrightFooter';
+
+const { colors } = variables;
 
 const MapContainer = styled.div`
   padding: 45px 40px 0 40px;
@@ -24,7 +26,6 @@ const MapCol = styled.div`
   display: flex;
   flex-direction: column;
   width: 75%;
-  height: 100%;
   border: 3px solid #000;
 `;
 const SelectCol = styled.div`

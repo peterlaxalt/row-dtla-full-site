@@ -9,9 +9,10 @@ import ScrollUp from '../components/ScrollUp';
 import styled from 'styled-components';
 import ResponsiveImage from '../components/ResponsiveImage';
 import Link from 'next/link';
-import { colors } from '../styles/Colors';
 import MiniMap from '../components/MiniMap';
 import variables from '../styles/Variables';
+
+const { colors } = variables;
 
 const BuildingCol = styled.div`
   display: flex;

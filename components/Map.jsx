@@ -46,7 +46,7 @@ const generateBuildings = () => {
           icon={{
             url: el.markerImg,
             // eslint-disable-next-line
-            scaledSize: new google.maps.Size(70, 60)
+            scaledSize: new google.maps.Size(90, 60)
           }}
           onClick={() => {
             window.location.href = el.url;
@@ -106,10 +106,6 @@ const Map = withScriptjs(
     return (
       <GoogleMap
         className="google-map"
-        center={{
-          lat: 40.726,
-          lng: -74.006
-        }}
         ref={mapRef}
         defaultOptions={{
           mapTypeId: 'roadmap',
@@ -124,6 +120,10 @@ const Map = withScriptjs(
           zoomControl: true,
           rotateControl: false,
           scrollWheel: false,
+          center: {
+            lat: 40.726,
+            lng: -74.006
+          },
           gestureHandling: 'greedy',
           styles: [
             {

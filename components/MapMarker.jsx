@@ -1,8 +1,10 @@
 import React from 'react';
 import { Marker, InfoWindow } from 'react-google-maps';
 import styled from 'styled-components';
-import { colors } from '../styles/Colors';
+import variables from '../styles/Variables';
 import { FaStar } from 'react-icons/fa';
+
+const { colors } = variables;
 
 const StyledInfoWindow = styled.div`
   padding: 15px;

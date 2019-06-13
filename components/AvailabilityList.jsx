@@ -2,7 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Context from '../config/Context';
-import { colors } from '~/styles/Colors';
+import variables from '~/styles/Variables';
+
+const { colors } = variables;
 
 const AvailabilityListContainer = styled.div`
   display: flex;

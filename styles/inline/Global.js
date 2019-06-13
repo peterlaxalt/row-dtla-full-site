@@ -18,6 +18,9 @@ const GlobalStyles = createGlobalStyle`
     ${mediaMin.tabletLandscape`
       padding-top: 60px;
     `}
+    #__next{
+      height: 100%;
+    }
   }
 `;
 
