@@ -1,108 +1,114 @@
-const filters = {
-  'Our Buildings': {},
-  Restaurants: {},
-  'Grab & Go Food': {},
-  'Event Spaces': {},
-  Bars: {},
-  'Cafes + Bakeries': {},
-  Retail: {},
-  'Health + Fitness': {},
-  'Galleries + Museums': {},
-  'Film, Theater And Culture': {},
-  'Bank And Convenience': {}
-};
+/* eslint-disable */
+{
+  /*
+<script src="https://apis.google.com/js/api.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+<script src="https://github.com/github/fetch/releases/download/v3.0.0/fetch.umd.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4YULbDXc4lRIs8lS1vNHLzTXAzCvWrQs&libraries=places"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/snazzy-info-window@1.1.1/dist/snazzy-info-window.js"></script>
 
-const mapOptions = {
-  mapTypeId: 'roadmap',
-  minZoom: 15.5,
-  maxZoom: 18,
-  streetViewControl: false,
-  scaleControl: false,
-  mapTypeControl: false,
-  clickableIcons: false,
-  panControl: false,
-  zoomControl: true,
-  rotateControl: false,
-  scrollWheel: false,
-  gestureHandling: 'greedy',
-  styles: [
-    {
-      featureType: 'landscape',
-      stylers: [{ color: '#ffffff' }]
-    },
+<script id="marker-content-template" type="text/x-handlebars-template">
+  <div class="custom-img" style="background-image: url({{{bgImg}}})"></div>
+  <section class="custom-content">
+    <h5 class="custom-header">{{title}}</h5>
+    <div class="custom-body">{{{body}}}</div>
+    <div class="custom-website"><a href="{{website}}" target="_blank">Website</a></div>
+    <div class="custom-addres"><p>{{addres}}</p></div>
+    <div class="custom-rating">{{{rating}}}</div>
+  </section>
+</script>
 
-    {
-      featureType: 'landscape.natural',
-      elementType: 'geometry.fill',
-      stylers: [{ color: '#ffffff' }, { visibility: 'on' }]
-    },
+<script> */
+}
+/********* data *********/
 
-    {
-      featureType: 'landscape.man_made',
-      elementType: 'geometry.stroke',
-      stylers: [{ color: '#9EA7BA' }]
-    },
-
-    {
-      featureType: 'administrative',
-      stylers: [{ visibility: 'off' }]
-    },
-
-    {
-      featureType: 'transit',
-      stylers: [{ visibility: 'off' }]
-    },
-
-    {
-      featureType: 'poi',
-      elementType: 'labels.icon',
-      stylers: [{ visibility: 'off' }]
-    },
-
-    {
-      featureType: 'poi.park',
-      elementType: 'geometry.fill',
-      stylers: [{ color: '#afc47b' }, { gamma: 1 }]
-    },
-
-    {
-      featureType: 'water',
-      stylers: [{ color: '#9dcdfb' }]
-    },
-
-    {
-      featureType: 'road',
-      elementType: 'labels.icon',
-      stylers: [{ visibility: 'off' }]
-    },
-
-    {
-      featureType: 'road.local',
-      elementType: 'labels',
-      stylers: [{ visibility: 'off' }]
-    },
-
-    {
-      featureType: 'road',
-      elementType: 'geometry.fill',
-      stylers: [{ color: '#ffffff' }]
-    },
-
-    {
-      featureType: 'road',
-      elementType: 'geometry.stroke',
-      stylers: [{ color: '#369bf7' }, { weight: 1.5 }]
-    }
-  ]
-};
-
-const ourBuildings = [
+/******* our buildings *******/
+var ourBuildingsData = [
   {
-    title: '75 Varick Street',
-    url: '/buildings/75-varick-street/',
-    markerImg: '/static/images/logos/HSP_BuildingLockUps_75varick.svg',
-    markerPos: { lat: 40.72319941908921, lng: -74.00591966546449 },
-    path: [
+    marker: 1,
+    pathData: [
+      { lat: 40.7226507, lng: -74.0074606 },
+      { lat: 40.7228168, lng: -74.0074197 },
+      { lat: 40.7229393, lng: -74.0072755 },
+      { lat: 40.7232594, lng: -74.0077261 },
+      { lat: 40.7232594, lng: -74.0077704 },
+      { lat: 40.7233051, lng: -74.0078347 },
+      { lat: 40.723265, lng: -74.0078408 },
+      { lat: 40.7232647, lng: -74.0078498 },
+      { lat: 40.7227239, lng: -74.0079502 },
+      { lat: 40.7226933, lng: -74.0079514 },
+      { lat: 40.7226507, lng: -74.0074606 }
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 1,
+      fillOpacity: '1',
+      fillColor: '#369BF7'
+    },
+    features: {
+      name: 'twoHudson',
+      icon: '/wp-content/uploads/2018/08/map-marker-200-hudson.png',
+      url: '/buildings/200-hudson-street/',
+      positionData: { lat: 40.72287417567417, lng: -74.00855895913514 }
+    }
+  },
+  {
+    marker: 2,
+    pathData: [
+      { lat: 40.7237055, lng: -74.0086972 },
+      { lat: 40.7234452, lng: -74.0087402 },
+      { lat: 40.7233883, lng: -74.0081473 },
+      { lat: 40.7236277, lng: -74.0081118 },
+      { lat: 40.7237125, lng: -74.0081487 },
+      { lat: 40.7239372, lng: -74.0084625 },
+      { lat: 40.7239532, lng: -74.0086553 },
+      { lat: 40.7239296, lng: -74.008659 },
+      { lat: 40.7237055, lng: -74.0086972 }
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 1,
+      fillOpacity: '1',
+      fillColor: '#369BF7'
+    },
+    features: {
+      name: 'twoFiveHudson',
+      icon: '/wp-content/uploads/2018/08/map-marker-205-hudson.png',
+      url: '/buildings/205-hudson-street/',
+      positionData: { lat: 40.72374, lng: -74.00923 }
+    }
+  },
+  {
+    marker: 3,
+    pathData: [
+      { lat: 40.7226471, lng: -74.0074471 },
+      { lat: 40.7226252, lng: -74.0071762 },
+      { lat: 40.7227111, lng: -74.0071601 },
+      { lat: 40.7227833, lng: -74.0070709 },
+      { lat: 40.7229246, lng: -74.0072741 },
+      { lat: 40.7228092, lng: -74.0074082 },
+      { lat: 40.7226748, lng: -74.0074398 }
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 1,
+      fillOpacity: '1',
+      fillColor: '#369BF7'
+    },
+    features: {
+      name: 'vestryStreet',
+      icon: '/wp-content/uploads/2018/08/map-marker-12-16-vestry-street.png',
+      url: '/buildings/12-16-vestry-street/',
+      positionData: { lat: 40.722268405576976, lng: -74.00689598954591 }
+    }
+  },
+  {
+    marker: 4,
+    pathData: [
       { lat: 40.723557, lng: -74.0075246 },
       { lat: 40.7232298, lng: -74.0070592 },
       { lat: 40.7232115, lng: -74.007082 },
@@ -117,14 +123,73 @@ const ourBuildings = [
       { lat: 40.7238091, lng: -74.0072188 },
       { lat: 40.7238335, lng: -74.0074763 },
       { lat: 40.723557, lng: -74.0075246 }
-    ]
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 1,
+      fillOpacity: '1',
+      fillColor: '#369BF7'
+    },
+    features: {
+      name: 'oneHudson',
+      icon: '/wp-content/uploads/2018/09/map-marker-75-varick-street.png',
+      url: '/buildings/75-varick-street/',
+      positionData: { lat: 40.72319941908921, lng: -74.00591966546449 }
+    }
   },
   {
-    title: '160 Varick Street',
-    url: '/buildings/160-varick-street/',
-    markerImg: '/static/images/logos/HSP_BuildingLockUps_160varick.svg',
-    markerPos: { lat: 40.72665096689796, lng: -74.00434789098176 },
-    path: [
+    marker: 5,
+    pathData: [
+      { lat: 40.72301887001688, lng: -74.00428798059124 },
+      { lat: 40.72336444034136, lng: -74.00399394342799 },
+      { lat: 40.723395061389844, lng: -74.00399338864031 },
+      { lat: 40.723518519786246, lng: -74.00467283229216 },
+      { lat: 40.72328656822274, lng: -74.00476627775885 },
+      { lat: 40.72325630874218, lng: -74.00476602172768 }
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 1,
+      fillOpacity: '1',
+      fillColor: '#369BF7'
+    },
+    features: {
+      name: 'oneAvenueAmericas',
+      icon: '/wp-content/uploads/2018/08/map-marker-100-avenue.png',
+      url: '/buildings/100-avenue-of-the-americas/',
+      positionData: { lat: 40.72334577810744, lng: -74.00324818528566 }
+    }
+  },
+  {
+    marker: 6,
+    pathData: [
+      { lat: 40.7253163, lng: -74.0049756 },
+      { lat: 40.7252652, lng: -74.0049803 },
+      { lat: 40.7252415, lng: -74.004702 },
+      { lat: 40.7255118, lng: -74.0046625 },
+      { lat: 40.7255521, lng: -74.0051198 },
+      { lat: 40.7253325, lng: -74.0051526 },
+      { lat: 40.7253163, lng: -74.0049756 }
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 1,
+      fillOpacity: '1',
+      fillColor: '#369BF7'
+    },
+    features: {
+      name: 'oneFiveAvenueAmericas',
+      icon: '/wp-content/uploads/2018/08/map-marker-155-avenue.png',
+      url: '/buildings/155-avenue-of-the-americas/',
+      positionData: { lat: 40.72529720093036, lng: -74.00584456361207 }
+    }
+  },
+  {
+    marker: 7,
+    pathData: [
       { lat: 40.7264989, lng: -74.005476 },
       { lat: 40.7264562, lng: -74.0049838 },
       { lat: 40.7267581, lng: -74.0049383 },
@@ -136,15 +201,68 @@ const ourBuildings = [
       { lat: 40.7270467, lng: -74.0050281 },
       { lat: 40.7270772, lng: -74.0053768 },
       { lat: 40.7264989, lng: -74.005476 }
-    ]
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 1,
+      fillOpacity: '1',
+      fillColor: '#369BF7'
+    },
+    features: {
+      name: 'oneVarickStreet',
+      icon: '/wp-content/uploads/2018/08/map-marker-160-varick-street.png',
+      url: '/buildings/160-varick-street/',
+      positionData: { lat: 40.72665096689796, lng: -74.00434789098176 }
+    }
   },
   {
-    title: '345 Hudson Street',
-    url: '/buildings/345-hudson-street/',
-    markerImg: '/static/images/logos/HSP_BuildingLockUps_345hudson.svg',
-    markerPos: { lat: 40.727750149473366, lng: -74.00936876382929 },
-    path: [
-      { lat: 40.7275325, lng: -74.0087478 },
+    marker: 8,
+    pathData: [
+      { lat: 40.72796622362224, lng: -74.00705308673002 },
+      { lat: 40.72791629446597, lng: -74.0065225626164 },
+      { lat: 40.72734701330833, lng: -74.0066065525732 },
+      { lat: 40.72739960783976, lng: -74.00714165327167 }
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 1,
+      fillOpacity: '1',
+      fillColor: '#369BF7'
+    },
+    features: {
+      name: 'threeFiveHudson',
+      icon: '/wp-content/uploads/2018/08/map-marker-350-hudson.png',
+      url: '/buildings/350-hudson-street/',
+      positionData: { lat: 40.727573788575, lng: -74.00603768266114 }
+    }
+  },
+  {
+    marker: 9,
+    pathData: [
+      { lat: 40.728798983379484, lng: -74.00845255876578 },
+      { lat: 40.728304044571274, lng: -74.00853973055877 },
+      { lat: 40.72819130779852, lng: -74.0073789768108 },
+      { lat: 40.72868878819373, lng: -74.00729549305521 }
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 1,
+      fillOpacity: '1',
+      fillColor: '#369BF7'
+    },
+    features: {
+      name: 'threeSevenHudson',
+      icon: '/wp-content/uploads/2018/08/map-marker-375-hudson.png',
+      url: '/buildings/375-hudson-street/',
+      positionData: { lat: 40.72837464106847, lng: -74.0066599551526 }
+    }
+  },
+  {
+    marker: 10,
+    pathData: [
       { lat: 40.7274105, lng: -74.007506 },
       { lat: 40.7279533, lng: -74.0074148 },
       { lat: 40.728005, lng: -74.0074162 },
@@ -152,165 +270,77 @@ const ourBuildings = [
       { lat: 40.7279746, lng: -74.0076119 },
       { lat: 40.7280508, lng: -74.0083106 },
       { lat: 40.727496, lng: -74.008388 }
-    ]
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 1,
+      fillOpacity: '1',
+      fillColor: '#369BF7'
+    },
+    features: {
+      name: 'threeFourHudson',
+      icon: '/wp-content/uploads/2018/08/map-marker-345-hudson.png',
+      url: '/buildings/345-hudson-street/',
+      positionData: { lat: 40.727750149473366, lng: -74.00936876382929 }
+    }
   },
   {
-    title: '350 Hudson Street',
-    url: '/buildings/350-hudson-street/',
-    markerImg: '/static/images/logos/HSP_BuildingLockUps_350hudson.svg',
-    markerPos: { lat: 40.727573788575, lng: -74.00603768266114 },
-    path: [
-      { lat: 40.72796622362224, lng: -74.00705308673002 },
-      { lat: 40.72791629446597, lng: -74.0065225626164 },
-      { lat: 40.72734701330833, lng: -74.0066065525732 },
-      { lat: 40.72739960783976, lng: -74.00714165327167 }
-    ]
-  },
-  {
-    title: '375 Hudson Street',
-    url: '/buildings/375-hudson-street/',
-    markerImg: '/static/images/logos/HSP_BuildingLockUps_375hudson.svg',
-    markerPos: { lat: 40.72837464106847, lng: -74.0066599551526 },
-    path: [
-      { lat: 40.728798983379484, lng: -74.00845255876578 },
-      { lat: 40.728304044571274, lng: -74.00853973055877 },
-      { lat: 40.72819130779852, lng: -74.0073789768108 },
-      { lat: 40.72868878819373, lng: -74.00729549305521 }
-    ]
-  },
-  {
-    title: '155 Avenue of the Americas',
-    url: '/buildings/155-avenue-of-the-americas/',
-    markerImg: '/static/images/logos/HSP_BuildingLockUps_155aoa.svg',
-    markerPos: { lat: 40.72529720093036, lng: -74.00584456361207 },
-    path: [
-      { lat: 40.7253163, lng: -74.0049756 },
-      { lat: 40.7252652, lng: -74.0049803 },
-      { lat: 40.7252415, lng: -74.004702 },
-      { lat: 40.7255118, lng: -74.0046625 },
-      { lat: 40.7255521, lng: -74.0051198 },
-      { lat: 40.7253325, lng: -74.0051526 },
-      { lat: 40.7253163, lng: -74.0049756 }
-    ]
-  },
-  {
-    title: '100 Avenue of the Americas',
-    url: '/buildings/100-avenue-of-the-americas/',
-    markerImg: '/static/images/logos/HSP_BuildingLockUps_100aoa.svg',
-    markerPos: { lat: 40.72334577810744, lng: -74.00324818528566 },
-    path: [
-      { lat: 40.72301887001688, lng: -74.00428798059124 },
-      { lat: 40.72336444034136, lng: -74.00399394342799 },
-      { lat: 40.723395061389844, lng: -74.00399338864031 },
-      { lat: 40.723518519786246, lng: -74.00467283229216 },
-      { lat: 40.72328656822274, lng: -74.00476627775885 },
-      { lat: 40.72325630874218, lng: -74.00476602172768 }
-    ]
-  },
-  {
-    title: '200 Hudson Street',
-    url: '/buildings/200-hudson-street/',
-    markerImg: '/static/images/logos/HSP_BuildingLockUps_200hudson.svg',
-    markerPos: { lat: 40.72287417567417, lng: -74.00855895913514 },
-    path: [
-      { lat: 40.7226507, lng: -74.0074606 },
-      { lat: 40.7228168, lng: -74.0074197 },
-      { lat: 40.7229393, lng: -74.0072755 },
-      { lat: 40.7232594, lng: -74.0077261 },
-      { lat: 40.7232594, lng: -74.0077704 },
-      { lat: 40.7233051, lng: -74.0078347 },
-      { lat: 40.723265, lng: -74.0078408 },
-      { lat: 40.7232647, lng: -74.0078498 },
-      { lat: 40.7227239, lng: -74.0079502 },
-      { lat: 40.7226933, lng: -74.0079514 },
-      { lat: 40.7226507, lng: -74.0074606 }
-    ]
-  },
-  {
-    title: '205 Hudson Street',
-    url: '/buildings/205-hudson-street/',
-    markerImg: '/static/images/logos/HSP_BuildingLockUps_205hudson.svg',
-    markerPos: { lat: 40.72374, lng: -74.00923 },
-    path: [
-      { lat: 40.723390979386, lng: -74.00814394779098 },
-      { lat: 40.72362881194272, lng: -74.0081117612828 },
-      { lat: 40.72371723665093, lng: -74.00815467662704 },
-      { lat: 40.7239362181715, lng: -74.00846674700034 },
-      { lat: 40.723953496492186, lng: -74.0086571838404 },
-      { lat: 40.72347583957513, lng: -74.00873557847524 },
-      { lat: 40.723446115958566, lng: -74.00873572048096 }
-    ]
-  },
-  {
-    title: '12-16 Vestry Street',
-    url: '/buildings/12-16-vestry-street/',
-    markerImg: '/static/images/logos/HSP_BuildingLockUps_12-16vestry.svg',
-    markerPos: { lat: 40.722268405576976, lng: -74.00689598954591 },
-    path: [
-      { lat: 40.7226471, lng: -74.0074471 },
-      { lat: 40.7226252, lng: -74.0071762 },
-      { lat: 40.7227111, lng: -74.0071601 },
-      { lat: 40.7227833, lng: -74.0070709 },
-      { lat: 40.7229246, lng: -74.0072741 },
-      { lat: 40.7228092, lng: -74.0074082 },
-      { lat: 40.7226748, lng: -74.0074398 },
-      { lat: 40.7226471, lng: -74.0074471 }
-    ]
-  },
-  {
-    title: '225 Varick Street',
-    url: '/buildings/225-varick-street/',
-    markerImg: '/static/images/logos/HSP_BuildingLockUps_225varick.svg',
-    markerPos: { lat: 40.728939703779844, lng: -74.00497552789125 },
-    path: [
+    marker: 11,
+    pathData: [
       { lat: 40.729323364378345, lng: -74.00587243102257 },
       { lat: 40.729285567461446, lng: -74.00542482465823 },
       { lat: 40.72871044297344, lng: -74.0055115405197 },
       { lat: 40.72875922530883, lng: -74.00595008169364 }
-    ]
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 1,
+      fillOpacity: '1',
+      fillColor: '#369BF7'
+    },
+    features: {
+      name: 'twoTwoVarick',
+      icon: '/wp-content/uploads/2018/08/map-marker-225-varick-street.png',
+      url: '/buildings/225-varick-street/',
+      positionData: { lat: 40.728939703779844, lng: -74.00497552789125 }
+    }
   },
   {
-    title: '435 Hudson Street',
-    url: '/buildings/435-hudson-street/',
-    markerImg: '/static/images/logos/HSP_BuildingLockUps_435hudson.svg',
-    markerPos: { lat: 40.73056982183632, lng: -74.00652584470186 },
-    path: [
-      { lat: 40.73033373864783, lng: -74.00700118816252 },
-      { lat: 40.73038379013507, lng: -74.00756948119755 },
-      { lat: 40.730659707810325, lng: -74.00752857751007 },
-      { lat: 40.73065665352461, lng: -74.00749087779968 },
-      { lat: 40.73093309695983, lng: -74.00744805186002 },
-      { lat: 40.7309259709087, lng: -74.00736956505989 },
-      { lat: 40.73094630840458, lng: -74.00736691503732 },
-      { lat: 40.73090602369806, lng: -74.00691841324135 },
-      { lat: 40.730878668207765, lng: -74.00691745405629 }
-    ]
+    marker: 12,
+    pathData: [
+      { lat: 40.7309338, lng: -74.0074492 },
+      { lat: 40.7306597, lng: -74.0074931 },
+      { lat: 40.730662, lng: -74.0075303 },
+      { lat: 40.7303841, lng: -74.0075712 },
+      { lat: 40.7303342, lng: -74.0070013 },
+      { lat: 40.7309065, lng: -74.0069181 },
+      { lat: 40.730945, lng: -74.0073661 },
+      { lat: 40.7309252, lng: -74.0073701 },
+      { lat: 40.7309338, lng: -74.0074492 }
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 1,
+      fillOpacity: '1',
+      fillColor: '#369BF7'
+    },
+    features: {
+      name: 'fourThreeHudson',
+      icon: '/wp-content/uploads/2018/08/map-marker-435-hudson.png',
+      url: '/buildings/435-hudson-street/',
+      positionData: { lat: 40.73056982183632, lng: -74.00652584470186 }
+    }
   }
 ];
 
-const neighborhoodLabelsData = [
+var neighborhoodPolygonsData = [
   {
-    positionData: { lat: 40.72639151526946, lng: -74.00744877688078 },
-    label: 'HUDSON SQUARE'
-  },
-  {
-    positionData: { lat: 40.723192, lng: -74.010072 },
-    label: 'TRIBECA'
-  },
-  {
-    positionData: { lat: 40.731618485731126, lng: -74.00665819269221 },
-    label: 'WEST VILLAGE'
-  },
-  {
-    positionData: { lat: 40.723636, lng: -74.001179 },
-    label: 'SOHO'
-  }
-];
-
-const neighborhoodOverlays = [
-  {
-    name: 'westVillage',
-    path: [
+    linkedNeighborhood: 0,
+    marker: 13,
+    pathData: [
       { lat: 40.7290705, lng: -74.0105223 },
       { lat: 40.727603, lng: -74.0106457 },
       { lat: 40.7262451, lng: -74.0108174 },
@@ -326,11 +356,19 @@ const neighborhoodOverlays = [
       { lat: 40.7285908, lng: -74.0057479 },
       { lat: 40.7288347, lng: -74.0082156 },
       { lat: 40.7290705, lng: -74.0105223 }
-    ]
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 0,
+      fillOpacity: '0',
+      fillColor: '#369BF7'
+    }
   },
   {
-    name: 'tribeca',
-    path: [
+    linkedNeighborhood: 1,
+    marker: 14,
+    pathData: [
       { lat: 40.725722, lng: -74.0108732 },
       { lat: 40.7208632, lng: -74.0119053 },
       { lat: 40.7166754, lng: -74.0128118 },
@@ -346,11 +384,19 @@ const neighborhoodOverlays = [
       { lat: 40.7209491, lng: -74.0041141 },
       { lat: 40.7235186, lng: -74.0078585 },
       { lat: 40.725722, lng: -74.0108732 }
-    ]
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 0,
+      fillOpacity: '0',
+      fillColor: '#369BF7'
+    }
   },
   {
-    name: 'hudsonSquare',
-    path: [
+    linkedNeighborhood: 2,
+    marker: 15,
+    pathData: [
       { lat: 40.7291478, lng: -74.0104954 },
       { lat: 40.7289445, lng: -74.008457 },
       { lat: 40.7287656, lng: -74.0064614 },
@@ -367,11 +413,19 @@ const neighborhoodOverlays = [
       { lat: 40.7377084, lng: -74.009723 },
       { lat: 40.7333388, lng: -74.0100932 },
       { lat: 40.7291478, lng: -74.0104954 }
-    ]
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 0,
+      fillOpacity: '0',
+      fillColor: '#369BF7'
+    }
   },
   {
-    name: 'soho',
-    path: [
+    linkedNeighborhood: 3,
+    marker: 16,
+    pathData: [
       { lat: 40.718539143984586, lng: -74.00055265797914 },
       { lat: 40.72142829484371, lng: -74.00452447927046 },
       { lat: 40.72196626947563, lng: -74.00527377436038 },
@@ -390,11 +444,152 @@ const neighborhoodOverlays = [
       { lat: 40.72349492854898, lng: -73.99669713793094 },
       { lat: 40.7223909071738, lng: -73.99717714534745 },
       { lat: 40.721722349286765, lng: -73.99774835666972 }
-    ]
+    ],
+    polygon: {
+      strokeColor: '#369BF7',
+      strokeOpacity: '1',
+      strokeWeight: 0,
+      fillOpacity: '0',
+      fillColor: '#369BF7'
+    }
   }
 ];
 
-const places = {
+/******* parks *******/
+var parksData = [
+  {
+    marker: 17,
+    pathData: [
+      { lat: 40.7184216261342, lng: -74.01321547415961 },
+      { lat: 40.719714545794865, lng: -74.01293834397211 },
+      { lat: 40.71979094505884, lng: -74.01346897632334 },
+      { lat: 40.72000846184406, lng: -74.01343142539713 },
+      { lat: 40.72008164490171, lng: -74.01396250278208 },
+      { lat: 40.720045053382925, lng: -74.01397859603617 },
+      { lat: 40.72025683975959, lng: -74.01575161200884 },
+      { lat: 40.72029851329959, lng: -74.01576502305392 },
+      { lat: 40.72037067961197, lng: -74.0164114354265 },
+      { lat: 40.72075488767634, lng: -74.01634438020113 },
+      { lat: 40.720349911895426, lng: -74.0130108639164 },
+      { lat: 40.720865238238176, lng: -74.0129022344513 },
+      { lat: 40.72120332682348, lng: -74.0157220851022 },
+      { lat: 40.721564152698214, lng: -74.01564027772724 },
+      { lat: 40.72127142650452, lng: -74.01316728101551 },
+      { lat: 40.721462511804624, lng: -74.01312168346226 },
+      { lat: 40.72151536508867, lng: -74.01363934980213 },
+      { lat: 40.721619038716206, lng: -74.0136339853841 },
+      { lat: 40.721547890165674, lng: -74.01310827241718 },
+      { lat: 40.72158123949646, lng: -74.0131048656458 },
+      { lat: 40.72152838626472, lng: -74.01256842384282 },
+      { lat: 40.72586942837177, lng: -74.01167032091121 },
+      { lat: 40.72591882647569, lng: -74.01165316189241 },
+      { lat: 40.72582532297728, lng: -74.01142182136488 },
+      { lat: 40.725738425586435, lng: -74.01123205507707 },
+      { lat: 40.725083589953975, lng: -74.01136427725845 },
+      { lat: 40.72235402448196, lng: -74.01190690848443 },
+      { lat: 40.72213923388924, lng: -74.01194893538036 },
+      { lat: 40.72045481324066, lng: -74.01229854020971 },
+      { lat: 40.72009134736867, lng: -74.01238437089819 },
+      { lat: 40.71923249902427, lng: -74.01259295379839 },
+      { lat: 40.71892959809357, lng: -74.01266537344179 },
+      { lat: 40.718182588115575, lng: -74.0128406115794 },
+      { lat: 40.718361484799125, lng: -74.01324562514066 }
+    ],
+    polygon: {
+      strokeColor: '#afc47b',
+      strokeOpacity: '1',
+      strokeWeight: 1,
+      fillOpacity: '1',
+      fillColor: '#afc47b'
+    }
+  },
+  {
+    marker: 18,
+    pathData: [
+      { lat: 40.72598948929491, lng: -74.01162749702223 },
+      { lat: 40.726267966031564, lng: -74.01157117063292 },
+      { lat: 40.726228328903, lng: -74.01116347486266 },
+      { lat: 40.72582484191721, lng: -74.01123053008803 },
+      { lat: 40.725902400861024, lng: -74.0114326957854 }
+    ],
+    polygon: {
+      strokeColor: '#afc47b',
+      strokeOpacity: '1',
+      strokeWeight: 1,
+      fillOpacity: '1',
+      fillColor: '#afc47b'
+    }
+  },
+  {
+    marker: 19,
+    pathData: [
+      { lat: 40.72634785588899, lng: -74.01160025901373 },
+      { lat: 40.728184930218816, lng: -74.01145920175054 },
+      { lat: 40.72847957919068, lng: -74.01498466198626 },
+      { lat: 40.7287011327784, lng: -74.01497929756823 },
+      { lat: 40.72863812220008, lng: -74.01443749134722 },
+      { lat: 40.73071241279282, lng: -74.01415139307073 },
+      { lat: 40.73046037773949, lng: -74.01128679384283 },
+      { lat: 40.73293143772852, lng: -74.01101613696977 },
+      { lat: 40.733041190970454, lng: -74.01368225273058 },
+      { lat: 40.73302086630968, lng: -74.01407385524675 },
+      { lat: 40.73336683972301, lng: -74.01408446398466 },
+      { lat: 40.73332504733709, lng: -74.01096158916766 },
+      { lat: 40.733979495303245, lng: -74.01093476707752 },
+      { lat: 40.73402827377584, lng: -74.01205593044574 },
+      { lat: 40.73436972208279, lng: -74.01207738811786 },
+      { lat: 40.734294016820265, lng: -74.01082152484912 },
+      { lat: 40.73683034386111, lng: -74.01058900810972 },
+      { lat: 40.73807005174718, lng: -74.0104876962231 },
+      { lat: 40.73804122109483, lng: -74.0105437677235 },
+      { lat: 40.73837858420091, lng: -74.01050889900631 },
+      { lat: 40.73913662879431, lng: -74.01044989040798 },
+      { lat: 40.73911427371545, lng: -74.01015484741635 },
+      { lat: 40.738801301822505, lng: -74.01019239834255 },
+      { lat: 40.737931476101195, lng: -74.01010924986309 },
+      { lat: 40.73748555398023, lng: -74.01007639881902 },
+      { lat: 40.73631134085674, lng: -74.01018118726762 },
+      { lat: 40.73432463712033, lng: -74.01034673581086 },
+      { lat: 40.73382204191015, lng: -74.01038334578965 },
+      { lat: 40.731200319065664, lng: -74.01063984991777 },
+      { lat: 40.72907650700861, lng: -74.01084925795345 },
+      { lat: 40.72751260361459, lng: -74.01099882211236 },
+      { lat: 40.72729184183658, lng: -74.01101902583281 },
+      { lat: 40.72631862552336, lng: -74.01115652517211 }
+    ],
+    polygon: {
+      strokeColor: '#afc47b',
+      strokeOpacity: '1',
+      strokeWeight: 1,
+      fillOpacity: '1',
+      fillColor: '#afc47b'
+    }
+  }
+];
+
+/******** features (logos) ********/
+
+var neighborhoodLabelsData = [
+  {
+    positionData: { lat: 40.72639151526946, lng: -74.00744877688078 },
+    label: 'HUDSON SQUARE'
+  },
+  {
+    positionData: { lat: 40.723192, lng: -74.010072 },
+    label: 'TRIBECA'
+  },
+  {
+    positionData: { lat: 40.731618485731126, lng: -74.00665819269221 },
+    label: 'WEST VILLAGE'
+  },
+  {
+    positionData: { lat: 40.723636, lng: -74.001179 },
+    label: 'SOHO'
+  }
+];
+
+/******* Place IDs *******/
+var places = {
   RESTAURANTS: {
     ChIJn_RrhTNZwokRpwLrOqB2Mnw: { position: { lat: 40.725117, lng: -74.007875 }, name: 'Whitmans' },
     ChIJ4594sIxZwokRrTNHEMnX6MY: { position: { lat: 40.724489, lng: -74.005737 }, name: 'Amelia’s Diner' },
@@ -773,84 +968,421 @@ const places = {
   }
 };
 
-const parks = [
-  [
-    { lat: 40.7184216261342, lng: -74.01321547415961 },
-    { lat: 40.719714545794865, lng: -74.01293834397211 },
-    { lat: 40.71979094505884, lng: -74.01346897632334 },
-    { lat: 40.72000846184406, lng: -74.01343142539713 },
-    { lat: 40.72008164490171, lng: -74.01396250278208 },
-    { lat: 40.720045053382925, lng: -74.01397859603617 },
-    { lat: 40.72025683975959, lng: -74.01575161200884 },
-    { lat: 40.72029851329959, lng: -74.01576502305392 },
-    { lat: 40.72037067961197, lng: -74.0164114354265 },
-    { lat: 40.72075488767634, lng: -74.01634438020113 },
-    { lat: 40.720349911895426, lng: -74.0130108639164 },
-    { lat: 40.720865238238176, lng: -74.0129022344513 },
-    { lat: 40.72120332682348, lng: -74.0157220851022 },
-    { lat: 40.721564152698214, lng: -74.01564027772724 },
-    { lat: 40.72127142650452, lng: -74.01316728101551 },
-    { lat: 40.721462511804624, lng: -74.01312168346226 },
-    { lat: 40.72151536508867, lng: -74.01363934980213 },
-    { lat: 40.721619038716206, lng: -74.0136339853841 },
-    { lat: 40.721547890165674, lng: -74.01310827241718 },
-    { lat: 40.72158123949646, lng: -74.0131048656458 },
-    { lat: 40.72152838626472, lng: -74.01256842384282 },
-    { lat: 40.72586942837177, lng: -74.01167032091121 },
-    { lat: 40.72591882647569, lng: -74.01165316189241 },
-    { lat: 40.72582532297728, lng: -74.01142182136488 },
-    { lat: 40.725738425586435, lng: -74.01123205507707 },
-    { lat: 40.725083589953975, lng: -74.01136427725845 },
-    { lat: 40.72235402448196, lng: -74.01190690848443 },
-    { lat: 40.72213923388924, lng: -74.01194893538036 },
-    { lat: 40.72045481324066, lng: -74.01229854020971 },
-    { lat: 40.72009134736867, lng: -74.01238437089819 },
-    { lat: 40.71923249902427, lng: -74.01259295379839 },
-    { lat: 40.71892959809357, lng: -74.01266537344179 },
-    { lat: 40.718182588115575, lng: -74.0128406115794 },
-    { lat: 40.718361484799125, lng: -74.01324562514066 }
-  ],
-  [
-    { lat: 40.72598948929491, lng: -74.01162749702223 },
-    { lat: 40.726267966031564, lng: -74.01157117063292 },
-    { lat: 40.726228328903, lng: -74.01116347486266 },
-    { lat: 40.72582484191721, lng: -74.01123053008803 },
-    { lat: 40.725902400861024, lng: -74.0114326957854 }
-  ],
-  [
-    { lat: 40.72634785588899, lng: -74.01160025901373 },
-    { lat: 40.728184930218816, lng: -74.01145920175054 },
-    { lat: 40.72847957919068, lng: -74.01498466198626 },
-    { lat: 40.7287011327784, lng: -74.01497929756823 },
-    { lat: 40.72863812220008, lng: -74.01443749134722 },
-    { lat: 40.73071241279282, lng: -74.01415139307073 },
-    { lat: 40.73046037773949, lng: -74.01128679384283 },
-    { lat: 40.73293143772852, lng: -74.01101613696977 },
-    { lat: 40.733041190970454, lng: -74.01368225273058 },
-    { lat: 40.73302086630968, lng: -74.01407385524675 },
-    { lat: 40.73336683972301, lng: -74.01408446398466 },
-    { lat: 40.73332504733709, lng: -74.01096158916766 },
-    { lat: 40.733979495303245, lng: -74.01093476707752 },
-    { lat: 40.73402827377584, lng: -74.01205593044574 },
-    { lat: 40.73436972208279, lng: -74.01207738811786 },
-    { lat: 40.734294016820265, lng: -74.01082152484912 },
-    { lat: 40.73683034386111, lng: -74.01058900810972 },
-    { lat: 40.73807005174718, lng: -74.0104876962231 },
-    { lat: 40.73804122109483, lng: -74.0105437677235 },
-    { lat: 40.73837858420091, lng: -74.01050889900631 },
-    { lat: 40.73913662879431, lng: -74.01044989040798 },
-    { lat: 40.73911427371545, lng: -74.01015484741635 },
-    { lat: 40.738801301822505, lng: -74.01019239834255 },
-    { lat: 40.737931476101195, lng: -74.01010924986309 },
-    { lat: 40.73748555398023, lng: -74.01007639881902 },
-    { lat: 40.73631134085674, lng: -74.01018118726762 },
-    { lat: 40.73432463712033, lng: -74.01034673581086 },
-    { lat: 40.73382204191015, lng: -74.01038334578965 },
-    { lat: 40.731200319065664, lng: -74.01063984991777 },
-    { lat: 40.72907650700861, lng: -74.01084925795345 },
-    { lat: 40.72751260361459, lng: -74.01099882211236 },
-    { lat: 40.72729184183658, lng: -74.01101902583281 },
-    { lat: 40.72631862552336, lng: -74.01115652517211 }
+/******* init *******/
+
+var ourBuildingsMapInfo = {
+  zoom: 16,
+  minZoom: 15.5,
+  maxZoom: 18,
+  center: {
+    lat: 40.726,
+    lng: -74.006
+  },
+  mapTypeId: 'roadmap',
+  gestureHandling: 'greedy',
+  scrollwheel: false,
+  streetViewControl: false,
+  mapTypeControl: false,
+  styles: [
+    {
+      featureType: 'landscape',
+      stylers: [{ color: '#ffffff' }]
+    },
+    {
+      featureType: 'landscape.natural',
+      elementType: 'geometry.fill',
+      stylers: [{ color: '#ffffff' }, { visibility: 'on' }]
+    },
+    {
+      featureType: 'landscape.man_made',
+      elementType: 'geometry.stroke',
+      stylers: [{ color: '#9EA7BA' }]
+    },
+    {
+      featureType: 'landscape.natural.landcover',
+      elementType: 'geometry.fill',
+      stylers: [{ color: '#ffffff' }, { visibility: 'on' }]
+    },
+    {
+      featureType: 'administrative',
+      stylers: [{ visibility: 'off' }]
+    },
+    {
+      featureType: 'transit',
+      stylers: [{ visibility: 'off' }]
+    },
+    {
+      featureType: 'poi',
+      elementType: 'labels.icon',
+      stylers: [{ visibility: 'off' }]
+    },
+    {
+      featureType: 'poi.park',
+      elementType: 'geometry.fill',
+      stylers: [{ color: '#afc47b' }, { gamma: 1 }]
+    },
+    {
+      featureType: 'water',
+      stylers: [{ color: '#9dcdfb' }]
+    },
+    {
+      featureType: 'road',
+      elementType: 'labels.icon',
+      stylers: [{ visibility: 'off' }]
+    },
+    {
+      featureType: 'road.local',
+      elementType: 'labels',
+      stylers: [{ visibility: 'off' }]
+    },
+    {
+      featureType: 'road',
+      elementType: 'geometry.fill',
+      stylers: [{ color: '#ffffff' }]
+    },
+    {
+      featureType: 'road',
+      elementType: 'geometry.stroke',
+      stylers: [{ color: '#369bf7' }, { weight: 1 }]
+    },
+    {
+      featureType: 'road.highway',
+      elementType: 'labels.text.fill',
+      stylers: [{ color: '#403f3e' }]
+    },
+    {
+      featureType: 'transit.station.rail',
+      stylers: [{ visibility: 'on' }]
+    },
+    {
+      featureType: 'transit.station.bus',
+      stylers: [{ visibility: 'off' }]
+    }
   ]
-];
-export { filters, mapOptions, ourBuildings, places, parks, neighborhoodOverlays, neighborhoodLabelsData };
+};
+
+function buildMap() {
+  return new google.maps.Map(document.getElementById('map'), ourBuildingsMapInfo);
+}
+
+// places API service
+var placesService;
+function initPlacesService(map) {
+  placesService = new google.maps.places.PlacesService(map);
+}
+
+// custom marker
+var markerIcon;
+function initMarkerIcon() {
+  markerIcon = {
+    path: 'M0,4a4,4 0 1,0 8,0a4,4 0 1,0 -8,0',
+    fillColor: '#369bf7',
+    fillOpacity: 0.95,
+    scale: 1.5,
+    strokeColor: '#000000',
+    strokeWeight: 1,
+    anchor: new google.maps.Point(-1, 4),
+    labelOrigin: new google.maps.Point(4, 15)
+  };
+}
+
+// pop-ups template
+var template;
+function initTemplate() {
+  template = Handlebars.compile(jQuery('#marker-content-template').html());
+}
+
+// helper functions
+function makePath(pathData) {
+  return pathData.map(function(point) {
+    return new google.maps.LatLng(point.lat, point.lng);
+  });
+}
+
+function makeLabel(map) {
+  return function(neighborhoodLabelData) {
+    var position = new google.maps.LatLng(
+      neighborhoodLabelData.positionData.lat,
+      neighborhoodLabelData.positionData.lng
+    );
+    var neighborhoodLabel = new google.maps.Marker({
+      position: position,
+      icon: 'https://hsp.clientapprove.com/wp-content/uploads/2019/02/transparent-pixel.png',
+      label: { color: '#000000', fontWeight: 'bold', fontSize: '18px', text: neighborhoodLabelData.label },
+      optimized: false,
+      visible: false
+    });
+    neighborhoodLabel.setMap(map);
+    return neighborhoodLabel;
+  };
+}
+
+function makeBuildingPolygon(map) {
+  return function(buildingData) {
+    buildingData.polygon.path = makePath(buildingData.pathData);
+    var polygon = new google.maps.Polygon(buildingData.polygon);
+    polygon.setMap(map);
+    polygon.addListener('click', function() {
+      window.location.href = buildingData.features.url;
+    });
+    return polygon;
+  };
+}
+
+function makeNeighborhoodPolygon(map, neighborhoodLabels) {
+  return function(neighborhoodData) {
+    neighborhoodData.polygon.path = makePath(neighborhoodData.pathData);
+    var polygon = new google.maps.Polygon(neighborhoodData.polygon);
+    polygon.setMap(map);
+    google.maps.event.addListener(polygon, 'mouseover', function() {
+      neighborhoodLabels[neighborhoodData.linkedNeighborhood].setVisible(true);
+      this.setOptions({ fillOpacity: '0.5' });
+    });
+    google.maps.event.addListener(polygon, 'mouseout', function() {
+      neighborhoodLabels[neighborhoodData.linkedNeighborhood].setVisible(false);
+      this.setOptions({ fillOpacity: '0' });
+    });
+    return polygon;
+  };
+}
+
+function makeParkPolygon(map) {
+  return function(parkData) {
+    parkData.polygon.path = makePath(parkData.pathData);
+    var polygon = new google.maps.Polygon(parkData.polygon);
+    polygon.setMap(map);
+    return polygon;
+  };
+}
+
+function makeOurBuildingLogos(map) {
+  return function(buildingData) {
+    var featureData = buildingData.features;
+    var position = new google.maps.LatLng(featureData.positionData.lat, featureData.positionData.lng);
+    var marker = new google.maps.Marker({
+      position: position,
+      icon: featureData.icon,
+      map: map
+    });
+    marker.addListener('click', function() {
+      window.location.href = featureData.url;
+    });
+    return marker;
+  };
+}
+
+function makePlaceMarker(map) {
+  return function(marker) {
+    return new google.maps.Marker({
+      map: map,
+      icon: markerIcon,
+      position: new google.maps.LatLng(marker.position.lat, marker.position.lng),
+      label: { color: '#000000', fontWeight: 'bold', fontSize: '12px', text: marker.name },
+      visible: false
+    });
+  };
+}
+
+function closeAllCards(cards) {
+  if (!!cards) {
+    cards.forEach(function(card) {
+      card.close();
+    });
+  }
+}
+
+function makePlacePopup(marker) {
+  return function(markerData) {
+    var info;
+    var closeDelayed = true;
+    var closeDelayHandler = function() {
+      jQuery(info.getWrapper()).removeClass('active');
+      setTimeout(function() {
+        closeDelayed = true;
+        info.close();
+      }, 300);
+    };
+
+    info = new SnazzyInfoWindow({
+      marker: marker,
+      wrapperClass: 'custom-window',
+      offset: {
+        top: '-12px',
+        left: '8px'
+      },
+      edgeOffset: {
+        top: 50,
+        right: 60,
+        bottom: 100
+      },
+      border: false,
+      closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+      content: template(markerData.template),
+      callbacks: {
+        open: function() {
+          jQuery('.custom-window').removeClass('open active');
+          jQuery(this.getWrapper()).addClass('open');
+        },
+        afterOpen: function() {
+          var wrapper = jQuery(this.getWrapper());
+          wrapper.addClass('active');
+          wrapper.find('.custom-close').on('click', closeDelayHandler);
+        },
+        beforeClose: function() {
+          if (!closeDelayed) {
+            closeDelayHandler();
+            return false;
+          }
+          return true;
+        },
+        afterClose: function() {
+          var wrapper = jQuery(this.getWrapper());
+          wrapper.find('.custom-close').off();
+          wrapper.removeClass('open');
+          closeDelayed = false;
+        }
+      }
+    });
+
+    return info;
+  };
+}
+
+function getRatingHtml(place) {
+  var stars = '';
+  var intRating = parseInt(place.rating);
+  for (var i = 0; i < intRating; i++) {
+    stars += '<span class="icon-star"></span>';
+  }
+  return '<div class="number-rating">' + place.rating + '</div>' + '<div class="stars-rating">' + stars + '</div>';
+}
+
+var fetchedPlaces = {};
+function fetchPlaceAndMakePopup(category, map, placeId, marker) {
+  return function fetchPlace() {
+    var request = {
+      placeId: placeId,
+      fields: ['name', 'rating', 'formatted_address', 'geometry', 'photos', 'url', 'website']
+    };
+    if (!fetchedPlaces[category]) {
+      fetchedPlaces[category] = {};
+    }
+
+    function callback(place, status) {
+      if (status === 'OK') {
+        var location = place.geometry.location;
+        // console.log('ok', '\'' + placeId + '\': { lat:', location.lat(), ', lng:', location.lng() , '},');
+        var bgImg =
+          place.photos && place.photos.length ? place.photos[0].getUrl({ maxWidth: 273.44, maxHeight: 180 }) : '';
+        var parsedPlace = {
+          id: placeId,
+          category: category,
+          position: {
+            lat: location.lat(),
+            lng: location.lng()
+          },
+          template: {
+            title: place.name,
+            addres: place.formatted_address,
+            bgImg: bgImg,
+            gmImg: place.url,
+            // body: '<p>???????</p>',
+            website: place.website,
+            rating: getRatingHtml(place)
+          }
+        };
+        fetchedPlaces[category][placeId] = parsedPlace;
+
+        // var marker = makePlaceMarker(map)(parsedPlace);
+        // _markers_by_category[category][0].push(marker);
+        var popup = makePlacePopup(marker)(parsedPlace);
+        _popups_by_category[category].push(popup);
+        popup.open();
+      } else if (status === 'OVER_QUERY_LIMIT') {
+        // console.log('not ok', placeId, status);
+        setTimeout(function() {
+          fetchPlaceAndMakePopup(category, map, placeId, marker)();
+        }, 2000);
+      }
+    }
+
+    if (!fetchedPlaces[category][placeId]) {
+      placesService.getDetails(request, callback);
+    }
+  };
+}
+
+var _markers_by_category = {
+  'Our Buildings': []
+};
+
+var _popups_by_category = {};
+var map;
+function initMap() {
+  map = buildMap();
+
+  initPlacesService(map);
+  initMarkerIcon();
+  initTemplate();
+
+  var parksPolygons = parksData.map(makeParkPolygon(map));
+
+  var neighborhoodLabels = neighborhoodLabelsData.map(makeLabel(map));
+  _markers_by_category['Our Buildings'].push(neighborhoodLabels);
+  var neighborhoodPolygons = neighborhoodPolygonsData.map(makeNeighborhoodPolygon(map, neighborhoodLabels));
+  _markers_by_category['Our Buildings'].push(neighborhoodPolygons);
+
+  var ourBuildingsPolygons = ourBuildingsData.map(makeBuildingPolygon(map));
+  _markers_by_category['Our Buildings'].push(ourBuildingsPolygons);
+  var ourBuildingsFeatures = ourBuildingsData.map(makeOurBuildingLogos(map));
+  _markers_by_category['Our Buildings'].push(ourBuildingsFeatures);
+
+  Object.keys(places).forEach(function(category) {
+    _markers_by_category[category] = [[]];
+    _popups_by_category[category] = [];
+    // places[category].forEach(fetchPlaceAndMakePopup(category, map));
+
+    Object.keys(places[category]).forEach(function(placeId) {
+      var marker = makePlaceMarker(map)(places[category][placeId]);
+      _markers_by_category[category][0].push(marker);
+      marker.addListener('click', fetchPlaceAndMakePopup(category, map, placeId, marker));
+    });
+  });
+}
+
+/******* filters *******/
+function changeFilter(event) {
+  event.preventDefault();
+  var selectedElement = jQuery(event.target);
+  var selectedCategory = selectedElement.text();
+  jQuery('#places-filter li').removeClass('active');
+  selectedElement.addClass('active');
+
+  Object.keys(_markers_by_category).forEach(function(category) {
+    var isVisible = category.toLowerCase() === selectedCategory.toLowerCase();
+    closeAllCards(_popups_by_category[category]);
+
+    _markers_by_category[category].forEach(function(arrayOfElements) {
+      arrayOfElements.forEach(function(object) {
+        if (!!object.setVisible) {
+          object.setVisible(isVisible);
+        }
+      });
+    });
+  });
+}
+
+jQuery(function() {
+  var filtersContainer = jQuery('#places-filter');
+  filtersContainer.append('<li class="active">Our Buildings</li>');
+  Object.keys(places).forEach(function(category) {
+    filtersContainer.append('<li>' + category.toLowerCase() + '</li>');
+  });
+
+  jQuery('#places-filter li').click(changeFilter);
+
+  initMap();
+});
+
+// </script>
+/* eslint-enable */

@@ -3,27 +3,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import MapMarker from './MapMarker';
 import { ourBuildings, places } from '../data/map';
 
-/******** features (logos) ********/
-
-// const neighborhoodLabelsData = [
-//   {
-//     positionData: { lat: 40.72639151526946, lng: -74.00744877688078 },
-//     label: 'HUDSON SQUARE'
-//   },
-//   {
-//     positionData: { lat: 40.723192, lng: -74.010072 },
-//     label: 'TRIBECA'
-//   },
-//   {
-//     positionData: { lat: 40.731618485731126, lng: -74.00665819269221 },
-//     label: 'WEST VILLAGE'
-//   },
-//   {
-//     positionData: { lat: 40.723636, lng: -74.001179 },
-//     label: 'SOHO'
-//   }
-// ];
-
 const generateBuildings = () => {
   return ourBuildings.map(el => {
     return (
@@ -46,7 +25,9 @@ const generateBuildings = () => {
           icon={{
             url: el.markerImg,
             // eslint-disable-next-line
-            scaledSize: new google.maps.Size(90, 60)
+            scaledSize: new google.maps.Size(90, 60),
+            // eslint-disable-next-line
+            anchor: new google.maps.Point(45, 30)
           }}
           onClick={() => {
             window.location.href = el.url;
@@ -62,6 +43,8 @@ const Map = withScriptjs(
     const { activeFilter } = props;
 
     const mapRef = useRef(null);
+
+    const polyRef = useRef(null);
 
     const [neighborhood, setNeighborhood] = useState({
       soho: false,
@@ -109,6 +92,10 @@ const Map = withScriptjs(
         ref={mapRef}
         defaultOptions={{
           mapTypeId: 'roadmap',
+          center: {
+            lat: 40.726,
+            lng: -74.006
+          },
           zoom: 16,
           minZoom: 15.5,
           maxZoom: 18,
@@ -120,10 +107,6 @@ const Map = withScriptjs(
           zoomControl: true,
           rotateControl: false,
           scrollWheel: false,
-          center: {
-            lat: 40.726,
-            lng: -74.006
-          },
           gestureHandling: 'greedy',
           styles: [
             {
@@ -306,6 +289,7 @@ const Map = withScriptjs(
         {activeFilter === 'Our Buildings' ? (
           <React.Fragment>
             <Polygon
+              ref={polyRef}
               path={[
                 { lat: 40.7290705, lng: -74.0105223 },
                 { lat: 40.727603, lng: -74.0106457 },
@@ -325,8 +309,8 @@ const Map = withScriptjs(
               ]}
               options={{
                 strokeColor: '#369BF7',
-                strokeOpacity: neighborhood.westVillage ? 1 : 0,
-                fillOpacity: neighborhood.westVillage ? 0.5 : 0,
+                strokeOpacity: 1,
+                fillOpacity: 0.5,
                 strokeWeight: 1,
                 fillColor: '#369BF7',
                 zIndex: 100
@@ -361,12 +345,13 @@ const Map = withScriptjs(
               ]}
               options={{
                 strokeColor: '#369BF7',
-                strokeOpacity: neighborhood.tribeca ? 1 : 0,
-                fillOpacity: neighborhood.tribeca ? 0.5 : 0,
+                strokeOpacity: 1,
+                fillOpacity: 0.5,
                 strokeWeight: 1,
                 fillColor: '#369BF7',
                 zIndex: 100
               }}
+              visible={neighborhood.tribeca}
               onMouseOver={() => {
                 toggleNeighborhoodVisibility('tribeca');
               }}

@@ -14,6 +14,7 @@ const StyledInfoWindow = styled.div`
   min-height: 380px;
   max-width: 320px;
   font-size: 14px;
+  overflow: hidden;
   img {
     width: 100%;
     max-height: 50%;

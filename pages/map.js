@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Map from '../components/Map';
+import Map from '../components/TestMap';
 import styled from 'styled-components';
 import variables from '../styles/Variables';
 import CopyrightFooter from '../components/CopyrightFooter';
@@ -48,6 +48,7 @@ const SelectOption = styled.button`
   font-size: 1.5em;
   font-weight: 500;
   margin-bottom: 0.5em;
+  text-align: start;
 `;
 
 const selectOptions = [
@@ -66,7 +67,6 @@ const selectOptions = [
 
 const MapPage = () => {
   const [activeFilter, setSelection] = useState('Our Buildings');
-
   const generateSelections = () => {
     return selectOptions.map(option => {
       return (
