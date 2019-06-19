@@ -9,8 +9,11 @@ import ScrollUp from '~/components/ScrollUp';
 import styled from 'styled-components';
 import ResponsiveImage from '~/components/ResponsiveImage';
 import Link from 'next/link';
+import MiniMap from '../components/MiniMap';
 import variables from '~/styles/Variables';
 import ContactCard from '~/components/ContactCard';
+
+const { colors } = variables;
 
 const BuildingCol = styled.div`
   display: flex;
@@ -130,6 +133,19 @@ const AboutSection = styled.div`
   }
 `;
 
+const MapLink = styled.a`
+  text-align: end;
+  margin: 24px 0;
+  cursor: pointer;
+  color: ${colors.babyBlue};
+  &:hover {
+    text-decoration: underline;
+  }
+  &:visited {
+    color: ${colors.babyBlue};
+  }
+`;
+
 const FactRowContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -140,7 +156,7 @@ const FactRow = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 75%;
+  width: 65%;
 `;
 
 const Fact = styled.div`
@@ -205,7 +221,9 @@ const Building = props => {
                 </a>
               </Fact>
             </FactRow>
+            <MiniMap mapCenter={building.mapCenter} building={building.title} />
           </FactRowContainer>
+          <MapLink href="/map">View Full Map</MapLink>
         </AboutSection>
       </PaddingCol>
       <Spacer />

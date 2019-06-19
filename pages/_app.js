@@ -7,9 +7,10 @@ import fetch from 'isomorphic-unfetch';
 
 import Layout from '~/components/layouts/default';
 
-import ContainerStyles from '~/styles/inline/Containers';
 import GlobalStyles from '~/styles/inline/Global';
 import TypographyStyles from '~/styles/inline/Typography';
+import MapStyles from '~/styles/inline/Map';
+import ContainerStyles from '~/styles/inline/Containers';
 
 NProgress.configure({ showSpinner: false });
 
@@ -109,6 +110,7 @@ export default class MyApp extends App {
           <ContainerStyles />
           <GlobalStyles />
           <TypographyStyles />
+          <MapStyles />
           <Layout>
             <Component {...pageProps} />
           </Layout>

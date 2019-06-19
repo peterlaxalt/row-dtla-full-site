@@ -27,6 +27,11 @@ const GlobalStyles = createGlobalStyle`
     color: inherit;
   }
 
+  .container {
+    height: 100%;
+    width: 100%;
+  }
+
   @font-face{
     font-family: 'Berthold Akzindenz Grotesk';
     src: url('/static/fonts/AkzidGroCFFBol.otf') format("opentype");

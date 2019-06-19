@@ -2,6 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Context from '../config/Context';
+import variables from '~/styles/Variables';
+
+const { colors } = variables;
 
 const AvailabilityListContainer = styled.div`
   display: flex;
@@ -165,8 +168,7 @@ const AvailabilityLink = styled.a`
   width: 4vw !important;
   height: 4vw !important;
   cursor: pointer;
-  .span {
-  }
+  color: ${colors.babyBlue};
   &:hover {
     color: #000;
     border-radius: 50%;

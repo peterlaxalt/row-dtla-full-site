@@ -123,7 +123,7 @@ const TitleText = styled.div`
   cursor: pointer;
   color: ${props => (props.titleText === 'AVAILABILITY' ? '#000' : '#fff')};
   font-size: 110px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 3px;
   width: 100%;
   display: flex;
@@ -190,18 +190,12 @@ export default class HomeSlider extends React.Component {
     return this.props.imgArray.map((el, idx) => {
       return (
         <SliderSlide key={idx}>
-          <InnerFader
-            imgArray={el.imgArray}
-            active={this.state.currentIndex === idx}
-          />
+          <InnerFader imgArray={el.imgArray} active={this.state.currentIndex === idx} />
           <Link href={el.link}>
             {el.titleImg !== undefined ? (
               <TitleImage src={el.titleImg} />
             ) : (
-              <TitleText
-                showTitle={this.state.showTitle}
-                titleText={el.titleText}
-              >
+              <TitleText showTitle={this.state.showTitle} titleText={el.titleText}>
                 {el.titleText}
               </TitleText>
             )}
@@ -217,10 +211,7 @@ export default class HomeSlider extends React.Component {
         <Link key={`home-slider-link-${idx}`} href={el.link}>
           <SliderSlide>
             <ResponsiveImage srcPath={el.imgUrl} imgAlt={el.imgAlt} />
-            <TitleText
-              showTitle={this.state.showTitle}
-              titleText={el.titleText}
-            >
+            <TitleText showTitle={this.state.showTitle} titleText={el.titleText}>
               {el.titleText}
             </TitleText>
           </SliderSlide>
