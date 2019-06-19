@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Map from '../components/TestMapClassic';
+import Map from '../components/Map';
 import styled from 'styled-components';
 import variables from '../styles/Variables';
 import { mediaMin } from '../styles/MediaQueries';
@@ -39,7 +39,7 @@ const MapCol = styled.div`
   width: 100%;
   ${mediaMin.tabletLandscape`
   width: 75%;
-  
+  min-height: 100%;
   `}
   border: 3px solid #000;
 `;
