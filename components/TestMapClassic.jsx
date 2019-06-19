@@ -1,5 +1,6 @@
 import GoogleMapReact from 'google-map-react';
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import styled from 'styled-components';
 import { mapOptions, ourBuildings, places, parks, neighborhoodOverlays } from '../data/map';
 
@@ -34,6 +35,7 @@ export default class Map extends React.Component {
       map,
       maps
     });
+    map.addListener('click', this.closeInfoWindows);
   };
 
   drawMapFeatures = () => {
@@ -113,8 +115,6 @@ export default class Map extends React.Component {
         });
         tempPark.setMap(map);
       });
-    } else {
-      // console.log('maps not setup');
     }
   };
 
@@ -193,6 +193,7 @@ export default class Map extends React.Component {
         const tempInfoWindow = new maps.InfoWindow();
 
         tempMarker.addListener('click', () => {
+          this.closeInfoWindows();
           this.fetchInfoWindow(service, tempInfoWindow, tempMarker, key);
         });
         tempMarker.setMap(map);
@@ -202,12 +203,25 @@ export default class Map extends React.Component {
     this.setState({ overlays: markersArray });
   };
 
+  closeInfoWindows = () => {
+    const { overlays } = this.state;
+    for (let idx = 0; idx < overlays.length; idx++) {
+      if (overlays[idx].content) {
+        overlays[idx].close();
+      }
+    }
+  };
+
   fetchInfoWindow = (service, infoWindow, marker, key) => {
-    const { infoWindows, map } = this.state;
+    const { infoWindows, map, overlays } = this.state;
+
+    const markersArray = [...overlays];
     if (infoWindows[key]) {
       let windowContent = infoWindows[key];
       infoWindow.setContent(windowContent);
       infoWindow.open(map, marker);
+      markersArray.push(infoWindow);
+      this.setState({ overlays: markersArray });
     } else {
       service.getDetails(
         {
@@ -221,6 +235,8 @@ export default class Map extends React.Component {
             this.setState({ infoWindows: Object.assign(infoWindows, newWindow) });
             infoWindow.setContent(newWindow[key]);
             infoWindow.open(map, marker);
+            markersArray.push(infoWindow);
+            this.setState({ overlays: markersArray });
           }
         }
       );
@@ -238,15 +254,17 @@ export default class Map extends React.Component {
   };
 
   generateInfoWindow = ({ photos, name, url, formatted_address, rating }) => {
-    return `<div class="styled-info-window">
-        <img src="${photos[0].getUrl()}" alt={${name}} />
-        <h5>${name}</h5>
-        <a href=${url} target="_blank" rel="noopener noreferrer">
+    return ReactDOMServer.renderToString(
+      <div className="styled-info-window">
+        <img src={`${photos[0].getUrl()}`} alt={name} />
+        <h5>{name}</h5>
+        <a href={url} target="_blank" rel="noopener noreferrer">
           Website
         </a>
-        <span>${formatted_address}</span>
-        ${this.parseStars(rating)}
-      </div>`;
+        <span>{formatted_address}</span>
+        {this.parseStars(rating)}
+      </div>
+    );
   };
 
   parseStars = numStars => {
@@ -254,13 +272,25 @@ export default class Map extends React.Component {
     var intRating = parseInt(numStars);
     for (var i = 0; i < intRating; i++) {
       stars.push(
-        '<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 576 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>'
+        <svg
+          stroke="currentColor"
+          fill="currentColor"
+          strokeWidth="0"
+          viewBox="0 0 576 512"
+          height="1em"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z" />
+        </svg>
       );
     }
-    return `<div class="star-row">
-        <div class="number-rating">${numStars}</div>
-        <div class="stars-rating">${stars}</div>
-      </div class="star-row">`;
+    return (
+      <div className="star-row">
+        <div className="number-rating">{numStars}</div>
+        <div className="stars-rating">{stars}</div>
+      </div>
+    );
   };
   render() {
     return (
