@@ -1,5 +1,5 @@
 import GoogleMapReact from 'google-map-react';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { mapOptions, ourBuildings, places, parks, neighborhoodOverlays } from '../data/map';
 
@@ -8,71 +8,99 @@ const MapContainer = styled.div`
   width: 100%;
 `;
 
-const Map = ({ activeFilter }) => {
-  const [map, setMapState] = useState(null);
-  const [maps, setMapsState] = useState(null);
-  const [overlays, setOverlays] = useState([]);
-  const [infoWindows, setInfoWindows] = useState({});
+export default class Map extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      map: null,
+      maps: null,
+      overlays: [],
+      infoWindows: {}
+    };
+  }
 
-  useEffect(() => {
-    // console.log('filter - updated');
-    drawMapFeatures();
-  }, [activeFilter]);
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.maps !== this.state.maps) {
+      this.drawParks();
+      this.drawMapFeatures();
+    }
+    if (prevProps.activeFilter !== this.props.activeFilter) {
+      this.drawMapFeatures();
+    }
+  }
 
-  useEffect(() => {
-    // console.log('maps - updated');
-    drawParks();
-    drawMapFeatures();
-  }, [maps]);
-
-  const setUpMap = (map, maps) => {
-    setMapState(map);
-    setMapsState(maps);
+  setUpMap = (map, maps) => {
+    this.setState({
+      map,
+      maps
+    });
   };
 
-  const drawMapFeatures = () => {
-    clearOverlays();
+  drawMapFeatures = () => {
+    const { activeFilter } = this.props;
     switch (activeFilter) {
       case 'Our Buildings':
-        drawNeighborhoods();
-        drawBuildings();
+        this.clearOverlays(() => {
+          this.drawBuildingsAndNeighborhoods();
+        });
         break;
       case 'Restaurants':
-        drawMarkers(places['RESTAURANTS']);
+        this.clearOverlays(() => {
+          this.drawMarkers(places['RESTAURANTS']);
+        });
         break;
       case 'Grab & Go Food':
-        drawMarkers(places['GRAB & GO FOOD']);
+        this.clearOverlays(() => {
+          this.drawMarkers(places['GRAB & GO FOOD']);
+        });
         break;
       case 'Event Spaces':
-        drawMarkers(places['EVENT SPACES']);
+        this.clearOverlays(() => {
+          this.drawMarkers(places['EVENT SPACES']);
+        });
         break;
       case 'Bars':
-        drawMarkers(places['BARS']);
+        this.clearOverlays(() => {
+          this.drawMarkers(places['BARS']);
+        });
         break;
       case 'Cafes + Bakeries':
-        drawMarkers(places['CAFES + BAKERIES']);
+        this.clearOverlays(() => {
+          this.drawMarkers(places['CAFES + BAKERIES']);
+        });
         break;
       case 'Retail':
-        drawMarkers(places['RETAIL']);
+        this.clearOverlays(() => {
+          this.drawMarkers(places['RETAIL']);
+        });
         break;
       case 'Health + Fitness':
-        drawMarkers(places['HEALTH + FITNESS']);
+        this.clearOverlays(() => {
+          this.drawMarkers(places['HEALTH + FITNESS']);
+        });
         break;
       case 'Galleries + Museums':
-        drawMarkers(places['GALLERIES + MUSEUMS']);
+        this.clearOverlays(() => {
+          this.drawMarkers(places['GALLERIES + MUSEUMS']);
+        });
         break;
       case 'Film, Theater And Culture':
-        drawMarkers(places['FILM, THEATER AND CULTURE']);
+        this.clearOverlays(() => {
+          this.drawMarkers(places['FILM, THEATER AND CULTURE']);
+        });
         break;
       case 'Bank And Convenience':
-        drawMarkers(places['BANK AND CONVENIENCE']);
+        this.clearOverlays(() => {
+          this.drawMarkers(places['BANK AND CONVENIENCE']);
+        });
         break;
       default:
         break;
     }
   };
 
-  const drawParks = () => {
+  drawParks = () => {
+    const { map, maps } = this.state;
     if (map && maps) {
       parks.forEach(park => {
         const tempPark = new maps.Polygon({
@@ -90,7 +118,8 @@ const Map = ({ activeFilter }) => {
     }
   };
 
-  const drawBuildings = () => {
+  drawBuildingsAndNeighborhoods = () => {
+    const { map, maps, overlays } = this.state;
     if (map && maps) {
       const buildingsArray = [...overlays];
       ourBuildings.forEach(building => {
@@ -115,14 +144,34 @@ const Map = ({ activeFilter }) => {
         buildingsArray.push(tempBuilding);
         buildingsArray.push(tempMarker);
       });
-      if (overlays !== buildingsArray) {
-        // console.log('buildings');
-        setOverlays(buildingsArray);
-      }
+
+      neighborhoodOverlays.forEach(neighborhood => {
+        const tempNeighborhood = new maps.Polygon({
+          paths: neighborhood.path,
+          strokeColor: '#369BF7',
+          strokeOpacity: 0,
+          fillOpacity: 0,
+          strokeWeight: 0,
+          fillColor: '#369BF7',
+          zIndex: 100
+        });
+        tempNeighborhood.addListener('mouseover', function() {
+          this.setOptions({ fillOpacity: '0.5' });
+        });
+        tempNeighborhood.addListener('mouseout', function() {
+          this.setOptions({ fillOpacity: '0' });
+        });
+        tempNeighborhood.setMap(map);
+        buildingsArray.push(tempNeighborhood);
+      });
+
+      this.setState({ overlays: buildingsArray });
     }
   };
 
-  const drawMarkers = data => {
+  drawMarkers = data => {
+    const { map, maps, overlays } = this.state;
+
     const markersArray = [...overlays];
     if (map && maps) {
       const service = new maps.places.PlacesService(map);
@@ -144,18 +193,17 @@ const Map = ({ activeFilter }) => {
         const tempInfoWindow = new maps.InfoWindow();
 
         tempMarker.addListener('click', () => {
-          fetchInfoWindow(service, tempInfoWindow, tempMarker, key);
+          this.fetchInfoWindow(service, tempInfoWindow, tempMarker, key);
         });
         tempMarker.setMap(map);
         markersArray.push(tempMarker);
       });
     }
-    if (overlays !== markersArray) {
-      setOverlays(markersArray);
-    }
+    this.setState({ overlays: markersArray });
   };
 
-  const fetchInfoWindow = (service, infoWindow, marker, key) => {
+  fetchInfoWindow = (service, infoWindow, marker, key) => {
+    const { infoWindows, map } = this.state;
     if (infoWindows[key]) {
       let windowContent = infoWindows[key];
       infoWindow.setContent(windowContent);
@@ -169,8 +217,8 @@ const Map = ({ activeFilter }) => {
         (place, status) => {
           if (status === 'OK') {
             let newWindow = {};
-            newWindow[key] = generateInfoWindow(place);
-            setInfoWindows(Object.assign(infoWindows, newWindow));
+            newWindow[key] = this.generateInfoWindow(place);
+            this.setState({ infoWindows: Object.assign(infoWindows, newWindow) });
             infoWindow.setContent(newWindow[key]);
             infoWindow.open(map, marker);
           }
@@ -179,51 +227,17 @@ const Map = ({ activeFilter }) => {
     }
   };
 
-  const drawNeighborhoods = () => {
-    if (map && maps) {
-      const neighborhoodArray = [...overlays];
-      neighborhoodOverlays.forEach(neighborhood => {
-        const tempNeighborhood = new maps.Polygon({
-          paths: neighborhood.path,
-          strokeColor: '#369BF7',
-          strokeOpacity: 0,
-          fillOpacity: 0,
-          strokeWeight: 0,
-          fillColor: '#369BF7',
-          zIndex: 100
-        });
-        maps.event.addListener(tempNeighborhood, 'mouseover', function() {
-          this.setOptions({ fillOpacity: '0.5' });
-        });
-        maps.event.addListener(tempNeighborhood, 'mouseout', function() {
-          this.setOptions({ fillOpacity: '0' });
-        });
-        tempNeighborhood.setMap(map);
-        neighborhoodArray.push(tempNeighborhood);
-      });
-      if (overlays !== neighborhoodArray) {
-        // console.log('neighborhoods');
-        // console.log(neighborhoodArray.length);
-        setOverlays(neighborhoodArray);
-      }
+  clearOverlays = callback => {
+    const { overlays } = this.state;
+    const overlaysCopy = [...overlays];
+    while (overlaysCopy.length > 0) {
+      const overlay = overlaysCopy.pop();
+      overlay.setMap(null);
     }
+    this.setState({ overlays: overlaysCopy }, callback);
   };
 
-  const clearOverlays = () => {
-    if (overlays.length > 0) {
-      const overlaysCopy = [...overlays];
-      while (overlaysCopy.length > 0) {
-        const overlay = overlaysCopy.pop();
-        overlay.setMap(null);
-      }
-      // console.log('clear');
-      // console.log(overlaysCopy.length);
-      setOverlays(overlaysCopy);
-      // console.log('overlays', overlays.length);
-    }
-  };
-
-  const generateInfoWindow = ({ photos, name, url, formatted_address, rating }) => {
+  generateInfoWindow = ({ photos, name, url, formatted_address, rating }) => {
     return `<div class="styled-info-window">
         <img src="${photos[0].getUrl()}" alt={${name}} />
         <h5>${name}</h5>
@@ -231,11 +245,11 @@ const Map = ({ activeFilter }) => {
           Website
         </a>
         <span>${formatted_address}</span>
-        ${parseStars(rating)}
+        ${this.parseStars(rating)}
       </div>`;
   };
 
-  const parseStars = numStars => {
+  parseStars = numStars => {
     var stars = [];
     var intRating = parseInt(numStars);
     for (var i = 0; i < intRating; i++) {
@@ -248,23 +262,22 @@ const Map = ({ activeFilter }) => {
         <div class="stars-rating">${stars}</div>
       </div class="star-row">`;
   };
-
-  return (
-    <MapContainer>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyBSsLXxJ5NSrSgFjFW7U5hxmGyHnE1po88', libraries: ['places'] }}
-        defaultCenter={{
-          lat: 40.726,
-          lng: -74.006
-        }}
-        defaultZoom={16}
-        options={mapOptions}
-        placesLibrary={true}
-        yesIWantToUseGoogleMapApiInternals
-        onGoogleApiLoaded={({ map, maps }) => setUpMap(map, maps)}
-      />
-    </MapContainer>
-  );
-};
-
-export default Map;
+  render() {
+    return (
+      <MapContainer>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: 'AIzaSyBSsLXxJ5NSrSgFjFW7U5hxmGyHnE1po88', libraries: ['places'] }}
+          defaultCenter={{
+            lat: 40.726,
+            lng: -74.006
+          }}
+          defaultZoom={16}
+          options={mapOptions}
+          placesLibrary={true}
+          yesIWantToUseGoogleMapApiInternals
+          onGoogleApiLoaded={({ map, maps }) => this.setUpMap(map, maps)}
+        />
+      </MapContainer>
+    );
+  }
+}

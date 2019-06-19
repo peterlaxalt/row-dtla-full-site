@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Map from '../components/TestMap';
+import Map from '../components/TestMapClassic';
 import styled from 'styled-components';
 import variables from '../styles/Variables';
 import CopyrightFooter from '../components/CopyrightFooter';
