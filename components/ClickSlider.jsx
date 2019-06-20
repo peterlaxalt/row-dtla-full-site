@@ -112,6 +112,9 @@ const SliderSlide = styled.div`
     width: 100%;
     object-fit: cover;
   }
+  ${mediaMin.tablet`
+    height: 40vh;
+  `}
   ${mediaMin.tabletLandscape`
     height: 100%;
     margin-bottom: 0;
@@ -141,6 +144,9 @@ const TitleImage = styled.img`
   transform: translate(-50%, -50%);
   cursor: pointer;
   width: 90%;
+  ${mediaMin.tablet`
+    height: 20%;
+  `}
   ${mediaMin.tabletLandscape`
     height: 15%;
   `}
