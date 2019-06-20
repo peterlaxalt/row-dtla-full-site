@@ -48,15 +48,16 @@ const MapCol = styled.div`
 const SelectCol = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 20%;
+  margin-bottom: 5%;
   justify-content: flex-start;
   align-items: start;
+  min-height: fit-content;
   ${mediaMin.tablet`
-    margin-bottom: 10%;
+    margin-bottom: 2.5%;
   `}
   ${mediaMin.tabletLandscape`
   margin-bottom: 0;
-  width: 20%;
+  width: 25%;
   flex-direction: column;
   `}
 `;
@@ -71,13 +72,14 @@ const SelectOption = styled.button`
   outline: inherit;
   font-weight: 500;
   text-align: start;
-  font-size: 1em;
-  margin-bottom: 0.5em;
+  font-size: 1.1em;
+  line-height: 30px;
+  margin-bottom: 0.5;
   width: ${props => (props.fullWidth ? '100%' : '50%')};
   ${mediaMin.tabletLandscape`
   width: 100%;
-  font-size: 1.5em;
-  margin-bottom: 0.5em;
+  font-size: 22px;
+  margin-bottom: 5px;
 `}
 `;
 
