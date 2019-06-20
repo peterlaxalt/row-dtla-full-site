@@ -6,6 +6,7 @@ import { buildingsSlider } from '../data/buildings';
 import Context from '../config/Context';
 import styled from 'styled-components';
 import ResponsiveImage from '../components/ResponsiveImage';
+import Map from '../components/Map';
 
 const BuildingsCol = styled.div`
   display: flex;
@@ -37,28 +38,37 @@ const SectionHeader = styled.span`
   margin-bottom: 30px;
 `;
 
+const MapContainer = styled.div`
+  height: 550px;
+  width: 100%;
+  margin-top: 30px;
+`;
+
 const Buildings = () => (
   <Context.Consumer>
-    {context => (
-      <BuildingsCol>
-        <ClickSlider
-          imgArray={buildingsSlider}
-          autoPlay={true}
-          windowWidth={context.state.windowDimensions.width}
-        />
-        <PaddingCol>
-          <SectionHeader>Our Tenants</SectionHeader>
-          <BrandSpinner />
-          <SectionHeader>Our Tenants by Industry</SectionHeader>
-          <ResponsiveImage
-            srcPath="static/images/buildings/DesktopTenantChart"
-            imgAlt="Tenants"
-          />
-        </PaddingCol>
-        <CopyrightFooter />
-        <ScrollUp />
-      </BuildingsCol>
-    )}
+    {context => {
+      const width = context.state.windowDimensions.width;
+      return (
+        <BuildingsCol>
+          <ClickSlider imgArray={buildingsSlider} autoPlay={true} windowWidth={context.state.windowDimensions.width} />
+          <PaddingCol>
+            <MapContainer>
+              <Map activeFilter="Our Buildings" />
+            </MapContainer>
+            <SectionHeader>Our Tenants</SectionHeader>
+            <BrandSpinner />
+            <SectionHeader>Our Tenants by Industry</SectionHeader>
+            {width > 1024 ? (
+              <ResponsiveImage srcPath="static/images/buildings/DesktopTenantChart" imgAlt="Tenants" />
+            ) : (
+              <ResponsiveImage srcPath="static/images/buildings/MobileTenantChart" imgAlt="Tenants" />
+            )}
+          </PaddingCol>
+          <CopyrightFooter />
+          <ScrollUp />
+        </BuildingsCol>
+      );
+    }}
   </Context.Consumer>
 );
 

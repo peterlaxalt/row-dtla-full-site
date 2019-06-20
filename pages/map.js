@@ -39,7 +39,6 @@ const MapCol = styled.div`
   height: 100%;
   min-height: 90vh;
   width: 100%;
-  border: 3px solid #000;
   ${mediaMin.tabletLandscape`
   width: 75%;
   min-height: 100%;
