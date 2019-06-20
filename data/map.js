@@ -101,6 +101,7 @@ const ourBuildings = [
     title: '75 Varick Street',
     url: '/buildings/75-varick-street/',
     markerImg: '/static/images/logos/HSP_BuildingLockUps_75varick.svg',
+    markerSize: [70,60],
     markerPos: { lat: 40.72319941908921, lng: -74.00591966546449 },
     path: [
       { lat: 40.723557, lng: -74.0075246 },
@@ -123,6 +124,7 @@ const ourBuildings = [
     title: '160 Varick Street',
     url: '/buildings/160-varick-street/',
     markerImg: '/static/images/logos/HSP_BuildingLockUps_160varick.svg',
+    markerSize: [90,60],
     markerPos: { lat: 40.72665096689796, lng: -74.00434789098176 },
     path: [
       { lat: 40.7264989, lng: -74.005476 },
@@ -142,6 +144,7 @@ const ourBuildings = [
     title: '345 Hudson Street',
     url: '/buildings/345-hudson-street/',
     markerImg: '/static/images/logos/HSP_BuildingLockUps_345hudson.svg',
+    markerSize: [90,60],
     markerPos: { lat: 40.727750149473366, lng: -74.00936876382929 },
     path: [
       { lat: 40.7275325, lng: -74.0087478 },
@@ -158,6 +161,7 @@ const ourBuildings = [
     title: '350 Hudson Street',
     url: '/buildings/350-hudson-street/',
     markerImg: '/static/images/logos/HSP_BuildingLockUps_350hudson.svg',
+    markerSize: [90,60],
     markerPos: { lat: 40.727573788575, lng: -74.00603768266114 },
     path: [
       { lat: 40.72796622362224, lng: -74.00705308673002 },
@@ -170,6 +174,7 @@ const ourBuildings = [
     title: '375 Hudson Street',
     url: '/buildings/375-hudson-street/',
     markerImg: '/static/images/logos/HSP_BuildingLockUps_375hudson.svg',
+    markerSize: [90,60],
     markerPos: { lat: 40.72837464106847, lng: -74.0066599551526 },
     path: [
       { lat: 40.728798983379484, lng: -74.00845255876578 },
@@ -182,6 +187,7 @@ const ourBuildings = [
     title: '155 Avenue of the Americas',
     url: '/buildings/155-avenue-of-the-americas/',
     markerImg: '/static/images/logos/HSP_BuildingLockUps_155aoa.svg',
+    markerSize: [120,60],
     markerPos: { lat: 40.72529720093036, lng: -74.00584456361207 },
     path: [
       { lat: 40.7253163, lng: -74.0049756 },
@@ -197,6 +203,7 @@ const ourBuildings = [
     title: '100 Avenue of the Americas',
     url: '/buildings/100-avenue-of-the-americas/',
     markerImg: '/static/images/logos/HSP_BuildingLockUps_100aoa.svg',
+    markerSize: [120,60],
     markerPos: { lat: 40.72334577810744, lng: -74.00324818528566 },
     path: [
       { lat: 40.72301887001688, lng: -74.00428798059124 },
@@ -211,6 +218,7 @@ const ourBuildings = [
     title: '200 Hudson Street',
     url: '/buildings/200-hudson-street/',
     markerImg: '/static/images/logos/HSP_BuildingLockUps_200hudson.svg',
+    markerSize: [90,60],
     markerPos: { lat: 40.72287417567417, lng: -74.00855895913514 },
     path: [
       { lat: 40.7226507, lng: -74.0074606 },
@@ -230,6 +238,7 @@ const ourBuildings = [
     title: '205 Hudson Street',
     url: '/buildings/205-hudson-street/',
     markerImg: '/static/images/logos/HSP_BuildingLockUps_205hudson.svg',
+    markerSize: [90,60],
     markerPos: { lat: 40.72374, lng: -74.00923 },
     path: [
       { lat: 40.723390979386, lng: -74.00814394779098 },
@@ -245,6 +254,7 @@ const ourBuildings = [
     title: '12-16 Vestry Street',
     url: '/buildings/12-16-vestry-street/',
     markerImg: '/static/images/logos/HSP_BuildingLockUps_12-16vestry.svg',
+    markerSize: [90,60],
     markerPos: { lat: 40.722268405576976, lng: -74.00689598954591 },
     path: [
       { lat: 40.7226471, lng: -74.0074471 },
@@ -261,6 +271,7 @@ const ourBuildings = [
     title: '225 Varick Street',
     url: '/buildings/225-varick-street/',
     markerImg: '/static/images/logos/HSP_BuildingLockUps_225varick.svg',
+    markerSize: [90,60],
     markerPos: { lat: 40.728939703779844, lng: -74.00497552789125 },
     path: [
       { lat: 40.729323364378345, lng: -74.00587243102257 },
@@ -273,6 +284,7 @@ const ourBuildings = [
     title: '435 Hudson Street',
     url: '/buildings/435-hudson-street/',
     markerImg: '/static/images/logos/HSP_BuildingLockUps_435hudson.svg',
+    markerSize: [90,60],
     markerPos: { lat: 40.73056982183632, lng: -74.00652584470186 },
     path: [
       { lat: 40.73033373864783, lng: -74.00700118816252 },

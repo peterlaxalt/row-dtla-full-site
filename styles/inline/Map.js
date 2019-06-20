@@ -7,7 +7,7 @@ const MapStyles = createGlobalStyle`
     .gm-style-iw{
         border: 2px solid ${colors.babyBlue};
         button {
-            display: none;
+            display: none !important;
         }
     }
     .gm-style-iw-t{
