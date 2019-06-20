@@ -25,6 +25,8 @@ const ContentRow = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
+  min-height: fit-content;
   ${mediaMin.tabletLandscape`
   flex-direction: row;
   height: 60%;
@@ -37,24 +39,27 @@ const MapCol = styled.div`
   height: 100%;
   min-height: 90vh;
   width: 100%;
+  border: 3px solid #000;
   ${mediaMin.tabletLandscape`
   width: 75%;
   min-height: 100%;
   `}
-  border: 3px solid #000;
 `;
 const SelectCol = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 5%;
-  ${mediaMin.tabletLandscape`
-  margin-bottom: 0;
-  width: 20%;
-  flex-direction: column;
-  `}
-  height: 100%;
   justify-content: flex-start;
   align-items: start;
+  min-height: fit-content;
+  ${mediaMin.tablet`
+    margin-bottom: 2.5%;
+  `}
+  ${mediaMin.tabletLandscape`
+  margin-bottom: 0;
+  width: 25%;
+  flex-direction: column;
+  `}
 `;
 
 const SelectOption = styled.button`
@@ -67,13 +72,14 @@ const SelectOption = styled.button`
   outline: inherit;
   font-weight: 500;
   text-align: start;
-  font-size: 1em;
-  margin-bottom: 0.5em;
+  font-size: 1.1em;
+  line-height: 30px;
+  margin-bottom: 0.5;
   width: ${props => (props.fullWidth ? '100%' : '50%')};
   ${mediaMin.tabletLandscape`
   width: 100%;
-  font-size: 1.5em;
-  margin-bottom: 0.5em;
+  font-size: 22px;
+  margin-bottom: 5px;
 `}
 `;
 

@@ -134,7 +134,7 @@ export default class Map extends React.Component {
         });
         const tempMarker = new maps.Marker({
           position: building.markerPos,
-          icon: { url: building.markerImg, scaledSize: new maps.Size(90, 60), anchor: new maps.Point(45, 30) }
+          icon: { url: building.markerImg, scaledSize: new maps.Size(building.markerSize[0], building.markerSize[1]), anchor: new maps.Point(building.markerSize[0] / 2, building.markerSize[1] / 2) }
         });
         tempBuilding.addListener('click', () => {
           window.location.href = building.url;
@@ -153,7 +153,7 @@ export default class Map extends React.Component {
           fillOpacity: 0,
           strokeWeight: 0,
           fillColor: '#369BF7',
-          zIndex: 100
+          zIndex: 1
         });
         tempNeighborhood.addListener('mouseover', function() {
           this.setOptions({ fillOpacity: '0.5' });
