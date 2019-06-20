@@ -25,6 +25,8 @@ const ContentRow = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
+  min-height: fit-content;
   ${mediaMin.tabletLandscape`
   flex-direction: row;
   height: 60%;
@@ -37,24 +39,26 @@ const MapCol = styled.div`
   height: 100%;
   min-height: 90vh;
   width: 100%;
+  border: 3px solid #000;
   ${mediaMin.tabletLandscape`
   width: 75%;
   min-height: 100%;
   `}
-  border: 3px solid #000;
 `;
 const SelectCol = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 5%;
+  margin-bottom: 20%;
+  justify-content: flex-start;
+  align-items: start;
+  ${mediaMin.tablet`
+    margin-bottom: 10%;
+  `}
   ${mediaMin.tabletLandscape`
   margin-bottom: 0;
   width: 20%;
   flex-direction: column;
   `}
-  height: 100%;
-  justify-content: flex-start;
-  align-items: start;
 `;
 
 const SelectOption = styled.button`
