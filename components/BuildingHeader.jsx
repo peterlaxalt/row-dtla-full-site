@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import Context from '../config/Context';
 
 const HeaderContainer = styled.div`
   position: relative;
   display: flex;
+  display: block;
   background-image: url('${props => props.headerBackgroundPath}');
   background-repeat: no-repeat;
-  background-position: center top;
+  // background-position: center top;
   background-size: cover;
   background-color: #fff;
-  height: 1450px;
   width: 100%;
-  @media screen and (max-width: 1024px){
+  height: ${props => props.adjustedHeight}px;
+  @media screen and (max-width: 1024px){ 
       height: 420px;
   }
 `;
@@ -68,20 +70,25 @@ const BackLink = styled.span`
   }
 `;
 
-export default class BuildingHeader extends React.Component {
-  render() {
-    let { headerBackground, headerLogo, headerLogoAlt } = this.props.headerInfo;
-    return (
-      <HeaderContainer headerBackgroundPath={headerBackground}>
-        <LogoContainer>
-          <Link href="/buildings">
-            <BackLink>Back to our Buildings</BackLink>
-          </Link>
-          <HeaderLogo>
-            <img src={headerLogo} alt={headerLogoAlt} />
-          </HeaderLogo>
-        </LogoContainer>
-      </HeaderContainer>
-    );
-  }
-}
+const BuildingHeader = ({ headerInfo }) => {
+  const context = useContext(Context);
+  const { state } = context;
+  const { windowDimensions } = state;
+  const { width } = windowDimensions;
+  const { headerBackground, headerLogo, headerLogoAlt, headerSize } = headerInfo;
+  const adjustedHeight = (width * headerSize[1]) / headerSize[0];
+  return (
+    <HeaderContainer adjustedHeight={adjustedHeight} headerBackgroundPath={headerBackground}>
+      <LogoContainer>
+        <Link href="/buildings">
+          <BackLink>Back to our Buildings</BackLink>
+        </Link>
+        <HeaderLogo>
+          <img src={headerLogo} alt={headerLogoAlt} />
+        </HeaderLogo>
+      </LogoContainer>
+    </HeaderContainer>
+  );
+};
+
+export default BuildingHeader;

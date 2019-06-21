@@ -20,6 +20,7 @@ const BuildingCol = styled.div`
   flex-direction: column;
   align-items: center;
   background: white;
+  height: 100%;
 `;
 
 const PaddingCol = styled.div`

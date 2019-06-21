@@ -4,18 +4,7 @@ import styled from 'styled-components';
 import ResponsiveImage from './ResponsiveImage';
 
 const BeforeAfterContainer = styled.div`
-  height: 90vh;
   width: 100%;
-  div {
-    height: 100%;
-  }
-  .responsive-image {
-    // min-width: 100%;
-    // min-height: 100%;
-  }
-  @media screen and (max-width: 1024px) {
-    height: 40vh;
-  }
 `;
 
 const SliderIconContainer = styled.div`
