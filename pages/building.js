@@ -36,7 +36,7 @@ const PaddingCol = styled.div`
 
 const Spacer = styled.div`
   width: 100%;
-  height: ${props => (props.height ? props.height : '50px')};
+  min-height: ${props => (props.customHeight ? props.customHeight : '50px')};
 `;
 
 const FooterOverlay = styled.div`
@@ -248,13 +248,12 @@ const Building = props => {
       </PaddingCol>
       <Spacer />
       <ImageSlider height="70vh" imgArray={building.sliderArray} showQuotes={true} />
-      <Spacer />
+      <Spacer customHeight="35px" />
       {building.beforeAfter === false ? (
         ''
       ) : (
         <BeforeAfter before={building.beforeAfter.before} after={building.beforeAfter.after} />
       )}
-      <Spacer />
       <ResponsiveImage srcPath={building.footerImage.imgUrl} imgAlt={building.footerImage.imgAlt} />
       <FooterOverlay>
         <span>{building.footerImage.footerText}</span>
