@@ -818,7 +818,7 @@ const buildingsSlider = [
   {
     imgUrl: '/static/images/buildings/Landing_Carousel/10_12_16_Vestry',
     imgAlt: '12-16 Vestry Street',
-    titleImg: '/static/images/logos/logo-12-16-vestry-street.png',
+    titleImg: '/static/images/logos/logo-12-16-vestry-street-white.svg',
     link: '/buildings/12-16-vestry-street/'
   },
   {

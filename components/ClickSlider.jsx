@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import styled from 'styled-components';
 import Link from 'next/link';
 import ResponsiveImage from './ResponsiveImage';
+import { mediaMin } from '../styles/MediaQueries';
 
 const SliderContainer = styled.div`
   & > .slick-slider {
@@ -99,9 +100,10 @@ const SliderContainer = styled.div`
 `;
 
 const SliderSlide = styled.div`
-  height: 100%;
   display: flex;
   flex-direction: column;
+  height: 60vh;
+  margin-bottom: 1.5vh;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -110,10 +112,13 @@ const SliderSlide = styled.div`
     width: 100%;
     object-fit: cover;
   }
-  @media screen and (max-width: 1024px) {
-    height: 30vh;
-    margin-bottom: 1.5vh;
-  }
+  ${mediaMin.tablet`
+    height: 40vh;
+  `}
+  ${mediaMin.tabletLandscape`
+    height: 100%;
+    margin-bottom: 0;
+  `}
 `;
 
 const TitleText = styled.div`
@@ -138,9 +143,13 @@ const TitleImage = styled.img`
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
-  @media screen and (max-width: 1024px) {
-    width: 40vw;
-  }
+  width: 90%;
+  ${mediaMin.tablet`
+    height: 20%;
+  `}
+  ${mediaMin.tabletLandscape`
+    height: 15%;
+  `}
 `;
 
 const SliderDot = styled.a`
@@ -167,11 +176,7 @@ export default class ClickSlider extends React.Component {
         <SliderSlide key={idx}>
           <ResponsiveImage srcPath={el.imgUrl} imgAlt={el.imgAlt} />
           <Link href={el.link}>
-            {el.titleImg !== undefined ? (
-              <TitleImage src={el.titleImg} />
-            ) : (
-              <TitleText>{el.titleText}</TitleText>
-            )}
+            {el.titleImg !== undefined ? <TitleImage src={el.titleImg} /> : <TitleText>{el.titleText}</TitleText>}
           </Link>
         </SliderSlide>
       );

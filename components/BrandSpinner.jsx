@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Context from '../config/Context';
+import { mediaMin } from '../styles/MediaQueries';
 
 const BrandArray = [
   {
@@ -28,9 +29,13 @@ const BrandArray = [
 ];
 
 const BrandSpinnerContainer = styled.div`
-  height: 320px;
   width: 100%;
+  height: 260px;
   position: relative;
+  margin-bottom: 10px;
+  ${mediaMin.tabletLandscape`
+    height: 320px;
+  `}
 `;
 
 const PosZero = `${-150}px, 0`;
@@ -98,55 +103,55 @@ const BrandItem = styled.img`
   transition: transform 0.5s ease;
   ${props => {
     switch (props.position) {
-    case 0:
-      return `transform: translate(${PosZero});`;
-    case 1:
-      return `transform: translate(${PosOne(props.width)}) scale(.8);`;
-    case 2:
-      return `transform: translate(${PosTwo(props.width)}) scale(.6);`;
-    case 3:
-      return `transform: translate(${PosThree(props.width)}) scale(.5);`;
-    case 4:
-      return `transform: translate(${PosFour(props.width)}) scale(.45);`;
-    case 5:
-      return `transform: translate(${PosFive}) scale(.4);`;
-    case 6:
-      return `transform: translate(${PosSix(props.width)}) scale(.45);`;
-    case 7:
-      return `transform: translate(${PosSeven(props.width)}) scale(.5);`;
-    case 8:
-      return `transform: translate(${PosEight(props.width)}) scale(.6);`;
-    case 9:
-      return `transform: translate(${PosNine(props.width)}) scale(.8);`;
+      case 0:
+        return `transform: translate(${PosZero});`;
+      case 1:
+        return `transform: translate(${PosOne(props.width)}) scale(.8);`;
+      case 2:
+        return `transform: translate(${PosTwo(props.width)}) scale(.6);`;
+      case 3:
+        return `transform: translate(${PosThree(props.width)}) scale(.5);`;
+      case 4:
+        return `transform: translate(${PosFour(props.width)}) scale(.45);`;
+      case 5:
+        return `transform: translate(${PosFive}) scale(.4);`;
+      case 6:
+        return `transform: translate(${PosSix(props.width)}) scale(.45);`;
+      case 7:
+        return `transform: translate(${PosSeven(props.width)}) scale(.5);`;
+      case 8:
+        return `transform: translate(${PosEight(props.width)}) scale(.6);`;
+      case 9:
+        return `transform: translate(${PosNine(props.width)}) scale(.8);`;
     }
   }};
   @media screen and (max-width: 1024px) {
     height: 50px;
     width: 150px;
     ${props => {
-    switch (props.position) {
-    case 0:
-      return `transform: translate(${PosZeroMobile});`;
-    case 1:
-      return `transform: translate(${PosOneMobile(props.width)}) scale(.8);`;
-    case 2:
-      return `transform: translate(${PosTwoMobile(props.width)}) scale(.6);`;
-    case 3:
-      return `transform: translate(${PosThreeMobile(props.width)}) scale(.5);`;
-    case 4:
-      return `transform: translate(${PosFourMobile(props.width)}) scale(.45);`;
-    case 5:
-      return `transform: translate(${PosFiveMobile}) scale(.4);`;
-    case 6:
-      return `transform: translate(${PosSixMobile(props.width)}) scale(.45);`;
-    case 7:
-      return `transform: translate(${PosSevenMobile(props.width)}) scale(.5);`;
-    case 8:
-      return `transform: translate(${PosEightMobile(props.width)}) scale(.6);`;
-    case 9:
-      return `transform: translate(${PosNineMobile(props.width)}) scale(.8);`;
-    }
-  }};
+      switch (props.position) {
+        case 0:
+          return `transform: translate(${PosZeroMobile});`;
+        case 1:
+          return `transform: translate(${PosOneMobile(props.width)}) scale(.8);`;
+        case 2:
+          return `transform: translate(${PosTwoMobile(props.width)}) scale(.6);`;
+        case 3:
+          return `transform: translate(${PosThreeMobile(props.width)}) scale(.5);`;
+        case 4:
+          return `transform: translate(${PosFourMobile(props.width)}) scale(.45);`;
+        case 5:
+          return `transform: translate(${PosFiveMobile}) scale(.4);`;
+        case 6:
+          return `transform: translate(${PosSixMobile(props.width)}) scale(.45);`;
+        case 7:
+          return `transform: translate(${PosSevenMobile(props.width)}) scale(.5);`;
+        case 8:
+          return `transform: translate(${PosEightMobile(props.width)}) scale(.6);`;
+        case 9:
+          return `transform: translate(${PosNineMobile(props.width)}) scale(.8);`;
+      }
+    }};
   }
 `;
 
@@ -184,11 +189,12 @@ export default class BrandSpinner extends React.Component {
   render() {
     return (
       <Context.Consumer>
-        {context => (
-          <BrandSpinnerContainer>
-            {this.createBrandItems(context.state.windowDimensions.width)}
-          </BrandSpinnerContainer>
-        )}
+        {context => {
+          const width = context.state.windowDimensions.width;
+          return (
+            <BrandSpinnerContainer>{this.createBrandItems(width > 768 ? width * 0.75 : width)}</BrandSpinnerContainer>
+          );
+        }}
       </Context.Consumer>
     );
   }

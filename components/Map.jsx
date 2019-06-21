@@ -7,6 +7,7 @@ import { mapOptions, ourBuildings, places, parks, neighborhoodOverlays } from '.
 const MapContainer = styled.div`
   height: 100%;
   width: 100%;
+  border: 3px solid #000;
 `;
 
 export default class Map extends React.Component {
@@ -134,7 +135,11 @@ export default class Map extends React.Component {
         });
         const tempMarker = new maps.Marker({
           position: building.markerPos,
-          icon: { url: building.markerImg, scaledSize: new maps.Size(building.markerSize[0], building.markerSize[1]), anchor: new maps.Point(building.markerSize[0] / 2, building.markerSize[1] / 2) }
+          icon: {
+            url: building.markerImg,
+            scaledSize: new maps.Size(building.markerSize[0], building.markerSize[1]),
+            anchor: new maps.Point(building.markerSize[0] / 2, building.markerSize[1] / 2)
+          }
         });
         tempBuilding.addListener('click', () => {
           window.location.href = building.url;
