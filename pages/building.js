@@ -12,6 +12,7 @@ import Link from 'next/link';
 import MiniMap from '../components/MiniMap';
 import variables from '~/styles/Variables';
 import ContactCard from '~/components/ContactCard';
+import { mediaMin } from '../styles/MediaQueries';
 
 const { colors } = variables;
 
@@ -20,7 +21,9 @@ const BuildingCol = styled.div`
   flex-direction: column;
   align-items: center;
   background: white;
+  ${mediaMin.tabletLandscape`
   height: 100%;
+  `}
 `;
 
 const PaddingCol = styled.div`
@@ -128,9 +131,13 @@ const AboutSection = styled.div`
     margin-bottom: 12px;
   }
   p {
-    font-size: 19px;
-    line-height: 29px;
     margin-bottom: 40px;
+    font-size: 17px;
+    line-height: 25px;
+    ${mediaMin.tabletLandscape`
+      font-size: 19px;
+      line-height: 29px;
+    `}
   }
 `;
 
@@ -149,24 +156,36 @@ const MapLink = styled.a`
 
 const FactRowContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
+  height: 100%;
+  ${mediaMin.tabletLandscape`
+    flex-direction: row;
+  `}
 `;
 
 const FactRow = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  width: 65%;
+  flex-direction: row;
+  ${mediaMin.tabletLandscape`
+    width: 65%;
+  `}
 `;
 
 const Fact = styled.div`
   display: flex;
   flex-direction: column;
+  font-size: 17px;
+  line-height: 25px;
+  margin-bottom: 40px;
+  width: ${props => (props.fullWidth ? '100%' : '50%')};
+  ${mediaMin.tabletLandscape`
   font-size: 19px;
   line-height: 29px;
-  width: 33%;
-  margin-bottom: 40px;
+    width: 33%;
+  `}
   a {
     color: ${variables.colors.babyBlue};
     &:hover {
@@ -216,7 +235,7 @@ const Building = props => {
                 <span>Floor Sizes:</span>
                 <span>{building.floorSizes}</span>
               </Fact>
-              <Fact>
+              <Fact fullWidth>
                 <a href={building.factSheet} target="_blank" rel="noopener noreferrer">
                   View Floor Plans and Detailed Specs
                 </a>

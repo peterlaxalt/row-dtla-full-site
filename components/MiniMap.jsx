@@ -1,13 +1,24 @@
 import { GoogleMap, Polygon, withGoogleMap, withScriptjs, Marker } from 'react-google-maps';
 import { compose, withProps } from 'recompose';
 import React from 'react';
+import styled from 'styled-components';
+import { mediaMin } from '../styles/MediaQueries';
+
+const MapContainer = styled.div`
+  width: 100%;
+  height: 400px;
+  ${mediaMin.tabletLandscape`
+    width: 35%;
+    height: unset;
+  `}
+`;
 
 const MiniMap = compose(
   withProps({
     googleMapURL:
       'https://maps.googleapis.com/maps/api/js?key=AIzaSyBSsLXxJ5NSrSgFjFW7U5hxmGyHnE1po88&callback=initMap',
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ width: '35%' }} />,
+    containerElement: <MapContainer />,
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
