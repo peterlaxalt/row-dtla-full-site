@@ -6,6 +6,7 @@ import { buildingsSlider } from '../data/buildings';
 import Context from '../config/Context';
 import styled from 'styled-components';
 import ResponsiveImage from '../components/ResponsiveImage';
+import { mediaMin } from '../styles/MediaQueries';
 import Map from '../components/Map';
 
 const BuildingsCol = styled.div`
@@ -20,7 +21,10 @@ const PaddingCol = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 0 40px;
+  padding: 0 15px;
+  ${mediaMin.tabletLandscape`
+    padding: 0 40px;
+  `}
   .responsive-image {
     width: 75%;
     max-width: 100%;
@@ -29,13 +33,19 @@ const PaddingCol = styled.div`
 `;
 
 const SectionHeader = styled.span`
-  font-size: 24px;
   line-height: 30px;
+  font-size: 20px;
   font-weight: 500;
   width: 100%;
-  padding: 20px 0;
+  padding: 12px 0;
   border-bottom: 3px solid black;
   margin-bottom: 30px;
+  ${mediaMin.tabletLandscape`
+  font-size: 24px;
+  line-height: 24px;
+  padding: 20px 0;
+
+  `}
 `;
 
 const MapContainer = styled.div`
@@ -50,6 +60,13 @@ const Buildings = () => (
       const width = context.state.windowDimensions.width;
       return (
         <BuildingsCol>
+          {width > 1024 ? (
+            ''
+          ) : (
+            <PaddingCol>
+              <SectionHeader>Buildings</SectionHeader>
+            </PaddingCol>
+          )}
           <ClickSlider imgArray={buildingsSlider} autoPlay={true} windowWidth={context.state.windowDimensions.width} />
           <PaddingCol>
             <MapContainer>
@@ -64,8 +81,8 @@ const Buildings = () => (
               <ResponsiveImage srcPath="static/images/buildings/MobileTenantChart" imgAlt="Tenants" />
             )}
           </PaddingCol>
-          <CopyrightFooter />
           <ScrollUp />
+          <CopyrightFooter />
         </BuildingsCol>
       );
     }}

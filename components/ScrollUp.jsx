@@ -1,29 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
+import { mediaMin } from '../styles/MediaQueries';
 
-const ScrollUpButton = styled.div`
+const ScrollUpButton = styled.button`
   &::before {
     content: '\\f139';
     font: normal normal normal 14px/1 FontAwesome;
     font-size: 32px;
   }
-  position: fixed;
+  width: 100%;
+  margin: 0 auto;
   cursor: pointer;
+  text-align: center;
+  position: relative;
   color: #000;
   bottom: 1%;
   right: 1%;
   z-index: 100;
-  ${props =>
-    props.showButton
-      ? 'opacity: 1; visibility: visible;'
-      : 'opacity: 0; visibility: hidden;'}
+  margin: 32px 0 -32px 0;
+  ${props => (props.showButton ? 'opacity: 1; visibility: visible;' : 'opacity: 0; visibility: hidden;')}
   transition: 0.25s all ease-in-out;
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-    text-align: center;
-    position: relative;
-    margin: 0 auto;
-  }
+  ${mediaMin.tabletLandscape`
+    margin: 0;
+    width: 32px;
+    position: fixed;
+  `}
 `;
 
 export default class ScrollUp extends React.Component {
@@ -56,10 +57,7 @@ export default class ScrollUp extends React.Component {
     this.setState({
       lastScroll: window.pageYOffset
     });
-    if (
-      window.pageYOffset === 0 ||
-      window.pageYOffset > this.state.lastScroll
-    ) {
+    if (window.pageYOffset === 0 || window.pageYOffset > this.state.lastScroll) {
       clearInterval(this.state.intervalId);
       this.setState({
         lastScroll: 1000000000
@@ -74,11 +72,6 @@ export default class ScrollUp extends React.Component {
   };
 
   render() {
-    return (
-      <ScrollUpButton
-        showButton={this.state.showButton}
-        onClick={this.scrollToTop}
-      />
-    );
+    return <ScrollUpButton showButton={this.state.showButton} onClick={this.scrollToTop} />;
   }
 }
