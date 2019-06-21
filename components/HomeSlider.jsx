@@ -3,8 +3,11 @@ import Slider from 'react-slick';
 import styled from 'styled-components';
 import Link from 'next/link';
 import ResponsiveImage from './ResponsiveImage';
+import { mediaMin } from '../styles/MediaQueries';
 
 const SliderContainer = styled.div`
+  opacity: ${props => (props.loaded ? '1' : '0')};
+  transition: 1s opacity ease-in-out;
   & > .slick-slider {
     position: fixed;
     top: 0;
@@ -98,7 +101,8 @@ const SliderContainer = styled.div`
 `;
 
 const SliderSlide = styled.div`
-  height: 100%;
+  margin-bottom: 1.5vh;
+  height: 55vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -109,9 +113,11 @@ const SliderSlide = styled.div`
     width: 100%;
     object-fit: cover;
   }
+  ${mediaMin.tabletLandscape`
+    height: 100%;
+    margin-bottom: 0;
+  `}
   @media screen and (max-width: 1024px) {
-    margin-bottom: 1.5vh;
-    height: 30vh;
   }
 `;
 
@@ -121,17 +127,18 @@ const TitleText = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
+  z-index: 10;
   color: ${props => (props.titleText === 'AVAILABILITY' ? '#000' : '#fff')};
-  font-size: 110px;
   font-weight: 600;
   letter-spacing: 3px;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  @media screen and (max-width: 1024px) {
-    font-size: 24px;
-  }
+  font-size: 36px;
+  ${mediaMin.tabletLandscape`
+  font-size: 110px;
+`}
 `;
 
 const TitleImage = styled.img`
@@ -157,6 +164,7 @@ const InnerImageFader = styled.div`
   height: 100%;
   width: 100%;
   position: relative;
+  z-index: 0;
   .responsive-image {
     opacity: 0;
     transition: 1.5s opacity ease-in-out;
@@ -220,6 +228,7 @@ export default class HomeSlider extends React.Component {
     });
   };
   render() {
+    const { loaded } = this.props;
     var settings = {
       customPaging: function(i) {
         return (
@@ -245,7 +254,7 @@ export default class HomeSlider extends React.Component {
       }
     };
     return (
-      <SliderContainer>
+      <SliderContainer loaded={loaded}>
         {this.props.windowWidth > 1024 ? (
           <Slider {...settings}>{this.createSlides()}</Slider>
         ) : (
