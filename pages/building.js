@@ -22,7 +22,7 @@ const BuildingCol = styled.div`
   align-items: center;
   background: white;
   ${mediaMin.tabletLandscape`
-  height: 100%;
+    height: 100%;
   `}
 `;
 
