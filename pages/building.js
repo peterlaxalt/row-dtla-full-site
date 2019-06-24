@@ -121,6 +121,7 @@ const AboutSection = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   h3 {
     font-weight: 500;
     font-style: normal;
