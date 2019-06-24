@@ -1,31 +1,23 @@
 import Head from 'next/head';
-import Router from 'next/router';
-import NProgress from 'nprogress';
-
-import GlobalStyles from '../../styles/Global';
-
 import Header from '../includes/Header';
+import { withRouter } from 'next/router';
 
-NProgress.configure({ showSpinner: false });
+import { capitalizeFirstLetter } from '~/helpers/strings';
 
-Router.onRouteChangeStart = () => {
-  NProgress.start();
+const Layout = (props) => {
+  const title = props.router.pathname.replace('/', '');
+  
+  return (
+    <React.Fragment>
+      <Head>
+        <title>
+          {title ? `${capitalizeFirstLetter(title)} - Hudson Square Properties` : 'Hudson Square Properties'}
+        </title>
+      </Head>
+      <Header />
+      {props.children}
+    </React.Fragment>
+  );
 };
 
-Router.onRouteChangeComplete = () => NProgress.done();
-Router.onRouteChangeError = () => NProgress.done();
-
-const Layout = ({children, title}) => (
-  <React.Fragment>
-    <Head>
-      <title>{title ? `${title} - Hudson Square Properties` : 'Hudson Square Properties'}</title>
-    </Head>
-    <GlobalStyles />
-    <Header />
-    <div className='container'>
-      {children}
-    </div>
-  </React.Fragment>
-);
-
-export default Layout;
+export default withRouter(Layout);

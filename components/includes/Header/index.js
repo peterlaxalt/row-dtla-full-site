@@ -1,10 +1,18 @@
 import Link from 'next/link';
+import { withRouter } from 'next/router';
 import styled from 'styled-components';
-import routes from '../../../data/routes';
+import { mediaMin } from '~/styles/MediaQueries';
 
-// import { pxToRem } from '../helpers/math';
+import routes from '~/data/routes';
+import locations from '~/data/locations';
 
-import HamburgerMenu from './HamburgerMenu';
+import MobileNavigation from './MobileNav';
+import { BuildingNavigation, DesktopNavigation } from './DesktopNav';
+import Context from '~/config/Context';
+
+const isUpperNavActive = props => {
+  return props.route !== 'home' ? true : props.active;
+};
 
 const HeaderWrapper = styled.div`
   position: fixed;
@@ -14,57 +22,53 @@ const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
-  background: grey;
-`;
+  height: 50px;
+  background: #fff;
+  transition: background 200ms ease;
+  z-index: 100;
 
-const NavUnorderedList = styled.ul`
-  display: flex;
-  align-items: center;
-`;
-
-const NavListItem = styled.li`
-  color: inherit;
-  cursor: pointer;
-  margin: 0 15px;
-  list-style-type: none;
-  text-decoration: none;
-  
-  &:hover {
-    text-decoration: underline;
-  }
+  ${mediaMin.desktopSmall`
+    background: ${props => (isUpperNavActive(props) ? '#fff' : 'transparent')};
+    height: 60px;
+  `}
 `;
 
 const HeaderLogo = styled.img`
-  margin-left: 40px;
+  display: block;
+  max-width: 100%;
+  margin-left: 15px;
+
+  ${mediaMin.tabletLandscape`
+    margin-left: 40px;
+  `}
 `;
 
-const generateLinks = () => {
-  const links = routes.map((page) => (
-    <Link key={`link-${page}`} href={`/${page}`} passHref>
-      <NavListItem><a>{page.toUpperCase()}</a></NavListItem>
-    </Link>
-  ));
-  
-  return (
-    <div style={{ display: 'flex', height: '100%', background: 'red'}}>
-      <NavUnorderedList>
-        {links}
-      </NavUnorderedList>
-      <HamburgerMenu />
-    </div>
-  );
-};
+class Header extends React.Component {
+  render() {
+    const route = this.props.router.pathname.replace('/', '') || 'home';
 
-const Header = () => {
-  return (
-    <HeaderWrapper>
-      <Link key='link-home' href={`/`}>
-        <a><HeaderLogo src='/static/images/logos/hudson_square_properties_logo.png' alt='Hudson Square Properties Logo' /></a>
-      </Link>
-      {generateLinks()}
-    </HeaderWrapper>
-  );
-};
+    return (
+      <Context.Consumer>
+        {context => (
+          <React.Fragment>
+            <HeaderWrapper active={context.state.navigation.desktopNavActive} route={route}>
+              <Link key="link-home" href={`/`}>
+                <a style={{ margin: 'auto 0' }}>
+                  <HeaderLogo
+                    src="/static/images/logos/hudson_square_properties_logo.png"
+                    alt="Hudson Square Properties Logo"
+                  />
+                </a>
+              </Link>
+              <DesktopNavigation locations={locations} routes={routes} route={route} />
+              <MobileNavigation locations={locations} routes={routes} />
+            </HeaderWrapper>
+            <BuildingNavigation route={route} />
+          </React.Fragment>
+        )}
+      </Context.Consumer>
+    );
+  }
+}
 
-export default Header;
+export default withRouter(Header);
