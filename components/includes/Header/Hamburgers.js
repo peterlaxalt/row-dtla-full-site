@@ -22,11 +22,33 @@ const Line = styled.div`
   display: block;
   width: 100%;
   top: ${props => props.top};
-  transition: top 300ms ease;
+  transition: top 300ms ease, opacity 400ms ease, transform 200ms ease;
+  &.desktop-top-line {
+    opacity: ${props => (props.open ? 0 : 1)};
+  }
+
+  &.desktop-top-middle {
+    ${props => props.open && 'transform: rotate(45deg)'};
+  }
+
+  &.desktop-bottom-middle {
+    ${props => props.open && 'transform: rotate(-45deg)'};
+  }
+
+  &.desktop-bottom-line {
+    opacity: ${props => (props.open ? 0 : 1)};
+  }
 
   ${HamburgerDiv}:hover & {
     ${mediaMin.desktopSmall`
       top: ${props => props.topHover || null};
+      &.desktop-top-middle {
+        ${props => props.open && 'transform: rotate(0deg)'};
+      }
+
+      &.desktop-bottom-middle {
+        ${props => props.open && 'transform: rotate(0deg)'};
+      }
     `}
   }
 `;
@@ -34,9 +56,10 @@ const Line = styled.div`
 export const DesktopHamburger = props => {
   return (
     <HamburgerDiv onClick={props.toggleDesktopNav}>
-      <Line top="25%" topHover="30%" />
-      <Line top="45%" />
-      <Line top="65%" topHover="60%" />
+      <Line open={props.open} className="desktop-top-line" top="25%" topHover="30%" />
+      <Line open={props.open} className="desktop-top-middle" top="45%" />
+      <Line open={props.open} className="desktop-bottom-middle" top="45%" />
+      <Line open={props.open} className="desktop-bottom-line" top="65%" topHover="60%" />
     </HamburgerDiv>
   );
 };

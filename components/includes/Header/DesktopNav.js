@@ -55,8 +55,10 @@ export const DesktopNavigation = props => {
     const links = props.routes.map(page => {
       let link =
         page !== 'buildings' ? (
+          // eslint-disable-next-line
           <a>{page.toUpperCase()}</a>
         ) : (
+          // eslint-disable-next-line
           <a onMouseOver={context.toggleBuildingNav} onFocus={context.toggleBuildingNav}>
             {page.toUpperCase()}
           </a>
@@ -79,7 +81,12 @@ export const DesktopNavigation = props => {
           <NavUnorderedList route={props.route} active={context.state.navigation.desktopNavActive}>
             {generateLinks(context)}
           </NavUnorderedList>
-          {props.route === 'home' && <DesktopHamburger toggleDesktopNav={context.toggleDesktopNav} />}
+          {props.route === 'home' && (
+            <DesktopHamburger
+              open={context.state.navigation.desktopNavActive}
+              toggleDesktopNav={context.toggleDesktopNav}
+            />
+          )}
         </DesktopNav>
       )}
     </Context.Consumer>
