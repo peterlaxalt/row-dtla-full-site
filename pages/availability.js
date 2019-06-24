@@ -4,6 +4,8 @@ import ImageSlider from '../components/Slider';
 import AvailabilityList from '../components/AvailabilityList';
 import ScrollUp from '../components/ScrollUp';
 import styled from 'styled-components';
+import { mediaMin } from '../styles/MediaQueries';
+
 const imageArray = [
   {
     imgUrl: '/static/images/availability/1_Landing_Carousel/1-availability',
@@ -20,7 +22,11 @@ const imageArray = [
 ];
 
 const PaddingCol = styled.div`
-  padding: 0 40px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  ${mediaMin.tabletLandscape`
+padding: 0 40px;
+`}
 `;
 
 const AvailabilityPage = () => (
