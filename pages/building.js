@@ -81,8 +81,7 @@ const ContactRow = styled.div`
   width: 100%;
 `;
 
-const RowHeading = styled.a`
-  cursor: pointer;
+const RowTitle = styled.span`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -92,15 +91,8 @@ const RowHeading = styled.a`
   padding: 0 0 30px 0;
   margin: 30px 0 0 0;
   border-bottom: 3px solid black;
-  &:hover {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
-`;
-
-const RowTitle = styled.span`
   font-size: 22px;
+  font-weight: 500;
 `;
 
 const RowBody = styled.div`
@@ -275,9 +267,7 @@ const Building = props => {
           ''
         ) : (
           <ContactRow>
-            <RowHeading>
-              <RowTitle>Leasing Contacts</RowTitle>
-            </RowHeading>
+            <RowTitle>Leasing Contacts</RowTitle>
             <RowBody numChildren={building.contactArray.length}>{createContactList(building.contactArray)}</RowBody>
           </ContactRow>
         )}
