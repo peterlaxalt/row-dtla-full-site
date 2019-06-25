@@ -15,7 +15,7 @@ import {
 const buildings = [
   {
     title: '75 Varick Street',
-    navTitle: '75 VARICK',
+    navTitle: '75 Varick',
     slug: '75-varick-street',
     yearConstructed: '1929',
     numFloors: '17',
@@ -103,7 +103,7 @@ const buildings = [
   },
   {
     title: '160 Varick Street',
-    navTitle: '160 VARICK',
+    navTitle: '160 Varick',
     slug: '160-varick-street',
     yearConstructed: '1927-1928',
     numFloors: '12',
@@ -183,7 +183,7 @@ const buildings = [
   },
   {
     title: '345 Hudson Street',
-    navTitle: '345 HUDSON',
+    navTitle: '345 Hudson',
     slug: '345-hudson-street',
     yearConstructed: '1931',
     numFloors: '17',
@@ -289,7 +289,7 @@ const buildings = [
   },
   {
     title: '375 Hudson Street',
-    navTitle: '375 HUDSON',
+    navTitle: '375 Hudson',
     slug: '375-hudson-street',
     yearConstructed: '1987',
     numFloors: '18 + Penthouse',
@@ -479,7 +479,7 @@ const buildings = [
   },
   {
     title: '200 Hudson Street',
-    navTitle: '200 HUDSON',
+    navTitle: '200 Hudson',
     slug: '200-hudson-street',
     yearConstructed: '1926',
     numFloors: '12',
@@ -535,7 +535,7 @@ const buildings = [
   },
   {
     title: '205 Hudson Street',
-    navTitle: '205 HUDSON',
+    navTitle: '205 Hudson',
     slug: '205-hudson-street',
     yearConstructed: '1928',
     numFloors: '12',
@@ -603,7 +603,7 @@ const buildings = [
   },
   {
     title: '12-16 Vestry Street',
-    navTitle: '12-16 VESTRY',
+    navTitle: '12-16 Vestry',
     slug: '12-16-vestry-street',
     yearConstructed: '1882',
     numFloors: '7',
@@ -641,7 +641,7 @@ const buildings = [
   },
   {
     title: '225 Varick Street',
-    navTitle: '225 VARICK',
+    navTitle: '225 Varick',
     slug: '225-varick-street',
     yearConstructed: '1926',
     numFloors: '12',
@@ -721,7 +721,7 @@ const buildings = [
   },
   {
     title: '435 Hudson Street',
-    navTitle: '435 HUDSON',
+    navTitle: '435 Hudson',
     slug: '435-hudson-street',
     yearConstructed: '1931',
     numFloors: '9',
