@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { MobileHamburger, MobileClose } from './Hamburgers';
 import { generateBuildingLinks, generateLocationLinks, generateNewsLink } from './SubNav';
 import { mediaMin } from '~/styles/MediaQueries';
+import variables from '~/styles/Variables';
 import Context from '~/config/Context';
 
 const MobileHamburgerContainer = styled.div`
@@ -15,6 +16,18 @@ const MobileHamburgerContainer = styled.div`
   `}
 `;
 
+const MobileOverlay = styled.div`
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all 200ms ease;
+  visibility: ${props => (props.active ? 'visible' : 'hidden')};
+  opacity: ${props => (props.active ? 1 : 0)};
+`;
+
 const MobileNav = styled.div`
   background: #fff;
   width: 300px;
@@ -24,6 +37,7 @@ const MobileNav = styled.div`
   right: ${props => (props.active ? 0 : '-300px')};
   visibility: ${props => (props.active ? 'visible' : 'hidden')};
   transition: all 400ms ease;
+  z-index: 1;
 
   ${mediaMin.desktopSmall`
     display: none;
@@ -41,6 +55,10 @@ const MobileNav = styled.div`
       padding: 17px 0;
       border-bottom: 2px solid rgba(200, 200, 200, 0.2);
       position: relative;
+      font-family: ${variables.typography.default};
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1px;
       i {
         position: absolute;
         right: 0;
@@ -102,6 +120,7 @@ const MobileNavigation = props => {
             <MobileClose toggleMobileNav={context.toggleMobileNav} />
             <ul className="main-nav-ul">{generateLinks}</ul>
           </MobileNav>
+          <MobileOverlay onClick={context.toggleMobileNav} active={context.state.navigation.mobileNavActive} />
         </React.Fragment>
       )}
     </Context.Consumer>

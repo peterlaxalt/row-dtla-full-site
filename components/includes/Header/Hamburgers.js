@@ -6,7 +6,7 @@ import variables from '~/styles/Variables';
 const HamburgerDiv = styled.div`
   width: 25px;
   position: relative;
-  margin: 0 20px;
+  margin: 0 15px 0 25px;
   cursor: pointer;
 
   ${mediaMin.desktopSmall`
