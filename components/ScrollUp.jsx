@@ -3,11 +3,6 @@ import styled from 'styled-components';
 import { mediaMin } from '../styles/MediaQueries';
 
 const ScrollUpButton = styled.button`
-  &::before {
-    content: '\\f139';
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: 32px;
-  }
   width: 100%;
   margin: 0 auto;
   cursor: pointer;
@@ -22,9 +17,14 @@ const ScrollUpButton = styled.button`
   transition: 0.25s all ease-in-out;
   ${mediaMin.tabletLandscape`
     margin: 0;
-    width: 32px;
+    width: 42px;
+    height: 42px;
     position: fixed;
   `}
+  img {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export default class ScrollUp extends React.Component {
@@ -72,6 +72,10 @@ export default class ScrollUp extends React.Component {
   };
 
   render() {
-    return <ScrollUpButton showButton={this.state.showButton} onClick={this.scrollToTop} />;
+    return (
+      <ScrollUpButton showButton={this.state.showButton} onClick={this.scrollToTop}>
+        <img src="/static/images/icons/back-to-top.svg" alt="scroll to top" />
+      </ScrollUpButton>
+    );
   }
 }
