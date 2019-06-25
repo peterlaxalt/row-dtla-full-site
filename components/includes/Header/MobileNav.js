@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import Router from 'next/router';
 
 import { MobileHamburger, MobileClose } from './Hamburgers';
 import { generateBuildingLinks, generateLocationLinks, generateNewsLink } from './SubNav';
@@ -51,6 +50,7 @@ const MobileNav = styled.div`
   ul.main-nav-ul {
     padding-top: 20px;
     padding-right: 40px;
+    margin-top: 0;
     li.main-nav-li:nth-child(10) {
       border-bottom: none;
     }
@@ -84,8 +84,6 @@ const MobileNav = styled.div`
 
 const MobileNavigation = props => {
   const context = React.useContext(Context);
-
-  Router.events.on('routeChangeStart', context.toggleMobileNav);
 
   const generateLinks = props.routes.map(page => {
     let pageLink = (page, subNav = null) => (
@@ -122,14 +120,14 @@ const MobileNavigation = props => {
       {context => (
         <React.Fragment>
           <MobileHamburgerContainer>
-            <MobileHamburger toggleMobileNav={context.toggleMobileNav} />
+            <MobileHamburger />
           </MobileHamburgerContainer>
           <MobileNav active={context.state.navigation.mobileNavActive}>
-            <MobileClose toggleMobileNav={context.toggleMobileNav} />
+            <MobileClose />
             <ul className="main-nav-ul">{generateLinks}</ul>
           </MobileNav>
           {context.state.windowDimensions.width < 1250 && (
-            <MobileOverlay onClick={context.toggleMobileNav} active={context.state.navigation.mobileNavActive} />
+            <MobileOverlay onClick={context.closeMobileNav} active={context.state.navigation.mobileNavActive} />
           )}
         </React.Fragment>
       )}

@@ -41,11 +41,18 @@ class ContextProvider extends Component {
         value={{
           ...this.props,
           state: this.state,
-          toggleMobileNav: () =>
+          openMobileNav: () =>
             this.setState({
               navigation: {
                 ...this.state.navigation,
-                mobileNavActive: !this.state.navigation.mobileNavActive
+                mobileNavActive: true
+              }
+            }),
+          closeMobileNav: () =>
+            this.setState({
+              navigation: {
+                ...this.state.navigation,
+                mobileNavActive: false
               }
             }),
           toggleDesktopNav: () =>
@@ -55,14 +62,13 @@ class ContextProvider extends Component {
                 desktopNavActive: !this.state.navigation.desktopNavActive
               }
             }),
-          toggleBuildingNav: (boolean = undefined) => {
+          toggleBuildingNav: (boolean = undefined) =>
             this.setState({
               navigation: {
                 ...this.state.navigation,
                 buildingNavActive: boolean || !this.state.navigation.buildingNavActive
               }
-            });
-          },
+            }),
           toggleSubNav: section => {
             let activeSection = this.state.navigation.activeSubNav === section ? false : section;
             this.setState({

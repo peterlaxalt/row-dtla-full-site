@@ -25,7 +25,7 @@ const HeaderWrapper = styled.div`
   height: 50px;
   background: #fff;
   transition: background 200ms ease;
-  z-index: 100;
+  z-index: 999;
 
   ${mediaMin.desktopSmall`
     background: ${props => (isUpperNavActive(props) ? '#fff' : 'none')};
@@ -43,34 +43,38 @@ const HeaderLogo = styled.img`
   `}
 `;
 
-class Header extends React.Component {
-  render() {
-    const route = this.props.router.pathname.replace('/', '') || 'home';
+import React from 'react';
 
-    return (
-      <Context.Consumer>
-        {context => (
-          <React.Fragment>
-            <HeaderWrapper active={context.state.navigation.desktopNavActive} route={route}>
-              <Link key="link-home" href={`/`}>
-                {/* eslint-disable-next-line */}
-                <a>
-                  <HeaderLogo
-                    src="/static/images/logos/hudson_square_properties_logo.png"
-                    alt="Hudson Square Properties Logo"
-                  />
-                </a>
-              </Link>
-              <DesktopNavigation locations={locations} routes={routes} route={route} />
-              <MobileNavigation locations={locations} routes={routes} />
-            </HeaderWrapper>
-            <BuildingNavigation route={route} />
-            <BuildingEscapeOverlay />
-          </React.Fragment>
-        )}
-      </Context.Consumer>
-    );
-  }
-}
+const Header = ({ router }) => {
+  const route = router.pathname.replace('/', '') || 'home';
+
+  // Router.events.on('routeChangeStart', () => {
+  //   context.state.navigation.mobileNavActive && context.closeMobileNav();
+  // });
+
+  return (
+    <Context.Consumer>
+      {context => (
+        <React.Fragment>
+          <HeaderWrapper active={context.state.navigation.desktopNavActive} route={route}>
+            <Link key="link-home" href={`/`}>
+              {/* eslint-disable-next-line */}
+              <a>
+                <HeaderLogo
+                  src="/static/images/logos/hudson_square_properties_logo.png"
+                  alt="Hudson Square Properties Logo"
+                />
+              </a>
+            </Link>
+            <DesktopNavigation locations={locations} routes={routes} route={route} />
+            <MobileNavigation locations={locations} routes={routes} />
+          </HeaderWrapper>
+          <BuildingNavigation route={route} />
+          <BuildingEscapeOverlay />
+        </React.Fragment>
+      )}
+    </Context.Consumer>
+  );
+};
 
 export default withRouter(Header);
