@@ -9,6 +9,9 @@ const CopyrightFooterContainer = styled.div`
   padding: 20% 5% 10px 5%;
   justify-content: center;
   text-align: center;
+  ${mediaMin.tablet`
+    padding: 10% 5% 10px 5%;
+  `}
   ${mediaMin.tabletLandscape`
   font-size: 12px;
   line-height: 22px;
