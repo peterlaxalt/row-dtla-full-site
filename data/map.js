@@ -187,6 +187,7 @@ const ourBuildings = [
     markerImg: '/static/images/logos/HSP_BuildingLockUps_75varick.svg',
     markerSize: [70, 60],
     markerPos: { lat: 40.72319941908921, lng: -74.00591966546449 },
+    miniMapMarkerPos: { lat: 40.7232, lng: -74.006834 },
     path: [
       { lat: 40.723557, lng: -74.0075246 },
       { lat: 40.7232298, lng: -74.0070592 },
@@ -210,6 +211,8 @@ const ourBuildings = [
     markerImg: '/static/images/logos/HSP_BuildingLockUps_160varick.svg',
     markerSize: [90, 60],
     markerPos: { lat: 40.72665096689796, lng: -74.00434789098176 },
+    miniMapMarkerPos: { lat: 40.7265, lng: -74.00520104864643 },
+
     path: [
       { lat: 40.7264989, lng: -74.005476 },
       { lat: 40.7264562, lng: -74.0049838 },
@@ -230,6 +233,8 @@ const ourBuildings = [
     markerImg: '/static/images/logos/HSP_BuildingLockUps_345hudson.svg',
     markerSize: [90, 60],
     markerPos: { lat: 40.727750149473366, lng: -74.00936876382929 },
+    miniMapMarkerPos: { lat: 40.7275, lng: -74.0079126462723 },
+
     path: [
       { lat: 40.7275325, lng: -74.0087478 },
       { lat: 40.7274105, lng: -74.007506 },
@@ -247,6 +252,8 @@ const ourBuildings = [
     markerImg: '/static/images/logos/HSP_BuildingLockUps_350hudson.svg',
     markerSize: [90, 60],
     markerPos: { lat: 40.727573788575, lng: -74.00603768266114 },
+    miniMapMarkerPos: { lat: 40.72745, lng: -74.00683183172748 },
+    
     path: [
       { lat: 40.72796622362224, lng: -74.00705308673002 },
       { lat: 40.72791629446597, lng: -74.0065225626164 },
@@ -259,7 +266,8 @@ const ourBuildings = [
     url: '/buildings/375-hudson-street/',
     markerImg: '/static/images/logos/HSP_BuildingLockUps_375hudson.svg',
     markerSize: [90, 60],
-    markerPos: { lat: 40.72837464106847, lng: -74.0066599551526 },
+    markerPos: { lat: 40.728275, lng: -74.0079126462723 },
+    miniMapMarkerPos: { lat: 40.728275, lng: -74.0079126462723 },
     path: [
       { lat: 40.728798983379484, lng: -74.00845255876578 },
       { lat: 40.728304044571274, lng: -74.00853973055877 },
@@ -273,6 +281,8 @@ const ourBuildings = [
     markerImg: '/static/images/logos/HSP_BuildingLockUps_155aoa.svg',
     markerSize: [120, 60],
     markerPos: { lat: 40.72529720093036, lng: -74.00584456361207 },
+    miniMapMarkerPos: { lat: 40.7252, lng: -74.00491859392105 },
+
     path: [
       { lat: 40.7253163, lng: -74.0049756 },
       { lat: 40.7252652, lng: -74.0049803 },
@@ -289,6 +299,8 @@ const ourBuildings = [
     markerImg: '/static/images/logos/HSP_BuildingLockUps_100aoa.svg',
     markerSize: [120, 60],
     markerPos: { lat: 40.72334577810744, lng: -74.00324818528566 },
+    miniMapMarkerPos: { lat: 40.7231, lng: -74.00443931779097 },
+
     path: [
       { lat: 40.72301887001688, lng: -74.00428798059124 },
       { lat: 40.72336444034136, lng: -74.00399394342799 },
@@ -304,6 +316,8 @@ const ourBuildings = [
     markerImg: '/static/images/logos/HSP_BuildingLockUps_200hudson.svg',
     markerSize: [90, 60],
     markerPos: { lat: 40.72287417567417, lng: -74.00855895913514 },
+    miniMapMarkerPos: { lat: 40.7227, lng: -74.00759 },
+
     path: [
       { lat: 40.7226507, lng: -74.0074606 },
       { lat: 40.7228168, lng: -74.0074197 },
@@ -324,6 +338,8 @@ const ourBuildings = [
     markerImg: '/static/images/logos/HSP_BuildingLockUps_205hudson.svg',
     markerSize: [90, 60],
     markerPos: { lat: 40.72374, lng: -74.00923 },
+    miniMapMarkerPos: { lat: 40.72345, lng: -74.00843808931745 },
+
     path: [
       { lat: 40.723390979386, lng: -74.00814394779098 },
       { lat: 40.72362881194272, lng: -74.0081117612828 },
@@ -340,6 +356,7 @@ const ourBuildings = [
     markerImg: '/static/images/logos/HSP_BuildingLockUps_12-16vestry.svg',
     markerSize: [90, 60],
     markerPos: { lat: 40.722268405576976, lng: -74.00689598954591 },
+    miniMapMarkerPos: { lat: 40.7225, lng: -74.00711614588306 },
     path: [
       { lat: 40.7226471, lng: -74.0074471 },
       { lat: 40.7226252, lng: -74.0071762 },
@@ -357,6 +374,8 @@ const ourBuildings = [
     markerImg: '/static/images/logos/HSP_BuildingLockUps_225varick.svg',
     markerSize: [90, 60],
     markerPos: { lat: 40.728939703779844, lng: -74.00497552789125 },
+    miniMapMarkerPos: { lat: 40.7288, lng: -74.00568490983818 },
+
     path: [
       { lat: 40.729323364378345, lng: -74.00587243102257 },
       { lat: 40.729285567461446, lng: -74.00542482465823 },
@@ -370,6 +389,8 @@ const ourBuildings = [
     markerImg: '/static/images/logos/HSP_BuildingLockUps_435hudson.svg',
     markerSize: [90, 60],
     markerPos: { lat: 40.73056982183632, lng: -74.00652584470186 },
+    miniMapMarkerPos: { lat: 40.7304, lng: -74.00719139560374 },
+
     path: [
       { lat: 40.73033373864783, lng: -74.00700118816252 },
       { lat: 40.73038379013507, lng: -74.00756948119755 },

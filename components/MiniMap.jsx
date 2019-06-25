@@ -2,12 +2,15 @@ import GoogleMapReact from 'google-map-react';
 import React from 'react';
 import styled from 'styled-components';
 import { miniMapOptions, ourBuildings, parks } from '../data/map';
+import { mediaMin } from '../styles/MediaQueries';
 
 const MapContainer = styled.div`
-  height: 100%;
-  min-height: 100%;
   width: 100%;
-  border: 3px solid #000;
+  height: 400px;
+  ${mediaMin.tabletLandscape`
+    height: 100%;
+    min-height: 100%;
+  `}
 `;
 
 export default class MiniMap extends React.Component {
@@ -81,11 +84,10 @@ export default class MiniMap extends React.Component {
         zIndex: 100
       });
       const tempMarker = new maps.Marker({
-        position: building.markerPos,
+        position: building.miniMapMarkerPos,
         icon: {
           url: building.markerImg,
-          scaledSize: new maps.Size(building.markerSize[0], building.markerSize[1]),
-          anchor: new maps.Point(building.markerSize[0] / 2, building.markerSize[1] / 2)
+          scaledSize: new maps.Size(building.markerSize[0], building.markerSize[1])
         }
       });
       tempBuilding.addListener('click', () => {
