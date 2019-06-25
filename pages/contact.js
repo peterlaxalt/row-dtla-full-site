@@ -1,21 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-import Layout from '../components/layouts/default';
 import CopyrightFooter from '../components/CopyrightFooter';
-import {
-  SeventyFiveVarick,
-  OneSixtyVarick,
-  ThreeFortyFiveHudson,
-  ThreeFiftyHudson,
-  ThreeSeventyFiveHudson,
-  OneHundredAvenue,
-  OneFiftyFiveAvenue,
-  TwoHundredHudson,
-  TwoOFiveHudson,
-  TwoTwentyFiveVarick,
-  FourThirtyFiveHudson,
-  RetailLeasing
-} from '../data/contact';
+import Context from '../config/Context';
+import { buildings } from '~/data/buildings';
+
+// import {
+//   SeventyFiveVarick,
+//   OneSixtyVarick,
+//   ThreeFortyFiveHudson,
+//   ThreeFiftyHudson,
+//   ThreeSeventyFiveHudson,
+//   OneHundredAvenue,
+//   OneFiftyFiveAvenue,
+//   TwoHundredHudson,
+//   TwoOFiveHudson,
+//   TwoTwentyFiveVarick,
+//   FourThirtyFiveHudson,
+//   RetailLeasing
+// } from '../data/contacts';
 
 const ContactList = styled.ul`
   display: flex;
@@ -85,11 +87,9 @@ const RowBody = styled.div`
     }
   }};
   transition: max-height 0.25s ease-in-out, padding 0.25s ease-in-out;
-  max-height: ${props =>
-    props.openRow ? Math.ceil(props.numChildren / 4) * 116 + 97 + 'px' : '0'};
+  max-height: ${props => (props.openRow ? Math.ceil(props.numChildren / 4) * 116 + 97 + 'px' : '0')};
   @media screen and (max-width: 1024px) {
-    max-height: ${props =>
-      props.openRow ? Math.ceil(props.numChildren) * 116 + 97 + 'px' : '0'};
+    max-height: ${props => (props.openRow ? Math.ceil(props.numChildren) * 116 + 97 + 'px' : '0')};
   }
 `;
 
@@ -252,10 +252,7 @@ export default class ContactPage extends React.Component {
       return (
         <ContactListItem key={idx} marginBottom={contactInfoArray.length > 4}>
           <span className="contact-name">{el.name}</span>
-          <a
-            href={`tel:${el.phone.split('.').join('')}`}
-            className="contact-phone"
-          >
+          <a href={`tel:${el.phone.split('.').join('')}`} className="contact-phone">
             {el.phone}
           </a>
           <a href={`mailto:${el.email}`} className="contact-email">
@@ -267,18 +264,25 @@ export default class ContactPage extends React.Component {
     return <ContactInfoList>{contactListItems}</ContactInfoList>;
   };
 
-  render() {
+  generateContacts(context) {
+    const buildingSlugs = buildings.map(building => building.slug);
+
+    let buildingObj = {};
+    buildingSlugs.forEach(building => (buildingObj[building] = []));
+
+    context.contactData.forEach(contact => {
+      if (Array.isArray(contact.buildings) && contact.buildings.length > 0) {
+        contact.buildings.forEach(building => buildingObj[building].push(contact));
+      }
+    });
+
     return (
-      <Layout title="Contact">
-        <ContactList>
+      <React.Fragment>
+        {/* <ContactList>
           <ContactRow>
             <RowHeading
               href="#75-varick-street"
-              onClick={
-                this.state.openRow === 0
-                  ? this.closeRow
-                  : () => this.expandRow(0)
-              }
+              onClick={this.state.openRow === 0 ? this.closeRow : () => this.expandRow(0)}
             >
               <RowTitle>75 Varick Street</RowTitle>
               <RowIcon openRow={this.state.openRow === 0} />
@@ -295,11 +299,7 @@ export default class ContactPage extends React.Component {
           <ContactRow>
             <RowHeading
               href="#160-varick-street"
-              onClick={
-                this.state.openRow === 1
-                  ? this.closeRow
-                  : () => this.expandRow(1)
-              }
+              onClick={this.state.openRow === 1 ? this.closeRow : () => this.expandRow(1)}
             >
               <RowTitle>160 Varick Street</RowTitle>
               <RowIcon openRow={this.state.openRow === 1} />
@@ -316,11 +316,7 @@ export default class ContactPage extends React.Component {
           <ContactRow>
             <RowHeading
               href="#345-hudson-street"
-              onClick={
-                this.state.openRow === 2
-                  ? this.closeRow
-                  : () => this.expandRow(2)
-              }
+              onClick={this.state.openRow === 2 ? this.closeRow : () => this.expandRow(2)}
             >
               <RowTitle>345 Hudson Street</RowTitle>
               <RowIcon openRow={this.state.openRow === 2} />
@@ -337,11 +333,7 @@ export default class ContactPage extends React.Component {
           <ContactRow>
             <RowHeading
               href="#350-hudson-street"
-              onClick={
-                this.state.openRow === 3
-                  ? this.closeRow
-                  : () => this.expandRow(3)
-              }
+              onClick={this.state.openRow === 3 ? this.closeRow : () => this.expandRow(3)}
             >
               <RowTitle>350 Hudson Street</RowTitle>
               <RowIcon openRow={this.state.openRow === 3} />
@@ -358,11 +350,7 @@ export default class ContactPage extends React.Component {
           <ContactRow>
             <RowHeading
               href="#375-hudson-street"
-              onClick={
-                this.state.openRow === 4
-                  ? this.closeRow
-                  : () => this.expandRow(4)
-              }
+              onClick={this.state.openRow === 4 ? this.closeRow : () => this.expandRow(4)}
             >
               <RowTitle>375 Hudson Street</RowTitle>
               <RowIcon openRow={this.state.openRow === 4} />
@@ -379,11 +367,7 @@ export default class ContactPage extends React.Component {
           <ContactRow>
             <RowHeading
               href="#100-avenue-of-the-americas"
-              onClick={
-                this.state.openRow === 5
-                  ? this.closeRow
-                  : () => this.expandRow(5)
-              }
+              onClick={this.state.openRow === 5 ? this.closeRow : () => this.expandRow(5)}
             >
               <RowTitle>100 Avenue of the Americas</RowTitle>
               <RowIcon openRow={this.state.openRow === 5} />
@@ -400,11 +384,7 @@ export default class ContactPage extends React.Component {
           <ContactRow>
             <RowHeading
               href="#155-avenue-of-the-americas"
-              onClick={
-                this.state.openRow === 6
-                  ? this.closeRow
-                  : () => this.expandRow(6)
-              }
+              onClick={this.state.openRow === 6 ? this.closeRow : () => this.expandRow(6)}
             >
               <RowTitle>155 Avenue of the Americas</RowTitle>
               <RowIcon openRow={this.state.openRow === 6} />
@@ -421,11 +401,7 @@ export default class ContactPage extends React.Component {
           <ContactRow>
             <RowHeading
               href="#200-hudson-street"
-              onClick={
-                this.state.openRow === 7
-                  ? this.closeRow
-                  : () => this.expandRow(7)
-              }
+              onClick={this.state.openRow === 7 ? this.closeRow : () => this.expandRow(7)}
             >
               <RowTitle>200 Hudson Street</RowTitle>
               <RowIcon openRow={this.state.openRow === 7} />
@@ -442,11 +418,7 @@ export default class ContactPage extends React.Component {
           <ContactRow>
             <RowHeading
               href="#205-hudson-street"
-              onClick={
-                this.state.openRow === 8
-                  ? this.closeRow
-                  : () => this.expandRow(8)
-              }
+              onClick={this.state.openRow === 8 ? this.closeRow : () => this.expandRow(8)}
             >
               <RowTitle>205 Hudson Street</RowTitle>
               <RowIcon openRow={this.state.openRow === 8} />
@@ -463,11 +435,7 @@ export default class ContactPage extends React.Component {
           <ContactRow>
             <RowHeading
               href="#225-varick-street"
-              onClick={
-                this.state.openRow === 9
-                  ? this.closeRow
-                  : () => this.expandRow(9)
-              }
+              onClick={this.state.openRow === 9 ? this.closeRow : () => this.expandRow(9)}
             >
               <RowTitle>225 Varick Street</RowTitle>
               <RowIcon openRow={this.state.openRow === 9} />
@@ -484,11 +452,7 @@ export default class ContactPage extends React.Component {
           <ContactRow>
             <RowHeading
               href="#435-hudson-street"
-              onClick={
-                this.state.openRow === 10
-                  ? this.closeRow
-                  : () => this.expandRow(10)
-              }
+              onClick={this.state.openRow === 10 ? this.closeRow : () => this.expandRow(10)}
             >
               <RowTitle>435 Hudson Street</RowTitle>
               <RowIcon openRow={this.state.openRow === 10} />
@@ -505,11 +469,7 @@ export default class ContactPage extends React.Component {
           <ContactRow>
             <RowHeading
               href="#retail-leasing-inquiries"
-              onClick={
-                this.state.openRow === 11
-                  ? this.closeRow
-                  : () => this.expandRow(11)
-              }
+              onClick={this.state.openRow === 11 ? this.closeRow : () => this.expandRow(11)}
             >
               <RowTitle>Retail Leasing Inquiries</RowTitle>
               <RowIcon openRow={this.state.openRow === 11} />
@@ -523,8 +483,18 @@ export default class ContactPage extends React.Component {
             </RowBody>
           </ContactRow>
         </ContactList>
-        <CopyrightFooter />
-      </Layout>
+        <CopyrightFooter /> */}
+      </React.Fragment>
+    );
+  }
+
+  render() {
+    return (
+      <Context.Consumer>
+        {context => {
+          <React.Fragment>{this.generateContacts(context)}</React.Fragment>;
+        }}
+      </Context.Consumer>
     );
   }
 }
