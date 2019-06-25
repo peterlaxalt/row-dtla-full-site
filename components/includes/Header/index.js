@@ -7,7 +7,7 @@ import routes from '~/data/routes';
 import locations from '~/data/locations';
 
 import MobileNavigation from './MobileNav';
-import { BuildingNavigation, DesktopNavigation } from './DesktopNav';
+import { BuildingNavigation, BuildingEscapeOverlay, DesktopNavigation } from './DesktopNav';
 import Context from '~/config/Context';
 
 const isUpperNavActive = props => {
@@ -28,7 +28,7 @@ const HeaderWrapper = styled.div`
   z-index: 100;
 
   ${mediaMin.desktopSmall`
-    background: ${props => (isUpperNavActive(props) ? '#fff' : 'transparent')};
+    background: ${props => (isUpperNavActive(props) ? '#fff' : 'none')};
     height: 60px;
   `}
 `;
@@ -53,7 +53,8 @@ class Header extends React.Component {
           <React.Fragment>
             <HeaderWrapper active={context.state.navigation.desktopNavActive} route={route}>
               <Link key="link-home" href={`/`}>
-                <a style={{ margin: 'auto 0' }}>
+                {/* eslint-disable-next-line */}
+                <a>
                   <HeaderLogo
                     src="/static/images/logos/hudson_square_properties_logo.png"
                     alt="Hudson Square Properties Logo"
@@ -64,6 +65,7 @@ class Header extends React.Component {
               <MobileNavigation locations={locations} routes={routes} />
             </HeaderWrapper>
             <BuildingNavigation route={route} />
+            <BuildingEscapeOverlay />
           </React.Fragment>
         )}
       </Context.Consumer>

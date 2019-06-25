@@ -7,7 +7,7 @@ class ContextProvider extends Component {
     this.state = {
       windowDimensions: {
         height: null,
-        width: 2000
+        width: ''
       },
       navigation: {
         mobileNavActive: false,
@@ -55,13 +55,14 @@ class ContextProvider extends Component {
                 desktopNavActive: !this.state.navigation.desktopNavActive
               }
             }),
-          toggleBuildingNav: () =>
+          toggleBuildingNav: (boolean = undefined) => {
             this.setState({
               navigation: {
                 ...this.state.navigation,
-                buildingNavActive: !this.state.navigation.buildingNavActive
+                buildingNavActive: boolean || !this.state.navigation.buildingNavActive
               }
-            }),
+            });
+          },
           toggleSubNav: section => {
             let activeSection = this.state.navigation.activeSubNav === section ? false : section;
             this.setState({
