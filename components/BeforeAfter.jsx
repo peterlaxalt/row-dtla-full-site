@@ -17,7 +17,7 @@ const SliderIconContainer = styled.div`
 const Slider = styled.img`
   top: 50%;
   position: absolute;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -50%);
   cursor: pointer;
 `;
 

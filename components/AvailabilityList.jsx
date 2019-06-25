@@ -163,7 +163,10 @@ const AvailabilityLink = styled.a`
   cursor: pointer;
   ${mediaMin.tabletLandscape`
     color: ${colors.babyBlue};
-  `}
+    &:visited{
+      color: ${colors.babyBlue};
+    }
+    `}
   &:hover {
     padding: 30px;
     color: #000;
@@ -171,6 +174,7 @@ const AvailabilityLink = styled.a`
     background: #369bf766;
     box-shadow: 0 0 20px #369bf7;
   }
+
   .details {
     width: 5%;
   }
