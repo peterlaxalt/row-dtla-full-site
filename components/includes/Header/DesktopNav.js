@@ -56,10 +56,12 @@ export const DesktopNavigation = props => {
       let link =
         page !== 'buildings' ? (
           // eslint-disable-next-line
-          <a>{page.toUpperCase()}</a>
+          <a onMouseOver={() => context.state.navigation.buildingNavActive && context.toggleBuildingNav(false)}>
+            {page.toUpperCase()}
+          </a>
         ) : (
           // eslint-disable-next-line
-          <a onMouseOver={context.toggleBuildingNav} onFocus={context.toggleBuildingNav}>
+          <a onMouseOver={() => context.toggleBuildingNav(true)} onFocus={context.toggleBuildingNav}>
             {page.toUpperCase()}
           </a>
         );
@@ -167,7 +169,7 @@ export const BuildingEscapeOverlay = () => {
       {context => (
         <BuildingOverlayWrapper
           active={context.state.navigation.buildingNavActive}
-          onMouseOver={context.toggleBuildingNav}
+          onMouseOver={() => context.toggleBuildingNav(false)}
           onFocus={context.toggleBuildingNav}
         />
       )}

@@ -28,7 +28,7 @@ const HeaderWrapper = styled.div`
   z-index: 100;
 
   ${mediaMin.desktopSmall`
-    background: ${props => (isUpperNavActive(props) ? '#fff' : 'transparent')};
+    background: ${props => (isUpperNavActive(props) ? '#fff' : 'none')};
     height: 60px;
   `}
 `;
