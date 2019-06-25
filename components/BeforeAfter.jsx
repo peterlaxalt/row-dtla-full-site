@@ -12,6 +12,7 @@ const SliderIconContainer = styled.div`
   height: 100%;
   width: 2px;
   background-color: #fff;
+  cursor: col-resize;
 `;
 
 const Slider = styled.img`
@@ -19,7 +20,6 @@ const Slider = styled.img`
   height: 65px;
   position: absolute;
   transform: translate(-50%, -50%);
-  cursor: pointer;
 `;
 
 export default class BeforeAfter extends React.Component {

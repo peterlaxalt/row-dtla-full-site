@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { mediaMin } from '../styles/MediaQueries';
 
 const ScrollUpButton = styled.button`
-  width: 100%;
+  width: 42px;
+  height: 42px;
   margin: 0 auto;
   cursor: pointer;
   text-align: center;
@@ -16,10 +17,8 @@ const ScrollUpButton = styled.button`
   ${props => (props.showButton ? 'opacity: 1; visibility: visible;' : 'opacity: 0; visibility: hidden;')}
   transition: 0.25s all ease-in-out;
   ${mediaMin.tabletLandscape`
-    margin: 0;
-    width: 42px;
-    height: 42px;
-    position: fixed;
+  margin: 0;
+  position: fixed;
   `}
   img {
     height: 100%;

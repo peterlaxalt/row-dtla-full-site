@@ -24,6 +24,10 @@ const BuildingCol = styled.div`
   ${mediaMin.tabletLandscape`
     height: 100%;
   `}
+  .building-img {
+    min-height: 100%;
+    width: 100%;
+  }
 `;
 
 const PaddingCol = styled.div`
@@ -171,7 +175,7 @@ const FactRow = styled.div`
   flex-wrap: wrap;
   flex-direction: row;
   ${mediaMin.tabletLandscape`
-    width: 65%;
+    min-width: 65%;
   `}
 `;
 
@@ -255,7 +259,11 @@ const Building = props => {
       ) : (
         <BeforeAfter before={building.beforeAfter.before} after={building.beforeAfter.after} />
       )}
-      <ResponsiveImage srcPath={building.footerImage.imgUrl} imgAlt={building.footerImage.imgAlt} />
+      <ResponsiveImage
+        imgClass="building-img"
+        srcPath={building.footerImage.imgUrl}
+        imgAlt={building.footerImage.imgAlt}
+      />
       <FooterOverlay>
         <span>{building.footerImage.footerText}</span>
         <Link href={building.footerImage.footerLink}>
@@ -275,8 +283,8 @@ const Building = props => {
         )}
         <AvailabilityList building={building.header.headerLogoAlt} />
       </PaddingCol>
-      <CopyrightFooter />
       <ScrollUp />
+      <CopyrightFooter />
     </BuildingCol>
   );
 };

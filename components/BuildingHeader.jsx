@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Context from '../config/Context';
+import { mediaMin } from '../styles/MediaQueries';
 
 const HeaderContainer = styled.div`
   position: relative;
@@ -9,14 +10,17 @@ const HeaderContainer = styled.div`
   display: block;
   background-image: url('${props => props.headerBackgroundPath}');
   background-repeat: no-repeat;
-  // background-position: center top;
   background-size: cover;
   background-color: #fff;
   width: 100%;
-  height: ${props => props.adjustedHeight}px;
-  @media screen and (max-width: 1024px){ 
-      height: 420px;
-  }
+  height: 420px;
+  ${mediaMin.tablet`
+    background-position: center center;
+    height: 400px;
+  `}
+  ${mediaMin.tabletLandscape`
+    min-height: ${props => props.adjustedHeight}px;
+  `}
 `;
 
 const LogoContainer = styled.div`
