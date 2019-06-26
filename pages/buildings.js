@@ -1,13 +1,15 @@
-import ClickSlider from '../components/ClickSlider';
-import ScrollUp from '../components/ScrollUp';
-import CopyrightFooter from '../components/CopyrightFooter';
-import BrandSpinner from '../components/BrandSpinner';
-import { buildingsSlider } from '../data/buildings';
-import Context from '../config/Context';
+import Fade from 'react-reveal/Fade';
+
+import ClickSlider from '~/components/ClickSlider';
+import ScrollUp from '~/components/ScrollUp';
+import CopyrightFooter from '~/components/CopyrightFooter';
+import BrandSpinner from '~/components/BrandSpinner';
+import { buildingsSlider } from '~/data/buildings';
+import Context from '~/config/Context';
 import styled from 'styled-components';
-import ResponsiveImage from '../components/ResponsiveImage';
-import { mediaMin } from '../styles/MediaQueries';
-import Map from '../components/Map';
+import ResponsiveImage from '~/components/ResponsiveImage';
+import { mediaMin } from '~/styles/MediaQueries';
+import Map from '~/components/Map';
 
 const BuildingsCol = styled.div`
   display: flex;
@@ -29,6 +31,10 @@ const PaddingCol = styled.div`
     width: 75%;
     max-width: 100%;
     max-height: 100%;
+  }
+  .react-reveal {
+    display: flex;
+    justify-content: center;
   }
 `;
 
@@ -67,19 +73,29 @@ const Buildings = () => (
               <SectionHeader>Buildings</SectionHeader>
             </PaddingCol>
           )}
-          <ClickSlider imgArray={buildingsSlider} autoPlay={true} windowWidth={context.state.windowDimensions.width} />
+          <Fade>
+            <ClickSlider
+              imgArray={buildingsSlider}
+              autoPlay={true}
+              windowWidth={context.state.windowDimensions.width}
+            />
+          </Fade>
           <PaddingCol>
             <MapContainer>
               <Map activeFilter="Our Buildings" />
             </MapContainer>
-            <SectionHeader>Our Tenants</SectionHeader>
-            <BrandSpinner />
-            <SectionHeader>Our Tenants by Industry</SectionHeader>
-            {width > 1024 ? (
-              <ResponsiveImage srcPath="static/images/buildings/DesktopTenantChart" imgAlt="Tenants" />
-            ) : (
-              <ResponsiveImage srcPath="static/images/buildings/MobileTenantChart" imgAlt="Tenants" />
-            )}
+            <Fade>
+              <SectionHeader>Our Tenants</SectionHeader>
+              <BrandSpinner />
+            </Fade>
+            <Fade>
+              <SectionHeader>Our Tenants by Industry</SectionHeader>
+              {width > 1024 ? (
+                <ResponsiveImage srcPath="static/images/buildings/DesktopTenantChart" imgAlt="Tenants" />
+              ) : (
+                <ResponsiveImage srcPath="static/images/buildings/MobileTenantChart" imgAlt="Tenants" />
+              )}
+            </Fade>
           </PaddingCol>
           <ScrollUp />
           <CopyrightFooter />

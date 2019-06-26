@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import Context from '../config/Context';
 import Link from 'next/link';
-import CopyrightFooter from '../components/CopyrightFooter';
-import ScrollUp from '../components/ScrollUp';
+import Fade from 'react-reveal/Fade';
+
+import Context from '~/config/Context';
+import CopyrightFooter from '~/components/CopyrightFooter';
+import ScrollUp from '~/components/ScrollUp';
+import { mediaMin } from '~/styles/MediaQueries';
 
 const BackButtonInnner = styled.a`
   display: flex;
@@ -18,49 +21,57 @@ const BackButtonInnner = styled.a`
   color: #fff;
   span {
     cursor: pointer;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 1px;
     &:hover {
-      text-decoration: underline;
+      border-bottom: 1px solid #fff;
     }
   }
 `;
 
 const PressList = styled.div`
-  margin: 60px 0;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   width: 100%;
   padding: 0 25px;
-  @media screen and (max-width: 1024px) {
-    margin-top: 0;
-    flex-direction: column;
-    flex-wrap: no-wrap;
-  }
+  margin: 0 0 60px 0;
+  flex-direction: column;
+  flex-wrap: no-wrap;
+  ${mediaMin.tabletLandscape`
+  margin: 60px 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  `}
 `;
 
 const PressItem = styled.a`
   display: flex;
   flex-direction: column;
-  width: calc(50% - 50px);
   background-color: #f7f7f7;
   border: 1px solid #eaeaea;
   padding: 28px;
-  margin: 0 25px 25px 25px;
-  @media screen and (max-width: 1024px) {
-    width: calc(100%);
-    margin: 15px 0;
-  }
+  width: 100%;
+  margin: 15px 0;
+  ${mediaMin.tabletLandscape`
+    width: calc(50% - 50px);
+    margin: 0 25px 25px 25px;
+  `}
 `;
 
 const Publication = styled.span`
-font-size: 25px;
-line-height: 44px
-min-height: 44px;
-margin-bottom: 10px;`;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 44px
+  min-height: 44px;
+  margin-bottom: 10px;
+`;
 
 const Title = styled.span`
   line-height: 30px;
   font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
   text-transform: uppercase;
 `;
 const BackButton = () => {
@@ -83,15 +94,16 @@ export default class Press extends React.Component {
       );
     });
   };
+
   render() {
     return (
       <Context.Consumer>
         {context => (
           <React.Fragment>
             <BackButton />
-            <PressList>
-              {this.createPressItems(context.pressData)}
-            </PressList>
+            <Fade>
+              <PressList>{this.createPressItems(context.pressData)}</PressList>
+            </Fade>
             <ScrollUp />
             <CopyrightFooter />
           </React.Fragment>
