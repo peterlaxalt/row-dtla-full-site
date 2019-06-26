@@ -14,7 +14,8 @@ import ResponsiveImage from '~/components/ResponsiveImage';
 import MiniMap from '~/components/MiniMap';
 import variables from '~/styles/Variables';
 import ContactCard from '~/components/ContactCard';
-import { mediaMin } from '~/styles/MediaQueries';
+import { mediaMin } from '../styles/MediaQueries';
+import Context from '../config/Context';
 
 const { colors } = variables;
 
@@ -203,6 +204,14 @@ const createContactList = contactInfoArray => {
 const Building = props => {
   const { building } = props;
 
+  const context = React.useContext(Context);
+
+  const contactArray = context.contactData.filter(contact => {
+    if (contact.buildings.includes(building.slug)) {
+      return contact;
+    }
+  });
+
   return (
     <BuildingCol>
       <Fade>
@@ -279,7 +288,7 @@ const Building = props => {
           <Fade>
             <ContactRow>
               <RowTitle>Leasing Contacts</RowTitle>
-              <RowBody numChildren={building.contactArray.length}>{createContactList(building.contactArray)}</RowBody>
+              <RowBody numChildren={contactArray.length}>{createContactList(contactArray)}</RowBody>
             </ContactRow>
           </Fade>
         )}
