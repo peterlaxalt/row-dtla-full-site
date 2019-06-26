@@ -1,7 +1,21 @@
+import {
+  SeventyFiveVarick,
+  OneSixtyVarick,
+  ThreeFortyFiveHudson,
+  ThreeFiftyHudson,
+  ThreeSeventyFiveHudson,
+  OneHundredAvenue,
+  OneFiftyFiveAvenue,
+  TwoHundredHudson,
+  TwoOFiveHudson,
+  TwoTwentyFiveVarick,
+  FourThirtyFiveHudson
+} from '../data/contacts';
+
 const buildings = [
   {
     title: '75 Varick Street',
-    navTitle: '75 Varick',
+    navTitle: '75 VARICK',
     slug: '75-varick-street',
     yearConstructed: '1929',
     numFloors: '17',
@@ -84,11 +98,12 @@ const buildings = [
       imgAlt: '',
       footerText: 'Hudson Square',
       footerLink: '/neighborhood/#section-neighborhood-hudson'
-    }
+    },
+    contactArray: SeventyFiveVarick
   },
   {
     title: '160 Varick Street',
-    navTitle: '160 Varick',
+    navTitle: '160 VARICK',
     slug: '160-varick-street',
     yearConstructed: '1927-1928',
     numFloors: '12',
@@ -163,11 +178,12 @@ const buildings = [
       imgAlt: '',
       footerText: 'Hudson Square',
       footerLink: '/neighborhood/#section-neighborhood-hudson'
-    }
+    },
+    contactArray: OneSixtyVarick
   },
   {
     title: '345 Hudson Street',
-    navTitle: '345 Hudson',
+    navTitle: '345 HUDSON',
     slug: '345-hudson-street',
     yearConstructed: '1931',
     numFloors: '17',
@@ -217,7 +233,8 @@ const buildings = [
       imgAlt: '',
       footerText: 'Hudson Square',
       footerLink: '/neighborhood/#section-neighborhood-hudson'
-    }
+    },
+    contactArray: ThreeFortyFiveHudson
   },
   {
     title: '350 Hudson Street',
@@ -267,11 +284,12 @@ const buildings = [
       imgAlt: '',
       footerText: 'Hudson Square',
       footerLink: '/neighborhood/#section-neighborhood-hudson'
-    }
+    },
+    contactArray: ThreeFiftyHudson
   },
   {
     title: '375 Hudson Street',
-    navTitle: '375 Hudson',
+    navTitle: '375 HUDSON',
     slug: '375-hudson-street',
     yearConstructed: '1987',
     numFloors: '18 + Penthouse',
@@ -321,7 +339,8 @@ const buildings = [
       imgAlt: '',
       footerText: 'Hudson Square',
       footerLink: '/neighborhood/#section-neighborhood-hudson'
-    }
+    },
+    contactArray: ThreeSeventyFiveHudson
   },
   {
     title: '155 Avenue of the Americas',
@@ -396,7 +415,8 @@ const buildings = [
       imgAlt: '',
       footerText: 'SoHo',
       footerLink: '/neighborhood/#section-neighborhood-soho'
-    }
+    },
+    contactArray: OneFiftyFiveAvenue
   },
   {
     title: '100 Avenue of the Americas',
@@ -454,11 +474,12 @@ const buildings = [
       imgAlt: '',
       footerText: 'SoHo',
       footerLink: '/neighborhood/#section-neighborhood-soho'
-    }
+    },
+    contactArray: OneHundredAvenue
   },
   {
     title: '200 Hudson Street',
-    navTitle: '200 Hudson',
+    navTitle: '200 HUDSON',
     slug: '200-hudson-street',
     yearConstructed: '1926',
     numFloors: '12',
@@ -509,11 +530,12 @@ const buildings = [
       imgAlt: '',
       footerText: 'Tribeca',
       footerLink: '/neighborhood/#section-neighborhood-tribeca'
-    }
+    },
+    contactArray: TwoHundredHudson
   },
   {
     title: '205 Hudson Street',
-    navTitle: '205 Hudson',
+    navTitle: '205 HUDSON',
     slug: '205-hudson-street',
     yearConstructed: '1928',
     numFloors: '12',
@@ -576,11 +598,12 @@ const buildings = [
       imgAlt: '',
       footerText: 'SoHo',
       footerLink: '/neighborhood/#section-neighborhood-soho'
-    }
+    },
+    contactArray: TwoOFiveHudson
   },
   {
     title: '12-16 Vestry Street',
-    navTitle: '12-16 Vestry',
+    navTitle: '12-16 VESTRY',
     slug: '12-16-vestry-street',
     yearConstructed: '1882',
     numFloors: '7',
@@ -613,11 +636,12 @@ const buildings = [
       imgUrl: '/static/images/buildings/10_12_16_Vestry/12-16-vestry-footer',
       imgAlt: '',
       footerLink: '/neighborhood/#section-neighborhood-tribeca'
-    }
+    },
+    contactArray: false
   },
   {
     title: '225 Varick Street',
-    navTitle: '225 Varick',
+    navTitle: '225 VARICK',
     slug: '225-varick-street',
     yearConstructed: '1926',
     numFloors: '12',
@@ -692,11 +716,12 @@ const buildings = [
       imgAlt: '',
       footerText: 'Hudson Square',
       footerLink: '/neighborhood/#section-neighborhood-hudson'
-    }
+    },
+    contactArray: TwoTwentyFiveVarick
   },
   {
     title: '435 Hudson Street',
-    navTitle: '435 Hudson',
+    navTitle: '435 HUDSON',
     slug: '435-hudson-street',
     yearConstructed: '1931',
     numFloors: '9',
@@ -742,7 +767,8 @@ const buildings = [
       imgAlt: '',
       footerText: 'West Village',
       footerLink: '/neighborhood/#section-neighborhood-west-village'
-    }
+    },
+    contactArray: FourThirtyFiveHudson
   }
 ];
 

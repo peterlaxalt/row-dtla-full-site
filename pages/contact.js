@@ -4,6 +4,8 @@ import CopyrightFooter from '../components/CopyrightFooter';
 import Context from '../config/Context';
 import { buildings } from '~/data/buildings';
 
+import ContactCard from '~/components/ContactCard';
+
 // import {
 //   SeventyFiveVarick,
 //   OneSixtyVarick,
@@ -109,44 +111,6 @@ const ContactInfoList = styled.div`
   width: 100%;
 `;
 
-const ContactListItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 81px;
-  width: 25%;
-  font-size: 18px;
-  margin-bottom: ${props => (props.marginBottom ? '30px' : '0')};
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-    margin-bottom: 30px;
-  }
-  .contact-name {
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-  .contact-phone {
-    font-weight: 400;
-    margin-bottom: 10px;
-    color: #000;
-    text-decoration: none;
-    &:hover {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
-    }
-  }
-  .contact-email {
-    font-weight: 400;
-    color: #369bf7;
-    text-decoration: none;
-    &:hover {
-      color: #369bf7;
-      text-decoration: none;
-      cursor: pointer;
-    }
-  }
-`;
-
 export default class ContactPage extends React.Component {
   constructor(props) {
     super(props);
@@ -247,253 +211,59 @@ export default class ContactPage extends React.Component {
     });
   };
 
-  createContactList = contactInfoArray => {
-    let contactListItems = contactInfoArray.map((el, idx) => {
-      return (
-        <ContactListItem key={idx} marginBottom={contactInfoArray.length > 4}>
-          <span className="contact-name">{el.name}</span>
-          <a href={`tel:${el.phone.split('.').join('')}`} className="contact-phone">
-            {el.phone}
-          </a>
-          <a href={`mailto:${el.email}`} className="contact-email">
-            {el.email}
-          </a>
-        </ContactListItem>
-      );
+  createContactCards = contactInfoArray => {
+    let contactListItems = contactInfoArray.map((contact, idx) => {
+      return <ContactCard key={idx} cardData={contact} />;
     });
     return <ContactInfoList>{contactListItems}</ContactInfoList>;
   };
 
   generateContacts(context) {
-    const buildingSlugs = buildings.map(building => building.slug);
+    const buildingsArray = buildings.map(building => building.slug);
 
-    let buildingObj = {};
-    buildingSlugs.forEach(building => (buildingObj[building] = []));
+    let buildingContacts = {};
+    buildingsArray.forEach(building => (buildingContacts[building] = []));
 
     context.contactData.forEach(contact => {
       if (Array.isArray(contact.buildings) && contact.buildings.length > 0) {
-        contact.buildings.forEach(building => buildingObj[building].push(contact));
+        contact.buildings.forEach(building => buildingContacts[building].push(contact));
       }
     });
 
-    return (
-      <React.Fragment>
-        {/* <ContactList>
-          <ContactRow>
-            <RowHeading
-              href="#75-varick-street"
-              onClick={this.state.openRow === 0 ? this.closeRow : () => this.expandRow(0)}
-            >
-              <RowTitle>75 Varick Street</RowTitle>
-              <RowIcon openRow={this.state.openRow === 0} />
-            </RowHeading>
-            <RowBody
-              openRow={this.state.openRow === 0}
-              numChildren={SeventyFiveVarick.length}
-              paddingBottom={SeventyFiveVarick.length > 4}
-            >
-              <BodyTitle>Exclusive Leasing Agents</BodyTitle>
-              {this.createContactList(SeventyFiveVarick)}
-            </RowBody>
-          </ContactRow>
-          <ContactRow>
-            <RowHeading
-              href="#160-varick-street"
-              onClick={this.state.openRow === 1 ? this.closeRow : () => this.expandRow(1)}
-            >
-              <RowTitle>160 Varick Street</RowTitle>
-              <RowIcon openRow={this.state.openRow === 1} />
-            </RowHeading>
-            <RowBody
-              openRow={this.state.openRow === 1}
-              numChildren={OneSixtyVarick.length}
-              paddingBottom={OneSixtyVarick.length > 4}
-            >
-              <BodyTitle>Exclusive Leasing Agents</BodyTitle>
-              {this.createContactList(OneSixtyVarick)}
-            </RowBody>
-          </ContactRow>
-          <ContactRow>
-            <RowHeading
-              href="#345-hudson-street"
-              onClick={this.state.openRow === 2 ? this.closeRow : () => this.expandRow(2)}
-            >
-              <RowTitle>345 Hudson Street</RowTitle>
-              <RowIcon openRow={this.state.openRow === 2} />
-            </RowHeading>
-            <RowBody
-              openRow={this.state.openRow === 2}
-              numChildren={ThreeFortyFiveHudson.length}
-              paddingBottom={ThreeFortyFiveHudson.length > 4}
-            >
-              <BodyTitle>Exclusive Leasing Agents</BodyTitle>
-              {this.createContactList(ThreeFortyFiveHudson)}
-            </RowBody>
-          </ContactRow>
-          <ContactRow>
-            <RowHeading
-              href="#350-hudson-street"
-              onClick={this.state.openRow === 3 ? this.closeRow : () => this.expandRow(3)}
-            >
-              <RowTitle>350 Hudson Street</RowTitle>
-              <RowIcon openRow={this.state.openRow === 3} />
-            </RowHeading>
-            <RowBody
-              openRow={this.state.openRow === 3}
-              numChildren={ThreeFiftyHudson.length}
-              paddingBottom={ThreeFiftyHudson.length > 4}
-            >
-              <BodyTitle>Exclusive Leasing Agents</BodyTitle>
-              {this.createContactList(ThreeFiftyHudson)}
-            </RowBody>
-          </ContactRow>
-          <ContactRow>
-            <RowHeading
-              href="#375-hudson-street"
-              onClick={this.state.openRow === 4 ? this.closeRow : () => this.expandRow(4)}
-            >
-              <RowTitle>375 Hudson Street</RowTitle>
-              <RowIcon openRow={this.state.openRow === 4} />
-            </RowHeading>
-            <RowBody
-              openRow={this.state.openRow === 4}
-              numChildren={ThreeSeventyFiveHudson.length}
-              paddingBottom={ThreeSeventyFiveHudson.length > 4}
-            >
-              <BodyTitle>Exclusive Leasing Agents</BodyTitle>
-              {this.createContactList(ThreeSeventyFiveHudson)}
-            </RowBody>
-          </ContactRow>
-          <ContactRow>
-            <RowHeading
-              href="#100-avenue-of-the-americas"
-              onClick={this.state.openRow === 5 ? this.closeRow : () => this.expandRow(5)}
-            >
-              <RowTitle>100 Avenue of the Americas</RowTitle>
-              <RowIcon openRow={this.state.openRow === 5} />
-            </RowHeading>
-            <RowBody
-              openRow={this.state.openRow === 5}
-              numChildren={OneHundredAvenue.length}
-              paddingBottom={OneHundredAvenue.length > 4}
-            >
-              <BodyTitle>Exclusive Leasing Agents</BodyTitle>
-              {this.createContactList(OneHundredAvenue)}
-            </RowBody>
-          </ContactRow>
-          <ContactRow>
-            <RowHeading
-              href="#155-avenue-of-the-americas"
-              onClick={this.state.openRow === 6 ? this.closeRow : () => this.expandRow(6)}
-            >
-              <RowTitle>155 Avenue of the Americas</RowTitle>
-              <RowIcon openRow={this.state.openRow === 6} />
-            </RowHeading>
-            <RowBody
-              openRow={this.state.openRow === 6}
-              numChildren={OneFiftyFiveAvenue.length}
-              paddingBottom={OneFiftyFiveAvenue.length > 4}
-            >
-              <BodyTitle>Exclusive Leasing Agents</BodyTitle>
-              {this.createContactList(OneFiftyFiveAvenue)}
-            </RowBody>
-          </ContactRow>
-          <ContactRow>
-            <RowHeading
-              href="#200-hudson-street"
-              onClick={this.state.openRow === 7 ? this.closeRow : () => this.expandRow(7)}
-            >
-              <RowTitle>200 Hudson Street</RowTitle>
-              <RowIcon openRow={this.state.openRow === 7} />
-            </RowHeading>
-            <RowBody
-              openRow={this.state.openRow === 7}
-              numChildren={TwoHundredHudson.length}
-              paddingBottom={TwoHundredHudson.length > 4}
-            >
-              <BodyTitle>Exclusive Leasing Agents</BodyTitle>
-              {this.createContactList(TwoHundredHudson)}
-            </RowBody>
-          </ContactRow>
-          <ContactRow>
-            <RowHeading
-              href="#205-hudson-street"
-              onClick={this.state.openRow === 8 ? this.closeRow : () => this.expandRow(8)}
-            >
-              <RowTitle>205 Hudson Street</RowTitle>
-              <RowIcon openRow={this.state.openRow === 8} />
-            </RowHeading>
-            <RowBody
-              openRow={this.state.openRow === 8}
-              numChildren={TwoOFiveHudson.length}
-              paddingBottom={TwoOFiveHudson.length > 4}
-            >
-              <BodyTitle>Exclusive Leasing Agents</BodyTitle>
-              {this.createContactList(TwoOFiveHudson)}
-            </RowBody>
-          </ContactRow>
-          <ContactRow>
-            <RowHeading
-              href="#225-varick-street"
-              onClick={this.state.openRow === 9 ? this.closeRow : () => this.expandRow(9)}
-            >
-              <RowTitle>225 Varick Street</RowTitle>
-              <RowIcon openRow={this.state.openRow === 9} />
-            </RowHeading>
-            <RowBody
-              openRow={this.state.openRow === 9}
-              numChildren={TwoTwentyFiveVarick.length}
-              paddingBottom={TwoTwentyFiveVarick.length > 4}
-            >
-              <BodyTitle>Exclusive Leasing Agents</BodyTitle>
-              {this.createContactList(TwoTwentyFiveVarick)}
-            </RowBody>
-          </ContactRow>
-          <ContactRow>
-            <RowHeading
-              href="#435-hudson-street"
-              onClick={this.state.openRow === 10 ? this.closeRow : () => this.expandRow(10)}
-            >
-              <RowTitle>435 Hudson Street</RowTitle>
-              <RowIcon openRow={this.state.openRow === 10} />
-            </RowHeading>
-            <RowBody
-              openRow={this.state.openRow === 10}
-              numChildren={FourThirtyFiveHudson.length}
-              paddingBottom={FourThirtyFiveHudson.length > 4}
-            >
-              <BodyTitle>Exclusive Leasing Agents</BodyTitle>
-              {this.createContactList(FourThirtyFiveHudson)}
-            </RowBody>
-          </ContactRow>
-          <ContactRow>
-            <RowHeading
-              href="#retail-leasing-inquiries"
-              onClick={this.state.openRow === 11 ? this.closeRow : () => this.expandRow(11)}
-            >
-              <RowTitle>Retail Leasing Inquiries</RowTitle>
-              <RowIcon openRow={this.state.openRow === 11} />
-            </RowHeading>
-            <RowBody
-              openRow={this.state.openRow === 11}
-              numChildren={RetailLeasing.length}
-              paddingBottom={RetailLeasing.length > 4}
-            >
-              {this.createContactList(RetailLeasing)}
-            </RowBody>
-          </ContactRow>
-        </ContactList>
-        <CopyrightFooter /> */}
-      </React.Fragment>
-    );
+    let contactRowArray = buildings.map((building, idx) => {
+      return (
+        <ContactRow key={`contact-row-${building.slug}`}>
+          <RowHeading
+            href={`#${building.slug}`}
+            onClick={this.state.openRow === idx ? this.closeRow : () => this.expandRow(idx)}
+          >
+            <RowTitle>{building.title}</RowTitle>
+            <RowIcon openRow={this.state.openRow === idx} />
+          </RowHeading>
+          <RowBody
+            openRow={this.state.openRow === idx}
+            numChildren={buildingContacts.length}
+            paddingBottom={buildingContacts[building.slug].length > 4}
+          >
+            <BodyTitle>Exclusive Leasing Agents</BodyTitle>
+            {this.createContactCards(buildingContacts[building.slug])}
+          </RowBody>
+        </ContactRow>
+      );
+    });
+
+    return contactRowArray;
   }
 
   render() {
     return (
       <Context.Consumer>
-        {context => {
-          <React.Fragment>{this.generateContacts(context)}</React.Fragment>;
-        }}
+        {context => (
+          <React.Fragment>
+            <ContactList>{this.generateContacts(context)}</ContactList>
+            <CopyrightFooter />
+          </React.Fragment>
+        )}
       </Context.Consumer>
     );
   }
