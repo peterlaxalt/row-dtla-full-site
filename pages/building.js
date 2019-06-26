@@ -13,6 +13,7 @@ import MiniMap from '../components/MiniMap';
 import variables from '~/styles/Variables';
 import ContactCard from '~/components/ContactCard';
 import { mediaMin } from '../styles/MediaQueries';
+import Context from '../config/Context';
 
 const { colors } = variables;
 
@@ -24,6 +25,10 @@ const BuildingCol = styled.div`
   ${mediaMin.tabletLandscape`
     height: 100%;
   `}
+  .building-img {
+    min-height: 100%;
+    width: 100%;
+  }
 `;
 
 const PaddingCol = styled.div`
@@ -77,8 +82,7 @@ const ContactRow = styled.div`
   width: 100%;
 `;
 
-const RowHeading = styled.a`
-  cursor: pointer;
+const RowTitle = styled.span`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -88,15 +92,8 @@ const RowHeading = styled.a`
   padding: 0 0 30px 0;
   margin: 30px 0 0 0;
   border-bottom: 3px solid black;
-  &:hover {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
-`;
-
-const RowTitle = styled.span`
   font-size: 22px;
+  font-weight: 500;
 `;
 
 const RowBody = styled.div`
@@ -171,7 +168,7 @@ const FactRow = styled.div`
   flex-wrap: wrap;
   flex-direction: row;
   ${mediaMin.tabletLandscape`
-    width: 65%;
+    min-width: 65%;
   `}
 `;
 
@@ -204,6 +201,14 @@ const createContactList = contactInfoArray => {
 
 const Building = props => {
   const { building } = props;
+
+  const context = React.useContext(Context);
+
+  const contactArray = context.contactData.filter(contact => {
+    if (contact.buildings.includes(building.slug)) {
+      return contact;
+    }
+  });
 
   return (
     <BuildingCol>
@@ -255,7 +260,11 @@ const Building = props => {
       ) : (
         <BeforeAfter before={building.beforeAfter.before} after={building.beforeAfter.after} />
       )}
-      <ResponsiveImage srcPath={building.footerImage.imgUrl} imgAlt={building.footerImage.imgAlt} />
+      <ResponsiveImage
+        imgClass="building-img"
+        srcPath={building.footerImage.imgUrl}
+        imgAlt={building.footerImage.imgAlt}
+      />
       <FooterOverlay>
         <span>{building.footerImage.footerText}</span>
         <Link href={building.footerImage.footerLink}>
@@ -267,16 +276,14 @@ const Building = props => {
           ''
         ) : (
           <ContactRow>
-            <RowHeading>
-              <RowTitle>Leasing Contacts</RowTitle>
-            </RowHeading>
-            <RowBody numChildren={building.contactArray.length}>{createContactList(building.contactArray)}</RowBody>
+            <RowTitle>Leasing Contacts</RowTitle>
+            <RowBody numChildren={contactArray.length}>{createContactList(contactArray)}</RowBody>
           </ContactRow>
         )}
         <AvailabilityList building={building.header.headerLogoAlt} />
       </PaddingCol>
-      <CopyrightFooter />
       <ScrollUp />
+      <CopyrightFooter />
     </BuildingCol>
   );
 };

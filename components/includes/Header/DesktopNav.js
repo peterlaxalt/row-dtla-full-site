@@ -10,7 +10,7 @@ import variables from '~/styles/Variables';
 
 // Desktop Navigation
 
-const DesktopNav = styled.div`
+const DesktopNavWrapper = styled.div`
   display: flex;
   height: 100%;
 
@@ -55,9 +55,13 @@ export const DesktopNavigation = props => {
     const links = props.routes.map(page => {
       let link =
         page !== 'buildings' ? (
-          <a>{page.toUpperCase()}</a>
+          // eslint-disable-next-line
+          <a onMouseOver={() => context.state.navigation.buildingNavActive && context.toggleBuildingNav(false)}>
+            {page.toUpperCase()}
+          </a>
         ) : (
-          <a onMouseOver={context.toggleBuildingNav} onFocus={context.toggleBuildingNav}>
+          // eslint-disable-next-line
+          <a onMouseOver={() => context.toggleBuildingNav(true)} onFocus={context.toggleBuildingNav}>
             {page.toUpperCase()}
           </a>
         );
@@ -75,12 +79,17 @@ export const DesktopNavigation = props => {
   return (
     <Context.Consumer>
       {context => (
-        <DesktopNav>
+        <DesktopNavWrapper>
           <NavUnorderedList route={props.route} active={context.state.navigation.desktopNavActive}>
             {generateLinks(context)}
           </NavUnorderedList>
-          {props.route === 'home' && <DesktopHamburger toggleDesktopNav={context.toggleDesktopNav} />}
-        </DesktopNav>
+          {props.route === 'home' && (
+            <DesktopHamburger
+              open={context.state.navigation.desktopNavActive}
+              toggleDesktopNav={context.toggleDesktopNav}
+            />
+          )}
+        </DesktopNavWrapper>
       )}
     </Context.Consumer>
   );
@@ -92,7 +101,7 @@ const isBuildingNavVisible = props => {
   return props.route === 'buildings' ? true : props.active;
 };
 
-const BuildingNav = styled.div`
+const BuildingNavWrapper = styled.div`
   background: rgba(255, 255, 255, 0.9);
   position: fixed;
   top: 0;
@@ -135,9 +144,34 @@ export const BuildingNavigation = props => {
   return (
     <Context.Consumer>
       {context => (
-        <BuildingNav active={context.state.navigation.buildingNavActive} route={props.route}>
+        <BuildingNavWrapper active={context.state.navigation.buildingNavActive} route={props.route}>
           {generateDesktopBuildingLinks()}
-        </BuildingNav>
+        </BuildingNavWrapper>
+      )}
+    </Context.Consumer>
+  );
+};
+
+const BuildingOverlayWrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background: transparent;
+  z-index: 99;
+  cursor: pointer;
+  opacity: ${props => (props.active ? 1 : 0)};
+  visibility: ${props => (props.active ? 'visible' : 'hidden')};
+`;
+
+export const BuildingEscapeOverlay = () => {
+  return (
+    <Context.Consumer>
+      {context => (
+        <BuildingOverlayWrapper
+          active={context.state.navigation.buildingNavActive}
+          onMouseOver={() => context.toggleBuildingNav(false)}
+          onFocus={context.toggleBuildingNav}
+        />
       )}
     </Context.Consumer>
   );

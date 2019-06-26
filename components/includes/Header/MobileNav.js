@@ -4,11 +4,28 @@ import styled from 'styled-components';
 import { MobileHamburger, MobileClose } from './Hamburgers';
 import { generateBuildingLinks, generateLocationLinks, generateNewsLink } from './SubNav';
 import { mediaMin } from '~/styles/MediaQueries';
+import variables from '~/styles/Variables';
 import Context from '~/config/Context';
 
 const MobileHamburgerContainer = styled.div`
   display: flex;
   height: 100%;
+
+  ${mediaMin.desktopSmall`
+    display: none;
+  `}
+`;
+
+const MobileOverlay = styled.div`
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all 200ms ease;
+  visibility: ${props => (props.active ? 'visible' : 'hidden')};
+  opacity: ${props => (props.active ? 1 : 0)};
 
   ${mediaMin.desktopSmall`
     display: none;
@@ -24,6 +41,7 @@ const MobileNav = styled.div`
   right: ${props => (props.active ? 0 : '-300px')};
   visibility: ${props => (props.active ? 'visible' : 'hidden')};
   transition: all 400ms ease;
+  z-index: 1;
 
   ${mediaMin.desktopSmall`
     display: none;
@@ -32,6 +50,7 @@ const MobileNav = styled.div`
   ul.main-nav-ul {
     padding-top: 20px;
     padding-right: 40px;
+    margin-top: 0;
     li.main-nav-li:nth-child(10) {
       border-bottom: none;
     }
@@ -41,6 +60,10 @@ const MobileNav = styled.div`
       padding: 17px 0;
       border-bottom: 2px solid rgba(200, 200, 200, 0.2);
       position: relative;
+      font-family: ${variables.typography.default};
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1px;
       i {
         position: absolute;
         right: 0;
@@ -66,6 +89,7 @@ const MobileNavigation = props => {
     let pageLink = (page, subNav = null) => (
       <li className="main-nav-li" key={`mobile-link-${page}`}>
         <Link href={`/${page}`}>
+          {/* eslint-disable-next-line */}
           <a>{page.charAt(0).toUpperCase() + page.slice(1)}</a>
         </Link>
         {/* eslint-disable */}
@@ -96,12 +120,15 @@ const MobileNavigation = props => {
       {context => (
         <React.Fragment>
           <MobileHamburgerContainer>
-            <MobileHamburger toggleMobileNav={context.toggleMobileNav} />
+            <MobileHamburger />
           </MobileHamburgerContainer>
           <MobileNav active={context.state.navigation.mobileNavActive}>
-            <MobileClose toggleMobileNav={context.toggleMobileNav} />
+            <MobileClose />
             <ul className="main-nav-ul">{generateLinks}</ul>
           </MobileNav>
+          {context.state.windowDimensions.width < 1250 && (
+            <MobileOverlay onClick={context.closeMobileNav} active={context.state.navigation.mobileNavActive} />
+          )}
         </React.Fragment>
       )}
     </Context.Consumer>

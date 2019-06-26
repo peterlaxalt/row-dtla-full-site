@@ -18,8 +18,13 @@ Router.onRouteChangeStart = () => {
   NProgress.start();
 };
 
-Router.onRouteChangeComplete = () => NProgress.done();
-Router.onRouteChangeError = () => NProgress.done();
+Router.onRouteChangeComplete = () => {
+  NProgress.done();
+};
+
+Router.onRouteChangeError = () => {
+  NProgress.done();
+};
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {

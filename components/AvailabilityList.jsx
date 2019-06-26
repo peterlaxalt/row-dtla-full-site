@@ -26,7 +26,7 @@ const AvailabilityRow = styled.tr`
   width: 100%;
   margin: ${props => (props.filter ? '30px 0 0 0' : '10px 0 0 0')};
   padding: ${props => (props.filter ? '0 0 30px 0' : '0 0 10px 0')};
-  ${mediaMin.tabletLandscape`
+  ${mediaMin.tablet`
     margin: 30px 0 0 0;
     padding: 0 0 30px 0;
   `}
@@ -60,13 +60,17 @@ const AvailabilityRow = styled.tr`
   }
   .details {
     width: 5%;
+
     @media screen and (max-width: 1024px) {
       border: 2px solid black;
       border-radius: 50%;
-      padding: 30px;
       height: 45px;
       width: 45px;
       box-sizing: content-box;
+      padding: 18px;
+    }
+    @media screen and (max-width: 767px) {
+      padding: 30px;
     }
   }
   @media screen and (max-width: 1024px) {
@@ -163,7 +167,10 @@ const AvailabilityLink = styled.a`
   cursor: pointer;
   ${mediaMin.tabletLandscape`
     color: ${colors.babyBlue};
-  `}
+    &:visited{
+      color: ${colors.babyBlue};
+    }
+    `}s
   &:hover {
     padding: 30px;
     color: #000;
@@ -171,6 +178,7 @@ const AvailabilityLink = styled.a`
     background: #369bf766;
     box-shadow: 0 0 20px #369bf7;
   }
+
   .details {
     width: 5%;
   }

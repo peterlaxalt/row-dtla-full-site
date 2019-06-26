@@ -7,7 +7,7 @@ class ContextProvider extends Component {
     this.state = {
       windowDimensions: {
         height: null,
-        width: 2000
+        width: ''
       },
       navigation: {
         mobileNavActive: false,
@@ -41,11 +41,18 @@ class ContextProvider extends Component {
         value={{
           ...this.props,
           state: this.state,
-          toggleMobileNav: () =>
+          openMobileNav: () =>
             this.setState({
               navigation: {
                 ...this.state.navigation,
-                mobileNavActive: !this.state.navigation.mobileNavActive
+                mobileNavActive: true
+              }
+            }),
+          closeMobileNav: () =>
+            this.setState({
+              navigation: {
+                ...this.state.navigation,
+                mobileNavActive: false
               }
             }),
           toggleDesktopNav: () =>
@@ -55,11 +62,11 @@ class ContextProvider extends Component {
                 desktopNavActive: !this.state.navigation.desktopNavActive
               }
             }),
-          toggleBuildingNav: () =>
+          toggleBuildingNav: (boolean = undefined) =>
             this.setState({
               navigation: {
                 ...this.state.navigation,
-                buildingNavActive: !this.state.navigation.buildingNavActive
+                buildingNavActive: boolean || !this.state.navigation.buildingNavActive
               }
             }),
           toggleSubNav: section => {

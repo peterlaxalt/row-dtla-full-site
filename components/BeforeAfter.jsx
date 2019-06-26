@@ -12,13 +12,14 @@ const SliderIconContainer = styled.div`
   height: 100%;
   width: 2px;
   background-color: #fff;
+  cursor: col-resize;
 `;
 
 const Slider = styled.img`
   top: 50%;
+  height: 65px;
   position: absolute;
-  transform: translate(-50%, 0);
-  cursor: pointer;
+  transform: translate(-50%, -50%);
 `;
 
 export default class BeforeAfter extends React.Component {
@@ -31,7 +32,7 @@ export default class BeforeAfter extends React.Component {
           right={<ResponsiveImage srcPath={after.path} imgAlt={after.alt} />}
           slider={
             <SliderIconContainer>
-              <Slider src="/static/images/test/close.svg" alt="slider handle" />
+              <Slider src="/static/images/icons/slider-compare-control.svg" alt="slider handle" />
             </SliderIconContainer>
           }
         />
