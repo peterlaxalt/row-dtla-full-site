@@ -121,6 +121,7 @@ class NewsArticle extends React.Component {
       articleData: false
     };
   }
+
   componentDidMount() {
     if (this.props.context.newsData !== [] && this.state.articleData === false) {
       if (this.props.title !== undefined) {
@@ -136,6 +137,7 @@ class NewsArticle extends React.Component {
       }
     }
   }
+
   componentDidUpdate() {
     if (this.props.context.newsData !== [] && this.state.articleData == false) {
       if (this.props.title !== undefined) {
