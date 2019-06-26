@@ -13,6 +13,7 @@ import MiniMap from '../components/MiniMap';
 import variables from '~/styles/Variables';
 import ContactCard from '~/components/ContactCard';
 import { mediaMin } from '../styles/MediaQueries';
+import Context from '../config/Context';
 
 const { colors } = variables;
 
@@ -209,6 +210,14 @@ const createContactList = contactInfoArray => {
 const Building = props => {
   const { building } = props;
 
+  const context = React.useContext(Context);
+
+  const contactArray = context.contactData.filter(contact => {
+    if (contact.buildings.includes(building.slug)) {
+      return contact;
+    }
+  });
+
   return (
     <BuildingCol>
       <BuildingHeader headerInfo={building.header} />
@@ -278,7 +287,7 @@ const Building = props => {
             <RowHeading>
               <RowTitle>Leasing Contacts</RowTitle>
             </RowHeading>
-            <RowBody numChildren={building.contactArray.length}>{createContactList(building.contactArray)}</RowBody>
+            <RowBody numChildren={contactArray.length}>{createContactList(contactArray)}</RowBody>
           </ContactRow>
         )}
         <AvailabilityList building={building.header.headerLogoAlt} />
