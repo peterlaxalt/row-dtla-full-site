@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { mediaMin } from '../styles/MediaQueries';
 
 const ScrollUpButton = styled.button`
+  width: 100%;
   height: 42px;
   margin: 0 auto;
   cursor: pointer;
