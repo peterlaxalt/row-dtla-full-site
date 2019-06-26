@@ -1,6 +1,6 @@
 import { withRouter } from 'next/router';
 import Link from 'next/link';
-// import Fade from 'react-reveal/Fade';
+import Fade from 'react-reveal/Fade';
 import styled from 'styled-components';
 
 import { buildings } from '~/data/buildings';
@@ -205,7 +205,9 @@ const Building = props => {
 
   return (
     <BuildingCol>
-      <BuildingHeader headerInfo={building.header} />
+      <Fade>
+        <BuildingHeader headerInfo={building.header} />
+      </Fade>
       <PaddingCol>
         <AboutSection>
           <h3>About {building.title}</h3>
@@ -246,18 +248,24 @@ const Building = props => {
         </AboutSection>
       </PaddingCol>
       <Spacer />
-      <ImageSlider height="70vh" imgArray={building.sliderArray} showQuotes={true} />
+      <Fade>
+        <ImageSlider height="70vh" imgArray={building.sliderArray} showQuotes={true} />
+      </Fade>
       <Spacer customHeight="35px" />
       {building.beforeAfter === false ? (
         ''
       ) : (
-        <BeforeAfter before={building.beforeAfter.before} after={building.beforeAfter.after} />
+        <Fade>
+          <BeforeAfter before={building.beforeAfter.before} after={building.beforeAfter.after} />
+        </Fade>
       )}
-      <ResponsiveImage
-        imgClass="building-img"
-        srcPath={building.footerImage.imgUrl}
-        imgAlt={building.footerImage.imgAlt}
-      />
+      <Fade>
+        <ResponsiveImage
+          imgClass="building-img"
+          srcPath={building.footerImage.imgUrl}
+          imgAlt={building.footerImage.imgAlt}
+        />
+      </Fade>
       <FooterOverlay>
         <span>{building.footerImage.footerText}</span>
         <Link href={building.footerImage.footerLink}>
@@ -268,12 +276,16 @@ const Building = props => {
         {building.contactArray === false ? (
           ''
         ) : (
-          <ContactRow>
-            <RowTitle>Leasing Contacts</RowTitle>
-            <RowBody numChildren={building.contactArray.length}>{createContactList(building.contactArray)}</RowBody>
-          </ContactRow>
+          <Fade>
+            <ContactRow>
+              <RowTitle>Leasing Contacts</RowTitle>
+              <RowBody numChildren={building.contactArray.length}>{createContactList(building.contactArray)}</RowBody>
+            </ContactRow>
+          </Fade>
         )}
-        <AvailabilityList building={building.header.headerLogoAlt} />
+        <Fade>
+          <AvailabilityList building={building.header.headerLogoAlt} />
+        </Fade>
       </PaddingCol>
       <ScrollUp />
       <CopyrightFooter />
