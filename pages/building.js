@@ -1,4 +1,8 @@
 import { withRouter } from 'next/router';
+import Link from 'next/link';
+// import Fade from 'react-reveal/Fade';
+import styled from 'styled-components';
+
 import { buildings } from '~/data/buildings';
 import BuildingHeader from '~/components/BuildingHeader';
 import AvailabilityList from '~/components/AvailabilityList';
@@ -6,13 +10,11 @@ import ImageSlider from '~/components/Slider';
 import BeforeAfter from '~/components/BeforeAfter';
 import CopyrightFooter from '~/components/CopyrightFooter';
 import ScrollUp from '~/components/ScrollUp';
-import styled from 'styled-components';
 import ResponsiveImage from '~/components/ResponsiveImage';
-import Link from 'next/link';
-import MiniMap from '../components/MiniMap';
+import MiniMap from '~/components/MiniMap';
 import variables from '~/styles/Variables';
 import ContactCard from '~/components/ContactCard';
-import { mediaMin } from '../styles/MediaQueries';
+import { mediaMin } from '~/styles/MediaQueries';
 
 const { colors } = variables;
 
