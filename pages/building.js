@@ -276,11 +276,8 @@ const Building = props => {
           ''
         ) : (
           <ContactRow>
-            <RowHeading>
-              <RowTitle>Leasing Contacts</RowTitle>
-            </RowHeading>
+            <RowTitle>Leasing Contacts</RowTitle>
             <RowBody numChildren={contactArray.length}>{createContactList(contactArray)}</RowBody>
-
           </ContactRow>
         )}
         <AvailabilityList building={building.header.headerLogoAlt} />
