@@ -34,6 +34,7 @@ const BackButtonInnner = styled.a`
     }
   }
 `;
+
 const Article = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,19 +44,29 @@ const Article = styled.div`
   padding: 0 30px;
   `}
 `;
+
 const ArticleTitle = styled.h2`
   width: 100%;
-  font-size: 30px;
   font-weight: 500;
-  margin-top: 50px;
+  font-size: 20px;
   padding-bottom: 30px;
   border-bottom: 3px solid black;
+  margin-top: 40px;
+  ${mediaMin.tabletLandscape`
+    margin-top: 50px;
+    font-size: 30px;
+  `}
 `;
+
 const ArticleBody = styled.p`
   width: 100%;
+  margin-bottom: 60px;
+  font-size: 17px;
+  line-height: 25px;
+  ${mediaMin.tabletLandscape`
   font-size: 19px;
   line-height: 28px;
-  margin-bottom: 60px;
+  `}
   a {
     color: #369bf7;
     &:hover {
@@ -64,11 +75,24 @@ const ArticleBody = styled.p`
   }
   blockquote {
     padding: 20px 25px;
-    border: 1px solid black;
-    font-size: 24px;
-    line-height: 36px;
+    border: 1px solid #0000001a;
+    font-size: 17px;
+    line-height: 25px;
     margin-left: 0;
     margin-right: 0;
+    ${mediaMin.tabletLandscape`
+    font-size: 24px;
+    line-height: 36px;
+    `}
+  }
+  h5 {
+    font-size: 16px;
+    line-height: 17px;
+    font-weight: 500;
+    margin: 2px 0;
+    ${mediaMin.tabletLandscape`
+    font-size: 17px;
+    `}
   }
 `;
 
@@ -97,6 +121,7 @@ class NewsArticle extends React.Component {
       articleData: false
     };
   }
+
   componentDidMount() {
     if (this.props.context.newsData !== [] && this.state.articleData === false) {
       if (this.props.title !== undefined) {
@@ -112,6 +137,7 @@ class NewsArticle extends React.Component {
       }
     }
   }
+
   componentDidUpdate() {
     if (this.props.context.newsData !== [] && this.state.articleData == false) {
       if (this.props.title !== undefined) {
@@ -181,8 +207,8 @@ class NewsArticle extends React.Component {
             <Fade>
               <ImageSlider
                 imgArray={this.createImageArray(this.state.articleData)}
-                showQuotes={true}
-                autoPlay={true}
+                showQuotes={false}
+                autoPlay
                 height="75vh"
               />
             </Fade>

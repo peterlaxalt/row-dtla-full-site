@@ -37,20 +37,21 @@ const NewsList = styled.div`
 const ListItem = styled.div`
   box-sizing: border-box;
   display: flex;
-  height: 40vh;
   width: 100%;
   padding: 0;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  margin-bottom: 20px;
   ${mediaMin.tabletLandscape`
-    width: 50%;
-    height: 55vh;
+  width: 50%;
+  margin-bottom: 0;
+    height: 45vh;
     padding: 15px 25px;
   `}
   div {
     width: 100%;
-    height: 100%;
+    height: 30vh;
     background-image: url(${props => props.imgURL});
     background-size: cover;
     background-repeat: no-repeat;
@@ -58,6 +59,12 @@ const ListItem = styled.div`
     cursor: pointer;
     z-index: 1;
     position: relative;
+    ${mediaMin.tablet`
+    height: 40vh;
+    `}
+    ${mediaMin.tabletLandscape`
+    height: 100%;
+    `}
     &::before,
     &::after {
       content: '';
@@ -90,6 +97,7 @@ const ListItem = styled.div`
     width: 100%;
     text-align: left;
     font-size: 22px;
+    font-weight: 500;
     line-height: 30px;
     letter-spacing: 1px;
     margin-top: 20px;
