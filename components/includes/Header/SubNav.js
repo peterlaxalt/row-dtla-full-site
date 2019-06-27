@@ -5,6 +5,7 @@ import { buildings } from '~/data/buildings';
 import locations from '~/data/locations';
 import story from '~/data/story';
 import Context from '~/config/Context';
+import variables from '~/styles/Variables';
 
 // Desktop Subnavs
 export const generateDesktopBuildingLinks = () => {
@@ -34,18 +35,26 @@ const SubNavUl = styled.ul`
       font-weight: 500;
       font-size: 0.8em;
     }
+    li.active {
+      color: ${variables.colors.babyBlue};
+    }
   }
 `;
 
-export const generateBuildingLinks = () => {
-  const buildingLinks = buildings.map(building => (
-    <li className="mobile-nav-submenu" key={`building-${building.navTitle}`}>
-      <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
-        {/* eslint-disable-next-line */}
-        <a>{building.navTitle}</a>
-      </Link>
-    </li>
-  ));
+export const generateBuildingLinks = (route, query) => {
+  const buildingLinks = buildings.map(building => {
+    return (
+      <li
+        className={`mobile-nav-submenu ${query.slug === building.slug ? 'active' : 'inactive'}`}
+        key={`building-${building.navTitle}`}
+      >
+        <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
+          {/* eslint-disable-next-line */}
+          <a>{building.navTitle}</a>
+        </Link>
+      </li>
+    );
+  });
 
   return (
     <Context.Consumer>

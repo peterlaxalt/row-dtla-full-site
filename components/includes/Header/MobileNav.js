@@ -82,6 +82,9 @@ const MobileNav = styled.div`
     li.active {
       color: ${variables.colors.babyBlue};
     }
+    li.inactive {
+      color: #000;
+    }
   }
 `;
 
@@ -91,7 +94,12 @@ const MobileNavigation = props => {
     const linkText = page.link;
     const linkPath = page.path;
     let pageLink = (page, subNav = null) => (
-      <li className={`main-nav-li ${props.route === linkPath ? 'active' : ''}`} key={`mobile-link-${linkText}`}>
+      <li
+        className={`main-nav-li ${
+          props.route === linkPath || (props.route === 'building' && linkPath === 'buildings') ? 'active' : ''
+        }`}
+        key={`mobile-link-${linkText}`}
+      >
         <Link href={`/${linkPath}`}>
           {/* eslint-disable-next-line */}
           <a>{linkText.charAt(0).toUpperCase() + linkText.slice(1)}</a>
@@ -109,10 +117,10 @@ const MobileNavigation = props => {
     );
 
     if (linkText === 'buildings') {
-      return pageLink(linkText, generateBuildingLinks());
+      return pageLink(linkText, generateBuildingLinks(props.route, props.query));
     } else if (linkText === 'location') {
       return pageLink(linkText, generateLocationLinks());
-    } else if (page === 'news') {
+    } else if (linkText === 'news') {
       return pageLink(linkText, generateNewsLink());
     } else if (linkText === 'story') {
       return pageLink(linkText, generateStoryLinks());
