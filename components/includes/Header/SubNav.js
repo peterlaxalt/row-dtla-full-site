@@ -59,10 +59,10 @@ export const generateBuildingLinks = () => {
 
 export const generateLocationLinks = () => {
   const locationLinks = locations.map(location => (
-    <li className="mobile-nav-submenu" key={`location-${location}`}>
-      <Link href={`/neighborhood#section-neighborhood-${location}`}>
+    <li className="mobile-nav-submenu" key={`location-${location.link}`}>
+      <Link href={`/neighborhood#section-neighborhood-${location.path}`}>
         {/* eslint-disable-next-line */}
-        <a>{location}</a>
+        <a>{location.link}</a>
       </Link>
     </li>
   ));
@@ -76,6 +76,19 @@ export const generateLocationLinks = () => {
       )}
     </Context.Consumer>
   );
+};
+
+export const generateDesktopLocationLinks = () => {
+  const locationLinks = locations.map(location => (
+    <li className="neighborhood-nav-submenu" key={`location-${location.link}`}>
+      <Link href={`/neighborhood#section-neighborhood-${location.path}`}>
+        {/* eslint-disable-next-line */}
+        <a>{location.link.toUpperCase()}</a>
+      </Link>
+    </li>
+  ));
+
+  return <ul>{locationLinks}</ul>;
 };
 
 export const generateNewsLink = () => {
@@ -97,4 +110,17 @@ export const generateNewsLink = () => {
       )}
     </Context.Consumer>
   );
+};
+
+export const generateDesktopNewsLink = () => {
+  let newsLink = (
+    <li className="mobile-nav-submenu" key={`press-navlink`}>
+      <Link href="/press">
+        {/* eslint-disable-next-line */}
+        <a>Hudson Square Press</a>
+      </Link>
+    </li>
+  );
+
+  return <ul>{newsLink}</ul>;
 };
