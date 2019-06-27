@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { mediaMax } from '~/styles/MediaQueries';
 import Context from '~/config/Context';
 import { DesktopHamburger } from './Hamburgers';
-import { generateDesktopBuildingLinks, generateDesktopLocationLinks /* generateDesktopNewsLink */ } from './SubNav';
+import { generateDesktopBuildingLinks, generateDesktopLocationLinks, generateDesktopNewsLink } from './SubNav';
 import variables from '~/styles/Variables';
 
 // Desktop Navigation
@@ -149,6 +149,43 @@ const BuildingNavWrapper = styled.div`
   }
 `;
 
+export const BuildingNavigation = props => {
+  return (
+    <Context.Consumer>
+      {context => (
+        <BuildingNavWrapper active={context.state.navigation.buildingNavActive} route={props.route}>
+          {generateDesktopBuildingLinks()}
+        </BuildingNavWrapper>
+      )}
+    </Context.Consumer>
+  );
+};
+
+const BuildingOverlayWrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background: transparent;
+  z-index: 99;
+  cursor: pointer;
+  opacity: ${props => (props.active ? 1 : 0)};
+  visibility: ${props => (props.active ? 'visible' : 'hidden')};
+`;
+
+export const BuildingEscapeOverlay = () => {
+  return (
+    <Context.Consumer>
+      {context => (
+        <BuildingOverlayWrapper
+          active={context.state.navigation.buildingNavActive}
+          onMouseOver={() => context.toggleBuildingNav(false)}
+          onFocus={context.toggleBuildingNav}
+        />
+      )}
+    </Context.Consumer>
+  );
+};
+
 const NeighborhoodNavWrapper = styled.div`
   background: rgba(255, 255, 255, 0.9);
   position: fixed;
@@ -189,18 +226,6 @@ const NeighborhoodNavWrapper = styled.div`
   }
 `;
 
-export const BuildingNavigation = props => {
-  return (
-    <Context.Consumer>
-      {context => (
-        <BuildingNavWrapper active={context.state.navigation.buildingNavActive} route={props.route}>
-          {generateDesktopBuildingLinks()}
-        </BuildingNavWrapper>
-      )}
-    </Context.Consumer>
-  );
-};
-
 export const NeighborhoodNavigation = props => {
   return (
     <NeighborhoodNavWrapper active={props.route === 'neighborhood'} route={props.route}>
@@ -209,27 +234,50 @@ export const NeighborhoodNavigation = props => {
   );
 };
 
-const BuildingOverlayWrapper = styled.div`
-  height: 100%;
-  width: 100%;
+const NewsNavWrapper = styled.div`
+  background: rgba(255, 255, 255, 0.9);
   position: fixed;
-  background: transparent;
-  z-index: 99;
-  cursor: pointer;
-  opacity: ${props => (props.active ? 1 : 0)};
-  visibility: ${props => (props.active ? 'visible' : 'hidden')};
+  top: 0;
+  left: 0;
+  margin-top: 60px;
+  height: 45px;
+  width: 100%;
+  z-index: 50;
+  transition: all 200ms ease;
+  opacity: ${props => (isBuildingNavVisible(props) ? 1 : 0)};
+  visibility: ${props => (isBuildingNavVisible(props) ? 'visible' : 'hidden')};
+
+  ${mediaMax.desktopSmall`
+    display: none;
+  `}
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 50px;
+    margin: 0;
+    height: 100%;
+    li {
+      padding: 0 30px;
+      list-style-type: none;
+      cursor: pointer;
+      a {
+        text-decoration: none;
+        color: initial;
+        font-weight: 500;
+        font-size: 0.8em;
+        letter-spacing: 1px;
+        color: ${variables.colors.babyBlue};
+      }
+    }
+  }
 `;
 
-export const BuildingEscapeOverlay = () => {
+export const NewsNavigation = props => {
   return (
-    <Context.Consumer>
-      {context => (
-        <BuildingOverlayWrapper
-          active={context.state.navigation.buildingNavActive}
-          onMouseOver={() => context.toggleBuildingNav(false)}
-          onFocus={context.toggleBuildingNav}
-        />
-      )}
-    </Context.Consumer>
+    <NewsNavWrapper active={props.route === 'news'} route={props.route}>
+      {generateDesktopNewsLink()}
+    </NewsNavWrapper>
   );
 };
