@@ -79,17 +79,19 @@ const MobileNav = styled.div`
     li.main-nav-li:nth-child(8) {
       border-bottom: none;
     }
+    li.active {
+      color: ${variables.colors.babyBlue};
+    }
   }
 `;
 
 const MobileNavigation = props => {
   const context = React.useContext(Context);
-
   const generateLinks = props.routes.map(page => {
     const linkText = page.link;
     const linkPath = page.path;
     let pageLink = (page, subNav = null) => (
-      <li className="main-nav-li" key={`mobile-link-${linkText}`}>
+      <li className={`main-nav-li ${props.route === linkPath ? 'active' : ''}`} key={`mobile-link-${linkText}`}>
         <Link href={`/${linkPath}`}>
           {/* eslint-disable-next-line */}
           <a>{linkText.charAt(0).toUpperCase() + linkText.slice(1)}</a>

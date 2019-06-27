@@ -67,7 +67,7 @@ const Header = ({ router }) => {
               </a>
             </Link>
             <DesktopNavigation locations={locations} routes={routes} route={route} />
-            <MobileNavigation locations={locations} routes={routes} />
+            <MobileNavigation locations={locations} routes={routes} route={route} />
           </HeaderWrapper>
           <BuildingNavigation route={route} />
           <BuildingEscapeOverlay />

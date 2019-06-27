@@ -48,6 +48,9 @@ const NavUnorderedList = styled.ul`
       }
     }
   }
+  li.active {
+    color: ${variables.colors.babyBlue};
+  }
 `;
 
 export const DesktopNavigation = props => {
@@ -69,7 +72,11 @@ export const DesktopNavigation = props => {
         );
 
       return (
-        <li id={`desktop-link-${linkText}`} key={`link-${linkText}`}>
+        <li
+          id={`desktop-link-${linkText}`}
+          key={`link-${linkText}`}
+          className={props.route === linkPath ? 'active' : ''}
+        >
           <Link href={`/${linkPath}`}>{link}</Link>
         </li>
       );
