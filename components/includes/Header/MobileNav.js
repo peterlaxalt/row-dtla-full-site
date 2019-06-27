@@ -104,7 +104,13 @@ const MobileNavigation = props => {
       >
         <Link href={`/${linkPath}`}>
           {/* eslint-disable-next-line */}
-          <a>{linkText.charAt(0).toUpperCase() + linkText.slice(1)}</a>
+          <a
+            onClick={() => {
+              context.closeMobileNav();
+            }}
+          >
+            {linkText.charAt(0).toUpperCase() + linkText.slice(1)}
+          </a>
         </Link>
         {/* eslint-disable */}
         {subNav && (
