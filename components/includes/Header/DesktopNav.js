@@ -53,22 +53,24 @@ const NavUnorderedList = styled.ul`
 export const DesktopNavigation = props => {
   const generateLinks = context => {
     const links = props.routes.map(page => {
+      const linkText = page.link;
+      const linkPath = page.path;
       let link =
-        page !== 'buildings' ? (
+        linkText !== 'buildings' ? (
           // eslint-disable-next-line
           <a onMouseOver={() => context.state.navigation.buildingNavActive && context.toggleBuildingNav(false)}>
-            {page.toUpperCase()}
+            {linkText.toUpperCase()}
           </a>
         ) : (
           // eslint-disable-next-line
           <a onMouseOver={() => context.toggleBuildingNav(true)} onFocus={context.toggleBuildingNav}>
-            {page.toUpperCase()}
+            {linkText.toUpperCase()}
           </a>
         );
 
       return (
-        <li id={`desktop-link-${page}`} key={`link-${page}`}>
-          <Link href={`/${page}`}>{link}</Link>
+        <li id={`desktop-link-${linkText}`} key={`link-${linkText}`}>
+          <Link href={`/${linkPath}`}>{link}</Link>
         </li>
       );
     });
