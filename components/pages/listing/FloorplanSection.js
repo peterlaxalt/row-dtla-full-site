@@ -35,44 +35,44 @@ const FloorplanSectionWrapper = styled.div`
     border-bottom: 3px solid black;
     padding: 10px 0;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: relative;
     margin-bottom: 15px;
-    button {
-      font-family: ${variables.typography.default};
-      font-weight: 500;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1.2rem;
-      border-right: 3px solid black;
-      padding: 0 1em;
-      font-size: 1rem;
-      ${mediaMin.desktopSmall`
+    .button-wrapper {
+      height: 20px;
+      display: flex;
+      flex-direction: row;
+      button {
+        font-family: ${variables.typography.default};
+        font-weight: 500;
+        background: none;
+        border: none;
+        cursor: pointer;
         font-size: 1.2rem;
-      `}
-      &:nth-last-child(2) {
-        border-right: none;
-      }
-      &.first {
-        padding: 0 1em 0 0;
-      }
-      &.active {
-        color: ${variables.colors.babyBlue};
+        border-right: 3px solid black;
+        padding: 0 10px;
+        font-size: 1rem;
+        color: rgb(81, 81, 81);
+        ${mediaMin.desktopSmall`
+        font-size: 1.2rem;
+        `}
+        &:last-child {
+          border-right: none;
+        }
+        &.first {
+          padding: 0 1em 0 0;
+        }
+        &.active {
+          color: #000;
+        }
       }
     }
     a {
-      position: absolute;
-      right: 0;
       color: #369bf7;
       padding: 5px 0;
+      box-sizing: border-box;
       font-size: 1.2rem;
-      ${mediaMin.tablet`
-        right: 20%;
-      `}
-      ${mediaMin.desktop`
-        right: 50%;
-        transform: translateX(50%);
-      `}
       &:hover {
         text-decoration: underline;
       }
@@ -81,6 +81,8 @@ const FloorplanSectionWrapper = styled.div`
   .floorplan-container {
     position: relative;
     img {
+      padding: 15px 15px;
+      box-sizing: border-box;
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
@@ -155,7 +157,7 @@ class FloorplanSection extends Component {
       );
     });
 
-    return <React.Fragment>{buttons}</React.Fragment>;
+    return <div className="button-wrapper">{buttons}</div>;
   }
 
   renderImages() {

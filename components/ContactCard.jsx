@@ -7,12 +7,13 @@ const ContactCardWrapper = styled.div`
   flex-direction: column;
   height: 81px;
   width: 100%;
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 30px;
   ${mediaMin.phoneXL`
-    width: 50%;
+  width: 50%;
   `}
   ${mediaMin.tabletLandscape`
+  font-size: 18px;
     width: 25%;
   `}
   .contact-name {
