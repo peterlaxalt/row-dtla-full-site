@@ -41,7 +41,8 @@ const MobileNav = styled.div`
   right: ${props => (props.active ? 0 : '-300px')};
   visibility: ${props => (props.active ? 'visible' : 'hidden')};
   transition: all 400ms ease;
-  z-index: 1;
+  z-index: 100;
+  overflow-y: scroll;
 
   ${mediaMin.desktopSmall`
     display: none;
@@ -51,6 +52,7 @@ const MobileNav = styled.div`
     padding-top: 20px;
     padding-right: 40px;
     margin-top: 0;
+    overflow-y: scroll;
     li.main-nav-li:nth-child(10) {
       border-bottom: none;
     }
