@@ -13,7 +13,7 @@ export const generateDesktopBuildingLinks = () => {
     <li className="mobile-nav-submenu" key={`building-${building.navTitle}`}>
       <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
         {/* eslint-disable-next-line */}
-        <a>{building.navTitle}</a>
+        <a>{building.desktopNavTitle}</a>
       </Link>
     </li>
   ));
@@ -46,7 +46,7 @@ export const generateBuildingLinks = (route, query) => {
     return (
       <li
         className={`mobile-nav-submenu ${query.slug === building.slug ? 'active' : 'inactive'}`}
-        key={`building-${building.navTitle}`}
+        key={`building-${building.mobileNavTitle}`}
       >
         <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
           {/* eslint-disable-next-line */}

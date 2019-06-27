@@ -203,8 +203,8 @@ const NeighborhoodNavWrapper = styled.div`
   width: 100%;
   z-index: 50;
   transition: all 200ms ease;
-  opacity: ${props => (isBuildingNavVisible(props) ? 1 : 0)};
-  visibility: ${props => (isBuildingNavVisible(props) ? 'visible' : 'hidden')};
+  opacity: ${props => (props.active ? 1 : 0)};
+  visibility: ${props => (props.active ? 'visible' : 'hidden')};
 
   ${mediaMax.desktopSmall`
     display: none;
@@ -251,8 +251,8 @@ const NewsNavWrapper = styled.div`
   width: 100%;
   z-index: 50;
   transition: all 200ms ease;
-  opacity: ${props => (isBuildingNavVisible(props) ? 1 : 0)};
-  visibility: ${props => (isBuildingNavVisible(props) ? 'visible' : 'hidden')};
+  opacity: ${props => (props.active ? 1 : 0)};
+  visibility: ${props => (props.active ? 'visible' : 'hidden')};
 
   ${mediaMax.desktopSmall`
     display: none;
@@ -299,8 +299,8 @@ const StoryNavWrapper = styled.div`
   width: 100%;
   z-index: 50;
   transition: all 200ms ease;
-  opacity: ${props => (isBuildingNavVisible(props) ? 1 : 0)};
-  visibility: ${props => (isBuildingNavVisible(props) ? 'visible' : 'hidden')};
+  opacity: ${props => (props.story ? 1 : 0)};
+  visibility: ${props => (props.story ? 'visible' : 'hidden')};
 
   ${mediaMax.desktopSmall`
     display: none;
