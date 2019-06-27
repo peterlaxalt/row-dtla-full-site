@@ -206,9 +206,9 @@ const Story = () => (
           <Fade>
             <BeforeAfter before={beforeAfterTwo.before} after={beforeAfterTwo.after} />
           </Fade>
-          <Spacer />
+          <Spacer id="section-story-trinity" />
           <Fade>
-            <Heading id="section-story-trinity">TRINITY CHURCH WALL STREET</Heading>
+            <Heading>TRINITY CHURCH WALL STREET</Heading>
             <SubHeading>
               “Trinity Church Wall Street has played a prominent role <br />
               in lower Manhattan for more than 300 years.”
@@ -242,9 +242,9 @@ const Story = () => (
               </InnerCol>
             </MainCol>
           </Fade>
-          <Spacer />
+          <Spacer id="section-story-norges" />
           <Fade>
-            <Heading id="section-story-norges">NORGES BANK REAL ESTATE MANAGEMENT</Heading>
+            <Heading>NORGES BANK REAL ESTATE MANAGEMENT</Heading>
             <SubHeading>
               “The fund owns direct real estate investments totaling nearly 800 assets across 13 countries.”
             </SubHeading>
@@ -285,9 +285,9 @@ const Story = () => (
               </InnerCol>
             </MainCol>
           </Fade>
-          <Spacer />
+          <Spacer id="section-story-hines" />
           <Fade>
-            <Heading id="section-story-hines">HINES</Heading>
+            <Heading>HINES</Heading>
             <SubHeading>
               “Hines is one of the largest and most-respected
               <br /> real estate organizations in the world.”
@@ -396,7 +396,7 @@ const Story = () => (
             <BeforeAfter before={beforeAfterTwo.before} after={beforeAfterTwo.after} />
           </Fade>
           <Fade>
-            <MainCol>
+            <MainCol id="section-story-trinity">
               <InnerCol>
                 <TextSection>
                   <h3 className="text-heading">TRINITY CHURCH WALL STREET</h3>
@@ -426,7 +426,7 @@ const Story = () => (
             </MainCol>
           </Fade>
           <Fade>
-            <MainCol>
+            <MainCol id="section-story-norges">
               <InnerCol>
                 <TextSection>
                   <h3 className="text-heading">NORGES BANK REAL ESTATE MANAGEMENT</h3>
@@ -461,7 +461,7 @@ const Story = () => (
             </MainCol>
           </Fade>
           <Fade>
-            <MainCol>
+            <MainCol id="section-story-hines">
               <InnerCol>
                 <TextSection>
                   <h3 className="text-heading">HINES</h3>

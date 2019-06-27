@@ -1,7 +1,8 @@
 const buildings = [
   {
     title: '75 Varick Street',
-    navTitle: '75 VARICK',
+    mobileNavTitle: '75 Varick',
+    desktopNavTitle: '75 VARICK',
     slug: '75-varick-street',
     yearConstructed: '1929',
     numFloors: '17',
@@ -88,7 +89,8 @@ const buildings = [
   },
   {
     title: '160 Varick Street',
-    navTitle: '160 VARICK',
+    mobileNavTitle: '160 Varick',
+    desktopNavTitle: '160 VARICK',
     slug: '160-varick-street',
     yearConstructed: '1927-1928',
     numFloors: '12',
@@ -167,7 +169,8 @@ const buildings = [
   },
   {
     title: '345 Hudson Street',
-    navTitle: '345 HUDSON',
+    mobileNavTitle: '345 Hudson',
+    desktopNavTitle: '345 HUDSON',
     slug: '345-hudson-street',
     yearConstructed: '1931',
     numFloors: '17',
@@ -221,7 +224,8 @@ const buildings = [
   },
   {
     title: '350 Hudson Street',
-    navTitle: '350 HUDSON',
+    mobileNavTitle: '350 Hudson',
+    desktopNavTitle: '350 HUDSON',
     slug: '350-hudson-street',
     yearConstructed: '1927',
     numFloors: '9',
@@ -271,7 +275,8 @@ const buildings = [
   },
   {
     title: '375 Hudson Street',
-    navTitle: '375 HUDSON',
+    mobileNavTitle: '375 Hudson',
+    desktopNavTitle: '375 HUDSON',
     slug: '375-hudson-street',
     yearConstructed: '1987',
     numFloors: '18 + Penthouse',
@@ -325,7 +330,8 @@ const buildings = [
   },
   {
     title: '155 Avenue of the Americas',
-    navTitle: '155 AoA',
+    mobileNavTitle: '155 AoA',
+    desktopNavTitle: '155 AoA',
     slug: '155-avenue-of-the-americas',
     yearConstructed: '1929',
     numFloors: '15',
@@ -400,7 +406,8 @@ const buildings = [
   },
   {
     title: '100 Avenue of the Americas',
-    navTitle: '100 AoA',
+    mobileNavTitle: '100 AoA',
+    desktopNavTitle: '100 AoA',
     slug: '100-avenue-of-the-americas',
     yearConstructed: '1930',
     numFloors: '17',
@@ -458,7 +465,8 @@ const buildings = [
   },
   {
     title: '200 Hudson Street',
-    navTitle: '200 HUDSON',
+    mobileNavTitle: '200 Hudson',
+    desktopNavTitle: '200 HUDSON',
     slug: '200-hudson-street',
     yearConstructed: '1926',
     numFloors: '12',
@@ -513,7 +521,8 @@ const buildings = [
   },
   {
     title: '205 Hudson Street',
-    navTitle: '205 HUDSON',
+    mobileNavTitle: '205 Hudson',
+    desktopNavTitle: '205 HUDSON',
     slug: '205-hudson-street',
     yearConstructed: '1928',
     numFloors: '12',
@@ -580,7 +589,8 @@ const buildings = [
   },
   {
     title: '12-16 Vestry Street',
-    navTitle: '12-16 VESTRY',
+    mobileNavTitle: '12-16 Vestry',
+    desktopNavTitle: '12-16 VESTRY',
     slug: '12-16-vestry-street',
     yearConstructed: '1882',
     numFloors: '7',
@@ -617,7 +627,8 @@ const buildings = [
   },
   {
     title: '225 Varick Street',
-    navTitle: '225 VARICK',
+    mobileNavTitle: '225 Varick',
+    desktopNavTitle: '225 VARICK',
     slug: '225-varick-street',
     yearConstructed: '1926',
     numFloors: '12',
@@ -696,7 +707,8 @@ const buildings = [
   },
   {
     title: '435 Hudson Street',
-    navTitle: '435 HUDSON',
+    mobileNavTitle: '435 Hudson',
+    desktopNavTitle: '435 HUDSON',
     slug: '435-hudson-street',
     yearConstructed: '1931',
     numFloors: '9',

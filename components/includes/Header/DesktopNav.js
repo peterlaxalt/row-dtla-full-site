@@ -5,8 +5,13 @@ import Link from 'next/link';
 import { mediaMax } from '~/styles/MediaQueries';
 import Context from '~/config/Context';
 import { DesktopHamburger } from './Hamburgers';
-import { generateDesktopBuildingLinks, generateDesktopLocationLinks, generateDesktopNewsLink } from './SubNav';
 import variables from '~/styles/Variables';
+import {
+  generateDesktopBuildingLinks,
+  generateDesktopLocationLinks,
+  generateDesktopNewsLink,
+  generateDesktopStoryLinks
+} from './SubNav';
 
 // Desktop Navigation
 
@@ -75,7 +80,9 @@ export const DesktopNavigation = props => {
         <li
           id={`desktop-link-${linkText}`}
           key={`link-${linkText}`}
-          className={props.route === linkPath ? 'active' : ''}
+          className={
+            props.route === linkPath || (props.route === 'building' && linkPath === 'buildings') ? 'active' : ''
+          }
         >
           <Link href={`/${linkPath}`}>{link}</Link>
         </li>
@@ -196,8 +203,8 @@ const NeighborhoodNavWrapper = styled.div`
   width: 100%;
   z-index: 50;
   transition: all 200ms ease;
-  opacity: ${props => (isBuildingNavVisible(props) ? 1 : 0)};
-  visibility: ${props => (isBuildingNavVisible(props) ? 'visible' : 'hidden')};
+  opacity: ${props => (props.active ? 1 : 0)};
+  visibility: ${props => (props.active ? 'visible' : 'hidden')};
 
   ${mediaMax.desktopSmall`
     display: none;
@@ -244,8 +251,8 @@ const NewsNavWrapper = styled.div`
   width: 100%;
   z-index: 50;
   transition: all 200ms ease;
-  opacity: ${props => (isBuildingNavVisible(props) ? 1 : 0)};
-  visibility: ${props => (isBuildingNavVisible(props) ? 'visible' : 'hidden')};
+  opacity: ${props => (props.active ? 1 : 0)};
+  visibility: ${props => (props.active ? 'visible' : 'hidden')};
 
   ${mediaMax.desktopSmall`
     display: none;
@@ -279,5 +286,53 @@ export const NewsNavigation = props => {
     <NewsNavWrapper active={props.route === 'news'} route={props.route}>
       {generateDesktopNewsLink()}
     </NewsNavWrapper>
+  );
+};
+
+const StoryNavWrapper = styled.div`
+  background: rgba(255, 255, 255, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 60px;
+  height: 45px;
+  width: 100%;
+  z-index: 50;
+  transition: all 200ms ease;
+  opacity: ${props => (props.story ? 1 : 0)};
+  visibility: ${props => (props.story ? 'visible' : 'hidden')};
+
+  ${mediaMax.desktopSmall`
+    display: none;
+  `}
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 50px;
+    margin: 0;
+    height: 100%;
+    li {
+      padding: 0 30px;
+      list-style-type: none;
+      cursor: pointer;
+      a {
+        text-decoration: none;
+        color: initial;
+        font-weight: 500;
+        font-size: 0.8em;
+        letter-spacing: 1px;
+        color: ${variables.colors.babyBlue};
+      }
+    }
+  }
+`;
+
+export const StoryNavigation = props => {
+  return (
+    <StoryNavWrapper active={props.route === 'story'} route={props.route}>
+      {generateDesktopStoryLinks()}
+    </StoryNavWrapper>
   );
 };

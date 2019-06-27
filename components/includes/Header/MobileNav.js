@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import { MobileHamburger, MobileClose } from './Hamburgers';
-import { generateBuildingLinks, generateLocationLinks, generateNewsLink } from './SubNav';
+import { generateBuildingLinks, generateLocationLinks, generateNewsLink, generateStoryLinks } from './SubNav';
 import { mediaMin } from '~/styles/MediaQueries';
 import variables from '~/styles/Variables';
 import Context from '~/config/Context';
@@ -41,7 +41,8 @@ const MobileNav = styled.div`
   right: ${props => (props.active ? 0 : '-300px')};
   visibility: ${props => (props.active ? 'visible' : 'hidden')};
   transition: all 400ms ease;
-  z-index: 1;
+  z-index: 100;
+  overflow-y: scroll;
 
   ${mediaMin.desktopSmall`
     display: none;
@@ -51,6 +52,7 @@ const MobileNav = styled.div`
     padding-top: 20px;
     padding-right: 40px;
     margin-top: 0;
+    overflow-y: scroll;
     li.main-nav-li:nth-child(10) {
       border-bottom: none;
     }
@@ -82,6 +84,9 @@ const MobileNav = styled.div`
     li.active {
       color: ${variables.colors.babyBlue};
     }
+    li.inactive {
+      color: #000;
+    }
   }
 `;
 
@@ -91,10 +96,21 @@ const MobileNavigation = props => {
     const linkText = page.link;
     const linkPath = page.path;
     let pageLink = (page, subNav = null) => (
-      <li className={`main-nav-li ${props.route === linkPath ? 'active' : ''}`} key={`mobile-link-${linkText}`}>
+      <li
+        className={`main-nav-li ${
+          props.route === linkPath || (props.route === 'building' && linkPath === 'buildings') ? 'active' : ''
+        }`}
+        key={`mobile-link-${linkText}`}
+      >
         <Link href={`/${linkPath}`}>
           {/* eslint-disable-next-line */}
-          <a>{linkText.charAt(0).toUpperCase() + linkText.slice(1)}</a>
+          <a
+            onClick={() => {
+              context.closeMobileNav();
+            }}
+          >
+            {linkText.charAt(0).toUpperCase() + linkText.slice(1)}
+          </a>
         </Link>
         {/* eslint-disable */}
         {subNav && (
@@ -109,11 +125,13 @@ const MobileNavigation = props => {
     );
 
     if (linkText === 'buildings') {
-      return pageLink(linkText, generateBuildingLinks());
+      return pageLink(linkText, generateBuildingLinks(props.route, props.query));
     } else if (linkText === 'location') {
       return pageLink(linkText, generateLocationLinks());
-    } else if (page === 'news') {
+    } else if (linkText === 'news') {
       return pageLink(linkText, generateNewsLink());
+    } else if (linkText === 'story') {
+      return pageLink(linkText, generateStoryLinks());
     } else {
       return pageLink(linkText);
     }
