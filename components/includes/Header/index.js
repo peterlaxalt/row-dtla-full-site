@@ -11,6 +11,7 @@ import {
   BuildingNavigation,
   NeighborhoodNavigation,
   NewsNavigation,
+  StoryNavigation,
   BuildingEscapeOverlay,
   DesktopNavigation
 } from './DesktopNav';
@@ -77,6 +78,7 @@ const Header = ({ router }) => {
           </HeaderWrapper>
           <BuildingNavigation route={route} />
           <NeighborhoodNavigation route={route} />
+          <StoryNavigation route={route} />
           <NewsNavigation route={route} />
           <BuildingEscapeOverlay />
         </React.Fragment>

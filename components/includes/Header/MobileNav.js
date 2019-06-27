@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import { MobileHamburger, MobileClose } from './Hamburgers';
-import { generateBuildingLinks, generateLocationLinks, generateNewsLink } from './SubNav';
+import { generateBuildingLinks, generateLocationLinks, generateNewsLink, generateStoryLinks } from './SubNav';
 import { mediaMin } from '~/styles/MediaQueries';
 import variables from '~/styles/Variables';
 import Context from '~/config/Context';
@@ -114,6 +114,8 @@ const MobileNavigation = props => {
       return pageLink(linkText, generateLocationLinks());
     } else if (page === 'news') {
       return pageLink(linkText, generateNewsLink());
+    } else if (linkText === 'story') {
+      return pageLink(linkText, generateStoryLinks());
     } else {
       return pageLink(linkText);
     }

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { buildings } from '~/data/buildings';
 import locations from '~/data/locations';
+import story from '~/data/story';
 import Context from '~/config/Context';
 
 // Desktop Subnavs
@@ -89,6 +90,40 @@ export const generateDesktopLocationLinks = () => {
   ));
 
   return <ul>{locationLinks}</ul>;
+};
+
+export const generateStoryLinks = () => {
+  const storyLinks = story.map(story => (
+    <li className="mobile-nav-submenu" key={`story-${story.link}`}>
+      <Link href={`/story#section-story-${story.path}`}>
+        {/* eslint-disable-next-line */}
+        <a>{story.link}</a>
+      </Link>
+    </li>
+  ));
+
+  return (
+    <Context.Consumer>
+      {context => (
+        <SubNavUl active={context.state.navigation.activeSubNav === 'story'} maxHeight="174px">
+          {storyLinks}
+        </SubNavUl>
+      )}
+    </Context.Consumer>
+  );
+};
+
+export const generateDesktopStoryLinks = () => {
+  const storyLinks = story.map(story => (
+    <li className="story-nav-submenu" key={`story-${story.link}`}>
+      <Link href={`/story#section-story-${story.path}`}>
+        {/* eslint-disable-next-line */}
+        <a>{story.link.toUpperCase()}</a>
+      </Link>
+    </li>
+  ));
+
+  return <ul>{storyLinks}</ul>;
 };
 
 export const generateNewsLink = () => {
