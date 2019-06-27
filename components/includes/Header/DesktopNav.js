@@ -80,7 +80,9 @@ export const DesktopNavigation = props => {
         <li
           id={`desktop-link-${linkText}`}
           key={`link-${linkText}`}
-          className={props.route === linkPath ? 'active' : ''}
+          className={
+            props.route === linkPath || (props.route === 'building' && linkPath === 'buildings') ? 'active' : ''
+          }
         >
           <Link href={`/${linkPath}`}>{link}</Link>
         </li>
