@@ -83,7 +83,7 @@ const buildings = [
       imgUrl: '/static/images/buildings/1_75_Varick/75-varick-footer',
       imgAlt: '',
       footerText: 'Hudson Square',
-      footerLink: '/neighborhood/#section-neighborhood-hudson'
+      footerLink: '/location/#section-neighborhood-hudson'
     }
   },
   {
@@ -162,7 +162,7 @@ const buildings = [
       imgUrl: '/static/images/buildings/2_160_Varick/160-varick-street-footer',
       imgAlt: '',
       footerText: 'Hudson Square',
-      footerLink: '/neighborhood/#section-neighborhood-hudson'
+      footerLink: '/location/#section-neighborhood-hudson'
     }
   },
   {
@@ -216,7 +216,7 @@ const buildings = [
       imgUrl: '/static/images/buildings/3_345_Hudson/345-hudson-street-footer',
       imgAlt: '',
       footerText: 'Hudson Square',
-      footerLink: '/neighborhood/#section-neighborhood-hudson'
+      footerLink: '/location/#section-neighborhood-hudson'
     }
   },
   {
@@ -266,7 +266,7 @@ const buildings = [
       imgUrl: '/static/images/buildings/4_350_Hudson/350-hudson-street-footer',
       imgAlt: '',
       footerText: 'Hudson Square',
-      footerLink: '/neighborhood/#section-neighborhood-hudson'
+      footerLink: '/location/#section-neighborhood-hudson'
     }
   },
   {
@@ -320,7 +320,7 @@ const buildings = [
       imgUrl: '/static/images/buildings/5_375_Hudson/375-hudson-street-footer',
       imgAlt: '',
       footerText: 'Hudson Square',
-      footerLink: '/neighborhood/#section-neighborhood-hudson'
+      footerLink: '/location/#section-neighborhood-hudson'
     }
   },
   {
@@ -395,7 +395,7 @@ const buildings = [
       imgUrl: '/static/images/buildings/6_155_AoA/155-avenue-of-the-americas-footer',
       imgAlt: '',
       footerText: 'SoHo',
-      footerLink: '/neighborhood/#section-neighborhood-soho'
+      footerLink: '/location/#section-neighborhood-soho'
     }
   },
   {
@@ -453,7 +453,7 @@ const buildings = [
       imgUrl: '/static/images/buildings/7_100_AoA/100-avenue-of-the-americas-footer',
       imgAlt: '',
       footerText: 'SoHo',
-      footerLink: '/neighborhood/#section-neighborhood-soho'
+      footerLink: '/location/#section-neighborhood-soho'
     }
   },
   {
@@ -508,7 +508,7 @@ const buildings = [
       imgUrl: '/static/images/buildings/8_200_Hudson/200-hudson-footer',
       imgAlt: '',
       footerText: 'Tribeca',
-      footerLink: '/neighborhood/#section-neighborhood-tribeca'
+      footerLink: '/location/#section-neighborhood-tribeca'
     }
   },
   {
@@ -575,7 +575,7 @@ const buildings = [
       imgUrl: '/static/images/buildings/9_205_Hudson/205-hudson-street-footer',
       imgAlt: '',
       footerText: 'SoHo',
-      footerLink: '/neighborhood/#section-neighborhood-soho'
+      footerLink: '/location/#section-neighborhood-soho'
     }
   },
   {
@@ -612,7 +612,7 @@ const buildings = [
     footerImage: {
       imgUrl: '/static/images/buildings/10_12_16_Vestry/12-16-vestry-footer',
       imgAlt: '',
-      footerLink: '/neighborhood/#section-neighborhood-tribeca'
+      footerLink: '/location/#section-neighborhood-tribeca'
     }
   },
   {
@@ -691,7 +691,7 @@ const buildings = [
       imgUrl: '/static/images/buildings/11_225_Varick/225-varick-footer',
       imgAlt: '',
       footerText: 'Hudson Square',
-      footerLink: '/neighborhood/#section-neighborhood-hudson'
+      footerLink: '/location/#section-neighborhood-hudson'
     }
   },
   {
@@ -741,7 +741,7 @@ const buildings = [
       imgUrl: '/static/images/buildings/12_435_Hudson/435-hudson-street-footer',
       imgAlt: '',
       footerText: 'West Village',
-      footerLink: '/neighborhood/#section-neighborhood-west-village'
+      footerLink: '/location/#section-neighborhood-west-village'
     }
   }
 ];
