@@ -42,6 +42,7 @@ const SubNavUl = styled.ul`
 `;
 
 export const generateBuildingLinks = (route, query) => {
+  const context = React.useContext(Context);
   const buildingLinks = buildings.map(building => {
     return (
       <li
@@ -50,7 +51,13 @@ export const generateBuildingLinks = (route, query) => {
       >
         <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
           {/* eslint-disable-next-line */}
-          <a>{building.navTitle}</a>
+          <a
+            onClick={() => {
+              context.closeMobileNav();
+            }}
+          >
+            {building.mobileNavTitle}
+          </a>
         </Link>
       </li>
     );
