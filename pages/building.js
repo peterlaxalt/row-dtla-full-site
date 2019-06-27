@@ -54,6 +54,7 @@ const FooterOverlay = styled.div`
   align-self: flex-end;
   margin-right: 20vw;
   transform: translate(0, -150%);
+  z-index: 100;
   span {
     margin-bottom: 10px;
     &:last-child {
