@@ -75,11 +75,18 @@ export const generateBuildingLinks = (route, query) => {
 };
 
 export const generateLocationLinks = () => {
+  const context = React.useContext(Context);
   const locationLinks = locations.map(location => (
     <li className="mobile-nav-submenu" key={`location-${location.link}`}>
       <Link href={`/neighborhood#section-neighborhood-${location.path}`}>
         {/* eslint-disable-next-line */}
-        <a>{location.link}</a>
+        <a
+          onClick={() => {
+            context.closeMobileNav();
+          }}
+        >
+          {location.link}
+        </a>
       </Link>
     </li>
   ));
@@ -109,11 +116,18 @@ export const generateDesktopLocationLinks = () => {
 };
 
 export const generateStoryLinks = () => {
+  const context = React.useContext(Context);
   const storyLinks = story.map(story => (
     <li className="mobile-nav-submenu" key={`story-${story.link}`}>
       <Link href={`/story#section-story-${story.path}`}>
         {/* eslint-disable-next-line */}
-        <a>{story.link}</a>
+        <a
+          onClick={() => {
+            context.closeMobileNav();
+          }}
+        >
+          {story.link}
+        </a>
       </Link>
     </li>
   ));
@@ -143,11 +157,18 @@ export const generateDesktopStoryLinks = () => {
 };
 
 export const generateNewsLink = () => {
+  const context = React.useContext(Context);
   let newsLink = (
     <li className="mobile-nav-submenu" key={`press-navlink`}>
       <Link href="/press">
         {/* eslint-disable-next-line */}
-        <a>Hudson Square Press</a>
+        <a
+          onClick={() => {
+            context.closeMobileNav();
+          }}
+        >
+          Hudson Square Press
+        </a>
       </Link>
     </li>
   );
