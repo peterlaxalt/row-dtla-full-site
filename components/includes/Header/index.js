@@ -7,7 +7,13 @@ import routes from '~/data/routes';
 import locations from '~/data/locations';
 
 import MobileNavigation from './MobileNav';
-import { BuildingNavigation, BuildingEscapeOverlay, DesktopNavigation } from './DesktopNav';
+import {
+  BuildingNavigation,
+  NeighborhoodNavigation,
+  NewsNavigation,
+  BuildingEscapeOverlay,
+  DesktopNavigation
+} from './DesktopNav';
 import Context from '~/config/Context';
 
 const isUpperNavActive = props => {
@@ -67,9 +73,11 @@ const Header = ({ router }) => {
               </a>
             </Link>
             <DesktopNavigation locations={locations} routes={routes} route={route} />
-            <MobileNavigation locations={locations} routes={routes} />
+            <MobileNavigation locations={locations} routes={routes} route={route} />
           </HeaderWrapper>
           <BuildingNavigation route={route} />
+          <NeighborhoodNavigation route={route} />
+          <NewsNavigation route={route} />
           <BuildingEscapeOverlay />
         </React.Fragment>
       )}

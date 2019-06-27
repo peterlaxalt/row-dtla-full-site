@@ -79,24 +79,28 @@ const MobileNav = styled.div`
     li.main-nav-li:nth-child(8) {
       border-bottom: none;
     }
+    li.active {
+      color: ${variables.colors.babyBlue};
+    }
   }
 `;
 
 const MobileNavigation = props => {
   const context = React.useContext(Context);
-
   const generateLinks = props.routes.map(page => {
+    const linkText = page.link;
+    const linkPath = page.path;
     let pageLink = (page, subNav = null) => (
-      <li className="main-nav-li" key={`mobile-link-${page}`}>
-        <Link href={`/${page}`}>
+      <li className={`main-nav-li ${props.route === linkPath ? 'active' : ''}`} key={`mobile-link-${linkText}`}>
+        <Link href={`/${linkPath}`}>
           {/* eslint-disable-next-line */}
-          <a>{page.charAt(0).toUpperCase() + page.slice(1)}</a>
+          <a>{linkText.charAt(0).toUpperCase() + linkText.slice(1)}</a>
         </Link>
         {/* eslint-disable */}
         {subNav && (
           <i
-            className={`fas fa-plus ${context.state.navigation.activeSubNav === page ? 'active' : null}`}
-            onClick={() => context.toggleSubNav(page)}
+            className={`fas fa-plus ${context.state.navigation.activeSubNav === linkText ? 'active' : null}`}
+            onClick={() => context.toggleSubNav(linkText)}
           />
         )}
         {/* eslint-disable */}
@@ -104,14 +108,14 @@ const MobileNavigation = props => {
       </li>
     );
 
-    if (page === 'buildings') {
-      return pageLink(page, generateBuildingLinks());
-    } else if (page === 'location') {
-      return pageLink(page, generateLocationLinks());
+    if (linkText === 'buildings') {
+      return pageLink(linkText, generateBuildingLinks());
+    } else if (linkText === 'location') {
+      return pageLink(linkText, generateLocationLinks());
     } else if (page === 'news') {
-      return pageLink(page, generateNewsLink());
+      return pageLink(linkText, generateNewsLink());
     } else {
-      return pageLink(page);
+      return pageLink(linkText);
     }
   });
 

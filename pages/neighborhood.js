@@ -142,7 +142,7 @@ const Location = () => (
         <Spacer />
         <Fade>
           {context.state.windowDimensions.width > 1024 ? (
-            <MainCol id="section-neighborhood-hudson">
+            <MainCol id="section-neighborhood-hudson-square">
               <InnerCol>
                 <TextSection>
                   <h2 className="text-heading">HUDSON SQUARE</h2>
