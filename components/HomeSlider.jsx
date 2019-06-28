@@ -270,9 +270,16 @@ class InnerFader extends React.Component {
     super(props);
     this.state = {
       currentImage: 0,
-      intervalRef: null,
-      paused: true
+      intervalRef: null
     };
+  }
+
+  componentDidMount() {
+    this.startRotation();
+  }
+
+  componentWillUnmount() {
+    this.stopRotation();
   }
 
   nextImage = () => {
@@ -282,21 +289,18 @@ class InnerFader extends React.Component {
   };
 
   startRotation = () => {
-    let intervalRef = setInterval(this.nextImage, 4000);
-    this.setState({
-      intervalRef,
-      paused: false
-    });
+    this.sliderInterval = setInterval(this.nextImage, 4000);
   };
 
   stopRotation = () => {
-    clearInterval(this.state.intervalRef);
+    clearInterval(this.sliderInterval);
+
     this.setState({
       currentImage: 0,
-      intervalRef: null,
       paused: true
     });
   };
+
   createImages = () => {
     return this.props.imgArray.map((el, key) => {
       return (
@@ -309,12 +313,8 @@ class InnerFader extends React.Component {
       );
     });
   };
+
   render() {
-    if (this.props.active && this.state.paused) {
-      this.startRotation();
-    } else if (!this.props.active && !this.state.paused) {
-      this.stopRotation();
-    }
     return <InnerImageFader>{this.createImages()}</InnerImageFader>;
   }
 }

@@ -29,7 +29,11 @@ const CopyrightFooter = () => {
     <CopyrightFooterContainer>
       Copyright © 2019. No part of this website (eg. pictures, graphs, logos and others designing material) may be
       copied, disseminated or published for commercial or advertising use without the prior written permission from
-      Hudson Square Properties. | <Link href="/accessibility">Accessibility Statement</Link>
+      Hudson Square Properties. |{' '}
+      <Link href="/accessibility">
+        {/* eslint-disable-next-line */}
+        <a>Accessibility Statement</a>
+      </Link>
     </CopyrightFooterContainer>
   );
 };
