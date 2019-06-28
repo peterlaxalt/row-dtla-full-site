@@ -299,8 +299,8 @@ const StoryNavWrapper = styled.div`
   width: 100%;
   z-index: 50;
   transition: all 200ms ease;
-  opacity: ${props => (props.story ? 1 : 0)};
-  visibility: ${props => (props.story ? 'visible' : 'hidden')};
+  opacity: ${props => (props.active ? 1 : 0)};
+  visibility: ${props => (props.active ? 'visible' : 'hidden')};
 
   ${mediaMax.desktopSmall`
     display: none;

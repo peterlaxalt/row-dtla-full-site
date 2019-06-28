@@ -189,7 +189,7 @@ export const generateDesktopNewsLink = () => {
     <li className="mobile-nav-submenu" key={`press-navlink`}>
       <Link href="/press">
         {/* eslint-disable-next-line */}
-        <a>Hudson Square Press</a>
+        <a>HUDSON SQUARE PRESS</a>
       </Link>
     </li>
   );
