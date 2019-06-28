@@ -156,10 +156,10 @@ export const generateDesktopStoryLinks = () => {
   return <ul>{storyLinks}</ul>;
 };
 
-export const generateNewsLink = () => {
+export const generateNewsLink = route => {
   const context = React.useContext(Context);
   let newsLink = (
-    <li className="mobile-nav-submenu" key={`press-navlink`}>
+    <li className={`mobile-nav-submenu ${route === 'press' ? 'active' : 'inactive'}`} key={`press-navlink`}>
       <Link href="/press">
         {/* eslint-disable-next-line */}
         <a

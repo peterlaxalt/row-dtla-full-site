@@ -136,7 +136,7 @@ const MobileNavigation = props => {
     } else if (linkText === 'location') {
       return pageLink(linkText, generateLocationLinks());
     } else if (linkText === 'news') {
-      return pageLink(linkText, generateNewsLink());
+      return pageLink(linkText, generateNewsLink(props.route));
     } else if (linkText === 'story') {
       return pageLink(linkText, generateStoryLinks());
     } else {
