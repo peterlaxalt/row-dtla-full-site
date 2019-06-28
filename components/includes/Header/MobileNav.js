@@ -49,8 +49,7 @@ const MobileNav = styled.div`
   `}
 
   ul.main-nav-ul {
-    padding-top: 20px;
-    padding-right: 40px;
+    padding: 30px;
     margin-top: 0;
     overflow-y: scroll;
     li.main-nav-li:nth-child(10) {
@@ -90,18 +89,26 @@ const MobileNav = styled.div`
   }
 `;
 
+const setActive = (route, linkPath) => {
+  if (route === linkPath) {
+    return 'active';
+  }
+  if (route === 'building' && linkPath === 'buildings') {
+    return 'active';
+  }
+  if (route === 'press' && linkPath === 'news') {
+    return 'active';
+  }
+  return '';
+};
+
 const MobileNavigation = props => {
   const context = React.useContext(Context);
   const generateLinks = props.routes.map(page => {
     const linkText = page.link;
     const linkPath = page.path;
     let pageLink = (page, subNav = null) => (
-      <li
-        className={`main-nav-li ${
-          props.route === linkPath || (props.route === 'building' && linkPath === 'buildings') ? 'active' : ''
-        }`}
-        key={`mobile-link-${linkText}`}
-      >
+      <li className={`main-nav-li ${setActive(props.route, linkPath)}`} key={`mobile-link-${linkText}`}>
         <Link href={`/${linkPath}`}>
           {/* eslint-disable-next-line */}
           <a

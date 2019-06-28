@@ -33,7 +33,7 @@ const SubNavUl = styled.ul`
     padding: 10px 0;
     a {
       font-weight: 500;
-      font-size: 0.8em;
+      font-size: 14px;
     }
     li.active {
       color: ${variables.colors.babyBlue};
