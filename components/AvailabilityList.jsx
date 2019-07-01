@@ -96,6 +96,7 @@ const Heading = styled.th`
   font-weight: 500;
   line-height: 30px;
   text-align: start;
+  position: relative;
   ${props => (props.listingsArrayLength && props.listingsArrayLength > 1 ? 'cursor: pointer;' : '')}
 `;
 
