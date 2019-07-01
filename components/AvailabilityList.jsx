@@ -188,12 +188,13 @@ const AvailabilityLink = styled.a`
   width: 4vw !important;
   height: 4vw !important;
   cursor: pointer;
+  box-sizing: border-box;
   ${mediaMin.tabletLandscape`
     color: ${colors.babyBlue};
     &:visited{
       color: ${colors.babyBlue};
     }
-    `}s
+    `}
   &:hover {
     padding: 30px;
     color: #000;
