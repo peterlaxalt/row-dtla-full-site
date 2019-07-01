@@ -242,7 +242,7 @@ export default class ContactPage extends React.Component {
           </RowHeading>
           <RowBody
             openRow={this.state.openRow === idx}
-            numChildren={buildingContacts.length}
+            numChildren={buildingContacts[building.slug].length}
             paddingBottom={buildingContacts[building.slug].length > 4}
           >
             <BodyTitle>Exclusive Leasing Agents</BodyTitle>
