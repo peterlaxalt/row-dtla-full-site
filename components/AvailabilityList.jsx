@@ -518,7 +518,8 @@ export default class AvailabilityList extends React.Component {
             return (
               <AvailabilityRow key={`${el.building}-${idx}`}>
                 <AvailabilitySection className="building">
-                  {el.building} <FaMapMarkerAlt />
+                  {el.building}
+                  <FaMapMarkerAlt />
                 </AvailabilitySection>
                 <AvailabilitySection className="suite">{el.suite}</AvailabilitySection>
                 <AvailabilitySection className="floor">{el.floor}</AvailabilitySection>
@@ -583,7 +584,7 @@ export default class AvailabilityList extends React.Component {
               <AvailabilityRow>
                 <Heading>Availability</Heading>
               </AvailabilityRow>
-              {this.props.hasFilter ? <FilterRow updateFilter={this.updateFilter} /> : ''}
+              {this.props.hasFilter ? <FilterRow updateFilter={this.updateFilter} /> : <tr />}
               {context.state.windowDimensions.width > 1024 ? (
                 <AvailabilityRow>
                   <Heading
