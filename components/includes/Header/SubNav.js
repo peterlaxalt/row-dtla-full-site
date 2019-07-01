@@ -10,7 +10,7 @@ import variables from '~/styles/Variables';
 // Desktop Subnavs
 export const generateDesktopBuildingLinks = () => {
   const buildingLinks = buildings.map(building => (
-    <li className="mobile-nav-submenu" key={`building-${building.navTitle}`}>
+    <li className="mobile-nav-submenu" key={`building-${building.desktopNavTitle}`}>
       <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
         {/* eslint-disable-next-line */}
         <a>{building.desktopNavTitle}</a>

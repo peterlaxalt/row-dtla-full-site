@@ -34,11 +34,11 @@ padding: 0 40px;
 const AvailabilityPage = () => (
   <Layout title="Availability">
     <Fade>
-      <ImageSlider imgArray={imageArray} showQuotes={true} autoPlay={true} />
+      <ImageSlider imgArray={imageArray} showQuotes autoPlay />
     </Fade>
     <Fade>
       <PaddingCol>
-        <AvailabilityList hasFilter={true} />
+        <AvailabilityList hasFilter />
       </PaddingCol>
     </Fade>
     <ScrollUp />
