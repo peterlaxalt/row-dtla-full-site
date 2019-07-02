@@ -253,7 +253,7 @@ const ourBuildings = [
     markerSize: [90, 60],
     markerPos: { lat: 40.727573788575, lng: -74.00603768266114 },
     miniMapMarkerPos: { lat: 40.72745, lng: -74.00683183172748 },
-    
+
     path: [
       { lat: 40.72796622362224, lng: -74.00705308673002 },
       { lat: 40.72791629446597, lng: -74.0065225626164 },
@@ -405,21 +405,21 @@ const ourBuildings = [
   }
 ];
 
-const neighborhoodLabelsData = [
+const neighborhoodLabels = [
   {
-    positionData: { lat: 40.72639151526946, lng: -74.00744877688078 },
-    label: 'HUDSON SQUARE'
-  },
-  {
-    positionData: { lat: 40.723192, lng: -74.010072 },
-    label: 'TRIBECA'
-  },
-  {
-    positionData: { lat: 40.731618485731126, lng: -74.00665819269221 },
+    position: { lat: 40.72639151526946, lng: -74.00744877688078 },
     label: 'WEST VILLAGE'
   },
   {
-    positionData: { lat: 40.723636, lng: -74.001179 },
+    position: { lat: 40.723192, lng: -74.010072 },
+    label: 'TRIBECA'
+  },
+  {
+    position: { lat: 40.731618485731126, lng: -74.00665819269221 },
+    label: 'HUDSON SQUARE'
+  },
+  {
+    position: { lat: 40.723636, lng: -74.001179 },
     label: 'SOHO'
   }
 ];
@@ -427,6 +427,7 @@ const neighborhoodLabelsData = [
 const neighborhoodOverlays = [
   {
     name: 'westVillage',
+    label: 'WEST VILLAGE',
     path: [
       { lat: 40.7290705, lng: -74.0105223 },
       { lat: 40.727603, lng: -74.0106457 },
@@ -447,6 +448,7 @@ const neighborhoodOverlays = [
   },
   {
     name: 'tribeca',
+    label: 'TRIBECA',
     path: [
       { lat: 40.725722, lng: -74.0108732 },
       { lat: 40.7208632, lng: -74.0119053 },
@@ -467,6 +469,7 @@ const neighborhoodOverlays = [
   },
   {
     name: 'hudsonSquare',
+    label: 'HUDSON SQUARE',
     path: [
       { lat: 40.7291478, lng: -74.0104954 },
       { lat: 40.7289445, lng: -74.008457 },
@@ -488,6 +491,7 @@ const neighborhoodOverlays = [
   },
   {
     name: 'soho',
+    label: 'SOHO',
     path: [
       { lat: 40.718539143984586, lng: -74.00055265797914 },
       { lat: 40.72142829484371, lng: -74.00452447927046 },
@@ -970,13 +974,4 @@ const parks = [
     { lat: 40.72631862552336, lng: -74.01115652517211 }
   ]
 ];
-export {
-  filters,
-  miniMapOptions,
-  mapOptions,
-  ourBuildings,
-  places,
-  parks,
-  neighborhoodOverlays,
-  neighborhoodLabelsData
-};
+export { filters, miniMapOptions, mapOptions, ourBuildings, places, parks, neighborhoodOverlays, neighborhoodLabels };
