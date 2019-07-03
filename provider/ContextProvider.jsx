@@ -27,10 +27,12 @@ class ContextProvider extends Component {
   }
 
   updateWindowDimensions = () => {
+    const height = window.innerHeight || Math.max(document.documentElement.clientHeight, document.body.clientHeight);
+    const width = window.innerWidth || Math.max(document.documentElement.clientWidth, document.body.clientWidth);
     this.setState({
       windowDimensions: {
-        height: window.innerHeight,
-        width: window.innerWidth
+        height,
+        width
       }
     });
   };

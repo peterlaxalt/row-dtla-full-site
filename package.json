@@ -26,6 +26,7 @@
     "react": "^16.8.3",
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
+    "react-render-in-browser": "^1.1.1",
     "react-responsive": "^6.1.1",
     "react-reveal": "^1.2.2",
     "react-slick": "^0.23.2",
