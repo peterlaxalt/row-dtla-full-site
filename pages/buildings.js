@@ -29,6 +29,7 @@ const PaddingCol = styled.div`
   `}
   .responsive-image {
     width: 75%;
+    height: 100%;
     max-width: 100%;
     max-height: 100%;
   }
@@ -47,10 +48,9 @@ const SectionHeader = styled.span`
   border-bottom: 3px solid black;
   margin-bottom: 30px;
   ${mediaMin.tabletLandscape`
-  font-size: 24px;
-  line-height: 24px;
-  padding: 20px 0;
-
+    font-size: 24px;
+    line-height: 24px;
+    padding: 20px 0;
   `}
 `;
 
