@@ -3,7 +3,7 @@ os: linux
 files:
   - source: /
     destination: /home/ubuntu/Dev/hsp-full-site-next
-hooks:
-  AfterInstall:
-    - location: deploy/AfterInstall.sh
-      timeout: 300
+permissions:
+  - object: /home/ubuntu/Dev/hsp-full-site-next
+    pattern: '*'
+    owner: ubuntu
