@@ -6,5 +6,3 @@ files:
 permissions:
   - object: /home/ubuntu/Dev/hsp-full-site-next
     pattern: '*'
-    owner: ubuntu
-    group: ubuntu
