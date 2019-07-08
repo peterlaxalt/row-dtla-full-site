@@ -6,3 +6,10 @@ files:
 permissions:
   - object: /home/ubuntu/Dev/hsp-full-site-next
     pattern: '*'
+hooks:
+  BeforeInstall:
+    - location: .deploy/scripts/BeforeInstall.sh
+      timeout: 300
+  AfterInstall:
+    - location: .deploy/scripts/AfterInstall.sh
+      timeout: 300
