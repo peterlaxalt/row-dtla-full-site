@@ -10,8 +10,6 @@ hooks:
   BeforeInstall:
     - location: .deploy/scripts/BeforeInstall.sh
       timeout: 300
-      runas: ubuntu
   AfterInstall:
     - location: .deploy/scripts/AfterInstall.sh
       timeout: 300
-      runas: ubuntu
