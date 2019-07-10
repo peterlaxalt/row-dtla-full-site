@@ -61,6 +61,9 @@ const SliderContainer = styled.div`
     height: 100%;
     width: 10%;
     right: 0;
+    top: 0;
+    bottom: 0;
+    transform: translate(0, 0);
     &:hover {
       background-image: linear-gradient(to left, #03a8f442, #ffff0000);
     }
@@ -82,6 +85,9 @@ const SliderContainer = styled.div`
     ${props => (props.showQuotes ? 'top: 47.5%;' : '')}
     width: 10%;
     left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translate(0, 0);
     &:hover {
       background-image: linear-gradient(to right, #03a8f442, #ffff0000);
     }

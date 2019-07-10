@@ -39,14 +39,9 @@ export default class MyDocument extends Document {
           <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
-
-          {
-            parsedUserAgent.family === 'IE' && ( // IE only, not Edge or others
-              <script
-                src='https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js'
-              />
-            )
-          }
+          {parsedUserAgent.family === 'IE' && ( // IE only, not Edge or others
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js" />
+          )}
         </Head>
         <body>
           <Main />
