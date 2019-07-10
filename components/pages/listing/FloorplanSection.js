@@ -31,7 +31,9 @@ const possibleBtnValues = [
 ];
 
 const FloorplanSectionWrapper = styled.div`
+  width: 100%;
   .floorplan-nav {
+    width: 100%;
     border-bottom: 3px solid black;
     padding: 10px 0;
     display: flex;
@@ -79,7 +81,7 @@ const FloorplanSectionWrapper = styled.div`
     }
   }
   .floorplan-container {
-    position: relative;
+    widposition: relative;
     img {
       padding: 15px 15px;
       box-sizing: border-box;

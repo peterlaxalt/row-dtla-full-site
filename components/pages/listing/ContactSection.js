@@ -8,6 +8,7 @@ const renderContactCards = contactData => {
 };
 
 const ContactSectionWrapper = styled.div`
+  width: 100%;
   margin: 2rem 0;
   h2 {
     font-size: 20px;
@@ -20,6 +21,7 @@ const ContactSectionWrapper = styled.div`
   .contact-card-container {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
   }
 `;
 
