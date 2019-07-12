@@ -77,7 +77,7 @@ const MobileNav = styled.div`
         }
       }
     }
-    li.main-nav-li:nth-child(8) {
+    li.main-nav-li:last-child {
       border-bottom: none;
     }
     li.active {
@@ -109,16 +109,20 @@ const MobileNavigation = props => {
     const linkPath = page.path;
     let pageLink = (page, subNav = null) => (
       <li className={`main-nav-li ${setActive(props.route, linkPath)}`} key={`mobile-link-${linkText}`}>
-        <Link href={`/${linkPath}`}>
-          {/* eslint-disable-next-line */}
-          <a
-            onClick={() => {
-              context.closeMobileNav();
-            }}
-          >
-            {linkText.charAt(0).toUpperCase() + linkText.slice(1)}
-          </a>
-        </Link>
+        {linkText === 'login' ? (
+          <a href={linkPath}>{linkText.charAt(0).toUpperCase() + linkText.slice(1)}</a>
+        ) : (
+          <Link href={`/${linkPath}`}>
+            {/* eslint-disable-next-line */}
+            <a
+              onClick={() => {
+                context.closeMobileNav();
+              }}
+            >
+              {linkText.charAt(0).toUpperCase() + linkText.slice(1)}
+            </a>
+          </Link>
+        )}
         {/* eslint-disable */}
         {subNav && (
           <i
