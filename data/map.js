@@ -23,7 +23,7 @@ const mapOptions = {
   panControl: false,
   zoomControl: true,
   rotateControl: false,
-  scrollWheel: false,
+  scrollwheel: false,
   gestureHandling: 'greedy',
   styles: [
     {
@@ -107,7 +107,7 @@ const miniMapOptions = {
   panControl: false,
   zoomControl: false,
   rotateControl: false,
-  scrollWheel: false,
+  scrollwheel: false,
   gestureHandling: 'none',
   styles: [
     {
