@@ -114,10 +114,16 @@ const SliderSlide = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  object-fit: cover;
   ${mediaMin.tabletLandscape`
     height: 100%;
     margin-bottom: 0;
   `}
+  .responsive-image {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+  }
 `;
 
 const TitleText = styled.div`
