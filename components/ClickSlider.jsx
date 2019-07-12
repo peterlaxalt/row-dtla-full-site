@@ -202,7 +202,7 @@ export default class ClickSlider extends React.Component {
       dots: true,
       infinite: true,
       autoplay: this.props.autoPlay,
-      autoplaySpeed: 5000,
+      autoplaySpeed: 3000,
       easing: true,
       speed: 1000,
       slidesToShow: 1,

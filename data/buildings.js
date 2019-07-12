@@ -400,7 +400,7 @@ const buildings = [
     footerImage: {
       imgUrl: '/static/images/buildings/6_155_AoA/155-avenue-of-the-americas-footer',
       imgAlt: '',
-      footerText: 'SoHo',
+      footerText: 'Soho',
       footerLink: '/location/#section-neighborhood-soho'
     }
   },
@@ -459,7 +459,7 @@ const buildings = [
     footerImage: {
       imgUrl: '/static/images/buildings/7_100_AoA/100-avenue-of-the-americas-footer',
       imgAlt: '',
-      footerText: 'SoHo',
+      footerText: 'Soho',
       footerLink: '/location/#section-neighborhood-soho'
     }
   },
@@ -583,7 +583,7 @@ const buildings = [
     footerImage: {
       imgUrl: '/static/images/buildings/9_205_Hudson/205-hudson-street-footer',
       imgAlt: '',
-      footerText: 'SoHo',
+      footerText: 'Soho',
       footerLink: '/location/#section-neighborhood-soho'
     }
   },

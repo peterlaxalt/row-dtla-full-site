@@ -633,7 +633,7 @@ const places = {
     ChIJzzax34tZwokR8OTNZljyN0I: { position: { lat: 40.7217054, lng: -74.0008082 }, name: 'Soho Lofts' },
     ChIJpbfBMopZwokRxQO9o47tUI0: {
       position: { lat: 40.72054, lng: -74.00134100000002 },
-      name: 'The Farm SoHo - Coworking Office Space NYC'
+      name: 'The Farm Soho - Coworking Office Space NYC'
     },
     'ChIJZYD-nYpZwokRNgOoYzC4U1Y': { position: { lat: 40.7186604, lng: -74.00469570000001 }, name: 'Bouley Botanical' },
     ChIJL5kujvRZwokRTIFYbOpnXXs: { position: { lat: 40.7235993, lng: -74.00872470000002 }, name: 'Tribeca 360°' },
@@ -743,9 +743,9 @@ const places = {
     },
     ChIJO5XMjY5ZwokRXZ8XCiVL9aA: {
       position: { lat: 40.7247415, lng: -73.99936079999998 },
-      name: 'Louis Vuitton New York SoHo'
+      name: 'Louis Vuitton New York Soho'
     },
-    ChIJoWf_go5ZwokR849wL5oCSw8: { position: { lat: 40.7250048, lng: -74.00056760000001 }, name: 'Ted Baker SoHo' },
+    ChIJoWf_go5ZwokR849wL5oCSw8: { position: { lat: 40.7250048, lng: -74.00056760000001 }, name: 'Ted Baker Soho' },
     ChIJxzJcc4xZwokRCosButOyGl8: {
       position: { lat: 40.72519599999999, lng: -73.99939999999998 },
       name: 'Polo Ralph Lauren'
@@ -756,7 +756,7 @@ const places = {
     },
     ChIJf8SmVo5ZwokRzePoVONGWTA: { position: { lat: 40.725273, lng: -73.99964299999999 }, name: 'Marc Jacobs' },
     ChIJJXyVGmhZwokRnQwJrAVs158: { position: { lat: 40.7233317, lng: -74.00195719999999 }, name: 'Gucci' },
-    ChIJV3Ws9I5ZwokRJX_PJBN3pYI: { position: { lat: 40.725058, lng: -73.99902900000001 }, name: 'Apple SoHo' },
+    ChIJV3Ws9I5ZwokRJX_PJBN3pYI: { position: { lat: 40.725058, lng: -73.99902900000001 }, name: 'Apple Soho' },
     ChIJM3EfLe1ZwokR8Pq_Kf_Ywas: { position: { lat: 40.730751, lng: -74.00655799999998 }, name: 'Zoomies' },
     ChIJNwHvhvRZwokR4HrlskyYAtk: { position: { lat: 40.7238094, lng: -74.00920739999998 }, name: 'La Garçonne' },
     ChIJdd0pXvNZwokRz8BpXhB0XAc: { position: { lat: 40.7242469, lng: -74.00809040000001 }, name: 'Concepts NYC' }
