@@ -84,7 +84,11 @@ export const DesktopNavigation = props => {
             props.route === linkPath || (props.route === 'building' && linkPath === 'buildings') ? 'active' : ''
           }
         >
-          <Link href={`/${linkPath}`}>{link}</Link>
+          {linkText === 'login' ? (
+            <a href={linkPath}>{linkText.toUpperCase()}</a>
+          ) : (
+            <Link href={`/${linkPath}`}>{link}</Link>
+          )}
         </li>
       );
     });
