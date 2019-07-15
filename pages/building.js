@@ -212,8 +212,7 @@ const Building = props => {
       return contact;
     }
   });
-  console.log(building);
-  console.log(building.contactArray);
+
   return (
     <BuildingCol>
       <Fade>
