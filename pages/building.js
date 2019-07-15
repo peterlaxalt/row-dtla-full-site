@@ -212,7 +212,8 @@ const Building = props => {
       return contact;
     }
   });
-
+  console.log(building);
+  console.log(building.contactArray);
   return (
     <BuildingCol>
       <Fade>
@@ -283,9 +284,7 @@ const Building = props => {
         </Link>
       </FooterOverlay>
       <PaddingCol>
-        {building.contactArray === false ? (
-          ''
-        ) : (
+        {contactArray.length > 0 && (
           <Fade>
             <ContactRow>
               <RowTitle>Leasing Contacts</RowTitle>
@@ -294,7 +293,7 @@ const Building = props => {
           </Fade>
         )}
         <Fade>
-          <AvailabilityList building={building.header.headerLogoAlt} />
+          <AvailabilityList building={building.title} />
         </Fade>
       </PaddingCol>
       <ScrollUp />
