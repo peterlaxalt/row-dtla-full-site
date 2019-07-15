@@ -15,7 +15,12 @@ const AvailabilityListContainer = styled.table`
   z-index: 1;
   ${mediaMin.tabletLandscape`
     padding: 0 0 70px 0;
-  `}
+    `}
+  tbody {
+    display: table;
+    width: 100%;
+    min-width: 100%;
+  }
 `;
 
 const AvailabilityRow = styled.tr`

@@ -6,7 +6,8 @@ const routes = [
   { link: 'story', path: 'story' },
   { link: 'availability', path: 'availabilities' },
   { link: 'contact', path: 'contact' },
-  { link: 'news', path: 'news' }
+  { link: 'news', path: 'news' },
+  { link: 'login', path: 'https://portal.hudsonsquareproperties.com' }
 ];
 
 export default routes;

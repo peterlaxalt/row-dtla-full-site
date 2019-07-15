@@ -43,7 +43,7 @@ const ListingWrapper = styled.div`
     img.building-logo {
       width: 40%;
       ${mediaMin.tablet`
-        width: unset;
+        width: auto;
         height: 32px;
         margin-right: 25px;
       `}
@@ -94,18 +94,17 @@ const ListingWrapper = styled.div`
   }
   .detail-wrapper {
     display: flex;
+    flex-direction: row;
     width: 100%;
     padding: 20px 0;
     .detail-column {
       width: 50%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       ${mediaMin.tablet`
         width: 25%;
-      `}
-
-      &.mobile {
+      `} &.mobile {
         ${mediaMin.tablet`
           display: none;
         `}
@@ -114,7 +113,7 @@ const ListingWrapper = styled.div`
       &.desktop {
         display: none;
         ${mediaMin.tablet`
-          display: initial;
+          display: flex;
         `}
       }
 
@@ -122,7 +121,7 @@ const ListingWrapper = styled.div`
         display: none;
         margin-top: 0.5em;
         ${mediaMin.tablet`
-          display: initial;
+          display: flex;
         `}
       }
 
@@ -244,6 +243,7 @@ const Listing = () => {
               </h2>
               <p>Type: {listing.type}</p>
             </div>
+            <div className="detail-column__section" />
           </div>
           <div className="detail-column desktop">
             <div className="detail-column__section">

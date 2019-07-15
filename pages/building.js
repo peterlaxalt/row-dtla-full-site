@@ -35,10 +35,10 @@ const BuildingCol = styled.div`
 
 const PaddingCol = styled.div`
   width: 100%;
-  padding: 0 40px;
-  @media screen and (max-width: 1024px) {
-    padding: 0 15px;
-  }
+  padding: 0 15px;
+  ${mediaMin.tabletLandscape`
+    padding: 0 40px;
+  `}
 `;
 
 const Spacer = styled.div`
@@ -121,7 +121,6 @@ const AboutSection = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
   h3 {
     font-weight: 500;
     font-style: normal;
@@ -130,11 +129,13 @@ const AboutSection = styled.div`
     font-size: 24px;
     padding-bottom: 12px;
     margin-bottom: 12px;
+    height: 100%;
   }
   p {
     margin-bottom: 40px;
     font-size: 17px;
     line-height: 25px;
+    height: 100%;
     ${mediaMin.tabletLandscape`
       font-size: 19px;
       line-height: 29px;
@@ -159,7 +160,6 @@ const FactRowContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
   ${mediaMin.tabletLandscape`
     flex-direction: row;
   `}

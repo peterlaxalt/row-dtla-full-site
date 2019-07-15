@@ -26,9 +26,10 @@ const imageArray = [
 const PaddingCol = styled.div`
   box-sizing: border-box;
   padding: 0 15px;
+  width: 100%;
   ${mediaMin.tabletLandscape`
-padding: 0 40px;
-`}
+    padding: 0 40px;
+  `}
 `;
 
 const AvailabilityPage = () => (
