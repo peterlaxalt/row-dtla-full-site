@@ -118,7 +118,8 @@ export const DesktopNavigation = props => {
 // Desktop Buildings Navigation
 
 const isBuildingNavVisible = props => {
-  return props.route === 'buildings' ? true : props.active;
+  const visibleRoutes = ['building', 'buildings'];
+  return visibleRoutes.includes(props.route) ? true : props.active;
 };
 
 const BuildingNavWrapper = styled.div`
