@@ -207,9 +207,15 @@ const Building = props => {
 
   const context = React.useContext(Context);
 
-  const contactArray = context.contactData.filter(contact => {
-    if (contact.buildings.includes(building.slug)) {
-      return contact;
+  let leasingContactArray = [];
+  let retailLeasingContactArray = [];
+
+  context.contactData.forEach(contact => {
+    if (contact.buildings.includes(building.slug) && !contact.retail_leasing_inquiries) {
+      leasingContactArray.push(contact);
+    }
+    if (contact.buildings.includes(building.slug) && contact.retail_leasing_inquiries) {
+      retailLeasingContactArray.push(contact);
     }
   });
 
@@ -283,11 +289,21 @@ const Building = props => {
         </Link>
       </FooterOverlay>
       <PaddingCol>
-        {contactArray.length > 0 && (
+        {leasingContactArray.length > 0 && (
           <Fade>
             <ContactRow>
               <RowTitle>Leasing Contacts</RowTitle>
-              <RowBody numChildren={contactArray.length}>{createContactList(contactArray)}</RowBody>
+              <RowBody numChildren={leasingContactArray.length}>{createContactList(leasingContactArray)}</RowBody>
+            </ContactRow>
+          </Fade>
+        )}
+        {retailLeasingContactArray.length > 0 && (
+          <Fade>
+            <ContactRow>
+              <RowTitle>Retail Leasing Contacts</RowTitle>
+              <RowBody numChildren={retailLeasingContactArray.length}>
+                {createContactList(retailLeasingContactArray)}
+              </RowBody>
             </ContactRow>
           </Fade>
         )}

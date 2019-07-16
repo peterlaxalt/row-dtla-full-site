@@ -98,7 +98,7 @@ const buildings = [
     floorSizes: '3,388 – 29,096 SF',
     factSheet: '/static/images/buildings/2_160_Varick/160Varick_Building_1.9.19 .pdf',
     ceilingHeights: ['12′-4″'],
-    aboout:
+    about:
       '160 Varick Street is conveniently situated in the heart of Hudson Square, between Charlton and Vandam Streets and close to the no.1, A, C and E subway stations. The building has an industrial history, as evidenced by its structure, large windows and high, loft-like ceilings. A newly renovated lobby designed by Studios Architecture, opened in the fall of 2018 featuring soft seating and rotating art installations. 160 Varick Street is home to WeWork and New York Public Radio.',
     mapCenter: { lat: 40.726917, lng: -74.005998 },
     header: {
@@ -622,7 +622,8 @@ const buildings = [
     footerImage: {
       imgUrl: '/static/images/buildings/10_12_16_Vestry/12-16-vestry-footer',
       imgAlt: '',
-      footerLink: '/location/#section-neighborhood-tribeca'
+      footerLink: '/location/#section-neighborhood-tribeca',
+      footerText: 'Tribeca'
     }
   },
   {
