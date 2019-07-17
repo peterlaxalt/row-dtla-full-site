@@ -165,7 +165,7 @@ export default class Map extends React.Component {
       neighborhoodLabels.forEach(overlay => {
         const neighborhoodLabel = new maps.Marker({
           position: overlay.position,
-          icon: 'none',
+          icon: '/static/images/icons/transparent_icon.png',
           label: { color: '#000000', fontWeight: 'bold', fontSize: '18px', text: overlay.label },
           optimized: true,
           visible: false
