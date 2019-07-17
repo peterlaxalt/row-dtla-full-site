@@ -286,8 +286,11 @@ const Building = props => {
       </Fade>
       <FooterOverlay>
         <span>{building.footerImage.footerText}</span>
-        <Link href={building.footerImage.footerLink}>
-          <span className="link">Discover the Neighborhood</span>
+        <Link href={building.footerImage.footerLink} passHref>
+          {/* eslint-disable-next-line */}
+          <a>
+            <span className="link">Discover the Neighborhood</span>
+          </a>
         </Link>
       </FooterOverlay>
       <PaddingCol>
