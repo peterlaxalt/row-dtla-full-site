@@ -267,7 +267,7 @@ const Building = props => {
       </PaddingCol>
       <Spacer />
       <Fade>
-        <ImageSlider height="70vh" imgArray={building.sliderArray} showQuotes={true} />
+        <ImageSlider height="80vh" imgArray={building.sliderArray} showQuotes={true} />
       </Fade>
       <Spacer customHeight="35px" />
       {building.beforeAfter === false ? (
