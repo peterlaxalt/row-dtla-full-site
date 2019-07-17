@@ -44,9 +44,9 @@ const ListItem = styled.div`
   align-items: center;
   margin-bottom: 20px;
   ${mediaMin.tabletLandscape`
-  width: 50%;
-  margin-bottom: 0;
-    height: 45vh;
+    width: 50%;
+    margin-bottom: 0;
+    height: 55vh;
     padding: 15px 25px;
   `}
   div {

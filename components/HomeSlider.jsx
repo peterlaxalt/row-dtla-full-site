@@ -114,7 +114,6 @@ const SliderSlide = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  object-fit: cover;
   ${mediaMin.tabletLandscape`
     height: 100%;
     margin-bottom: 0;

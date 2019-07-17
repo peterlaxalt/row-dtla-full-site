@@ -64,7 +64,7 @@ const TextSection = styled.div`
   `}
   .text-heading {
     font-size: 34px;
-    font-weight: 500;
+    font-weight: 600;
     width: 100%;
     text-align: center;
   }

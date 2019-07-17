@@ -208,7 +208,7 @@ const Story = () => (
           </Fade>
           <Spacer id="section-story-trinity" />
           <Fade>
-            <Heading>TRINITY CHURCH WALL STREET</Heading>
+            <Heading bold>TRINITY CHURCH WALL STREET</Heading>
             <SubHeading>
               “Trinity Church Wall Street has played a prominent role <br />
               in lower Manhattan for more than 300 years.”
@@ -244,7 +244,7 @@ const Story = () => (
           </Fade>
           <Spacer id="section-story-norges" />
           <Fade>
-            <Heading>NORGES BANK REAL ESTATE MANAGEMENT</Heading>
+            <Heading bold>NORGES BANK REAL ESTATE MANAGEMENT</Heading>
             <SubHeading>
               “The fund owns direct real estate investments totaling nearly 800 assets across 13 countries.”
             </SubHeading>
@@ -287,7 +287,7 @@ const Story = () => (
           </Fade>
           <Spacer id="section-story-hines" />
           <Fade>
-            <Heading>HINES</Heading>
+            <Heading bold>HINES</Heading>
             <SubHeading>
               “Hines is one of the largest and most-respected
               <br /> real estate organizations in the world.”
