@@ -133,7 +133,7 @@ export default class ImageFader extends React.Component {
       infinite: true,
       fade: true,
       autoplay: this.props.autoPlay,
-      autoplaySpeed: 5000,
+      autoplaySpeed: 3000,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1

@@ -144,6 +144,9 @@ export default class Map extends React.Component {
         tempBuilding.addListener('click', () => {
           window.location.href = building.url;
         });
+        tempMarker.addListener('click', () => {
+          window.location.href = building.url;
+        });
         tempBuilding.setMap(map);
         tempMarker.setMap(map);
         buildingsArray.push(tempBuilding);

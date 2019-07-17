@@ -319,7 +319,7 @@ export default class AvailabilityList extends React.Component {
     this.state = {
       listingsArrayLength: 0,
       filters: {
-        neighborhood: ['West Village', 'SoHo', 'Hudson Square', 'Tribeca'],
+        neighborhood: ['West Village', 'Soho', 'Hudson Square', 'Tribeca'],
         type: ['Retail', 'Office', 'Office / Pre-Built'],
         squareFootage: ['5,000-10,000', '10,000-15,000', '15,000-20,000', 'More than 20,000']
       },
@@ -335,7 +335,7 @@ export default class AvailabilityList extends React.Component {
     if (this.props.retail) {
       this.setState({
         filters: {
-          neighborhood: ['West Village', 'SoHo', 'Hudson Square', 'Tribeca'],
+          neighborhood: ['West Village', 'Soho', 'Hudson Square', 'Tribeca'],
           type: ['Retail'],
           squareFootage: ['5,000-10,000', '10,000-15,000', '15,000-20,000', 'More than 20,000']
         }
@@ -401,7 +401,7 @@ export default class AvailabilityList extends React.Component {
         }
       }
       if (this.checkFilters(stateCopy) === 'neighborhood') {
-        stateCopy['neighborhood'] = ['West Village', 'SoHo', 'Hudson Square', 'Tribeca'];
+        stateCopy['neighborhood'] = ['West Village', 'Soho', 'Hudson Square', 'Tribeca'];
       } else if (this.checkFilters(stateCopy) === 'type') {
         stateCopy['type'] = ['Retail', 'Office', 'Office / Pre-Built'];
       } else if (this.checkFilters(stateCopy) === 'squareFootage') {
@@ -698,12 +698,12 @@ class FilterRow extends React.Component {
                   </label>
                   <label className="form-label">
                     <input
-                      onChange={() => this.handleChange('neighborhood', 'SoHo')}
+                      onChange={() => this.handleChange('neighborhood', 'Soho')}
                       className="form-option"
                       type="checkbox"
-                      value="SoHo"
+                      value="Soho"
                     />
-                    SoHo
+                    Soho
                   </label>
                   <label className="form-label">
                     <input
