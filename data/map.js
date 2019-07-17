@@ -24,7 +24,7 @@ const mapOptions = {
   zoomControl: true,
   rotateControl: false,
   scrollWheel: false,
-  gestureHandling: 'greedy',
+  gestureHandling: 'none',
   styles: [
     {
       featureType: 'landscape',
