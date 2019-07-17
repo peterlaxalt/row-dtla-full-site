@@ -408,7 +408,7 @@ const ourBuildings = [
 const neighborhoodLabels = [
   {
     position: { lat: 40.72639151526946, lng: -74.00744877688078 },
-    label: 'WEST VILLAGE'
+    label: 'HUDSON SQUARE'
   },
   {
     position: { lat: 40.723192, lng: -74.010072 },
@@ -416,7 +416,7 @@ const neighborhoodLabels = [
   },
   {
     position: { lat: 40.731618485731126, lng: -74.00665819269221 },
-    label: 'HUDSON SQUARE'
+    label: 'WEST VILLAGE'
   },
   {
     position: { lat: 40.723636, lng: -74.001179 },
@@ -426,8 +426,8 @@ const neighborhoodLabels = [
 
 const neighborhoodOverlays = [
   {
-    name: 'westVillage',
-    label: 'WEST VILLAGE',
+    name: 'hudsonSquare',
+    label: 'HUDSON SQUARE',
     path: [
       { lat: 40.7290705, lng: -74.0105223 },
       { lat: 40.727603, lng: -74.0106457 },
@@ -468,8 +468,9 @@ const neighborhoodOverlays = [
     ]
   },
   {
-    name: 'hudsonSquare',
-    label: 'HUDSON SQUARE',
+    name: 'westVillage',
+    label: 'WEST VILLAGE',
+
     path: [
       { lat: 40.7291478, lng: -74.0104954 },
       { lat: 40.7289445, lng: -74.008457 },

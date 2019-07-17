@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import styled from 'styled-components';
-import { mapOptions, ourBuildings, places, parks, neighborhoodOverlays /* neighborhoodLabels */ } from '../data/map';
+import { mapOptions, ourBuildings, places, parks, neighborhoodOverlays, neighborhoodLabels } from '../data/map';
 
 import { slugifyString } from '../helpers/strings';
 
@@ -136,9 +136,9 @@ export default class Map extends React.Component {
           fillColor: '#369BF7',
           zIndex: 100
         });
+
         const buildingMarker = new maps.Marker({
           position: building.markerPos,
-          url: 'http://www.google.com/',
           icon: {
             url: building.markerImg,
             scaledSize: new maps.Size(building.markerSize[0], building.markerSize[1]),
@@ -160,24 +160,24 @@ export default class Map extends React.Component {
       });
 
       // NEIGHBORHOOD LABELS
-      // const labels = {};
+      const labels = {};
 
-      // neighborhoodLabels.forEach(overlay => {
-      //   const tempLabel = new maps.Marker({
-      //     position: overlay.position,
-      //     icon: 'none',
-      //     label: { color: '#000000', fontWeight: 'bold', fontSize: '18px', text: overlay.label },
-      //     optimized: false,
-      //     visible: false
-      //   });
+      neighborhoodLabels.forEach(overlay => {
+        const neighborhoodLabel = new maps.Marker({
+          position: overlay.position,
+          icon: 'none',
+          label: { color: '#000000', fontWeight: 'bold', fontSize: '18px', text: overlay.label },
+          optimized: true,
+          visible: false
+        });
 
-      //   tempLabel.setMap(map);
-      //   buildingsArray.push(tempLabel);
-      //   labels[overlay.label] = tempLabel;
-      // });
+        neighborhoodLabel.setMap(map);
+        buildingsArray.push(neighborhoodLabel);
+        labels[overlay.label] = neighborhoodLabel;
+      });
 
       neighborhoodOverlays.forEach(neighborhood => {
-        const tempNeighborhood = new maps.Polygon({
+        const neighborhoodPolygon = new maps.Polygon({
           paths: neighborhood.path,
           strokeColor: '#369BF7',
           strokeOpacity: 0,
@@ -187,16 +187,17 @@ export default class Map extends React.Component {
           zIndex: 1
         });
 
-        tempNeighborhood.addListener('mouseover', function() {
-          // labels[neighborhood.label].setOptions({ visible: true });
+        neighborhoodPolygon.addListener('mouseover', function() {
+          labels[neighborhood.label].setOptions({ visible: true });
           this.setOptions({ fillOpacity: '0.5' });
         });
-        tempNeighborhood.addListener('mouseout', function() {
-          // labels[neighborhood.label].setOptions({ visible: false });
+        neighborhoodPolygon.addListener('mouseout', function() {
+          labels[neighborhood.label].setOptions({ visible: false });
           this.setOptions({ fillOpacity: '0' });
         });
-        tempNeighborhood.setMap(map);
-        buildingsArray.push(tempNeighborhood);
+
+        neighborhoodPolygon.setMap(map);
+        buildingsArray.push(neighborhoodPolygon);
       });
 
       this.setState({ overlays: buildingsArray });
