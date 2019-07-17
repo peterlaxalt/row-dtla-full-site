@@ -260,7 +260,7 @@ const Building = props => {
             </FactRow>
             <MiniMap mapCenter={building.mapCenter} building={building.title} />
           </FactRowContainer>
-          <Link href="/neighborhood-map">
+          <Link href="/neighborhood-map" passHref>
             <MapLink>View Full Map</MapLink>
           </Link>
         </AboutSection>
