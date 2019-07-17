@@ -287,12 +287,12 @@ export default class Map extends React.Component {
     this.setState({ overlays: overlaysCopy }, callback);
   };
 
-  generateInfoWindow = ({ photos, name, url, formatted_address, rating }) => {
+  generateInfoWindow = ({ photos, name, website, formatted_address, rating }) => {
     return ReactDOMServer.renderToString(
       <div className="styled-info-window">
         <img src={`${photos[0].getUrl()}`} alt={name} />
         <h5>{name}</h5>
-        <a href={url} target="_blank" rel="noopener noreferrer">
+        <a href={website} target="_blank" rel="noopener noreferrer">
           Website
         </a>
         <span>{formatted_address}</span>
