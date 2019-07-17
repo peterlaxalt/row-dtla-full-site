@@ -1,8 +1,11 @@
+import Router from 'next/router';
 import GoogleMapReact from 'google-map-react';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import styled from 'styled-components';
 import { mapOptions, ourBuildings, places, parks, neighborhoodOverlays /* neighborhoodLabels */ } from '../data/map';
+
+import { slugifyString } from '../helpers/strings';
 
 const MapContainer = styled.div`
   height: 100%;
@@ -124,7 +127,7 @@ export default class Map extends React.Component {
     if (map && maps) {
       const buildingsArray = [...overlays];
       ourBuildings.forEach(building => {
-        const tempBuilding = new maps.Polygon({
+        const buildingPolygon = new maps.Polygon({
           paths: building.path,
           strokeColor: '#369BF7',
           strokeOpacity: '1',
@@ -133,21 +136,27 @@ export default class Map extends React.Component {
           fillColor: '#369BF7',
           zIndex: 100
         });
-        const tempMarker = new maps.Marker({
+        const buildingMarker = new maps.Marker({
           position: building.markerPos,
+          url: 'http://www.google.com/',
           icon: {
             url: building.markerImg,
             scaledSize: new maps.Size(building.markerSize[0], building.markerSize[1]),
             anchor: new maps.Point(building.markerSize[0] / 2, building.markerSize[1] / 2)
           }
         });
-        tempBuilding.addListener('click', () => {
-          window.location.href = building.url;
+
+        buildingPolygon.addListener('click', () => {
+          Router.push(`/building?slug=${slugifyString(building.title)}`, building.url);
         });
-        tempBuilding.setMap(map);
-        tempMarker.setMap(map);
-        buildingsArray.push(tempBuilding);
-        buildingsArray.push(tempMarker);
+        buildingMarker.addListener('click', () => {
+          Router.push(`/building?slug=${slugifyString(building.title)}`, building.url);
+        });
+
+        buildingPolygon.setMap(map);
+        buildingMarker.setMap(map);
+        buildingsArray.push(buildingPolygon);
+        buildingsArray.push(buildingMarker);
       });
 
       // NEIGHBORHOOD LABELS
@@ -201,7 +210,7 @@ export default class Map extends React.Component {
     if (map && maps) {
       const service = new maps.places.PlacesService(map);
       Object.keys(data).forEach(key => {
-        const tempMarker = new maps.Marker({
+        const buildingMarker = new maps.Marker({
           icon: {
             path: 'M0,4a4,4 0 1,0 8,0a4,4 0 1,0 -8,0',
             fillColor: '#369bf7',
@@ -217,12 +226,12 @@ export default class Map extends React.Component {
         });
         const tempInfoWindow = new maps.InfoWindow();
 
-        tempMarker.addListener('click', () => {
+        buildingMarker.addListener('click', () => {
           this.closeInfoWindows();
-          this.fetchInfoWindow(service, tempInfoWindow, tempMarker, key);
+          this.fetchInfoWindow(service, tempInfoWindow, buildingMarker, key);
         });
-        tempMarker.setMap(map);
-        markersArray.push(tempMarker);
+        buildingMarker.setMap(map);
+        markersArray.push(buildingMarker);
       });
     }
     this.setState({ overlays: markersArray });
