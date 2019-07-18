@@ -5,8 +5,13 @@ import Link from 'next/link';
 import { mediaMax } from '~/styles/MediaQueries';
 import Context from '~/config/Context';
 import { DesktopHamburger } from './Hamburgers';
-import { generateDesktopBuildingLinks } from './SubNav';
 import variables from '~/styles/Variables';
+import {
+  generateDesktopBuildingLinks,
+  generateDesktopLocationLinks,
+  generateDesktopNewsLink,
+  generateDesktopStoryLinks
+} from './SubNav';
 
 // Desktop Navigation
 
@@ -48,27 +53,42 @@ const NavUnorderedList = styled.ul`
       }
     }
   }
+  li.active {
+    color: ${variables.colors.babyBlue};
+  }
 `;
 
 export const DesktopNavigation = props => {
   const generateLinks = context => {
     const links = props.routes.map(page => {
+      const linkText = page.link;
+      const linkPath = page.path;
       let link =
-        page !== 'buildings' ? (
+        linkText !== 'buildings' ? (
           // eslint-disable-next-line
           <a onMouseOver={() => context.state.navigation.buildingNavActive && context.toggleBuildingNav(false)}>
-            {page.toUpperCase()}
+            {linkText.toUpperCase()}
           </a>
         ) : (
           // eslint-disable-next-line
           <a onMouseOver={() => context.toggleBuildingNav(true)} onFocus={context.toggleBuildingNav}>
-            {page.toUpperCase()}
+            {linkText.toUpperCase()}
           </a>
         );
 
       return (
-        <li id={`desktop-link-${page}`} key={`link-${page}`}>
-          <Link href={`/${page}`}>{link}</Link>
+        <li
+          id={`desktop-link-${linkText}`}
+          key={`link-${linkText}`}
+          className={
+            props.route === linkPath || (props.route === 'building' && linkPath === 'buildings') ? 'active' : ''
+          }
+        >
+          {linkText === 'login' ? (
+            <a href={linkPath}>{linkText.toUpperCase()}</a>
+          ) : (
+            <Link href={`/${linkPath}`}>{link}</Link>
+          )}
         </li>
       );
     });
@@ -98,7 +118,8 @@ export const DesktopNavigation = props => {
 // Desktop Buildings Navigation
 
 const isBuildingNavVisible = props => {
-  return props.route === 'buildings' ? true : props.active;
+  const visibleRoutes = ['building', 'buildings'];
+  return visibleRoutes.includes(props.route) ? true : props.active;
 };
 
 const BuildingNavWrapper = styled.div`
@@ -174,5 +195,149 @@ export const BuildingEscapeOverlay = () => {
         />
       )}
     </Context.Consumer>
+  );
+};
+
+const NeighborhoodNavWrapper = styled.div`
+  background: rgba(255, 255, 255, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 60px;
+  height: 45px;
+  width: 100%;
+  z-index: 50;
+  transition: all 200ms ease;
+  opacity: ${props => (props.active ? 1 : 0)};
+  visibility: ${props => (props.active ? 'visible' : 'hidden')};
+
+  ${mediaMax.desktopSmall`
+    display: none;
+  `}
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 50px;
+    margin: 0;
+    height: 100%;
+    li {
+      padding: 0 30px;
+      list-style-type: none;
+      cursor: pointer;
+      a {
+        text-decoration: none;
+        color: initial;
+        font-weight: 500;
+        font-size: 0.8em;
+        letter-spacing: 1px;
+        color: ${variables.colors.babyBlue};
+      }
+    }
+  }
+`;
+
+export const NeighborhoodNavigation = props => {
+  return (
+    <NeighborhoodNavWrapper active={props.route === 'neighborhood'} route={props.route}>
+      {generateDesktopLocationLinks()}
+    </NeighborhoodNavWrapper>
+  );
+};
+
+const NewsNavWrapper = styled.div`
+  background: rgba(255, 255, 255, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 60px;
+  height: 45px;
+  width: 100%;
+  z-index: 50;
+  transition: all 200ms ease;
+  opacity: ${props => (props.active ? 1 : 0)};
+  visibility: ${props => (props.active ? 'visible' : 'hidden')};
+
+  ${mediaMax.desktopSmall`
+    display: none;
+  `}
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 50px;
+    margin: 0;
+    height: 100%;
+    li {
+      padding: 0 30px;
+      list-style-type: none;
+      cursor: pointer;
+      a {
+        text-decoration: none;
+        color: initial;
+        font-weight: 500;
+        font-size: 0.8em;
+        letter-spacing: 1px;
+        color: ${variables.colors.babyBlue};
+      }
+    }
+  }
+`;
+
+export const NewsNavigation = props => {
+  return (
+    <NewsNavWrapper active={props.route === 'news'} route={props.route}>
+      {generateDesktopNewsLink()}
+    </NewsNavWrapper>
+  );
+};
+
+const StoryNavWrapper = styled.div`
+  background: rgba(255, 255, 255, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 60px;
+  height: 45px;
+  width: 100%;
+  z-index: 50;
+  transition: all 200ms ease;
+  opacity: ${props => (props.active ? 1 : 0)};
+  visibility: ${props => (props.active ? 'visible' : 'hidden')};
+
+  ${mediaMax.desktopSmall`
+    display: none;
+  `}
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 50px;
+    margin: 0;
+    height: 100%;
+    li {
+      padding: 0 30px;
+      list-style-type: none;
+      cursor: pointer;
+      a {
+        text-decoration: none;
+        color: initial;
+        font-weight: 500;
+        font-size: 0.8em;
+        letter-spacing: 1px;
+        color: ${variables.colors.babyBlue};
+      }
+    }
+  }
+`;
+
+export const StoryNavigation = props => {
+  return (
+    <StoryNavWrapper active={props.route === 'story'} route={props.route}>
+      {generateDesktopStoryLinks()}
+    </StoryNavWrapper>
   );
 };

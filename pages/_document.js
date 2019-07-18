@@ -1,19 +1,23 @@
+import useragent from 'useragent';
 import Document, { Head, Main, NextScript } from 'next/document';
 // Import styled components ServerStyleSheet
 import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
+  static getInitialProps({ req, renderPage }) {
     const sheet = new ServerStyleSheet();
+    const parsedUserAgent = useragent.parse(req.headers['user-agent']); // here
 
     const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
 
     const styleTags = sheet.getStyleElement();
 
-    return { ...page, styleTags };
+    return { ...page, styleTags, parsedUserAgent };
   }
 
   render() {
+    const { parsedUserAgent } = this.props;
+
     return (
       <html lang="en">
         <Head>
@@ -35,6 +39,9 @@ export default class MyDocument extends Document {
           <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
+          {parsedUserAgent.family === 'IE' && ( // IE only, not Edge or others
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js" />
+          )}
         </Head>
         <body>
           <Main />

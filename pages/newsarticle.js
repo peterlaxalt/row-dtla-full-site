@@ -1,13 +1,16 @@
-import { withRouter } from 'next/router';
-import Layout from '../components/layouts/default';
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import ImageSlider from '../components/NonResponsiveSlider';
-import Context from '../config/Context';
-import CopyrightFooter from '../components/CopyrightFooter';
-import ScrollUp from '../components/ScrollUp';
-import ArtProgram from '../components/ArtProgram';
+import { withRouter } from 'next/router';
+import Fade from 'react-reveal/Fade';
+
+import Layout from '~/components/layouts/default';
+import ImageSlider from '~/components/NonResponsiveSlider';
+import Context from '~/config/Context';
+import CopyrightFooter from '~/components/CopyrightFooter';
+import ScrollUp from '~/components/ScrollUp';
+import ArtProgram from '~/components/ArtProgram';
+import { mediaMin } from '~/styles/MediaQueries';
 
 const BackButtonInnner = styled.a`
   display: flex;
@@ -22,28 +25,48 @@ const BackButtonInnner = styled.a`
   color: #fff;
   span {
     cursor: pointer;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 1px;
     &:hover {
-      text-decoration: underline;
+      border-bottom: 1px solid #fff;
     }
   }
 `;
+
 const Article = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 30px;
   width: 100%;
+  padding: 0 15px;
+  ${mediaMin.tabletLandscape`
+  padding: 0 30px;
+  `}
 `;
+
 const ArticleTitle = styled.h2`
   width: 100%;
-  font-size: 30px;
+  font-weight: 500;
+  font-size: 20px;
   padding-bottom: 30px;
   border-bottom: 3px solid black;
+  margin-top: 40px;
+  ${mediaMin.tabletLandscape`
+    margin-top: 50px;
+    font-size: 30px;
+  `}
 `;
+
 const ArticleBody = styled.p`
   width: 100%;
+  margin-bottom: 60px;
+  font-size: 17px;
+  line-height: 25px;
+  ${mediaMin.tabletLandscape`
   font-size: 19px;
   line-height: 28px;
-  margin-bottom: 60px;
+  `}
   a {
     color: #369bf7;
     &:hover {
@@ -52,24 +75,31 @@ const ArticleBody = styled.p`
   }
   blockquote {
     padding: 20px 25px;
-    border: 1px solid black;
-    font-size: 24px;
-    line-height: 36px;
+    border: 1px solid #0000001a;
+    font-size: 17px;
+    line-height: 25px;
     margin-left: 0;
     margin-right: 0;
+    ${mediaMin.tabletLandscape`
+    font-size: 24px;
+    line-height: 36px;
+    `}
+  }
+  h5 {
+    font-size: 16px;
+    line-height: 17px;
+    font-weight: 500;
+    margin: 2px 0;
+    ${mediaMin.tabletLandscape`
+    font-size: 17px;
+    `}
   }
 `;
 
 const NewsArticleContainer = props => {
   return (
     <Context.Consumer>
-      {context => (
-        <NewsArticle
-          context={context}
-          slug={props.router.query.slug}
-          title={props.router.query.title}
-        />
-      )}
+      {context => <NewsArticle context={context} slug={props.router.query.slug} title={props.router.query.title} />}
     </Context.Consumer>
   );
 };
@@ -91,47 +121,34 @@ class NewsArticle extends React.Component {
       articleData: false
     };
   }
+
   componentDidMount() {
-    if (
-      this.props.context.newsData !== [] &&
-      this.state.articleData === false
-    ) {
+    if (this.props.context.newsData !== [] && this.state.articleData === false) {
       if (this.props.title !== undefined) {
-        let articleData = this.getCurrentData(
-          this.props.context.newsData,
-          this.createSlug(this.props.title)
-        );
+        let articleData = this.getCurrentData(this.props.context.newsData, this.createSlug(this.props.title));
         this.setState({
           articleData
         });
       } else {
-        let articleData = this.getCurrentData(
-          this.props.context.newsData,
-          this.props.slug
-        );
+        let articleData = this.getCurrentData(this.props.context.newsData, this.props.slug);
         this.setState({
           articleData
         });
       }
     }
   }
+
   componentDidUpdate() {
     if (this.props.context.newsData !== [] && this.state.articleData == false) {
       if (this.props.title !== undefined) {
-        let articleData = this.getCurrentData(
-          this.props.context.newsData,
-          this.createSlug(this.props.title)
-        );
+        let articleData = this.getCurrentData(this.props.context.newsData, this.createSlug(this.props.title));
         if (articleData) {
           this.setState({
             articleData
           });
         }
       } else {
-        let articleData = this.getCurrentData(
-          this.props.context.newsData,
-          this.props.slug
-        );
+        let articleData = this.getCurrentData(this.props.context.newsData, this.props.slug);
         if (articleData) {
           this.setState({
             articleData
@@ -186,30 +203,30 @@ class NewsArticle extends React.Component {
       return (
         <Layout>
           <BackButton />
-          {this.state.articleData.title !==
-          'Hudson Square Properties Lobby Art Program' ? (
-            <ImageSlider
-              imgArray={this.createImageArray(this.state.articleData)}
-              showQuotes={true}
-              autoPlay={true}
-              height="75vh"
-            />
+          {this.state.articleData.title !== 'Hudson Square Properties Lobby Art Program' ? (
+            <Fade>
+              <ImageSlider
+                imgArray={this.createImageArray(this.state.articleData)}
+                showQuotes={false}
+                autoPlay
+                height="75vh"
+              />
+            </Fade>
           ) : (
             ''
           )}
           <Article>
-            <ArticleTitle>{this.state.articleData.title}</ArticleTitle>
-            <ArticleBody
-              dangerouslySetInnerHTML={{
-                __html: this.state.articleData.body
-              }}
-            />
-            {this.state.articleData.title ==
-            'Hudson Square Properties Lobby Art Program' ? (
-              <ArtProgram />
-            ) : (
-              ''
-            )}
+            <Fade>
+              <ArticleTitle>{this.state.articleData.title}</ArticleTitle>
+            </Fade>
+            <Fade>
+              <ArticleBody
+                dangerouslySetInnerHTML={{
+                  __html: this.state.articleData.body
+                }}
+              />
+            </Fade>
+            {this.state.articleData.title == 'Hudson Square Properties Lobby Art Program' ? <ArtProgram /> : ''}
           </Article>
           <ScrollUp />
           <CopyrightFooter />

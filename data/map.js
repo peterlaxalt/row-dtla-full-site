@@ -23,7 +23,7 @@ const mapOptions = {
   panControl: false,
   zoomControl: true,
   rotateControl: false,
-  scrollWheel: false,
+  scrollwheel: false,
   gestureHandling: 'greedy',
   styles: [
     {
@@ -107,7 +107,7 @@ const miniMapOptions = {
   panControl: false,
   zoomControl: false,
   rotateControl: false,
-  scrollWheel: false,
+  scrollwheel: false,
   gestureHandling: 'none',
   styles: [
     {
@@ -253,7 +253,7 @@ const ourBuildings = [
     markerSize: [90, 60],
     markerPos: { lat: 40.727573788575, lng: -74.00603768266114 },
     miniMapMarkerPos: { lat: 40.72745, lng: -74.00683183172748 },
-    
+
     path: [
       { lat: 40.72796622362224, lng: -74.00705308673002 },
       { lat: 40.72791629446597, lng: -74.0065225626164 },
@@ -405,28 +405,29 @@ const ourBuildings = [
   }
 ];
 
-const neighborhoodLabelsData = [
+const neighborhoodLabels = [
   {
-    positionData: { lat: 40.72639151526946, lng: -74.00744877688078 },
+    position: { lat: 40.72639151526946, lng: -74.00744877688078 },
     label: 'HUDSON SQUARE'
   },
   {
-    positionData: { lat: 40.723192, lng: -74.010072 },
+    position: { lat: 40.723192, lng: -74.010072 },
     label: 'TRIBECA'
   },
   {
-    positionData: { lat: 40.731618485731126, lng: -74.00665819269221 },
+    position: { lat: 40.731618485731126, lng: -74.00665819269221 },
     label: 'WEST VILLAGE'
   },
   {
-    positionData: { lat: 40.723636, lng: -74.001179 },
+    position: { lat: 40.723636, lng: -74.001179 },
     label: 'SOHO'
   }
 ];
 
 const neighborhoodOverlays = [
   {
-    name: 'westVillage',
+    name: 'hudsonSquare',
+    label: 'HUDSON SQUARE',
     path: [
       { lat: 40.7290705, lng: -74.0105223 },
       { lat: 40.727603, lng: -74.0106457 },
@@ -447,6 +448,7 @@ const neighborhoodOverlays = [
   },
   {
     name: 'tribeca',
+    label: 'TRIBECA',
     path: [
       { lat: 40.725722, lng: -74.0108732 },
       { lat: 40.7208632, lng: -74.0119053 },
@@ -466,7 +468,9 @@ const neighborhoodOverlays = [
     ]
   },
   {
-    name: 'hudsonSquare',
+    name: 'westVillage',
+    label: 'WEST VILLAGE',
+
     path: [
       { lat: 40.7291478, lng: -74.0104954 },
       { lat: 40.7289445, lng: -74.008457 },
@@ -488,6 +492,7 @@ const neighborhoodOverlays = [
   },
   {
     name: 'soho',
+    label: 'SOHO',
     path: [
       { lat: 40.718539143984586, lng: -74.00055265797914 },
       { lat: 40.72142829484371, lng: -74.00452447927046 },
@@ -629,7 +634,7 @@ const places = {
     ChIJzzax34tZwokR8OTNZljyN0I: { position: { lat: 40.7217054, lng: -74.0008082 }, name: 'Soho Lofts' },
     ChIJpbfBMopZwokRxQO9o47tUI0: {
       position: { lat: 40.72054, lng: -74.00134100000002 },
-      name: 'The Farm SoHo - Coworking Office Space NYC'
+      name: 'The Farm Soho - Coworking Office Space NYC'
     },
     'ChIJZYD-nYpZwokRNgOoYzC4U1Y': { position: { lat: 40.7186604, lng: -74.00469570000001 }, name: 'Bouley Botanical' },
     ChIJL5kujvRZwokRTIFYbOpnXXs: { position: { lat: 40.7235993, lng: -74.00872470000002 }, name: 'Tribeca 360°' },
@@ -739,9 +744,9 @@ const places = {
     },
     ChIJO5XMjY5ZwokRXZ8XCiVL9aA: {
       position: { lat: 40.7247415, lng: -73.99936079999998 },
-      name: 'Louis Vuitton New York SoHo'
+      name: 'Louis Vuitton New York Soho'
     },
-    ChIJoWf_go5ZwokR849wL5oCSw8: { position: { lat: 40.7250048, lng: -74.00056760000001 }, name: 'Ted Baker SoHo' },
+    ChIJoWf_go5ZwokR849wL5oCSw8: { position: { lat: 40.7250048, lng: -74.00056760000001 }, name: 'Ted Baker Soho' },
     ChIJxzJcc4xZwokRCosButOyGl8: {
       position: { lat: 40.72519599999999, lng: -73.99939999999998 },
       name: 'Polo Ralph Lauren'
@@ -752,7 +757,7 @@ const places = {
     },
     ChIJf8SmVo5ZwokRzePoVONGWTA: { position: { lat: 40.725273, lng: -73.99964299999999 }, name: 'Marc Jacobs' },
     ChIJJXyVGmhZwokRnQwJrAVs158: { position: { lat: 40.7233317, lng: -74.00195719999999 }, name: 'Gucci' },
-    ChIJV3Ws9I5ZwokRJX_PJBN3pYI: { position: { lat: 40.725058, lng: -73.99902900000001 }, name: 'Apple SoHo' },
+    ChIJV3Ws9I5ZwokRJX_PJBN3pYI: { position: { lat: 40.725058, lng: -73.99902900000001 }, name: 'Apple Soho' },
     ChIJM3EfLe1ZwokR8Pq_Kf_Ywas: { position: { lat: 40.730751, lng: -74.00655799999998 }, name: 'Zoomies' },
     ChIJNwHvhvRZwokR4HrlskyYAtk: { position: { lat: 40.7238094, lng: -74.00920739999998 }, name: 'La Garçonne' },
     ChIJdd0pXvNZwokRz8BpXhB0XAc: { position: { lat: 40.7242469, lng: -74.00809040000001 }, name: 'Concepts NYC' }
@@ -970,13 +975,4 @@ const parks = [
     { lat: 40.72631862552336, lng: -74.01115652517211 }
   ]
 ];
-export {
-  filters,
-  miniMapOptions,
-  mapOptions,
-  ourBuildings,
-  places,
-  parks,
-  neighborhoodOverlays,
-  neighborhoodLabelsData
-};
+export { filters, miniMapOptions, mapOptions, ourBuildings, places, parks, neighborhoodOverlays, neighborhoodLabels };

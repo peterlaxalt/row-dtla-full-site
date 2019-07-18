@@ -1,41 +1,70 @@
 import React from 'react';
 import styled from 'styled-components';
-import Context from '../config/Context';
 import Link from 'next/link';
-import CopyrightFooter from '../components/CopyrightFooter';
-import ScrollUp from '../components/ScrollUp';
+import Fade from 'react-reveal/Fade';
+
+import Context from '~/config/Context';
+import CopyrightFooter from '~/components/CopyrightFooter';
+import ScrollUp from '~/components/ScrollUp';
+import { mediaMin } from '~/styles/MediaQueries';
+
+const MobileHeading = styled.h2`
+  margin: 0;
+  height: 30px;
+  font-weight: 500;
+  padding: 10px 0;
+  margin: 0 15px 30px 15px;
+  border-bottom: 3px solid black;
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  ${mediaMin.tabletLandscape`
+    display: none;
+  `}
+`;
 
 const NewsList = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 60px 15px;
+  padding: 0 15px 60px 15px;
+  ${mediaMin.tabletLandscape`
+  padding: 60px 40px;
+  `}
 `;
 
 const ListItem = styled.div`
   box-sizing: border-box;
-  width: 50%;
-  height: 55vh;
-  padding: 15px 25px;
   display: flex;
+  width: 100%;
+  padding: 0;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  @media screen and (max-width: 1024px) {
-    height: 40vh;
-    width: 100%;
-    padding: 0;
-  }
+  margin-bottom: 20px;
+  ${mediaMin.tabletLandscape`
+    width: 50%;
+    margin-bottom: 0;
+    height: 55vh;
+    padding: 15px 25px;
+  `}
   div {
     width: 100%;
-    height: 100%;
-    background-image: url(${props => ( props.imgURL )});
+    height: 30vh;
+    background-image: url(${props => props.imgURL});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
     z-index: 1;
     position: relative;
+    ${mediaMin.tablet`
+    height: 40vh;
+    `}
+    ${mediaMin.tabletLandscape`
+    height: 100%;
+    `}
     &::before,
     &::after {
       content: '';
@@ -68,6 +97,7 @@ const ListItem = styled.div`
     width: 100%;
     text-align: left;
     font-size: 22px;
+    font-weight: 500;
     line-height: 30px;
     letter-spacing: 1px;
     margin-top: 20px;
@@ -92,16 +122,10 @@ export default class News extends React.Component {
     return newsData.map((el, idx) => {
       return (
         <ListItem imgURL={el.image_1.url} key={idx}>
-          <Link
-            as={`/news/${this.createSlug(el.title)}`}
-            href={`/newsarticle?title=${el.title}`}
-          >
+          <Link as={`/news/${this.createSlug(el.title)}`} href={`/newsarticle?title=${el.title}`}>
             <div alt={'Picture of ' + el.title} />
           </Link>
-          <Link
-            as={`/news/${this.createSlug(el.title)}`}
-            href={`/newsarticle?title=${el.title}`}
-          >
+          <Link as={`/news/${this.createSlug(el.title)}`} href={`/newsarticle?title=${el.title}`}>
             <span>{el.title}</span>
           </Link>
         </ListItem>
@@ -114,7 +138,12 @@ export default class News extends React.Component {
       <Context.Consumer>
         {context => (
           <React.Fragment>
-            <NewsList>{this.createListItems(context.newsData)}</NewsList>
+            <Fade>
+              <MobileHeading>News</MobileHeading>
+            </Fade>
+            <Fade>
+              <NewsList>{this.createListItems(context.newsData)}</NewsList>
+            </Fade>
             <ScrollUp />
             <CopyrightFooter />
           </React.Fragment>

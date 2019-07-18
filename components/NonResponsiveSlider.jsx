@@ -161,17 +161,14 @@ export default class ImageSlider extends React.Component {
       dots: true,
       infinite: true,
       autoplay: this.props.autoPlay,
-      autoplaySpeed: 5000,
+      autoplaySpeed: 3000,
       easing: true,
       speed: 1000,
       slidesToShow: 1,
       slidesToScroll: 1
     };
     return (
-      <SliderContainer
-        height={this.props.height}
-        showQuotes={this.props.showQuotes}
-      >
+      <SliderContainer height={this.props.height} showQuotes={this.props.showQuotes}>
         <Slider {...settings}>{sliderContent}</Slider>
       </SliderContainer>
     );

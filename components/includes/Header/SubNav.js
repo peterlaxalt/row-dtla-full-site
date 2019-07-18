@@ -3,15 +3,17 @@ import styled from 'styled-components';
 
 import { buildings } from '~/data/buildings';
 import locations from '~/data/locations';
+import story from '~/data/story';
 import Context from '~/config/Context';
+import variables from '~/styles/Variables';
 
 // Desktop Subnavs
 export const generateDesktopBuildingLinks = () => {
   const buildingLinks = buildings.map(building => (
-    <li className="mobile-nav-submenu" key={`building-${building.navTitle}`}>
+    <li className="mobile-nav-submenu" key={`building-${building.desktopNavTitle}`}>
       <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
         {/* eslint-disable-next-line */}
-        <a>{building.navTitle}</a>
+        <a>{building.desktopNavTitle}</a>
       </Link>
     </li>
   ));
@@ -31,20 +33,35 @@ const SubNavUl = styled.ul`
     padding: 10px 0;
     a {
       font-weight: 500;
-      font-size: 0.8em;
+      font-size: 14px;
+    }
+    li.active {
+      color: ${variables.colors.babyBlue};
     }
   }
 `;
 
-export const generateBuildingLinks = () => {
-  const buildingLinks = buildings.map(building => (
-    <li className="mobile-nav-submenu" key={`building-${building.navTitle}`}>
-      <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
-        {/* eslint-disable-next-line */}
-        <a>{building.navTitle}</a>
-      </Link>
-    </li>
-  ));
+export const generateBuildingLinks = (route, query) => {
+  const context = React.useContext(Context);
+  const buildingLinks = buildings.map(building => {
+    return (
+      <li
+        className={`mobile-nav-submenu ${query.slug === building.slug ? 'active' : 'inactive'}`}
+        key={`building-${building.mobileNavTitle}`}
+      >
+        <Link as={`/buildings/${building.slug}/`} href={`/building?slug=${building.slug}`}>
+          {/* eslint-disable-next-line */}
+          <a
+            onClick={() => {
+              context.closeMobileNav();
+            }}
+          >
+            {building.mobileNavTitle}
+          </a>
+        </Link>
+      </li>
+    );
+  });
 
   return (
     <Context.Consumer>
@@ -58,11 +75,18 @@ export const generateBuildingLinks = () => {
 };
 
 export const generateLocationLinks = () => {
+  const context = React.useContext(Context);
   const locationLinks = locations.map(location => (
-    <li className="mobile-nav-submenu" key={`location-${location}`}>
-      <Link href={`/neighborhood#section-neighborhood-${location}`}>
+    <li className="mobile-nav-submenu" key={`location-${location.link}`}>
+      <Link href={`/neighborhood#section-neighborhood-${location.path}`}>
         {/* eslint-disable-next-line */}
-        <a>{location}</a>
+        <a
+          onClick={() => {
+            context.closeMobileNav();
+          }}
+        >
+          {location.link}
+        </a>
       </Link>
     </li>
   ));
@@ -78,12 +102,73 @@ export const generateLocationLinks = () => {
   );
 };
 
-export const generateNewsLink = () => {
+export const generateDesktopLocationLinks = () => {
+  const locationLinks = locations.map(location => (
+    <li className="neighborhood-nav-submenu" key={`location-${location.link}`}>
+      <Link href={`/neighborhood#section-neighborhood-${location.path}`}>
+        {/* eslint-disable-next-line */}
+        <a>{location.link.toUpperCase()}</a>
+      </Link>
+    </li>
+  ));
+
+  return <ul>{locationLinks}</ul>;
+};
+
+export const generateStoryLinks = () => {
+  const context = React.useContext(Context);
+  const storyLinks = story.map(story => (
+    <li className="mobile-nav-submenu" key={`story-${story.link}`}>
+      <Link href={`/story#section-story-${story.path}`}>
+        {/* eslint-disable-next-line */}
+        <a
+          onClick={() => {
+            context.closeMobileNav();
+          }}
+        >
+          {story.link}
+        </a>
+      </Link>
+    </li>
+  ));
+
+  return (
+    <Context.Consumer>
+      {context => (
+        <SubNavUl active={context.state.navigation.activeSubNav === 'story'} maxHeight="174px">
+          {storyLinks}
+        </SubNavUl>
+      )}
+    </Context.Consumer>
+  );
+};
+
+export const generateDesktopStoryLinks = () => {
+  const storyLinks = story.map(story => (
+    <li className="story-nav-submenu" key={`story-${story.link}`}>
+      <Link href={`/story#section-story-${story.path}`}>
+        {/* eslint-disable-next-line */}
+        <a>{story.link.toUpperCase()}</a>
+      </Link>
+    </li>
+  ));
+
+  return <ul>{storyLinks}</ul>;
+};
+
+export const generateNewsLink = route => {
+  const context = React.useContext(Context);
   let newsLink = (
-    <li className="mobile-nav-submenu" key={`press-navlink`}>
+    <li className={`mobile-nav-submenu ${route === 'press' ? 'active' : 'inactive'}`} key={`press-navlink`}>
       <Link href="/press">
         {/* eslint-disable-next-line */}
-        <a>Hudson Square Press</a>
+        <a
+          onClick={() => {
+            context.closeMobileNav();
+          }}
+        >
+          Hudson Square Press
+        </a>
       </Link>
     </li>
   );
@@ -97,4 +182,17 @@ export const generateNewsLink = () => {
       )}
     </Context.Consumer>
   );
+};
+
+export const generateDesktopNewsLink = () => {
+  let newsLink = (
+    <li className="mobile-nav-submenu" key={`press-navlink`}>
+      <Link href="/press">
+        {/* eslint-disable-next-line */}
+        <a>HUDSON SQUARE PRESS</a>
+      </Link>
+    </li>
+  );
+
+  return <ul>{newsLink}</ul>;
 };

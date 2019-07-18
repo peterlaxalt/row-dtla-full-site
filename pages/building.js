@@ -1,4 +1,8 @@
 import { withRouter } from 'next/router';
+import Link from 'next/link';
+import Fade from 'react-reveal/Fade';
+import styled from 'styled-components';
+
 import { buildings } from '~/data/buildings';
 import BuildingHeader from '~/components/BuildingHeader';
 import AvailabilityList from '~/components/AvailabilityList';
@@ -6,10 +10,8 @@ import ImageSlider from '~/components/Slider';
 import BeforeAfter from '~/components/BeforeAfter';
 import CopyrightFooter from '~/components/CopyrightFooter';
 import ScrollUp from '~/components/ScrollUp';
-import styled from 'styled-components';
 import ResponsiveImage from '~/components/ResponsiveImage';
-import Link from 'next/link';
-import MiniMap from '../components/MiniMap';
+import MiniMap from '~/components/MiniMap';
 import variables from '~/styles/Variables';
 import ContactCard from '~/components/ContactCard';
 import { mediaMin } from '../styles/MediaQueries';
@@ -33,10 +35,10 @@ const BuildingCol = styled.div`
 
 const PaddingCol = styled.div`
   width: 100%;
-  padding: 0 40px;
-  @media screen and (max-width: 1024px) {
-    padding: 0 15px;
-  }
+  padding: 0 15px;
+  ${mediaMin.tabletLandscape`
+    padding: 0 40px;
+  `}
 `;
 
 const Spacer = styled.div`
@@ -52,6 +54,7 @@ const FooterOverlay = styled.div`
   align-self: flex-end;
   margin-right: 20vw;
   transform: translate(0, -150%);
+  z-index: 100;
   span {
     margin-bottom: 10px;
     &:last-child {
@@ -118,7 +121,6 @@ const AboutSection = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
   h3 {
     font-weight: 500;
     font-style: normal;
@@ -127,11 +129,13 @@ const AboutSection = styled.div`
     font-size: 24px;
     padding-bottom: 12px;
     margin-bottom: 12px;
+    height: 100%;
   }
   p {
     margin-bottom: 40px;
     font-size: 17px;
     line-height: 25px;
+    height: 100%;
     ${mediaMin.tabletLandscape`
       font-size: 19px;
       line-height: 29px;
@@ -156,7 +160,6 @@ const FactRowContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
   ${mediaMin.tabletLandscape`
     flex-direction: row;
   `}
@@ -204,15 +207,23 @@ const Building = props => {
 
   const context = React.useContext(Context);
 
-  const contactArray = context.contactData.filter(contact => {
-    if (contact.buildings.includes(building.slug)) {
-      return contact;
+  let leasingContactArray = [];
+  let retailLeasingContactArray = [];
+
+  context.contactData.forEach(contact => {
+    if (contact.buildings.includes(building.slug) && !contact.retail_leasing_inquiries) {
+      leasingContactArray.push(contact);
+    }
+    if (contact.buildings.includes(building.slug) && contact.retail_leasing_inquiries) {
+      retailLeasingContactArray.push(contact);
     }
   });
 
   return (
     <BuildingCol>
-      <BuildingHeader headerInfo={building.header} />
+      <Fade>
+        <BuildingHeader headerInfo={building.header} />
+      </Fade>
       <PaddingCol>
         <AboutSection>
           <h3>About {building.title}</h3>
@@ -249,38 +260,61 @@ const Building = props => {
             </FactRow>
             <MiniMap mapCenter={building.mapCenter} building={building.title} />
           </FactRowContainer>
-          <MapLink href="/map">View Full Map</MapLink>
+          <Link href="/neighborhood-map" passHref>
+            <MapLink>View Full Map</MapLink>
+          </Link>
         </AboutSection>
       </PaddingCol>
       <Spacer />
-      <ImageSlider height="70vh" imgArray={building.sliderArray} showQuotes={true} />
+      <Fade>
+        <ImageSlider height="80vh" imgArray={building.sliderArray} showQuotes={true} />
+      </Fade>
       <Spacer customHeight="35px" />
       {building.beforeAfter === false ? (
         ''
       ) : (
-        <BeforeAfter before={building.beforeAfter.before} after={building.beforeAfter.after} />
+        <Fade>
+          <BeforeAfter before={building.beforeAfter.before} after={building.beforeAfter.after} />
+        </Fade>
       )}
-      <ResponsiveImage
-        imgClass="building-img"
-        srcPath={building.footerImage.imgUrl}
-        imgAlt={building.footerImage.imgAlt}
-      />
+      <Fade>
+        <ResponsiveImage
+          imgClass="building-img"
+          srcPath={building.footerImage.imgUrl}
+          imgAlt={building.footerImage.imgAlt}
+        />
+      </Fade>
       <FooterOverlay>
         <span>{building.footerImage.footerText}</span>
-        <Link href={building.footerImage.footerLink}>
-          <span className="link">Discover the Neighborhood</span>
+        <Link href={building.footerImage.footerLink} passHref>
+          {/* eslint-disable-next-line */}
+          <a>
+            <span className="link">Discover the Neighborhood</span>
+          </a>
         </Link>
       </FooterOverlay>
       <PaddingCol>
-        {building.contactArray === false ? (
-          ''
-        ) : (
-          <ContactRow>
-            <RowTitle>Leasing Contacts</RowTitle>
-            <RowBody numChildren={contactArray.length}>{createContactList(contactArray)}</RowBody>
-          </ContactRow>
+        {leasingContactArray.length > 0 && (
+          <Fade>
+            <ContactRow>
+              <RowTitle>Leasing Contacts</RowTitle>
+              <RowBody numChildren={leasingContactArray.length}>{createContactList(leasingContactArray)}</RowBody>
+            </ContactRow>
+          </Fade>
         )}
-        <AvailabilityList building={building.header.headerLogoAlt} />
+        {retailLeasingContactArray.length > 0 && (
+          <Fade>
+            <ContactRow>
+              <RowTitle>Retail Leasing Contacts</RowTitle>
+              <RowBody numChildren={retailLeasingContactArray.length}>
+                {createContactList(retailLeasingContactArray)}
+              </RowBody>
+            </ContactRow>
+          </Fade>
+        )}
+        <Fade>
+          <AvailabilityList building={building.title} />
+        </Fade>
       </PaddingCol>
       <ScrollUp />
       <CopyrightFooter />

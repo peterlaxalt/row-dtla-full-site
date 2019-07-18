@@ -1,10 +1,12 @@
-import HomeSlider from '../components/HomeSlider';
-import { indexArray, mobileIndexArray } from '../data/index.js';
-import styled from 'styled-components';
-import ScrollUp from '../components/ScrollUp';
-import Context from '../config/Context';
 import Link from 'next/link';
-import { mediaMin } from '../styles/MediaQueries';
+import RenderInBrowser from 'react-render-in-browser';
+import styled from 'styled-components';
+
+import HomeSlider from '~/components/HomeSlider';
+import { indexArray, mobileIndexArray } from '~/data/index.js';
+import ScrollUp from '~/components/ScrollUp';
+import Context from '~/config/Context';
+import { mediaMin } from '~/styles/MediaQueries';
 
 const Copyright = styled.div`
   z-index: 100;
@@ -50,18 +52,33 @@ export default class Index extends React.Component {
         {context => {
           return (
             <React.Fragment>
-              <HomeSlider
-                loaded={loaded}
-                imgArray={indexArray}
-                mobileArray={mobileIndexArray}
-                autoPlay={true}
-                windowWidth={context.state.windowDimensions.width}
-              />
+              <RenderInBrowser except ie>
+                <HomeSlider
+                  loaded={loaded}
+                  imgArray={indexArray}
+                  mobileArray={mobileIndexArray}
+                  autoPlay
+                  windowWidth={context.state.windowDimensions.width}
+                />
+              </RenderInBrowser>
+              <RenderInBrowser ie only>
+                <HomeSlider
+                  loaded
+                  imgArray={indexArray}
+                  mobileArray={mobileIndexArray}
+                  autoPlay
+                  windowWidth={context.state.windowDimensions.width}
+                />
+              </RenderInBrowser>
               <ScrollUp />
               <Copyright>
                 Copyright © 2019. No part of this website (eg. pictures, graphs, logos and others designing material)
                 may be copied, disseminated or published for commercial or advertising use without the prior written
-                permission from Hudson Square Properties. | <Link href="/accessibility">Accessibility Statement</Link>
+                permission from Hudson Square Properties. |{' '}
+                <Link href="/accessibility">
+                  {/* eslint-disable-next-line */}
+                  <a>Accessibility Statement</a>
+                </Link>
               </Copyright>
             </React.Fragment>
           );

@@ -18,6 +18,7 @@ const SliderIconContainer = styled.div`
 const Slider = styled.img`
   top: 50%;
   height: 65px;
+  width: 65px;
   position: absolute;
   transform: translate(-50%, -50%);
 `;

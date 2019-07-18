@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { mediaMin } from '~/styles/MediaQueries';
+import { mediaMin } from '~/styles/MediaQueries';
 import ContactCard from '~/components/ContactCard';
 
 const renderContactCards = contactData => {
@@ -8,14 +8,20 @@ const renderContactCards = contactData => {
 };
 
 const ContactSectionWrapper = styled.div`
+  width: 100%;
   margin: 2rem 0;
   h2 {
+    font-size: 20px;
+    ${mediaMin.tabletLandscape`
+      font-size: 24px;
+    `}
     border-bottom: 3px solid black;
     padding: 10px 0;
   }
   .contact-card-container {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
   }
 `;
 

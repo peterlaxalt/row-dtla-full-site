@@ -32,6 +32,10 @@ const GlobalStyles = createGlobalStyle`
     outline: inherit;
   }
 
+  .react-reveal{
+    width: 100%;
+  }
+
 `;
 
 export default GlobalStyles;

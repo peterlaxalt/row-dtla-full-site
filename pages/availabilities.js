@@ -1,10 +1,12 @@
-import CopyrightFooter from '../components/CopyrightFooter';
-import Layout from '../components/layouts/default';
-import ImageSlider from '../components/Slider';
-import AvailabilityList from '../components/AvailabilityList';
-import ScrollUp from '../components/ScrollUp';
 import styled from 'styled-components';
-import { mediaMin } from '../styles/MediaQueries';
+import Fade from 'react-reveal/Fade';
+
+import CopyrightFooter from '~/components/CopyrightFooter';
+import Layout from '~/components/layouts/default';
+import ImageSlider from '~/components/Slider';
+import AvailabilityList from '~/components/AvailabilityList';
+import ScrollUp from '~/components/ScrollUp';
+import { mediaMin } from '~/styles/MediaQueries';
 
 const imageArray = [
   {
@@ -24,17 +26,22 @@ const imageArray = [
 const PaddingCol = styled.div`
   box-sizing: border-box;
   padding: 0 15px;
+  width: 100%;
   ${mediaMin.tabletLandscape`
-padding: 0 40px;
-`}
+    padding: 0 40px;
+  `}
 `;
 
 const AvailabilityPage = () => (
   <Layout title="Availability">
-    <ImageSlider imgArray={imageArray} showQuotes={true} autoPlay={true} />
-    <PaddingCol>
-      <AvailabilityList hasFilter={true} />
-    </PaddingCol>
+    <Fade>
+      <ImageSlider imgArray={imageArray} showQuotes autoPlay />
+    </Fade>
+    <Fade>
+      <PaddingCol>
+        <AvailabilityList hasFilter />
+      </PaddingCol>
+    </Fade>
     <ScrollUp />
     <CopyrightFooter />
   </Layout>

@@ -1,8 +1,11 @@
+import Router from 'next/router';
 import GoogleMapReact from 'google-map-react';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import styled from 'styled-components';
-import { mapOptions, ourBuildings, places, parks, neighborhoodOverlays } from '../data/map';
+import { mapOptions, ourBuildings, places, parks, neighborhoodOverlays, neighborhoodLabels } from '../data/map';
+
+import { slugifyString } from '../helpers/strings';
 
 const MapContainer = styled.div`
   height: 100%;
@@ -124,7 +127,7 @@ export default class Map extends React.Component {
     if (map && maps) {
       const buildingsArray = [...overlays];
       ourBuildings.forEach(building => {
-        const tempBuilding = new maps.Polygon({
+        const buildingPolygon = new maps.Polygon({
           paths: building.path,
           strokeColor: '#369BF7',
           strokeOpacity: '1',
@@ -133,7 +136,8 @@ export default class Map extends React.Component {
           fillColor: '#369BF7',
           zIndex: 100
         });
-        const tempMarker = new maps.Marker({
+
+        const buildingMarker = new maps.Marker({
           position: building.markerPos,
           icon: {
             url: building.markerImg,
@@ -141,17 +145,39 @@ export default class Map extends React.Component {
             anchor: new maps.Point(building.markerSize[0] / 2, building.markerSize[1] / 2)
           }
         });
-        tempBuilding.addListener('click', () => {
-          window.location.href = building.url;
+
+        buildingPolygon.addListener('click', () => {
+          Router.push(`/building?slug=${slugifyString(building.title)}`, building.url);
         });
-        tempBuilding.setMap(map);
-        tempMarker.setMap(map);
-        buildingsArray.push(tempBuilding);
-        buildingsArray.push(tempMarker);
+        buildingMarker.addListener('click', () => {
+          Router.push(`/building?slug=${slugifyString(building.title)}`, building.url);
+        });
+
+        buildingPolygon.setMap(map);
+        buildingMarker.setMap(map);
+        buildingsArray.push(buildingPolygon);
+        buildingsArray.push(buildingMarker);
+      });
+
+      // NEIGHBORHOOD LABELS
+      const labels = {};
+
+      neighborhoodLabels.forEach(overlay => {
+        const neighborhoodLabel = new maps.Marker({
+          position: overlay.position,
+          icon: '/static/images/icons/transparent_icon.png',
+          label: { color: '#000000', fontWeight: 'bold', fontSize: '18px', text: overlay.label },
+          optimized: true,
+          visible: false
+        });
+
+        neighborhoodLabel.setMap(map);
+        buildingsArray.push(neighborhoodLabel);
+        labels[overlay.label] = neighborhoodLabel;
       });
 
       neighborhoodOverlays.forEach(neighborhood => {
-        const tempNeighborhood = new maps.Polygon({
+        const neighborhoodPolygon = new maps.Polygon({
           paths: neighborhood.path,
           strokeColor: '#369BF7',
           strokeOpacity: 0,
@@ -160,14 +186,18 @@ export default class Map extends React.Component {
           fillColor: '#369BF7',
           zIndex: 1
         });
-        tempNeighborhood.addListener('mouseover', function() {
+
+        neighborhoodPolygon.addListener('mouseover', function() {
+          labels[neighborhood.label].setOptions({ visible: true });
           this.setOptions({ fillOpacity: '0.5' });
         });
-        tempNeighborhood.addListener('mouseout', function() {
+        neighborhoodPolygon.addListener('mouseout', function() {
+          labels[neighborhood.label].setOptions({ visible: false });
           this.setOptions({ fillOpacity: '0' });
         });
-        tempNeighborhood.setMap(map);
-        buildingsArray.push(tempNeighborhood);
+
+        neighborhoodPolygon.setMap(map);
+        buildingsArray.push(neighborhoodPolygon);
       });
 
       this.setState({ overlays: buildingsArray });
@@ -181,7 +211,7 @@ export default class Map extends React.Component {
     if (map && maps) {
       const service = new maps.places.PlacesService(map);
       Object.keys(data).forEach(key => {
-        const tempMarker = new maps.Marker({
+        const buildingMarker = new maps.Marker({
           icon: {
             path: 'M0,4a4,4 0 1,0 8,0a4,4 0 1,0 -8,0',
             fillColor: '#369bf7',
@@ -197,12 +227,12 @@ export default class Map extends React.Component {
         });
         const tempInfoWindow = new maps.InfoWindow();
 
-        tempMarker.addListener('click', () => {
+        buildingMarker.addListener('click', () => {
           this.closeInfoWindows();
-          this.fetchInfoWindow(service, tempInfoWindow, tempMarker, key);
+          this.fetchInfoWindow(service, tempInfoWindow, buildingMarker, key);
         });
-        tempMarker.setMap(map);
-        markersArray.push(tempMarker);
+        buildingMarker.setMap(map);
+        markersArray.push(buildingMarker);
       });
     }
     this.setState({ overlays: markersArray });
@@ -258,12 +288,12 @@ export default class Map extends React.Component {
     this.setState({ overlays: overlaysCopy }, callback);
   };
 
-  generateInfoWindow = ({ photos, name, url, formatted_address, rating }) => {
+  generateInfoWindow = ({ photos, name, website, formatted_address, rating }) => {
     return ReactDOMServer.renderToString(
       <div className="styled-info-window">
         <img src={`${photos[0].getUrl()}`} alt={name} />
         <h5>{name}</h5>
-        <a href={url} target="_blank" rel="noopener noreferrer">
+        <a href={website} target="_blank" rel="noopener noreferrer">
           Website
         </a>
         <span>{formatted_address}</span>

@@ -4,6 +4,7 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import ContextProvider from '~/provider/ContextProvider';
 import fetch from 'isomorphic-unfetch';
+import config from 'react-reveal/globals';
 
 import Layout from '~/components/layouts/default';
 
@@ -25,6 +26,8 @@ Router.onRouteChangeComplete = () => {
 Router.onRouteChangeError = () => {
   NProgress.done();
 };
+
+config({ ssrFadeout: true });
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {

@@ -62,6 +62,9 @@ const SliderContainer = styled.div`
     height: 100%;
     width: 10%;
     right: 0;
+    top: 0;
+    bottom: 0;
+    transform: translate(0, 0);
     &:hover {
       background-image: linear-gradient(to left, #03a8f442, #ffff0000);
     }
@@ -83,6 +86,9 @@ const SliderContainer = styled.div`
     ${props => (props.showQuotes ? 'top: 47.5%;' : '')}
     width: 10%;
     left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translate(0, 0);
     &:hover {
       background-image: linear-gradient(to right, #03a8f442, #ffff0000);
     }
@@ -108,16 +114,14 @@ const SliderSlide = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  .responsive-image {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
   ${mediaMin.tabletLandscape`
     height: 100%;
     margin-bottom: 0;
   `}
-  @media screen and (max-width: 1024px) {
+  .responsive-image {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
   }
 `;
 
@@ -270,9 +274,16 @@ class InnerFader extends React.Component {
     super(props);
     this.state = {
       currentImage: 0,
-      intervalRef: null,
-      paused: true
+      intervalRef: null
     };
+  }
+
+  componentDidMount() {
+    this.startRotation();
+  }
+
+  componentWillUnmount() {
+    this.stopRotation();
   }
 
   nextImage = () => {
@@ -282,21 +293,18 @@ class InnerFader extends React.Component {
   };
 
   startRotation = () => {
-    let intervalRef = setInterval(this.nextImage, 4000);
-    this.setState({
-      intervalRef,
-      paused: false
-    });
+    this.sliderInterval = setInterval(this.nextImage, 4000);
   };
 
   stopRotation = () => {
-    clearInterval(this.state.intervalRef);
+    clearInterval(this.sliderInterval);
+
     this.setState({
       currentImage: 0,
-      intervalRef: null,
       paused: true
     });
   };
+
   createImages = () => {
     return this.props.imgArray.map((el, key) => {
       return (
@@ -309,12 +317,8 @@ class InnerFader extends React.Component {
       );
     });
   };
+
   render() {
-    if (this.props.active && this.state.paused) {
-      this.startRotation();
-    } else if (!this.props.active && !this.state.paused) {
-      this.stopRotation();
-    }
     return <InnerImageFader>{this.createImages()}</InnerImageFader>;
   }
 }
