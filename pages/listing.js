@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Router from 'next/router';
 import { withRouter } from 'next/router';
 import { useContext } from 'react';
 import styled from 'styled-components';
@@ -208,9 +208,7 @@ const Listing = () => {
           <h3 className="floor-info-mobile">
             {suite} {floor && `${addOrdinalSuffix(floor)} Floor`}
           </h3>
-          <Link as={`/buildings/${building_slug}/`} href={`/building?slug=${building_slug}`}>
-            <button aria-label={`Back to building page: ${building.navTitle}`} title="Go Back" />
-          </Link>
+          <button onClick={() => Router.back()} aria-label={`Back to building page: ${building.title}`} title="Go Back" />
         </div>
       </Fade>
       <Fade>

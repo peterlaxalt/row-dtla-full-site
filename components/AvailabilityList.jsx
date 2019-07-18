@@ -297,17 +297,15 @@ const FormSection = styled.div`
       display: inline-block;
       position: relative;
       margin-right: 16px;
+      outline: none;
       &:checked:after {
         content: '✕';
         font-size: 26px;
-        top: -7px;
-        left: -1.5px;
+        top: -10px;
+        left: -2px;
         position: absolute;
         color: #000;
         height: 16px;
-        ${mediaMin.tabletLandscape`
-        left: -0.5px;
-        `}
       }
     }
   }
