@@ -423,11 +423,9 @@ export default class AvailabilityList extends React.Component {
 
       //Filtering
       sortedAndFiltered = sortedAndFiltered.filter(el => {
-        return this.state.filters['neighborhood'].includes(el.neighborhood);
+        return this.state.filters.neighborhood.includes(el.neighborhood) && this.state.filters.type.includes(el.type);
       });
-      sortedAndFiltered = sortedAndFiltered.filter(el => {
-        return this.state.filters['type'].includes(el.type);
-      });
+
       let filterSQFT = [];
       if (this.state.filters.squareFootage.length !== 4) {
         sortedAndFiltered.forEach(el => {
