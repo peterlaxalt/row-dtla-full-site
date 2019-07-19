@@ -271,9 +271,11 @@ const Listing = () => {
       <Fade>
         <FloorplanSection listing={listing} />
       </Fade>
-      <Fade>
-        <NonResponsiveSlider imgArray={listingSliderArray} />
-      </Fade>
+      {listingSliderArray.length > 0 && (
+        <Fade>
+          <NonResponsiveSlider imgArray={listingSliderArray} />
+        </Fade>
+      )}
       <Fade>
         <ContactSection contactData={filteredContactData} />
       </Fade>
