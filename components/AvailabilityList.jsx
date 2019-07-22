@@ -571,7 +571,7 @@ export default class AvailabilityList extends React.Component {
           });
         }
       } else {
-        return <AvailabilityRow>No matching records found</AvailabilityRow>;
+        return <AvailabilityRow>No active availability for this building</AvailabilityRow>;
       }
     }
   };
