@@ -223,9 +223,14 @@ export default class ContactPage extends React.Component {
 
     let buildingContacts = {};
     buildingsArray.forEach(building => (buildingContacts[building] = []));
+    // Append Retail Leasing Contacts Section
+    buildingContacts['retail-leasing-contacts'] = [];
 
     context.contactData.forEach(contact => {
-      if (Array.isArray(contact.buildings) && contact.buildings.length > 0) {
+      if (contact.retail_leasing_inquiries) {
+        // Append Retail Leasing Contacts Section
+        buildingContacts['retail-leasing-contacts'].push(contact);
+      } else if (Array.isArray(contact.buildings) && contact.buildings.length > 0) {
         contact.buildings.forEach(building => buildingContacts[building].push(contact));
       }
     });
@@ -252,6 +257,26 @@ export default class ContactPage extends React.Component {
       );
     });
 
+    // Append Retail Leasing Contacts Section
+    contactRowArray.push(
+      <ContactRow key={`contact-row-retail-leasing`}>
+        <RowHeading
+          href={`#retail-leasing-inquiries`}
+          onClick={this.state.openRow === buildings.length ? this.closeRow : () => this.expandRow(buildings.length)}
+        >
+          <RowTitle>Retail Leasing Inquiries</RowTitle>
+          <RowIcon openRow={this.state.openRow === buildings.length} />
+        </RowHeading>
+        <RowBody
+          openRow={this.state.openRow === buildings.length}
+          numChildren={buildingContacts['retail-leasing-contacts'].length}
+          paddingBottom={buildingContacts['retail-leasing-contacts'].length > 4}
+        >
+          {this.createContactCards(buildingContacts['retail-leasing-contacts'])}
+        </RowBody>
+      </ContactRow>
+    );
+
     return contactRowArray;
   }
 
@@ -260,7 +285,27 @@ export default class ContactPage extends React.Component {
       <Context.Consumer>
         {context => (
           <React.Fragment>
-            <ContactList>{this.generateContacts(context)}</ContactList>
+            <ContactList>
+              {this.generateContacts(context)}
+              {/* <ContactRow>
+                <RowHeading
+                  href={`#retail-leasing-inquiries`}
+                  onClick={
+                    this.state.openRow === buildings.length ? this.closeRow : () => this.expandRow(buildings.length)
+                  }
+                >
+                  <RowTitle>Retail Leasing Contacts</RowTitle>
+                  <RowIcon openRow={this.state.openRow === idx} />
+                </RowHeading>
+                <RowBody
+                  openRow={this.state.openRow === buildings.length}
+                  numChildren={buildingContacts[building.slug].length}
+                  paddingBottom={buildingContacts[building.slug].length > 4}
+                >
+                  {this.createContactCards(buildingContacts[building.slug])}
+                </RowBody>
+              </ContactRow> */}
+            </ContactList>
             <CopyrightFooter />
           </React.Fragment>
         )}
