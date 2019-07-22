@@ -12,6 +12,7 @@ const HeaderContainer = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #fff;
+  background-position: center;
   width: 100%;
   height: 420px;
   ${mediaMin.tablet`
@@ -85,6 +86,7 @@ const BuildingHeader = ({ headerInfo }) => {
   const { width } = windowDimensions;
   const { headerBackground, headerLogo, headerLogoAlt, headerSize } = headerInfo;
   const adjustedHeight = (width * headerSize[1]) / headerSize[0];
+
   return (
     <HeaderContainer adjustedHeight={adjustedHeight} headerBackgroundPath={headerBackground}>
       <LogoContainer>
