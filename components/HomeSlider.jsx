@@ -246,7 +246,7 @@ export default class HomeSlider extends React.Component {
       dots: true,
       infinite: true,
       autoplay: true,
-      autoplaySpeed: 9999,
+      autoplaySpeed: 8500,
       easing: true,
       speed: 3333,
       slidesToShow: 1,
