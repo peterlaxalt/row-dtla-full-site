@@ -8,7 +8,7 @@ const MapContainer = styled.div`
   width: 100%;
   height: 400px;
   ${mediaMin.tabletLandscape`
-    height: 100%;
+    height: ${props => `${props.heightProp}px` || '100%'};
     min-height: 100%;
   `}
 `;
@@ -17,11 +17,18 @@ export default class MiniMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      containerHeight: 0,
       map: null,
       maps: null,
       overlays: [],
       infoWindows: {}
     };
+  }
+
+  componentDidMount() {
+    // Set height of parent container of google map (needs a fixed height on chrome)
+    let mapContainerHeight = document.getElementById('fact-row-container').clientHeight;
+    this.setState({ containerHeight: mapContainerHeight });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -114,8 +121,10 @@ export default class MiniMap extends React.Component {
 
   render() {
     const { mapCenter } = this.props;
+    const { containerHeight } = this.state;
+
     return (
-      <MapContainer>
+      <MapContainer heightProp={containerHeight}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyBSsLXxJ5NSrSgFjFW7U5hxmGyHnE1po88', libraries: ['places'] }}
           center={mapCenter}

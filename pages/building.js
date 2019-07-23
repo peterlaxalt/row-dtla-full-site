@@ -180,14 +180,14 @@ const Fact = styled.div`
   flex-direction: column;
   font-size: 17px;
   line-height: 25px;
-  margin-bottom: 40px;
   width: ${props => (props.fullWidth ? '100%' : '50%')};
   ${mediaMin.tabletLandscape`
   font-size: 19px;
-  line-height: 29px;
+  line-height: 25px;
     width: 33%;
   `}
   a {
+    padding-top: 20px;
     color: ${variables.colors.babyBlue};
     &:hover {
       text-decoration: underline;
@@ -219,6 +219,8 @@ const Building = props => {
     }
   });
 
+  const factInfoContainer = React.useRef(null);
+
   return (
     <BuildingCol>
       <Fade>
@@ -228,7 +230,7 @@ const Building = props => {
         <AboutSection>
           <h3>About {building.title}</h3>
           <p>{building.about}</p>
-          <FactRowContainer>
+          <FactRowContainer ref={factInfoContainer} id="fact-row-container">
             <FactRow>
               <Fact>
                 <span>Year Constructed:</span>
@@ -238,7 +240,7 @@ const Building = props => {
                 <span>Total Building Area:</span>
                 <span>{building.totalBuildingArea}</span>
               </Fact>
-              <Fact>
+              <Fact className="ceiling-height">
                 <span>Ceiling Heights:</span>
                 {building.ceilingHeights.map(el => {
                   return <span key={el}>{el}</span>;
@@ -258,7 +260,7 @@ const Building = props => {
                 </a>
               </Fact>
             </FactRow>
-            <MiniMap mapCenter={building.mapCenter} building={building.title} />
+            <MiniMap mapCenter={building.mapCenter} building={building.title} factInfoContainer={factInfoContainer} />
           </FactRowContainer>
           <Link href="/neighborhood-map" passHref>
             <MapLink>View Full Map</MapLink>
