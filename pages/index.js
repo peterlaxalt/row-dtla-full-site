@@ -2,7 +2,7 @@ import Link from 'next/link';
 import RenderInBrowser from 'react-render-in-browser';
 import styled from 'styled-components';
 
-import HomeSlider from '~/components/HomeSlider';
+import HomeFader from '~/components/pages/home/HomeFader';
 import { indexArray, mobileIndexArray } from '~/data/home.js';
 import ScrollUp from '~/components/ScrollUp';
 import Context from '~/config/Context';
@@ -53,7 +53,7 @@ export default class Index extends React.Component {
           return (
             <React.Fragment>
               <RenderInBrowser except ie>
-                <HomeSlider
+                <HomeFader
                   loaded={loaded}
                   indexArray={indexArray}
                   mobileArray={mobileIndexArray}
@@ -61,7 +61,7 @@ export default class Index extends React.Component {
                 />
               </RenderInBrowser>
               <RenderInBrowser ie only>
-                <HomeSlider
+                <HomeFader
                   loaded
                   indexArray={indexArray}
                   mobileArray={mobileIndexArray}

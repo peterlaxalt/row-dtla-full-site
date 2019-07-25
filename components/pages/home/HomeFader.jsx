@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import ResponsiveImage from './ResponsiveImage';
-import { mediaMin } from '../styles/MediaQueries';
+import ResponsiveImage from '~/components/ResponsiveImage';
+import { mediaMin } from '~/styles/MediaQueries';
 
 const SliderContainer = styled.div`
   opacity: ${props => (props.loaded ? 1 : 0)};
@@ -116,15 +116,46 @@ const DesktopSliderContainer = styled.div`
       `}
     }
   }
+  .bullet-container {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: purple;
+    ul {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      li {
+        height: 20px;
+        width: 20px;
+        background: ${props => (props.active ? '#000' : '#fff')};
+        border: 3px solid black;
+        border-radius: 50%;
+        list-style-type: none;
+        margin: 0 10px;
+        cursor: pointer;
+
+        &:hover {
+          background: #000;
+          transition: background 200ms ease;
+        }
+        &.active {
+          background: #000;
+          transition: background 500ms ease;
+        }
+      }
+    }
+  }
 `;
 
-export default class HomeSlider extends React.Component {
+export default class HomeFader extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentSlide: 0,
-      paused: false
+      currentSlide: 0
     };
   }
 
@@ -137,11 +168,11 @@ export default class HomeSlider extends React.Component {
   }
 
   startRotation = () => {
-    this.sliderInterval = setTimeout(this.nextSlide, 9000);
+    this.sliderInterval = setInterval(this.nextSlide, 9000);
   };
 
   nextSlide = () => {
-    const nextSlide = this.state.currentSlide === 0 ? 1 : 0;
+    const nextSlide = (this.state.currentSlide + 1) % this.props.indexArray.length;
     this.setState({ currentSlide: nextSlide });
   };
 
@@ -149,61 +180,56 @@ export default class HomeSlider extends React.Component {
     clearInterval(this.sliderInterval);
 
     this.setState({
-      currentSlide: 0,
-      paused: true
+      currentSlide: 0
     });
   };
 
   createSlides() {
     const { currentSlide } = this.state;
 
-    return (
-      <React.Fragment>
-        <div className={`desktop-outer-slide ${currentSlide === 0 ? 'active' : ''}`}>
-          <InnerFader imgArray={this.props.indexArray[0].imgArray} active={currentSlide === 0} />
-          <Link href="#" passHref>
-            {/* eslint-disable-next-line */}
-            <a
-              className={`slide-link ${currentSlide === 0 ? 'active' : ''} ${
-                this.props.indexArray[0].titleText !== 'AVAILABILITY' ? 'white' : 'black'
-              }`}
-            >
-              {this.props.indexArray[0].titleText}
-            </a>
-          </Link>
-        </div>
-        <div className={`desktop-outer-slide ${currentSlide === 1 ? 'active' : ''}`}>
-          <InnerFader imgArray={this.props.indexArray[1].imgArray} active={currentSlide === 1} />
-          <Link href="#" passHref>
-            {/* eslint-disable-next-line */}
-            <a
-              className={`slide-link ${currentSlide === 1 ? 'active' : ''} ${
-                this.props.indexArray[1].titleText !== 'AVAILABILITY' ? 'white' : 'black'
-              }`}
-            >
-              {this.props.indexArray[1].titleText}
-            </a>
-          </Link>
-        </div>
-      </React.Fragment>
-    );
-    // return this.props.imgArray.map((el, idx) => {
-    //   return (
-    //     <SliderSlide key={idx}>
-    //       <InnerFader imgArray={el.imgArray} active={this.state.currentSlide === idx} />
-    //       <Link href={el.link}>
-    //         {el.titleImg !== undefined ? (
-    //           <TitleImage src={el.titleImg} />
-    //         ) : (
-    //           <TitleLink showTitle={this.state.showTitle} titleText={el.titleText}>
-    //             {el.titleText}
-    //           </TitleLink>
-    //         )}
-    //       </Link>
-    //     </SliderSlide>
-    //   );
-    // });
+    return this.props.indexArray.map((slide, idx) => (
+      <div key={`home-slide-${idx}`} className={`desktop-outer-slide ${currentSlide === idx ? 'active' : ''}`}>
+        <InnerFader imgArray={slide.imgArray} active={currentSlide === idx} />
+        <Link href="#" passHref>
+          {/* eslint-disable-next-line */}
+          <a
+            className={`slide-link ${currentSlide === idx ? 'active' : ''} ${
+              this.props.indexArray[idx].titleText !== 'AVAILABILITY' ? 'white' : 'black'
+            }`}
+          >
+            {this.props.indexArray[idx].titleText}
+          </a>
+        </Link>
+      </div>
+    ));
   }
+
+  changeSlide() {
+    console.log('clicked');
+  }
+
+  createBullets = () => {
+    const { currentSlide } = this.state;
+
+    const bullets = [];
+
+    for (let idx = 0; idx < this.props.indexArray.length; idx++) {
+      let bullet = (
+        <li
+          className={`${currentSlide === idx ? 'active' : ''}`}
+          key={`home-slider-bullet-${idx}`}
+          onClick={() => this.changeSlide(idx)}
+        />
+      );
+      bullets.push(bullet);
+    }
+
+    return (
+      <div className="bullet-container">
+        <ul>{bullets}</ul>
+      </div>
+    );
+  };
 
   createMobileSlides() {
     return <h1>Hello</h1>;
@@ -224,10 +250,14 @@ export default class HomeSlider extends React.Component {
 
   render() {
     const { loaded } = this.props;
+
     return (
       <SliderContainer loaded={loaded}>
         {this.props.windowWidth > 1024 ? (
-          <DesktopSliderContainer>{this.createSlides()}</DesktopSliderContainer>
+          <DesktopSliderContainer>
+            {this.createSlides()}
+            {this.createBullets()}
+          </DesktopSliderContainer>
         ) : (
           <MobileSliderContainer>{this.createMobileSlides()}</MobileSliderContainer>
         )}
@@ -260,34 +290,40 @@ class InnerFader extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentImage: 0
+      currentImage: 0,
+      active: false
     };
   }
 
   componentDidMount() {
-    this.startRotation();
+    const { active } = this.props;
+    active && this.startRotation();
   }
 
   componentWillUnmount() {
     this.stopRotation();
   }
 
+  componentDidUpdate() {
+    if (this.props.active && !this.state.active) {
+      this.startRotation();
+    }
+  }
+
   startRotation = () => {
     this.sliderInterval = setInterval(this.nextImage, 3000);
+    this.setState({ active: true });
   };
 
   nextImage = () => {
     // Stop the image once it reaches the end of the cycle
-    // if (this.state.currentImage === this.props.imgArray.length - 1) {
-    //   clearInterval(this.sliderInterval);
-    //   setTimeout(() => {
-    //     this.setState({ currentImage: 0 });
-    //   }, 2000);
-    //   return;
-    // }
+    if (this.state.currentImage === this.props.imgArray.length - 1) {
+      this.stopRotation();
+      return;
+    }
 
     this.setState({
-      currentImage: (this.state.currentImage + 1) % this.props.imgArray.length
+      currentImage: this.state.currentImage + 1
     });
   };
 
@@ -296,7 +332,7 @@ class InnerFader extends React.Component {
 
     this.setState({
       currentImage: 0,
-      paused: true
+      active: false
     });
   };
 
