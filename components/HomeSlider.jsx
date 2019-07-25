@@ -1,168 +1,240 @@
 import React from 'react';
-import Slider from 'react-slick';
 import styled from 'styled-components';
 import Link from 'next/link';
 import ResponsiveImage from './ResponsiveImage';
 import { mediaMin } from '../styles/MediaQueries';
 
 const SliderContainer = styled.div`
-  opacity: ${props => (props.loaded ? '1' : '0')};
+  opacity: ${props => (props.loaded ? 1 : 0)};
   transition: 1s opacity ease-in-out;
-  & > .slick-slider {
-    position: fixed;
-    top: 0;
-    height: 100vh;
-    width: 100%;
-  }
-  & > .slick-slider > .slick-list {
-    height: 100%;
-  }
-  & > .slick-slider > .slick-list > .slick-track {
-    height: 100%;
-  }
-  & > .slick-slider > .slick-list > .slick-track > .slick-slide {
-    height: 100%;
-  }
-  & > .slick-slider > .slick-list > .slick-track > .slick-slide > div {
-    height: 100%;
-  }
-  & > .slick-slider > .slick-dots {
-    bottom: 7%;
-    @media screen and (max-width: 1024px) {
-      bottom: 17%;
-    }
-  }
-  & > .slick-slider > .slick-dots > li {
-    height: 11px;
-    width: 11px;
-    border-radius: 100%;
-    background-color: #fff;
-    margin: 0 20px;
-    box-sizing: border-box;
-    &:hover {
-      background-color: #000;
-    }
-    @media screen and (max-width: 1024px) {
-      height: 8px;
-      width: 8px;
-      margin: 0 10px;
-    }
-  }
-  & > .slick-slider > .slick-dots > .slick-active {
-    box-shadow: 0 0 0 2px #000;
-    &:hover {
-      background-color: #fff;
-    }
-  }
-  & > .slick-slider > .slick-arrow {
-    z-index: 10;
-  }
-  & > .slick-slider > .slick-next {
-    display: block;
-    height: 100%;
-    width: 10%;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    transform: translate(0, 0);
-    &:hover {
-      background-image: linear-gradient(to left, #03a8f442, #ffff0000);
-    }
-    &::before {
-      font: normal normal normal 14px/1 FontAwesome;
-      content: '\\f105';
-      font-size: 32px;
-      position: absolute;
-      left: 50%;
-    }
-    @media screen and (max-width: 1024px) {
-      ${props => (props.showQuotes ? 'height: 85%;' : 'height: 100%;')}
-      ${props => (props.showQuotes ? 'top: 42.5%;' : '')}
-    }
-  }
-  & > .slick-slider > .slick-prev {
-    display: block;
-    ${props => (props.showQuotes ? 'height: 95%;' : 'height: 100%;')}
-    ${props => (props.showQuotes ? 'top: 47.5%;' : '')}
-    width: 10%;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    transform: translate(0, 0);
-    &:hover {
-      background-image: linear-gradient(to right, #03a8f442, #ffff0000);
-    }
-    &::before {
-      font: normal normal normal 14px/1 FontAwesome;
-      content: '\\f104';
-      font-size: 32px;
-      position: absolute;
-      right: 50%;
-    }
-    @media screen and (max-width: 1024px) {
-      ${props => (props.showQuotes ? 'height: 85%;' : 'height: 100%;')}
-      ${props => (props.showQuotes ? 'top: 42.5%;' : '')}
-    }
-  }
 `;
 
-const SliderSlide = styled.div`
-  margin-bottom: 1.5vh;
-  height: 55vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  ${mediaMin.tabletLandscape`
-    height: 100%;
-    margin-bottom: 0;
-  `}
-  .responsive-image {
-    min-width: 100%;
-    min-height: 100%;
-    object-fit: cover;
-  }
-`;
-
-const TitleText = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  z-index: 10;
-  color: ${props => (props.titleText === 'AVAILABILITY' ? '#000' : '#fff')};
-  font-weight: 600;
-  letter-spacing: 3px;
+// Mobile
+const MobileSliderContainer = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  font-size: 36px;
-  ${mediaMin.tabletLandscape`
-  font-size: 110px;
-`}
+  flex-direction: column;
+
+  .mobile-slide {
+    margin-bottom: 1.5vh;
+    height: 55vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    .responsive-image {
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+    }
+
+    a.slide-link {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      z-index: 10;
+      color: ${props => (props.titleText === 'AVAILABILITY' ? '#000' : '#fff')};
+      font-weight: 600;
+      letter-spacing: 3px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      font-size: 36px;
+      ${mediaMin.tabletLandscape`
+        font-size: 110px;
+      `}
+
+      &:visited, &:focus {
+        color: ${props => (props.titleText === 'AVAILABILITY' ? '#000' : '#fff')};
+      }
+    }
+  }
 `;
 
-const TitleImage = styled.img`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
+// Desktop
+const DesktopSliderContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: grey;
+
+  .desktop-outer-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 1s ease;
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    a.slide-link {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      z-index: 10;
+      font-weight: 600;
+      letter-spacing: 3px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      font-size: 36px;
+      &.white {
+        color: #fff;
+        &:visited,
+        &:focus {
+          color: #fff;
+        }
+      }
+
+      &.black {
+        color: #000;
+        &:visited,
+        &:focus {
+          color: #000;
+        }
+      }
+
+      ${mediaMin.tabletLandscape`
+        font-size: 110px;
+      `}
+    }
+  }
 `;
 
-const SliderDot = styled.a`
-  height: 15px;
-  width: 15px;
-`;
+export default class HomeSlider extends React.Component {
+  constructor(props) {
+    super(props);
 
-const SliderDotInner = styled.div`
-  height: 15px;
-  width: 15px;
-  opacity: 0;
-`;
+    this.state = {
+      currentSlide: 0,
+      paused: false
+    };
+  }
+
+  componentDidMount() {
+    this.startRotation();
+  }
+
+  componentWillUnmount() {
+    this.stopRotation();
+  }
+
+  startRotation = () => {
+    this.sliderInterval = setTimeout(this.nextSlide, 9000);
+  };
+
+  nextSlide = () => {
+    const nextSlide = this.state.currentSlide === 0 ? 1 : 0;
+    this.setState({ currentSlide: nextSlide });
+  };
+
+  stopRotation = () => {
+    clearInterval(this.sliderInterval);
+
+    this.setState({
+      currentSlide: 0,
+      paused: true
+    });
+  };
+
+  createSlides() {
+    const { currentSlide } = this.state;
+
+    return (
+      <React.Fragment>
+        <div className={`desktop-outer-slide ${currentSlide === 0 ? 'active' : ''}`}>
+          <InnerFader imgArray={this.props.indexArray[0].imgArray} active={currentSlide === 0} />
+          <Link href="#" passHref>
+            {/* eslint-disable-next-line */}
+            <a
+              className={`slide-link ${currentSlide === 0 ? 'active' : ''} ${
+                this.props.indexArray[0].titleText !== 'AVAILABILITY' ? 'white' : 'black'
+              }`}
+            >
+              {this.props.indexArray[0].titleText}
+            </a>
+          </Link>
+        </div>
+        <div className={`desktop-outer-slide ${currentSlide === 1 ? 'active' : ''}`}>
+          <InnerFader imgArray={this.props.indexArray[1].imgArray} active={currentSlide === 1} />
+          <Link href="#" passHref>
+            {/* eslint-disable-next-line */}
+            <a
+              className={`slide-link ${currentSlide === 1 ? 'active' : ''} ${
+                this.props.indexArray[1].titleText !== 'AVAILABILITY' ? 'white' : 'black'
+              }`}
+            >
+              {this.props.indexArray[1].titleText}
+            </a>
+          </Link>
+        </div>
+      </React.Fragment>
+    );
+    // return this.props.imgArray.map((el, idx) => {
+    //   return (
+    //     <SliderSlide key={idx}>
+    //       <InnerFader imgArray={el.imgArray} active={this.state.currentSlide === idx} />
+    //       <Link href={el.link}>
+    //         {el.titleImg !== undefined ? (
+    //           <TitleImage src={el.titleImg} />
+    //         ) : (
+    //           <TitleLink showTitle={this.state.showTitle} titleText={el.titleText}>
+    //             {el.titleText}
+    //           </TitleLink>
+    //         )}
+    //       </Link>
+    //     </SliderSlide>
+    //   );
+    // });
+  }
+
+  createMobileSlides() {
+    return <h1>Hello</h1>;
+    // return this.props.mobileArray.map((el, idx) => {
+    //   return (
+    //     <Link key={`home-slider-link-${idx}`} href={el.link}>
+    //       <div className="mobile-slide">
+    //         <ResponsiveImage srcPath={el.imgUrl} imgAlt={el.imgAlt} />
+    //         {/* eslint-disable-next-line */}
+    //         <a className="slide-link" showTitle={this.state.showTitle} titleText={el.titleText}>
+    //           {el.titleText}
+    //         </a>
+    //       </div>
+    //     </Link>
+    //   );
+    // });
+  }
+
+  render() {
+    const { loaded } = this.props;
+    return (
+      <SliderContainer loaded={loaded}>
+        {this.props.windowWidth > 1024 ? (
+          <DesktopSliderContainer>{this.createSlides()}</DesktopSliderContainer>
+        ) : (
+          <MobileSliderContainer>{this.createMobileSlides()}</MobileSliderContainer>
+        )}
+      </SliderContainer>
+    );
+  }
+}
 
 const InnerImageFader = styled.div`
   height: 100%;
@@ -184,97 +256,11 @@ const InnerImageFader = styled.div`
   }
 `;
 
-const MobileSlideList = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-
-export default class HomeSlider extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentIndex: 0
-    };
-  }
-
-  createSlides = () => {
-    return this.props.imgArray.map((el, idx) => {
-      return (
-        <SliderSlide key={idx}>
-          <InnerFader imgArray={el.imgArray} active={this.state.currentIndex === idx} />
-          <Link href={el.link}>
-            {el.titleImg !== undefined ? (
-              <TitleImage src={el.titleImg} />
-            ) : (
-              <TitleText showTitle={this.state.showTitle} titleText={el.titleText}>
-                {el.titleText}
-              </TitleText>
-            )}
-          </Link>
-        </SliderSlide>
-      );
-    });
-  };
-
-  createMobileSlides = () => {
-    return this.props.mobileArray.map((el, idx) => {
-      return (
-        <Link key={`home-slider-link-${idx}`} href={el.link}>
-          <SliderSlide>
-            <ResponsiveImage srcPath={el.imgUrl} imgAlt={el.imgAlt} />
-            <TitleText showTitle={this.state.showTitle} titleText={el.titleText}>
-              {el.titleText}
-            </TitleText>
-          </SliderSlide>
-        </Link>
-      );
-    });
-  };
-  render() {
-    const { loaded } = this.props;
-    var settings = {
-      customPaging: function(i) {
-        return (
-          <SliderDot>
-            <SliderDotInner>{i}</SliderDotInner>
-          </SliderDot>
-        );
-      },
-      lazyLoad: true,
-      fade: true,
-      dots: true,
-      infinite: true,
-      autoplay: true,
-      autoplaySpeed: 8500,
-      easing: true,
-      speed: 3333,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      afterChange: index => {
-        this.setState({
-          currentIndex: index
-        });
-      }
-    };
-    return (
-      <SliderContainer loaded={loaded}>
-        {this.props.windowWidth > 1024 ? (
-          <Slider {...settings}>{this.createSlides()}</Slider>
-        ) : (
-          <MobileSlideList>{this.createMobileSlides()}</MobileSlideList>
-        )}
-      </SliderContainer>
-    );
-  }
-}
-
 class InnerFader extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentImage: 0,
-      intervalRef: null
+      currentImage: 0
     };
   }
 
@@ -286,14 +272,23 @@ class InnerFader extends React.Component {
     this.stopRotation();
   }
 
+  startRotation = () => {
+    this.sliderInterval = setInterval(this.nextImage, 3000);
+  };
+
   nextImage = () => {
+    // Stop the image once it reaches the end of the cycle
+    // if (this.state.currentImage === this.props.imgArray.length - 1) {
+    //   clearInterval(this.sliderInterval);
+    //   setTimeout(() => {
+    //     this.setState({ currentImage: 0 });
+    //   }, 2000);
+    //   return;
+    // }
+
     this.setState({
       currentImage: (this.state.currentImage + 1) % this.props.imgArray.length
     });
-  };
-
-  startRotation = () => {
-    this.sliderInterval = setInterval(this.nextImage, 4000);
   };
 
   stopRotation = () => {

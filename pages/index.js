@@ -3,7 +3,7 @@ import RenderInBrowser from 'react-render-in-browser';
 import styled from 'styled-components';
 
 import HomeSlider from '~/components/HomeSlider';
-import { indexArray, mobileIndexArray } from '~/data/index.js';
+import { indexArray, mobileIndexArray } from '~/data/home.js';
 import ScrollUp from '~/components/ScrollUp';
 import Context from '~/config/Context';
 import { mediaMin } from '~/styles/MediaQueries';
@@ -55,18 +55,16 @@ export default class Index extends React.Component {
               <RenderInBrowser except ie>
                 <HomeSlider
                   loaded={loaded}
-                  imgArray={indexArray}
+                  indexArray={indexArray}
                   mobileArray={mobileIndexArray}
-                  autoPlay
                   windowWidth={context.state.windowDimensions.width}
                 />
               </RenderInBrowser>
               <RenderInBrowser ie only>
                 <HomeSlider
                   loaded
-                  imgArray={indexArray}
+                  indexArray={indexArray}
                   mobileArray={mobileIndexArray}
-                  autoPlay
                   windowWidth={context.state.windowDimensions.width}
                 />
               </RenderInBrowser>
