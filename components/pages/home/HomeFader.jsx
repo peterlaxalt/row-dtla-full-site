@@ -16,7 +16,7 @@ const MobileSliderContainer = styled.div`
   flex-direction: column;
 
   .mobile-slide {
-    margin-bottom: 1.5vh;
+    margin-bottom: 5px;
     height: 55vh;
     display: flex;
     flex-direction: column;
@@ -37,7 +37,6 @@ const MobileSliderContainer = styled.div`
       transform: translate(-50%, -50%);
       cursor: pointer;
       z-index: 10;
-      color: ${props => (props.titleText === 'AVAILABILITY' ? '#000' : '#fff')};
       font-weight: 600;
       letter-spacing: 3px;
       width: 100%;
@@ -49,8 +48,12 @@ const MobileSliderContainer = styled.div`
         font-size: 110px;
       `}
 
-      &:visited, &:focus {
-        color: ${props => (props.titleText === 'AVAILABILITY' ? '#000' : '#fff')};
+      &.white {
+        color: #fff;
+      }
+
+      &.black {
+        color: #000;
       }
     }
   }
@@ -115,6 +118,32 @@ const DesktopSliderContainer = styled.div`
       `}
     }
   }
+
+  .prev-arrow,
+  .next-arrow {
+    position: absolute;
+    top: 0;
+    width: 80px;
+    height: 100%;
+    background: rgba(256, 256, 256, 0);
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .prev-arrow {
+    left: 0;
+    &:hover {
+      background: linear-gradient(to right, #03a8f442, #ffff0000);
+    }
+  }
+
+  .next-arrow {
+    right: 0;
+    &:hover {
+      background: linear-gradient(to left, #03a8f442, #ffff0000);
+    }
+  }
+
   .bullet-container {
     position: absolute;
     bottom: 8%;
@@ -140,14 +169,13 @@ const DesktopSliderContainer = styled.div`
           border: 2px solid #000;
           height: 14px;
           width: 14px;
-          margin: -1px 10px;
           transition: all 150ms ease;
         }
+
         &.active {
           border: 2px solid #000;
-          height: 16px;
-          width: 16px;
-          margin: -1px 10px;
+          height: 14px;
+          width: 14px;
         }
       }
     }
@@ -243,21 +271,44 @@ export default class HomeFader extends React.Component {
     );
   };
 
+  createPrevNextArrows = () => {
+    const { currentSlide } = this.state;
+    const numSlides = this.props.indexArray.length;
+    let prevSlide, nextSlide;
+
+    if (currentSlide === 0) {
+      prevSlide = numSlides - 1;
+      nextSlide = currentSlide + 1;
+    } else if (currentSlide === numSlides - 1) {
+      prevSlide = numSlides - 1;
+      nextSlide = 0;
+    } else {
+      prevSlide = currentSlide - 1;
+      nextSlide = currentSlide + 1;
+    }
+
+    return (
+      <React.Fragment>
+        {/* eslint-disable-next-line */}
+        <div className="prev-arrow" onClick={() => this.changeSlide(prevSlide)} />
+        {/* eslint-disable-next-line */}
+        <div className="next-arrow" onClick={() => this.changeSlide(nextSlide)} />
+      </React.Fragment>
+    );
+  };
+
   createMobileSlides() {
-    return <h1>Hello</h1>;
-    // return this.props.mobileArray.map((el, idx) => {
-    //   return (
-    //     <Link key={`home-slider-link-${idx}`} href={el.link}>
-    //       <div className="mobile-slide">
-    //         <ResponsiveImage srcPath={el.imgUrl} imgAlt={el.imgAlt} />
-    //         {/* eslint-disable-next-line */}
-    //         <a className="slide-link" showTitle={this.state.showTitle} titleText={el.titleText}>
-    //           {el.titleText}
-    //         </a>
-    //       </div>
-    //     </Link>
-    //   );
-    // });
+    return this.props.mobileArray.map((slide, idx) => {
+      return (
+        <Link key={`home-slider-link-${idx}`} href={slide.link}>
+          <div className="mobile-slide">
+            <ResponsiveImage srcPath={slide.imgUrl} imgAlt={slide.imgAlt} />
+            {/* eslint-disable-next-line */}
+            <a className={`slide-link ${slide.titleText === 'AVAILABILITY' ? 'black' : 'white'}`}>{slide.titleText}</a>
+          </div>
+        </Link>
+      );
+    });
   }
 
   render() {
@@ -267,6 +318,7 @@ export default class HomeFader extends React.Component {
       <SliderContainer loaded={loaded}>
         {this.props.windowWidth > 1024 ? (
           <DesktopSliderContainer>
+            {this.createPrevNextArrows()}
             {this.createSlides()}
             {this.createBullets()}
           </DesktopSliderContainer>
