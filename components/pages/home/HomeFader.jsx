@@ -76,25 +76,24 @@ const DesktopSliderContainer = styled.div`
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: all 1s ease;
+    transition: all 2s ease;
     &.active {
       opacity: 1;
       visibility: visible;
     }
     a.slide-link {
+      display: block;
       position: absolute;
-      top: 50%;
+      top: 45%;
       left: 50%;
       transform: translate(-50%, -50%);
       cursor: pointer;
       z-index: 10;
       font-weight: 600;
       letter-spacing: 3px;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
       font-size: 36px;
+      width: 100%;
+      text-align: center;
       &.white {
         color: #fff;
         &:visited,
@@ -118,32 +117,37 @@ const DesktopSliderContainer = styled.div`
   }
   .bullet-container {
     position: absolute;
-    bottom: 10%;
+    bottom: 8%;
     left: 50%;
     transform: translateX(-50%);
-    background: purple;
     ul {
       width: 100%;
       display: flex;
       justify-content: center;
       padding: 0;
       li {
-        height: 20px;
-        width: 20px;
-        background: ${props => (props.active ? '#000' : '#fff')};
-        border: 3px solid black;
+        height: 14px;
+        width: 14px;
+        border: none;
         border-radius: 50%;
         list-style-type: none;
         margin: 0 10px;
         cursor: pointer;
+        background: #fff;
 
         &:hover {
           background: #000;
-          transition: background 200ms ease;
+          border: 2px solid #000;
+          height: 14px;
+          width: 14px;
+          margin: -1px 10px;
+          transition: all 150ms ease;
         }
         &.active {
-          background: #000;
-          transition: background 500ms ease;
+          border: 2px solid #000;
+          height: 16px;
+          width: 16px;
+          margin: -1px 10px;
         }
       }
     }
@@ -168,7 +172,7 @@ export default class HomeFader extends React.Component {
   }
 
   startRotation = () => {
-    this.sliderInterval = setInterval(this.nextSlide, 9000);
+    this.outerFadeInterval = setInterval(this.nextSlide, 9000);
   };
 
   nextSlide = () => {
@@ -176,11 +180,11 @@ export default class HomeFader extends React.Component {
     this.setState({ currentSlide: nextSlide });
   };
 
-  stopRotation = () => {
-    clearInterval(this.sliderInterval);
+  stopRotation = (slide = 0) => {
+    clearInterval(this.outerFadeInterval);
 
     this.setState({
-      currentSlide: 0
+      currentSlide: slide
     });
   };
 
@@ -204,8 +208,15 @@ export default class HomeFader extends React.Component {
     ));
   }
 
-  changeSlide() {
-    console.log('clicked');
+  changeSlide(idx) {
+    const { currentSlide } = this.state;
+
+    if (idx === currentSlide) {
+      return;
+    }
+
+    this.stopRotation(idx);
+    this.startRotation();
   }
 
   createBullets = () => {
@@ -215,6 +226,7 @@ export default class HomeFader extends React.Component {
 
     for (let idx = 0; idx < this.props.indexArray.length; idx++) {
       let bullet = (
+        // eslint-disable-next-line
         <li
           className={`${currentSlide === idx ? 'active' : ''}`}
           key={`home-slider-bullet-${idx}`}
