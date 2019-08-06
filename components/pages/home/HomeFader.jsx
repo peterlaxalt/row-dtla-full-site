@@ -127,7 +127,7 @@ const DesktopSliderContainer = styled.div`
     height: 100%;
     background: rgba(256, 256, 256, 0);
     cursor: pointer;
-    z-index: 1;
+    z-index: 11;
   }
 
   .prev-arrow {
