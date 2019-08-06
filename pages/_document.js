@@ -6,7 +6,7 @@ import { ServerStyleSheet } from 'styled-components';
 export default class MyDocument extends Document {
   static getInitialProps({ req, renderPage }) {
     const sheet = new ServerStyleSheet();
-    const parsedUserAgent = useragent.parse(req.headers['user-agent']); // here
+    const parsedUserAgent = useragent.parse(req.headers['user-agent']);
 
     const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
 
