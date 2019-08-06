@@ -155,24 +155,23 @@ const DesktopSliderContainer = styled.div`
       justify-content: center;
       padding: 0;
       li {
-        height: 14px;
-        width: 14px;
-        border: none;
+        height: 10px;
+        width: 10px;
         border-radius: 50%;
         list-style-type: none;
         margin: 0 10px;
         cursor: pointer;
         background: #fff;
+        border: 2px solid #fff;
 
         &:hover {
           background: #000;
           border: 2px solid #000;
-          height: 14px;
-          width: 14px;
           transition: all 150ms ease;
         }
 
         &.active {
+          margin: -2px 10px 0;
           border: 2px solid #000;
           height: 14px;
           width: 14px;
@@ -222,7 +221,7 @@ export default class HomeFader extends React.Component {
     return this.props.indexArray.map((slide, idx) => (
       <div key={`home-slide-${idx}`} className={`desktop-outer-slide ${currentSlide === idx ? 'active' : ''}`}>
         <InnerFader imgArray={slide.imgArray} active={currentSlide === idx} />
-        <Link href="#" passHref>
+        <Link href={slide.link} passHref>
           {/* eslint-disable-next-line */}
           <a
             className={`slide-link ${currentSlide === idx ? 'active' : ''} ${
