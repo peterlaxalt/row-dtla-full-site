@@ -37,6 +37,7 @@ const PaddingCol = styled.div`
   .react-reveal {
     display: flex;
     justify-content: center;
+    min-height: 1px;
   }
 `;
 

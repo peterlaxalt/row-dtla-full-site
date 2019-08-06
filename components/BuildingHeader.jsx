@@ -40,7 +40,6 @@ const HeaderLogo = styled.div`
   padding: 0;
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
   width: 75%;
   font-size: 64px;

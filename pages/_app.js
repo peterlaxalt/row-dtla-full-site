@@ -12,7 +12,6 @@ import GlobalStyles from '~/styles/global/Global';
 import TypographyStyles from '~/styles/global/Typography';
 import MapStyles from '~/styles/global/Map';
 import ContainerStyles from '~/styles/global/Containers';
-import CompatibilityStyles from '~/styles/global/Compatibility';
 
 NProgress.configure({ showSpinner: false });
 
@@ -119,7 +118,6 @@ export default class MyApp extends App {
           <ContainerStyles />
           <GlobalStyles />
           <TypographyStyles />
-          <CompatibilityStyles />
           <MapStyles />
           <Layout>
             <Component {...pageProps} />
