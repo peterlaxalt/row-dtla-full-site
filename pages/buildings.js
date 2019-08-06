@@ -24,6 +24,7 @@ const PaddingCol = styled.div`
   align-items: center;
   width: 100%;
   padding: 0 15px;
+  min-height: 1px;
   ${mediaMin.tabletLandscape`
     padding: 0 40px;
   `}
@@ -89,7 +90,7 @@ const Buildings = () => (
               <BrandSpinner />
             </Fade>
             <Fade>
-              <SectionHeader>Our Tenants by Industry</SectionHeader>
+              <SectionHeader>Ofice Tenants by Industry</SectionHeader>
               {width > 1024 ? (
                 <ResponsiveImage srcPath="static/images/buildings/DesktopTenantChart" imgAlt="Tenants" />
               ) : (
