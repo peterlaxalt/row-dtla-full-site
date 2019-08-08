@@ -123,14 +123,16 @@ class NewsArticle extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.context.newsData !== [] && this.state.articleData === false) {
+    let { context } = this.props;
+    let newsData = context.newsData || context.state.appData.newsData;
+    if (newsData !== [] && this.state.articleData === false) {
       if (this.props.title !== undefined) {
-        let articleData = this.getCurrentData(this.props.context.newsData, this.createSlug(this.props.title));
+        let articleData = this.getCurrentData(newsData, this.createSlug(this.props.title));
         this.setState({
           articleData
         });
       } else {
-        let articleData = this.getCurrentData(this.props.context.newsData, this.props.slug);
+        let articleData = this.getCurrentData(newsData, this.props.slug);
         this.setState({
           articleData
         });
@@ -139,16 +141,19 @@ class NewsArticle extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.context.newsData !== [] && this.state.articleData == false) {
+    let { context } = this.props;
+    let newsData = context.newsData || context.state.appData.newsData;
+
+    if (newsData !== [] && this.state.articleData == false) {
       if (this.props.title !== undefined) {
-        let articleData = this.getCurrentData(this.props.context.newsData, this.createSlug(this.props.title));
+        let articleData = this.getCurrentData(newsData, this.createSlug(this.props.title));
         if (articleData) {
           this.setState({
             articleData
           });
         }
       } else {
-        let articleData = this.getCurrentData(this.props.context.newsData, this.props.slug);
+        let articleData = this.getCurrentData(newsData, this.props.slug);
         if (articleData) {
           this.setState({
             articleData

@@ -226,7 +226,9 @@ export default class ContactPage extends React.Component {
     // Append Retail Leasing Contacts Section
     buildingContacts['retail-leasing-contacts'] = [];
 
-    context.contactData.forEach(contact => {
+    let contactData = context.contactData || context.state.appData.contactData;
+
+    contactData.forEach(contact => {
       if (contact.retail_leasing_inquiries) {
         // Append Retail Leasing Contacts Section
         buildingContacts['retail-leasing-contacts'].push(contact);

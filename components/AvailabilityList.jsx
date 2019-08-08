@@ -640,7 +640,7 @@ export default class AvailabilityList extends React.Component {
                 <tr />
               )}
               {this.createListingRows(
-                context.availabilityData,
+                context.availabilityData || context.state.appData.availabilityData,
                 this.props.building,
                 context.state.windowDimensions.width
               )}

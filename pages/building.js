@@ -195,8 +195,8 @@ const Fact = styled.div`
   }
 `;
 
-const createContactList = contactInfoArray => {
-  let contactListItems = contactInfoArray.map((el, idx) => {
+const createContactList = contactArray => {
+  let contactListItems = contactArray.map((el, idx) => {
     return <ContactCard key={`contact-card-${idx}`} cardData={el} />;
   });
   return <ContactInfoList>{contactListItems}</ContactInfoList>;
@@ -210,7 +210,9 @@ const Building = props => {
   let leasingContactArray = [];
   let retailLeasingContactArray = [];
 
-  context.contactData.forEach(contact => {
+  let contactData = context.contactData || context.state.appData.contactData;
+
+  contactData.forEach(contact => {
     if (contact.buildings.includes(building.slug) && !contact.retail_leasing_inquiries) {
       leasingContactArray.push(contact);
     }
@@ -279,13 +281,11 @@ const Building = props => {
           <BeforeAfter before={building.beforeAfter.before} after={building.beforeAfter.after} />
         </Fade>
       )}
-      <Fade>
-        <ResponsiveImage
-          imgClass="building-img"
-          srcPath={building.footerImage.imgUrl}
-          imgAlt={building.footerImage.imgAlt}
-        />
-      </Fade>
+      <ResponsiveImage
+        imgClass="building-img"
+        srcPath={building.footerImage.imgUrl}
+        imgAlt={building.footerImage.imgAlt}
+      />
       <FooterOverlay>
         <span>{building.footerImage.footerText}</span>
         <Link href={building.footerImage.footerLink} passHref>
