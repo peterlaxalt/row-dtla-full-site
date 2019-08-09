@@ -190,18 +190,20 @@ const AvailabilityLink = styled.a`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 4vw !important;
-  height: 4vw !important;
+  width: 50px !important;
+  height: 50px !important;
   cursor: pointer;
   box-sizing: border-box;
   ${mediaMin.tabletLandscape`
+    width: 60px !important;
+    height: 60px !important;
     color: ${colors.babyBlue};
     &:visited{
       color: ${colors.babyBlue};
     }
-    `}
+  `}
+
   &:hover {
-    padding: 30px;
     color: #000;
     border-radius: 50%;
     background: #369bf766;

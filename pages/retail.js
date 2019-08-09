@@ -56,6 +56,8 @@ const TextSection = styled.div`
     font-weight: 500;
     width: 100%;
     text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
   }
   .text-body {
     font-size: 19px;
@@ -177,7 +179,7 @@ const Retail = () => (
               </TextSection>
             </Fade>
             <Fade>
-              <ResponsiveImage srcPath="/static/images/retail/retail-banner-mobile" />
+              <ResponsiveImage srcPath="/static/images/retail/retail-banner-mobile" width="100%" />
             </Fade>
             <Fade>
               <ContactRow>

@@ -4,6 +4,7 @@ const GlobalStyles = createGlobalStyle`
   html, body {
     font-size: 100%;
     font-family: 'Berthold Akzindenz Grotesk';
+    color: #0a0a0a;
   }
 
   li {
@@ -25,11 +26,6 @@ const GlobalStyles = createGlobalStyle`
 
   a:active {
     color: inherit;
-  }
-
-  .container {
-    height: 100%;
-    width: 100%;
   }
 
   @font-face {
