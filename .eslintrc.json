@@ -24,7 +24,7 @@
   },
   "plugins": ["react", "jsx-a11y"],
   "rules": {
-    "linebreak-style": ["error", "unix"],
+    "linebreak-style": 0,
     "semi": ["error", "always"],
     "react/prop-types": 0,
     "react/jsx-no-undef": [2, { "allowGlobals": true }],

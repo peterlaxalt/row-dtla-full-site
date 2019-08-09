@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Router from 'next/router';
 import { withRouter } from 'next/router';
 import { useContext } from 'react';
 import styled from 'styled-components';
@@ -162,10 +162,7 @@ const Listing = () => {
 
   let listing = fullAvailabilityData.find(obj => {
     return building_slug === obj.acf.building_slug && suite_floor_slug === obj.acf.suite_floor_slug;
-  });
-
-  const listingID = listing.id;
-  listing = listing.acf;
+  }).acf;
 
   const listingSliderArray = [listing.photo_1, listing.photo_2, listing.photo_3, listing.photo_4, listing.photo_5]
     .filter(obj => obj)
@@ -191,7 +188,7 @@ const Listing = () => {
         idArray
       };
     })
-    .filter(contact => contact.idArray.includes(listingID));
+    .filter(contact => contact.idArray.includes(listing.id));
 
   const { availability, neighborhood, axon, floor, suite, sqft, views } = listing;
 
@@ -208,9 +205,7 @@ const Listing = () => {
           <h3 className="floor-info-mobile">
             {suite} {floor && `${addOrdinalSuffix(floor)} Floor`}
           </h3>
-          <Link as={`/buildings/${building_slug}/`} href={`/building?slug=${building_slug}`}>
-            <button aria-label={`Back to building page: ${building.navTitle}`} title="Go Back" />
-          </Link>
+          <button onClick={() => Router.back()} aria-label={`Back to building page: ${building.title}`} title="Go Back" />
         </div>
       </Fade>
       <Fade>
@@ -273,9 +268,11 @@ const Listing = () => {
       <Fade>
         <FloorplanSection listing={listing} />
       </Fade>
-      <Fade>
-        <NonResponsiveSlider imgArray={listingSliderArray} />
-      </Fade>
+      {listingSliderArray.length > 0 && (
+        <Fade>
+          <NonResponsiveSlider imgArray={listingSliderArray} />
+        </Fade>
+      )}
       <Fade>
         <ContactSection contactData={filteredContactData} />
       </Fade>

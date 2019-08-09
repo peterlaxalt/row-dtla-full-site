@@ -1,5 +1,7 @@
 export const indexArray = [
   {
+    titleText: 'OUR BUILDINGS',
+    link: '/buildings/',
     imgArray: [
       {
         imgUrl: '/static/images/landing_page/1_Our_Buildings/1_Aerial',
@@ -13,11 +15,11 @@ export const indexArray = [
         imgUrl: '/static/images/landing_page/1_Our_Buildings/3_Detail',
         imgAlt: 'Buildings 3'
       }
-    ],
-    titleText: 'OUR BUILDINGS',
-    link: '/buildings/'
+    ]
   },
   {
+    titleText: 'OUR RETAIL',
+    link: '/retail/',
     imgArray: [
       {
         imgUrl: '/static/images/landing_page/2_Our_Retail/1_Shake_Shack',
@@ -28,15 +30,14 @@ export const indexArray = [
         imgAlt: 'Retail 2'
       },
       {
-        imgUrl:
-          '/static/images/landing_page/2_Our_Retail/3_Cafe_Altro_Paradiso',
+        imgUrl: '/static/images/landing_page/2_Our_Retail/3_Cafe_Altro_Paradiso',
         imgAlt: 'Retail 3'
       }
-    ],
-    titleText: 'OUR RETAIL',
-    link: '/retail/'
+    ]
   },
   {
+    titleText: 'OUR LOCATION',
+    link: '/neighborhood/',
     imgArray: [
       {
         imgUrl: '/static/images/landing_page/3_Our_Location/1_Neighborhood',
@@ -50,11 +51,11 @@ export const indexArray = [
         imgUrl: '/static/images/landing_page/3_Our_Location/3',
         imgAlt: 'Location 3'
       }
-    ],
-    titleText: 'OUR LOCATION',
-    link: '/neighborhood/'
+    ]
   },
   {
+    titleText: 'OUR STORY',
+    link: '/story/',
     imgArray: [
       {
         imgUrl: '/static/images/landing_page/4_Our_Story/1_Aerial',
@@ -68,19 +69,17 @@ export const indexArray = [
         imgUrl: '/static/images/landing_page/4_Our_Story/3_Land_Grant',
         imgAlt: 'Story 3'
       }
-    ],
-    titleText: 'OUR STORY',
-    link: '/story/'
+    ]
   },
   {
+    titleText: 'AVAILABILITY',
+    link: '/availability/',
     imgArray: [
       {
         imgUrl: '/static/images/landing_page/5_Availability/1_160Varick_11FL',
         imgAlt: 'Availability 1'
       }
-    ],
-    titleText: 'AVAILABILITY',
-    link: '/availability/'
+    ]
   }
 ];
 

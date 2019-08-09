@@ -34,20 +34,21 @@ const NavUnorderedList = styled.ul`
   transition: all 200ms ease;
   opacity: ${props => (isDesktopNavVisible(props) ? 1 : 0)};
   visibility: ${props => (isDesktopNavVisible(props) ? 'visible' : 'hidden')};
-  padding-right: 30px;
   li {
     color: inherit;
     cursor: pointer;
-    margin: 0 15px;
+    padding: 0 15px;
     list-style-type: none;
     text-decoration: none;
 
     a {
       font-weight: 500;
-      font-size: 0.8em;
+      font-size: 12px;
       text-decoration: none;
       letter-spacing: 1px;
       cursor: pointer;
+      color: #0a0a0a;
+      font-stretch: normal;
       &:hover {
         color: ${variables.colors.babyBlue};
       }

@@ -190,18 +190,20 @@ const AvailabilityLink = styled.a`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 4vw !important;
-  height: 4vw !important;
+  width: 50px !important;
+  height: 50px !important;
   cursor: pointer;
   box-sizing: border-box;
   ${mediaMin.tabletLandscape`
+    width: 60px !important;
+    height: 60px !important;
     color: ${colors.babyBlue};
     &:visited{
       color: ${colors.babyBlue};
     }
-    `}
+  `}
+
   &:hover {
-    padding: 30px;
     color: #000;
     border-radius: 50%;
     background: #369bf766;
@@ -297,17 +299,15 @@ const FormSection = styled.div`
       display: inline-block;
       position: relative;
       margin-right: 16px;
+      outline: none;
       &:checked:after {
         content: '✕';
         font-size: 26px;
-        top: -7px;
-        left: -1.5px;
+        top: -10px;
+        left: -2px;
         position: absolute;
         color: #000;
         height: 16px;
-        ${mediaMin.tabletLandscape`
-        left: -0.5px;
-        `}
       }
     }
   }
@@ -425,11 +425,9 @@ export default class AvailabilityList extends React.Component {
 
       //Filtering
       sortedAndFiltered = sortedAndFiltered.filter(el => {
-        return this.state.filters['neighborhood'].includes(el.neighborhood);
+        return this.state.filters.neighborhood.includes(el.neighborhood) && this.state.filters.type.includes(el.type);
       });
-      sortedAndFiltered = sortedAndFiltered.filter(el => {
-        return this.state.filters['type'].includes(el.type);
-      });
+
       let filterSQFT = [];
       if (this.state.filters.squareFootage.length !== 4) {
         sortedAndFiltered.forEach(el => {
@@ -575,7 +573,7 @@ export default class AvailabilityList extends React.Component {
           });
         }
       } else {
-        return <AvailabilityRow>No matching records found</AvailabilityRow>;
+        return <AvailabilityRow>No active availability for this building</AvailabilityRow>;
       }
     }
   };
@@ -644,7 +642,7 @@ export default class AvailabilityList extends React.Component {
                 <tr />
               )}
               {this.createListingRows(
-                context.availabilityData,
+                context.availabilityData || context.state.appData.availabilityData,
                 this.props.building,
                 context.state.windowDimensions.width
               )}

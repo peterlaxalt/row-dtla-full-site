@@ -12,6 +12,7 @@ const HeaderContainer = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #fff;
+  background-position: center;
   width: 100%;
   height: 420px;
   ${mediaMin.tablet`
@@ -39,7 +40,6 @@ const HeaderLogo = styled.div`
   padding: 0;
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
   width: 75%;
   font-size: 64px;
@@ -85,6 +85,7 @@ const BuildingHeader = ({ headerInfo }) => {
   const { width } = windowDimensions;
   const { headerBackground, headerLogo, headerLogoAlt, headerSize } = headerInfo;
   const adjustedHeight = (width * headerSize[1]) / headerSize[0];
+
   return (
     <HeaderContainer adjustedHeight={adjustedHeight} headerBackgroundPath={headerBackground}>
       <LogoContainer>

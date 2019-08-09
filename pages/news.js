@@ -120,8 +120,10 @@ export default class News extends React.Component {
 
   createListItems = newsData => {
     return newsData.map((el, idx) => {
+      const { preview_image } = el;
+
       return (
-        <ListItem imgURL={el.image_1.url} key={idx}>
+        <ListItem imgURL={el[`image_${preview_image}`].url} key={idx}>
           <Link as={`/news/${this.createSlug(el.title)}`} href={`/newsarticle?title=${el.title}`}>
             <div alt={'Picture of ' + el.title} />
           </Link>
@@ -142,7 +144,7 @@ export default class News extends React.Component {
               <MobileHeading>News</MobileHeading>
             </Fade>
             <Fade>
-              <NewsList>{this.createListItems(context.newsData)}</NewsList>
+              <NewsList>{this.createListItems(context.newsData || context.state.appData.newsData)}</NewsList>
             </Fade>
             <ScrollUp />
             <CopyrightFooter />

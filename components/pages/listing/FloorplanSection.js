@@ -21,7 +21,7 @@ const possibleBtnValues = [
     title: 'Full Renovation Test Fit'
   },
   {
-    slug: 'as_built_test_Fit',
+    slug: 'as_built_test_fit',
     title: 'As-Built Test Fit'
   },
   {

@@ -12,7 +12,7 @@ const BrandArray = [
   { path: '/static/images/tenants/logo-tenant-havas.png', alt: 'HAVAS' },
   {
     path: '/static/images/tenants/logo-tenant-horizonmedia.png',
-    alt: 'accenture'
+    alt: 'Horizon Media'
   },
   { path: '/static/images/tenants/logo-tenant-medidata.png', alt: 'Medidata' },
   { path: '/static/images/tenants/logo-tenant-npr.png', alt: 'NPR' },
@@ -43,7 +43,6 @@ const PosFive = `${-150}px, -220px`;
 const PosOne = width => {
   return `${width * -0.2 - 150}px, -36px`;
 };
-
 const PosNine = width => {
   return `${width * 0.2 - 150}px, -36px`;
 };

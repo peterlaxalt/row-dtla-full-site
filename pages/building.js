@@ -24,9 +24,6 @@ const BuildingCol = styled.div`
   flex-direction: column;
   align-items: center;
   background: white;
-  ${mediaMin.tabletLandscape`
-    height: 100%;
-  `}
   .building-img {
     min-height: 100%;
     width: 100%;
@@ -129,13 +126,11 @@ const AboutSection = styled.div`
     font-size: 24px;
     padding-bottom: 12px;
     margin-bottom: 12px;
-    height: 100%;
   }
   p {
     margin-bottom: 40px;
     font-size: 17px;
     line-height: 25px;
-    height: 100%;
     ${mediaMin.tabletLandscape`
       font-size: 19px;
       line-height: 29px;
@@ -144,7 +139,7 @@ const AboutSection = styled.div`
 `;
 
 const MapLink = styled.a`
-  text-align: end;
+  text-align: right;
   margin: 24px 0;
   cursor: pointer;
   color: ${colors.babyBlue};
@@ -180,14 +175,14 @@ const Fact = styled.div`
   flex-direction: column;
   font-size: 17px;
   line-height: 25px;
-  margin-bottom: 40px;
   width: ${props => (props.fullWidth ? '100%' : '50%')};
   ${mediaMin.tabletLandscape`
   font-size: 19px;
-  line-height: 29px;
+  line-height: 25px;
     width: 33%;
   `}
   a {
+    padding-top: 20px;
     color: ${variables.colors.babyBlue};
     &:hover {
       text-decoration: underline;
@@ -195,8 +190,8 @@ const Fact = styled.div`
   }
 `;
 
-const createContactList = contactInfoArray => {
-  let contactListItems = contactInfoArray.map((el, idx) => {
+const createContactList = contactArray => {
+  let contactListItems = contactArray.map((el, idx) => {
     return <ContactCard key={`contact-card-${idx}`} cardData={el} />;
   });
   return <ContactInfoList>{contactListItems}</ContactInfoList>;
@@ -210,7 +205,9 @@ const Building = props => {
   let leasingContactArray = [];
   let retailLeasingContactArray = [];
 
-  context.contactData.forEach(contact => {
+  let contactData = context.contactData || context.state.appData.contactData;
+
+  contactData.forEach(contact => {
     if (contact.buildings.includes(building.slug) && !contact.retail_leasing_inquiries) {
       leasingContactArray.push(contact);
     }
@@ -218,6 +215,8 @@ const Building = props => {
       retailLeasingContactArray.push(contact);
     }
   });
+
+  const factInfoContainer = React.useRef(null);
 
   return (
     <BuildingCol>
@@ -228,7 +227,7 @@ const Building = props => {
         <AboutSection>
           <h3>About {building.title}</h3>
           <p>{building.about}</p>
-          <FactRowContainer>
+          <FactRowContainer ref={factInfoContainer} id="fact-row-container">
             <FactRow>
               <Fact>
                 <span>Year Constructed:</span>
@@ -238,7 +237,7 @@ const Building = props => {
                 <span>Total Building Area:</span>
                 <span>{building.totalBuildingArea}</span>
               </Fact>
-              <Fact>
+              <Fact className="ceiling-height">
                 <span>Ceiling Heights:</span>
                 {building.ceilingHeights.map(el => {
                   return <span key={el}>{el}</span>;
@@ -258,7 +257,7 @@ const Building = props => {
                 </a>
               </Fact>
             </FactRow>
-            <MiniMap mapCenter={building.mapCenter} building={building.title} />
+            <MiniMap mapCenter={building.mapCenter} building={building.title} factInfoContainer={factInfoContainer} />
           </FactRowContainer>
           <Link href="/neighborhood-map" passHref>
             <MapLink>View Full Map</MapLink>
@@ -277,13 +276,11 @@ const Building = props => {
           <BeforeAfter before={building.beforeAfter.before} after={building.beforeAfter.after} />
         </Fade>
       )}
-      <Fade>
-        <ResponsiveImage
-          imgClass="building-img"
-          srcPath={building.footerImage.imgUrl}
-          imgAlt={building.footerImage.imgAlt}
-        />
-      </Fade>
+      <ResponsiveImage
+        imgClass="building-img"
+        srcPath={building.footerImage.imgUrl}
+        imgAlt={building.footerImage.imgAlt}
+      />
       <FooterOverlay>
         <span>{building.footerImage.footerText}</span>
         <Link href={building.footerImage.footerLink} passHref>
