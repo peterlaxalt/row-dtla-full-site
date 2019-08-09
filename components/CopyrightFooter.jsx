@@ -13,9 +13,9 @@ const CopyrightFooterContainer = styled.div`
     padding: 10% 5% 10px 5%;
   `}
   ${mediaMin.tabletLandscape`
-  font-size: 12px;
-  line-height: 22px;
-  padding: 10px 5%;
+    font-size: 12px;
+    line-height: 22px;
+    padding: 5% 5% 10px 5%;
   `}
   a {
     &:hover {

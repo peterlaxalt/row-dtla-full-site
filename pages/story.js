@@ -106,6 +106,7 @@ const TextSection = styled.div`
   padding: 50px 0 0 0;
   ${mediaMin.tabletLandscape`
     padding: 0 40px 0 40px;
+    ${props => props.topMargin && `margin-top: ${props.topMargin}`};
   `}
   .text-heading {
     width: 100%;
@@ -309,7 +310,7 @@ const Story = () => (
                   </p>
                 </TextSection>
                 <ResponsiveImage srcPath="/static/images/story/5_Hines/bg-story-hines-left" imgAlt="" />
-                <TextSection>
+                <TextSection topMargin={'200px'}>
                   <p className="text-body">
                     The firm’s current property and asset management portfolio includes 527 properties, representing
                     over 224 million square feet. With extensive experience in investments across the risk spectrum and

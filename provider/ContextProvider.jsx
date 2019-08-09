@@ -14,16 +14,37 @@ class ContextProvider extends Component {
         desktopNavActive: false,
         buildingNavActive: false,
         activeSubNav: ''
+      },
+      appData: {
+        availabilityData: [],
+        newsData: [],
+        pressData: [],
+        contactData: []
       }
     };
   }
   componentDidMount() {
     this.updateWindowDimensions();
+    this.addInitialDataToState();
     window.addEventListener('resize', this.updateWindowDimensions);
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  addInitialDataToState() {
+    const { availabilityData, fullAvailabilityData, contactData, newsData, pressData } = this.props;
+
+    const dataObj = {
+      availabilityData,
+      contactData,
+      newsData,
+      pressData,
+      fullAvailabilityData
+    };
+
+    this.setState({ appData: dataObj });
   }
 
   updateWindowDimensions = () => {

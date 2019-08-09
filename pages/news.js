@@ -144,7 +144,7 @@ export default class News extends React.Component {
               <MobileHeading>News</MobileHeading>
             </Fade>
             <Fade>
-              <NewsList>{this.createListItems(context.newsData)}</NewsList>
+              <NewsList>{this.createListItems(context.newsData || context.state.appData.newsData)}</NewsList>
             </Fade>
             <ScrollUp />
             <CopyrightFooter />
