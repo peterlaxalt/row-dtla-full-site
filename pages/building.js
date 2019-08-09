@@ -24,9 +24,6 @@ const BuildingCol = styled.div`
   flex-direction: column;
   align-items: center;
   background: white;
-  ${mediaMin.tabletLandscape`
-    height: 100%;
-  `}
   .building-img {
     min-height: 100%;
     width: 100%;
@@ -129,13 +126,11 @@ const AboutSection = styled.div`
     font-size: 24px;
     padding-bottom: 12px;
     margin-bottom: 12px;
-    height: 100%;
   }
   p {
     margin-bottom: 40px;
     font-size: 17px;
     line-height: 25px;
-    height: 100%;
     ${mediaMin.tabletLandscape`
       font-size: 19px;
       line-height: 29px;
@@ -144,7 +139,7 @@ const AboutSection = styled.div`
 `;
 
 const MapLink = styled.a`
-  text-align: end;
+  text-align: right;
   margin: 24px 0;
   cursor: pointer;
   color: ${colors.babyBlue};
@@ -273,7 +268,7 @@ const Building = props => {
       <Fade>
         <ImageSlider height="80vh" imgArray={building.sliderArray} showQuotes={true} />
       </Fade>
-      <Spacer customHeight="35px" />
+      {/* <Spacer customHeight="35px" /> */}
       {building.beforeAfter === false ? (
         ''
       ) : (
