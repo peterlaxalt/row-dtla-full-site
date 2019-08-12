@@ -759,6 +759,45 @@ const buildings = [
   }
 ];
 
+const buildingsSlugMap = {
+  '75-varick-street': {
+    title: '75 Varick Street'
+  },
+  '160-varick-street': {
+    title: '160 Varick Street'
+  },
+  '345-hudson-street': {
+    title: '345 Hudson Street'
+  },
+  '350-hudson-street': {
+    title: '350 Hudson Street'
+  },
+  '375-hudson-street': {
+    title: '375-hudson-street'
+  },
+  '155-avenue-of-the-americas': {
+    title: '155 Avenue of the Americas'
+  },
+  '100-avenue-of-the-americas': {
+    title: '100 Avenue of the Americas'
+  },
+  '200-hudson-street': {
+    title: '200 Hudson Street'
+  },
+  '205-hudson-street': {
+    title: '205 Hudson Street'
+  },
+  '12-16-vestry-street': {
+    title: '12-16 Vestry Street'
+  },
+  '225-varick-street': {
+    title: '225 Varick Street'
+  },
+  '435-hudson-street': {
+    title: '435 Hudson Street'
+  }
+};
+
 const buildingsSlider = [
   {
     imgUrl: '/static/images/buildings/Landing_Carousel/1_75_Varick',
@@ -834,4 +873,4 @@ const buildingsSlider = [
   }
 ];
 
-export { buildingsSlider, buildings };
+export { buildings, buildingsSlugMap, buildingsSlider };
