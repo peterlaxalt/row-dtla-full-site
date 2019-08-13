@@ -166,7 +166,9 @@ const Listing = () => {
 
   let listing = fullAvailabilityData.find(obj => {
     return building_slug === obj.acf.building_slug && suite_floor_slug === obj.acf.suite_floor_slug;
-  }).acf;
+  });
+  let listingID = listing.id;
+  listing = listing.acf;
 
   const listingSliderArray = [listing.photo_1, listing.photo_2, listing.photo_3, listing.photo_4, listing.photo_5]
     .filter(obj => obj)
@@ -192,7 +194,7 @@ const Listing = () => {
         idArray
       };
     })
-    .filter(contact => contact.idArray.includes(listing.id));
+    .filter(contact => contact.idArray.includes(listingID));
 
   const { availability, neighborhood, axon, floor, suite, sqft, views } = listing;
 
