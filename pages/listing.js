@@ -157,7 +157,11 @@ const Spacer = styled.div`
 
 const Listing = () => {
   const context = useContext(Context);
-  const { contactData, fullAvailabilityData, pageProps } = context;
+  const { pageProps } = context;
+
+  const fullAvailabilityData = context.fullAvailabilityData || context.state.appData.fullAvailabilityData;
+  const contactData = context.contactData || context.state.appData.contactData;
+
   const { building, building_slug, suite_floor_slug } = pageProps;
 
   let listing = fullAvailabilityData.find(obj => {
@@ -205,7 +209,11 @@ const Listing = () => {
           <h3 className="floor-info-mobile">
             {suite} {floor && `${addOrdinalSuffix(floor)} Floor`}
           </h3>
-          <button onClick={() => Router.back()} aria-label={`Back to building page: ${building.title}`} title="Go Back" />
+          <button
+            onClick={() => Router.back()}
+            aria-label={`Back to building page: ${building.title}`}
+            title="Go Back"
+          />
         </div>
       </Fade>
       <Fade>

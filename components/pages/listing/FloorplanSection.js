@@ -81,7 +81,7 @@ const FloorplanSectionWrapper = styled.div`
     }
   }
   .floorplan-container {
-    widposition: relative;
+    position: relative;
     img {
       padding: 15px 15px;
       box-sizing: border-box;

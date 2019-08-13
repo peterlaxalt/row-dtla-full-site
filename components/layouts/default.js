@@ -8,16 +8,27 @@ import pageTitles from '../../data/pageTitles';
 const Layout = props => {
   const { pathname, query } = props.router;
   const title = pathname === '/' ? 'home' : pathname.replace('/', '');
-
   let pageTitle;
-  if (title === 'building') {
-    let buildingTitle = buildingsSlugMap[query.slug].title;
-    pageTitle = pageTitles.building(buildingTitle);
-  } else if (title === 'newsarticle') {
-    let articleTitle = query.slug ? stringifySlug(query.slug) : query.title;
-    pageTitle = pageTitles.newsArticle(articleTitle);
-  } else {
-    pageTitle = pageTitles[title];
+
+  switch (title) {
+    case 'building': {
+      let buildingTitle = buildingsSlugMap[query.slug].title;
+      pageTitle = pageTitles.building(buildingTitle);
+      break;
+    }
+    case 'listing': {
+      let listingTitle = stringifySlug(query.suite_floor_slug);
+      pageTitle = pageTitles.listing(listingTitle);
+      break;
+    }
+    case 'newsarticle': {
+      let articleTitle = query.slug ? stringifySlug(query.slug) : query.title;
+      pageTitle = pageTitles.newsArticle(articleTitle);
+      break;
+    }
+    default: {
+      pageTitle = pageTitles[title];
+    }
   }
 
   return (
