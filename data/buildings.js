@@ -68,6 +68,10 @@ const buildings = [
       {
         imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/12-75varick',
         imgAlt: 'EET Cafe on the 3rd floor is open to all tenants'
+      },
+      {
+        imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/13-75varick',
+        imgAlt: '75 Varick Street tenant, Oscar Health'
       }
     ],
     beforeAfter: {

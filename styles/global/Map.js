@@ -19,15 +19,15 @@ const MapStyles = createGlobalStyle`
         padding: 15px;
         display: flex;
         flex-direction: column;
-        max-height: 437px;
-        min-height: 380px;
+        max-height: 380px;
+        height: 380px;
         max-width: 320px;
         font-size: 14px;
         overflow: hidden;
         img {
             width: 100%;
-            max-height: 50%;
-            object-fit: scale-down;
+            max-height: 60%;
+            object-fit: cover;
         }
         h5 {
             margin: 0.5em 0;

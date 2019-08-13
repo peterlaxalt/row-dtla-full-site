@@ -214,7 +214,7 @@ class NewsArticle extends React.Component {
                 imgArray={this.createImageArray(this.state.articleData)}
                 showQuotes={false}
                 autoPlay
-                height="75vh"
+                height="100%"
               />
             </Fade>
           ) : (

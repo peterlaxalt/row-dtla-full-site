@@ -3,7 +3,7 @@ import Header from '../includes/Header';
 import { withRouter } from 'next/router';
 import { buildingsSlugMap } from '~/data/buildings';
 import { stringifySlug } from '~/helpers/strings';
-import { pageDescriptions, pageTitles } from '../../data/pageTitles';
+import { pageDescriptions, pageTitles } from '../../data/metaData';
 
 const Layout = props => {
   const { pathname, query } = props.router;
