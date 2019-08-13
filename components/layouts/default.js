@@ -3,12 +3,13 @@ import Header from '../includes/Header';
 import { withRouter } from 'next/router';
 import { buildingsSlugMap } from '~/data/buildings';
 import { stringifySlug } from '~/helpers/strings';
-import pageTitles from '../../data/pageTitles';
+import { pageDescriptions, pageTitles } from '../../data/pageTitles';
 
 const Layout = props => {
   const { pathname, query } = props.router;
   const title = pathname === '/' ? 'home' : pathname.replace('/', '');
-  let pageTitle;
+
+  let pageDescription, pageTitle;
 
   switch (title) {
     case 'building': {
@@ -31,10 +32,17 @@ const Layout = props => {
     }
   }
 
+  pageDescription = pageDescriptions[title] || 'Hudson Square Properties';
+
   return (
     <React.Fragment>
       <Head>
         <title>{pageTitle}</title>
+        <meta property="og:title" content={pageTitle} />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="description" content={pageDescription} />
+        <meta property="og:description" content={pageDescription} />
+        <meta name="twitter:description" content={pageDescription} />
       </Head>
       <Header />
       {props.children}
