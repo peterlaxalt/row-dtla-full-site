@@ -109,8 +109,6 @@ export default class MyApp extends App {
         pageProps = await Component.getInitialProps(ctx);
       }
 
-      // this.setState({ availabilityData, newsData, pressData, contactData }, () => console.log('done'));
-
       return { contactData, availabilityData, fullAvailabilityData, newsData, pressData, pageProps };
     } else {
       let pageProps = {};
