@@ -54,7 +54,7 @@ const NavUnorderedList = styled.ul`
       }
     }
   }
-  li.active {
+  li.active a {
     color: ${variables.colors.babyBlue};
   }
 `;

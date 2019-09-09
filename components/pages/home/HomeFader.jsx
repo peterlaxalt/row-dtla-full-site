@@ -199,7 +199,7 @@ export default class HomeFader extends React.Component {
   }
 
   startRotation = () => {
-    this.outerFadeInterval = setInterval(this.nextSlide, 9000);
+    this.outerFadeInterval = setInterval(this.nextSlide, 8100);
   };
 
   nextSlide = () => {
@@ -374,7 +374,7 @@ class InnerFader extends React.Component {
   }
 
   startRotation = () => {
-    this.sliderInterval = setInterval(this.nextImage, 3000);
+    this.sliderInterval = setInterval(this.nextImage, 2700);
     this.setState({ active: true });
   };
 
