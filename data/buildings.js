@@ -541,7 +541,7 @@ const buildings = [
       headerLogo: '/static/images/logos/logo-205-hudson-street-white.svg',
       headerLogoBlack: '/static/images/logos/logo-205-hudson-street-black.svg',
       headerLogoAlt: '205 Hudson Street',
-      headerBackground: '/static/images/buildings/9_205_Hudson/1_Hero/205_Hudson_Hero.jpg',
+      headerBackground: '/static/images/buildings/9_205_Hudson/1_Hero/205_Hudson_Hero_new.jpg',
       headerSize: [5120, 3840]
     },
     sliderArray: [
@@ -741,16 +741,20 @@ const buildings = [
         imgAlt: 'View from 435 Hudson Street'
       },
       {
-        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/3',
-        imgAlt: 'Tenant Amenity Roof Deck (Currently Under Construction)'
-      },
-      {
         imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/4',
         imgAlt: 'View from 435 Hudson Street'
       },
       {
         imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/5',
         imgAlt: 'View from 435 Hudson Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/6',
+        imgAlt: 'Tenant Amenity Roof Desk'
+      },
+      {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/7',
+        imgAlt: 'Tenant Amenity Roof Desk'
       }
     ],
     beforeAfter: false,

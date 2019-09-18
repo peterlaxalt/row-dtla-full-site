@@ -4,7 +4,7 @@ import Fade from 'react-reveal/Fade';
 import styled from 'styled-components';
 
 import { buildings } from '~/data/buildings';
-import BuildingHeader from '~/components/BuildingHeader';
+import BuildingHeader from '~/components/pages/building/BuildingHeader';
 import AvailabilityList from '~/components/AvailabilityList';
 import ImageSlider from '~/components/Slider';
 import BeforeAfter from '~/components/BeforeAfter';
