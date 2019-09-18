@@ -541,7 +541,7 @@ const buildings = [
       headerLogo: '/static/images/logos/logo-205-hudson-street-white.svg',
       headerLogoBlack: '/static/images/logos/logo-205-hudson-street-black.svg',
       headerLogoAlt: '205 Hudson Street',
-      headerBackground: '/static/images/buildings/9_205_Hudson/1_Hero/205_Hudson_Hero_new.jpg',
+      headerBackground: '/static/images/buildings/9_205_Hudson/1_Hero/205_Hudson_Hero.jpg',
       headerSize: [5120, 3840]
     },
     sliderArray: [
