@@ -750,11 +750,11 @@ const buildings = [
       },
       {
         imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/6',
-        imgAlt: 'Tenant Amenity Roof Desk'
+        imgAlt: 'Tenant Amenity Roof Deck'
       },
       {
         imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/7',
-        imgAlt: 'Tenant Amenity Roof Desk'
+        imgAlt: 'Tenant Amenity Roof Deck'
       }
     ],
     beforeAfter: false,
