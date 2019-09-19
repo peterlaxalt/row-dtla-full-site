@@ -42,6 +42,7 @@ const ListingWrapper = styled.div`
 
     img.building-logo {
       width: 40%;
+      max-height: 100%;
       ${mediaMin.tablet`
         width: auto;
         height: 32px;
