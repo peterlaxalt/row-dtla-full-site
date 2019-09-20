@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import Context from '~/config/Context';
+
 import ResponsiveImage from '~/components/ResponsiveImage';
+
 import { mediaMin } from '~/styles/MediaQueries';
 
 const SliderContainer = styled.div`
@@ -312,7 +315,6 @@ export default class HomeFader extends React.Component {
 
   render() {
     const { loaded } = this.props;
-
     return (
       <SliderContainer loaded={loaded}>
         {this.props.windowWidth > 1024 ? (
@@ -343,8 +345,24 @@ const InnerImageFader = styled.div`
     height: 100%;
     width: 100%;
     object-fit: cover;
+    &.active {
+      opacity: 1;
+    }
   }
-  .active {
+`;
+
+const BackgroundImage = styled.div`
+  opacity: 0;
+  transition: 1.5s opacity ease-in-out;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  background-image: ${props => `url("${props.srcPath}_2000.jpg")`};
+  &.active {
     opacity: 1;
   }
 `;
@@ -399,20 +417,36 @@ class InnerFader extends React.Component {
     });
   };
 
-  createImages = () => {
-    return this.props.imgArray.map((el, key) => {
-      return (
-        <ResponsiveImage
-          key={key}
-          imgClass={this.state.currentImage >= key ? 'active' : ''}
-          srcPath={el.imgUrl}
-          imgAlt={el.alt}
-        />
-      );
-    });
+  createImages = context => {
+    const { browserName } = context;
+    if (browserName === 'IE') {
+      return this.props.imgArray.map((el, key) => {
+        return (
+          <BackgroundImage
+            key={key}
+            className={this.state.currentImage >= key ? 'active' : undefined}
+            srcPath={el.imgUrl}
+            imgAlt={el.alt}
+          />
+        );
+      });
+    } else {
+      return this.props.imgArray.map((el, key) => {
+        return (
+          <ResponsiveImage
+            key={key}
+            imgClass={this.state.currentImage >= key ? 'active' : ''}
+            srcPath={el.imgUrl}
+            imgAlt={el.alt}
+          />
+        );
+      });
+    }
   };
 
   render() {
-    return <InnerImageFader>{this.createImages()}</InnerImageFader>;
+    return (
+      <Context.Consumer>{context => <InnerImageFader>{this.createImages(context)}</InnerImageFader>}</Context.Consumer>
+    );
   }
 }
