@@ -733,6 +733,14 @@ const buildings = [
     },
     sliderArray: [
       {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/lobby_1',
+        imgAlt: '435 Hudson Street Lobby'
+      },
+      {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/lobby_2',
+        imgAlt: '435 Hudson Street Lobby'
+      },
+      {
         imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/1',
         imgAlt: '435 Hudson Street white boxed space'
       },
