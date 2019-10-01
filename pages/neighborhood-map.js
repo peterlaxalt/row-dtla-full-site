@@ -70,7 +70,7 @@ const SelectOption = styled.button`
   cursor: pointer;
   outline: inherit;
   font-weight: 500;
-  text-align: start;
+  text-align: left;
   font-size: 1.1em;
   line-height: 30px;
   margin-bottom: 0.5;
