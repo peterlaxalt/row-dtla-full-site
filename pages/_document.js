@@ -1,4 +1,4 @@
-import useragent from 'useragent';
+import parser from 'ua-parser-js';
 import Document, { Head, Main, NextScript } from 'next/document';
 // Import styled components ServerStyleSheet
 import { ServerStyleSheet } from 'styled-components';
@@ -6,17 +6,19 @@ import { ServerStyleSheet } from 'styled-components';
 export default class MyDocument extends Document {
   static getInitialProps({ req, renderPage }) {
     const sheet = new ServerStyleSheet();
-    const parsedUserAgent = useragent.parse(req.headers['user-agent']);
+
+    const ua = parser(req.headers['user-agent']);
+    const browserName = ua.browser.name;
 
     const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
 
     const styleTags = sheet.getStyleElement();
 
-    return { ...page, styleTags, parsedUserAgent };
+    return { ...page, styleTags, browserName };
   }
 
   render() {
-    const { parsedUserAgent } = this.props;
+    const { browserName } = this.props;
 
     return (
       <html lang="en">
@@ -42,7 +44,7 @@ export default class MyDocument extends Document {
           <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
-          {parsedUserAgent.family === 'IE' && ( // IE only, not Edge or others
+          {browserName === 'IE' && ( // IE only, not Edge or others
             <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js" />
           )}
         </Head>

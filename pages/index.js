@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import RenderInBrowser from 'react-render-in-browser';
 import styled from 'styled-components';
 
 import HomeFader from '~/components/pages/home/HomeFader';
@@ -52,22 +51,12 @@ export default class Index extends React.Component {
         {context => {
           return (
             <React.Fragment>
-              <RenderInBrowser except ie>
-                <HomeFader
-                  loaded={loaded}
-                  indexArray={indexArray}
-                  mobileArray={mobileIndexArray}
-                  windowWidth={context.state.windowDimensions.width}
-                />
-              </RenderInBrowser>
-              <RenderInBrowser ie only>
-                <HomeFader
-                  loaded
-                  indexArray={indexArray}
-                  mobileArray={mobileIndexArray}
-                  windowWidth={context.state.windowDimensions.width}
-                />
-              </RenderInBrowser>
+              <HomeFader
+                loaded={loaded}
+                indexArray={indexArray}
+                mobileArray={mobileIndexArray}
+                windowWidth={context.state.windowDimensions.width}
+              />
               <ScrollUp />
               <Copyright>
                 Copyright © 2019. No part of this website (eg. pictures, graphs, logos and others designing material)
