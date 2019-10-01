@@ -420,27 +420,23 @@ class InnerFader extends React.Component {
   createImages = context => {
     const { browserName } = context;
     if (browserName === 'IE') {
-      return this.props.imgArray.map((el, key) => {
-        return (
-          <BackgroundImage
-            key={key}
-            className={this.state.currentImage >= key ? 'active' : undefined}
-            srcPath={el.imgUrl}
-            imgAlt={el.alt}
-          />
-        );
-      });
+      return this.props.imgArray.map((el, key) => (
+        <BackgroundImage
+          key={key}
+          className={this.state.currentImage >= key ? 'active' : undefined}
+          srcPath={el.imgUrl}
+          imgAlt={el.alt}
+        />
+      ));
     } else {
-      return this.props.imgArray.map((el, key) => {
-        return (
-          <ResponsiveImage
-            key={key}
-            imgClass={this.state.currentImage >= key ? 'active' : ''}
-            srcPath={el.imgUrl}
-            imgAlt={el.alt}
-          />
-        );
-      });
+      return this.props.imgArray.map((el, key) => (
+        <ResponsiveImage
+          key={key}
+          imgClass={this.state.currentImage >= key ? 'active' : ''}
+          srcPath={el.imgUrl}
+          imgAlt={el.alt}
+        />
+      ));
     }
   };
 
