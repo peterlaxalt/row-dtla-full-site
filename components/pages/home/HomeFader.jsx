@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Context from '~/config/Context';
 
 import ResponsiveImage from '~/components/ResponsiveImage';
+import BackgroundImage from '~/components/BackgroundImage';
 
 import { mediaMin } from '~/styles/MediaQueries';
 
@@ -350,23 +351,6 @@ const InnerImageFader = styled.div`
     }
   }
 `;
-
-const BackgroundImage = styled.div`
-  opacity: 0;
-  transition: 1.5s opacity ease-in-out;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-size: cover;
-  background-position: center;
-  background-image: ${props => `url("${props.srcPath}_2000.jpg")`};
-  &.active {
-    opacity: 1;
-  }
-`;
-
 class InnerFader extends React.Component {
   constructor(props) {
     super(props);
@@ -418,21 +402,21 @@ class InnerFader extends React.Component {
   };
 
   createImages = context => {
-    const { browserName } = context;
+    const browserName = context.browserName || context.state.appData.browserName;
     if (browserName === 'IE') {
-      return this.props.imgArray.map((el, key) => (
+      return this.props.imgArray.map((el, idx) => (
         <BackgroundImage
-          key={key}
-          className={this.state.currentImage >= key ? 'active' : undefined}
+          key={idx}
+          className={this.state.currentImage >= idx ? 'active' : undefined}
           srcPath={el.imgUrl}
           imgAlt={el.alt}
         />
       ));
     } else {
-      return this.props.imgArray.map((el, key) => (
+      return this.props.imgArray.map((el, idx) => (
         <ResponsiveImage
-          key={key}
-          imgClass={this.state.currentImage >= key ? 'active' : ''}
+          key={idx}
+          imgClass={this.state.currentImage >= idx ? 'active' : ''}
           srcPath={el.imgUrl}
           imgAlt={el.alt}
         />

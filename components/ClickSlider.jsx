@@ -2,8 +2,13 @@ import React from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import Link from 'next/link';
+
+import Context from '~/config/Context';
+
 import ResponsiveImage from './ResponsiveImage';
-import { mediaMin } from '../styles/MediaQueries';
+import BackgroundImage from '~/components/BackgroundImage';
+
+import { mediaMin } from '~/styles/MediaQueries';
 
 const SliderContainer = styled.div`
   & > .slick-slider {
@@ -176,17 +181,28 @@ const MobileSlideList = styled.div`
 `;
 
 export default class ClickSlider extends React.Component {
-  createSlides = () => {
-    return this.props.imgArray.map((el, idx) => {
-      return (
+  createSlides = (context = false) => {
+    const browserName = context ? context.browserName || context.state.appData.browserName : false;
+
+    if (browserName && browserName === 'IE') {
+      return this.props.imgArray.map((el, idx) => (
+        <SliderSlide key={idx}>
+          <BackgroundImage className="active" srcPath={el.imgUrl} imgAlt={el.imgAlt} />
+          <Link href={el.link}>
+            {el.titleImg !== undefined ? <TitleImage src={el.titleImg} /> : <TitleText>{el.titleText}</TitleText>}
+          </Link>
+        </SliderSlide>
+      ));
+    } else {
+      return this.props.imgArray.map((el, idx) => (
         <SliderSlide key={idx}>
           <ResponsiveImage srcPath={el.imgUrl} imgAlt={el.imgAlt} />
           <Link href={el.link}>
             {el.titleImg !== undefined ? <TitleImage src={el.titleImg} /> : <TitleText>{el.titleText}</TitleText>}
           </Link>
         </SliderSlide>
-      );
-    });
+      ));
+    }
   };
 
   render() {
@@ -209,13 +225,19 @@ export default class ClickSlider extends React.Component {
       slidesToScroll: 1
     };
     return (
-      <SliderContainer index={this.props.index}>
-        {this.props.windowWidth > 1024 ? (
-          <Slider {...settings}>{this.createSlides()}</Slider>
-        ) : (
-          <MobileSlideList>{this.createSlides()}</MobileSlideList>
-        )}
-      </SliderContainer>
+      <Context.Consumer>
+        {context => {
+          return (
+            <SliderContainer index={this.props.index}>
+              {this.props.windowWidth > 1024 ? (
+                <Slider {...settings}>{this.createSlides(context)}</Slider>
+              ) : (
+                <MobileSlideList>{this.createSlides()}</MobileSlideList>
+              )}
+            </SliderContainer>
+          );
+        }}
+      </Context.Consumer>
     );
   }
 }

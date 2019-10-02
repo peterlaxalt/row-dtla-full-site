@@ -68,13 +68,11 @@ const Buildings = () => (
       const width = context.state.windowDimensions.width;
       return (
         <BuildingsCol>
-          {width > 1024 ? (
-            ''
-          ) : (
+          {width < 1024 ? (
             <PaddingCol>
               <SectionHeader>Buildings</SectionHeader>
             </PaddingCol>
-          )}
+          ) : null}
           <Fade>
             <ClickSlider
               imgArray={buildingsSlider}
