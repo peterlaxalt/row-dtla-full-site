@@ -40,6 +40,7 @@ const HeaderLogo = styled.div`
   padding: 0;
   position: absolute;
   top: 50%;
+  left: 0;
   transform: translate(-50%, -50%);
   width: 75%;
   font-size: 64px;
@@ -51,6 +52,7 @@ const HeaderLogo = styled.div`
     max-width: 100%;
   }
   ${mediaMin.tabletLandscape`
+    left: 0;
     position: sticky;
     top: 300px;
     width: 100%;

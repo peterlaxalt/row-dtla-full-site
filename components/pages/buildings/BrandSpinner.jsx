@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Context from '../config/Context';
-import { mediaMin } from '../styles/MediaQueries';
+import Context from '~/config/Context';
+import { mediaMax, mediaMin } from '~/styles/MediaQueries';
 
 const BrandArray = [
   {
@@ -124,7 +124,8 @@ const BrandItem = styled.img`
         return `transform: translate(${PosNine(props.width)}) scale(.8);`;
     }
   }};
-  @media screen and (max-width: 1024px) {
+
+  ${mediaMax.tabletLandscape`
     height: 50px;
     width: 150px;
     ${props => {
@@ -151,7 +152,7 @@ const BrandItem = styled.img`
           return `transform: translate(${PosNineMobile(props.width)}) scale(.8);`;
       }
     }};
-  }
+  `}
 `;
 
 export default class BrandSpinner extends React.Component {

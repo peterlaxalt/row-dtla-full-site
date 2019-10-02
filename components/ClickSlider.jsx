@@ -5,8 +5,8 @@ import Link from 'next/link';
 
 import Context from '~/config/Context';
 
-import ResponsiveImage from './ResponsiveImage';
-import BackgroundImage from '~/components/BackgroundImage';
+import ResponsiveImage from '~/components/images/ResponsiveImage';
+import BackgroundImage from '~/components/images/BackgroundImage';
 
 import { mediaMin } from '~/styles/MediaQueries';
 

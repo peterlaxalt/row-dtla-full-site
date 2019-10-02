@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ResponsiveImage from './ResponsiveImage';
+import ResponsiveImage from '~/components/images/ResponsiveImage';
 import { mediaMin } from '~/styles/MediaQueries';
 import Fade from 'react-reveal/Fade';
 

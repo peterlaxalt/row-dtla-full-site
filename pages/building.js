@@ -10,7 +10,7 @@ import ImageSlider from '~/components/Slider';
 import BeforeAfter from '~/components/BeforeAfter';
 import CopyrightFooter from '~/components/CopyrightFooter';
 import ScrollUp from '~/components/ScrollUp';
-import ResponsiveImage from '~/components/ResponsiveImage';
+import ResponsiveImage from '~/components/images/ResponsiveImage';
 import MiniMap from '~/components/MiniMap';
 import variables from '~/styles/Variables';
 import ContactCard from '~/components/ContactCard';
