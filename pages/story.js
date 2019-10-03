@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 
+import Context from '~/config/Context';
+
 import BeforeAfter from '~/components/BeforeAfter';
 import ScrollUp from '~/components/ScrollUp';
 import CopyrightFooter from '~/components/CopyrightFooter';
-import Context from '~/config/Context';
-import ResponsiveImage from '~/components/ResponsiveImage';
+import ResponsiveImage from '~/components/images/ResponsiveImage';
 import { mediaMin } from '~/styles/MediaQueries';
 
 const beforeAfterOne = {

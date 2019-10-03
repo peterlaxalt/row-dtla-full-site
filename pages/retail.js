@@ -5,7 +5,7 @@ import Context from '~/config/Context';
 
 import retailSlider from '~/data/retail';
 
-import ImageSlider from '~/components/Slider';
+import ImageSlider from '~/components/sliders/Slider';
 import AvailabilityList from '~/components/AvailabilityList';
 import CopyrightFooter from '~/components/CopyrightFooter';
 import ScrollUp from '~/components/ScrollUp';

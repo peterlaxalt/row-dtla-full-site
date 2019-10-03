@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import Context from '~/config/Context';
+
 import HomeFader from '~/components/pages/home/HomeFader';
 import { indexArray, mobileIndexArray } from '~/data/home.js';
 import ScrollUp from '~/components/ScrollUp';
-import Context from '~/config/Context';
 import { mediaMin } from '~/styles/MediaQueries';
 
 const Copyright = styled.div`

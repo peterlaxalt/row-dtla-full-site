@@ -5,7 +5,7 @@ import { withRouter } from 'next/router';
 import Fade from 'react-reveal/Fade';
 
 import Layout from '~/components/layouts/default';
-import ImageSlider from '~/components/NonResponsiveSlider';
+import ImageSlider from '~/components/sliders/NonResponsiveSlider';
 import Context from '~/config/Context';
 import CopyrightFooter from '~/components/CopyrightFooter';
 import ScrollUp from '~/components/ScrollUp';

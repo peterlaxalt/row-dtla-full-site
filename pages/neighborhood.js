@@ -3,7 +3,7 @@ import Fade from 'react-reveal/Fade';
 
 import Context from '~/config/Context';
 
-import ImageSlider from '~/components/Slider';
+import ImageSlider from '~/components/sliders/Slider';
 import ScrollUp from '~/components/ScrollUp';
 import CopyrightFooter from '~/components/CopyrightFooter';
 import ResponsiveImage from '~/components/images/ResponsiveImage';
