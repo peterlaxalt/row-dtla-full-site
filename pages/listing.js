@@ -8,7 +8,7 @@ import Context from '~/config/Context';
 import { buildings } from '~/data/buildings';
 import { mediaMin } from '~/styles/MediaQueries';
 import FloorplanSection from '~/components/pages/listing/FloorplanSection';
-import NonResponsiveSlider from '~/components/NonResponsiveSlider';
+import NonResponsiveSlider from '~/components/sliders/NonResponsiveSlider';
 import ContactSection from '~/components/pages/listing/ContactSection';
 import ScrollUp from '~/components/ScrollUp';
 import CopyrightFooter from '~/components/CopyrightFooter';

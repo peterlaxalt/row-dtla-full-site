@@ -3,7 +3,7 @@ import Fade from 'react-reveal/Fade';
 
 import CopyrightFooter from '~/components/CopyrightFooter';
 import Layout from '~/components/layouts/default';
-import ImageSlider from '~/components/Slider';
+import ImageSlider from '~/components/sliders/Slider';
 import AvailabilityList from '~/components/AvailabilityList';
 import ScrollUp from '~/components/ScrollUp';
 import { mediaMin } from '~/styles/MediaQueries';

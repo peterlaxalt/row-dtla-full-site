@@ -1,31 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
-import Context from '../config/Context';
-import { mediaMin } from '../styles/MediaQueries';
+import Context from '~/config/Context';
+import { mediaMax, mediaMin } from '~/styles/MediaQueries';
 
 const BrandArray = [
   {
-    path: '/static/images/tenants/logo-tenant-accenture.png',
+    path: '/static/images/tenants/accenture.png',
     alt: 'Accenture'
   },
-  { path: '/static/images/tenants/logo-tenant-google.png', alt: 'Google' },
-  { path: '/static/images/tenants/logo-tenant-havas.png', alt: 'HAVAS' },
+  { path: '/static/images/tenants/google.png', alt: 'Google' },
+  { path: '/static/images/tenants/havas.png', alt: 'HAVAS' },
   {
-    path: '/static/images/tenants/logo-tenant-horizonmedia.png',
+    path: '/static/images/tenants/horizon_media.png',
     alt: 'Horizon Media'
   },
-  { path: '/static/images/tenants/logo-tenant-medidata.png', alt: 'Medidata' },
-  { path: '/static/images/tenants/logo-tenant-npr.png', alt: 'NPR' },
-  { path: '/static/images/tenants/logo-tenant-pepsi.png', alt: 'Pepsi' },
+  { path: '/static/images/tenants/medidata.png', alt: 'Medidata' },
+  { path: '/static/images/tenants/npr.png', alt: 'NPR' },
+  { path: '/static/images/tenants/pepsi.png', alt: 'Pepsi' },
   {
-    path: '/static/images/tenants/logo-tenant-shakeshack.png',
+    path: '/static/images/tenants/shake_shack.png',
     alt: 'Shake Shack'
   },
   {
-    path: '/static/images/tenants/logo-tenant-squarespace.png',
+    path: '/static/images/tenants/squarespace.png',
     alt: 'Squarespace'
   },
-  { path: '/static/images/tenants/logo-tenant-wework.png', alt: 'WeWork' }
+  { path: '/static/images/tenants/we_work.png', alt: 'WeWork' }
 ];
 
 const BrandSpinnerContainer = styled.div`
@@ -98,7 +98,6 @@ const BrandItem = styled.img`
   width: 300px;
   bottom: 0;
   left: 50%;
-  object-fit: scale-down;
   transition: transform 0.5s ease;
   ${props => {
     switch (props.position) {
@@ -124,7 +123,8 @@ const BrandItem = styled.img`
         return `transform: translate(${PosNine(props.width)}) scale(.8);`;
     }
   }};
-  @media screen and (max-width: 1024px) {
+
+  ${mediaMax.tabletLandscape`
     height: 50px;
     width: 150px;
     ${props => {
@@ -151,7 +151,7 @@ const BrandItem = styled.img`
           return `transform: translate(${PosNineMobile(props.width)}) scale(.8);`;
       }
     }};
-  }
+  `}
 `;
 
 export default class BrandSpinner extends React.Component {

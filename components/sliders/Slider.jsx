@@ -1,8 +1,10 @@
 import React from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
+import ResponsiveImage from '~/components/images/ResponsiveImage';
 
 const SliderContainer = styled.div`
+  width: 100%;
   & > .slick-slider {
     height: ${props => (props.height ? props.height : '90vh')};
     width: 100%;
@@ -53,35 +55,15 @@ const SliderContainer = styled.div`
   & > .slick-slider > .slick-arrow {
     z-index: 10;
   }
-  & > .slick-slider > .slick-next {
-    display: block;
-    ${props => (props.showQuotes ? 'height: 95%;' : 'height: 100%;')}
-    ${props => (props.showQuotes ? 'top: 47.5%;' : '')}
-    width: 10%;
-    right: 0;
-    &:hover {
-      background-image: linear-gradient(to left, #03a8f442, #ffff0000);
-    }
-    &::before {
-      font: normal normal normal 14px/1 FontAwesome;
-      content: '\\f105';
-      font-size: 32px;
-      position: absolute;
-      left: 50%;
-    }
-    @media screen and (max-width: 1024px) {
-      ${props => (props.showQuotes ? 'height: 80%;' : 'height: 100%;')}
-      ${props => (props.showQuotes ? 'top: 40%;' : '')}
-    }
-  }
   & > .slick-slider > .slick-prev {
     display: block;
     ${props => (props.showQuotes ? 'height: 95%;' : 'height: 100%;')}
     ${props => (props.showQuotes ? 'top: 47.5%;' : '')}
     width: 10%;
     left: 0;
+    background: rgba(256, 256, 256, 0);
     &:hover {
-      background-image: linear-gradient(to right, #03a8f442, #ffff0000);
+      background: linear-gradient(to left, rgba(256,256,256,0), rgba(54,155,247,0.3));
     }
     &::before {
       font: normal normal normal 14px/1 FontAwesome;
@@ -89,6 +71,30 @@ const SliderContainer = styled.div`
       font-size: 32px;
       position: absolute;
       right: 50%;
+      top: 50%;
+    }
+    @media screen and (max-width: 1024px) {
+      ${props => (props.showQuotes ? 'height: 80%;' : 'height: 100%;')}
+      ${props => (props.showQuotes ? 'top: 40%;' : '')}
+    }
+  }
+  & > .slick-slider > .slick-next {
+    display: block;
+    ${props => (props.showQuotes ? 'height: 95%;' : 'height: 100%;')}
+    ${props => (props.showQuotes ? 'top: 47.5%;' : '')}
+    width: 10%;
+    right: 0;
+    background: rgba(256, 256, 256, 0);
+    &:hover {
+      background: linear-gradient(to right, rgba(256,256,256,0), rgba(54,155,247,0.3));
+    }
+    &::before {
+      font: normal normal normal 14px/1 FontAwesome;
+      content: '\\f105';
+      font-size: 32px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
     }
     @media screen and (max-width: 1024px) {
       ${props => (props.showQuotes ? 'height: 80%;' : 'height: 100%;')}
@@ -143,16 +149,17 @@ export default class ImageSlider extends React.Component {
     const sliderContent = this.props.imgArray.map((el, idx) => {
       return (
         <SliderSlide key={idx} showQuotes={this.props.showQuotes}>
-          <img src={el.imgUrl} alt={el.imgAlt} />
+          <ResponsiveImage srcPath={el.imgUrl} imgAlt={el.imgAlt} />
           {this.props.showQuotes ? <SliderQuote>{el.imgAlt}</SliderQuote> : ''}
         </SliderSlide>
       );
     });
+    
     var settings = {
-      customPaging: function(i) {
+      customPaging: function(idx) {
         return (
           <SliderDot>
-            <SliderDotInner>{i}</SliderDotInner>
+            <SliderDotInner>{idx}</SliderDotInner>
           </SliderDot>
         );
       },
@@ -160,13 +167,14 @@ export default class ImageSlider extends React.Component {
       fade: this.props.fade ? true : false,
       dots: true,
       infinite: true,
-      autoplay: this.props.autoPlay,
-      autoplaySpeed: 3000,
+      autoplay: this.props.autoPlay ? true : false,
+      autoplaySpeed: 4000,
       easing: true,
-      speed: 1000,
+      speed: 600,
       slidesToShow: 1,
       slidesToScroll: 1
     };
+
     return (
       <SliderContainer height={this.props.height} showQuotes={this.props.showQuotes}>
         <Slider {...settings}>{sliderContent}</Slider>

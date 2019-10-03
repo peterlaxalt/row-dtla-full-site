@@ -1,13 +1,14 @@
 import Fade from 'react-reveal/Fade';
 
-import ClickSlider from '~/components/ClickSlider';
+import Context from '~/config/Context';
+
+import ClickSlider from '~/components/sliders/ClickSlider';
 import ScrollUp from '~/components/ScrollUp';
 import CopyrightFooter from '~/components/CopyrightFooter';
-import BrandSpinner from '~/components/BrandSpinner';
+import BrandSpinner from '~/components/pages/buildings/BrandSpinner';
 import { buildingsSlider } from '~/data/buildings';
-import Context from '~/config/Context';
 import styled from 'styled-components';
-import ResponsiveImage from '~/components/ResponsiveImage';
+import ResponsiveImage from '~/components/images/ResponsiveImage';
 import { mediaMin } from '~/styles/MediaQueries';
 import Map from '~/components/Map';
 
@@ -68,13 +69,11 @@ const Buildings = () => (
       const width = context.state.windowDimensions.width;
       return (
         <BuildingsCol>
-          {width > 1024 ? (
-            ''
-          ) : (
+          {width < 1024 ? (
             <PaddingCol>
               <SectionHeader>Buildings</SectionHeader>
             </PaddingCol>
-          )}
+          ) : null}
           <Fade>
             <ClickSlider
               imgArray={buildingsSlider}

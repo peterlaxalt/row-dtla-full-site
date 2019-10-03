@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 
-import ImageSlider from '~/components/Slider';
+import Context from '~/config/Context';
+
+import ImageSlider from '~/components/sliders/Slider';
 import ScrollUp from '~/components/ScrollUp';
 import CopyrightFooter from '~/components/CopyrightFooter';
-import Context from '~/config/Context';
-import ResponsiveImage from '~/components/ResponsiveImage';
+import ResponsiveImage from '~/components/images/ResponsiveImage';
 import { mediaMin } from '~/styles/MediaQueries';
 import {
   locationArrayOne,

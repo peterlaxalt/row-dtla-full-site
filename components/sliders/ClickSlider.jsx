@@ -2,8 +2,13 @@ import React from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import Link from 'next/link';
-import ResponsiveImage from './ResponsiveImage';
-import { mediaMin } from '../styles/MediaQueries';
+
+import Context from '~/config/Context';
+
+import ResponsiveImage from '~/components/images/ResponsiveImage';
+import BackgroundImage from '~/components/images/BackgroundImage';
+
+import { mediaMin } from '~/styles/MediaQueries';
 
 const SliderContainer = styled.div`
   & > .slick-slider {
@@ -56,29 +61,6 @@ const SliderContainer = styled.div`
   & > .slick-slider > .slick-arrow {
     z-index: 10;
   }
-  & > .slick-slider > .slick-next {
-    display: block;
-    height: 100%;
-    width: 10%;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    transform: translate(0, 0);
-    &:hover {
-      background-image: linear-gradient(to left, #03a8f442, #ffff0000);
-    }
-    &::before {
-      font: normal normal normal 14px/1 FontAwesome;
-      content: '\\f105';
-      font-size: 32px;
-      position: absolute;
-      left: 50%;
-    }
-    @media screen and (max-width: 1024px) {
-      ${props => (props.showQuotes ? 'height: 85%;' : 'height: 100%;')}
-      ${props => (props.showQuotes ? 'top: 42.5%;' : '')}
-    }
-  }
   & > .slick-slider > .slick-prev {
     display: block;
     ${props => (props.showQuotes ? 'height: 95%;' : 'height: 100%;')}
@@ -88,8 +70,9 @@ const SliderContainer = styled.div`
     top: 0;
     bottom: 0;
     transform: translate(0, 0);
+    background: rgba(256, 256, 256, 0);
     &:hover {
-      background-image: linear-gradient(to right, #03a8f442, #ffff0000);
+      background: linear-gradient(to left, rgba(256,256,256,0), rgba(54,155,247,0.3));
     }
     &::before {
       font: normal normal normal 14px/1 FontAwesome;
@@ -97,12 +80,39 @@ const SliderContainer = styled.div`
       font-size: 32px;
       position: absolute;
       right: 50%;
+      top: 50%;
     }
     @media screen and (max-width: 1024px) {
       ${props => (props.showQuotes ? 'height: 85%;' : 'height: 100%;')}
       ${props => (props.showQuotes ? 'top: 42.5%;' : '')}
     }
   }
+  & > .slick-slider > .slick-next {
+    display: block;
+    height: 100%;
+    width: 10%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transform: translate(0, 0);
+    background: rgba(256, 256, 256, 0);
+    &:hover {
+      background: linear-gradient(to right, rgba(256,256,256,0), rgba(54,155,247,0.3));
+    }
+    &::before {
+      font: normal normal normal 14px/1 FontAwesome;
+      content: '\\f105';
+      font-size: 32px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+    }
+    @media screen and (max-width: 1024px) {
+      ${props => (props.showQuotes ? 'height: 85%;' : 'height: 100%;')}
+      ${props => (props.showQuotes ? 'top: 42.5%;' : '')}
+    }
+  }
+  
 `;
 
 const SliderSlide = styled.div`
@@ -176,17 +186,28 @@ const MobileSlideList = styled.div`
 `;
 
 export default class ClickSlider extends React.Component {
-  createSlides = () => {
-    return this.props.imgArray.map((el, idx) => {
-      return (
+  createSlides = (context = false) => {
+    const browserName = context ? context.browserName || context.state.appData.browserName : false;
+
+    if (browserName && browserName === 'IE') {
+      return this.props.imgArray.map((el, idx) => (
+        <SliderSlide key={idx}>
+          <BackgroundImage className="active" srcPath={el.imgUrl} imgAlt={el.imgAlt} />
+          <Link href={el.link}>
+            {el.titleImg !== undefined ? <TitleImage src={el.titleImg} /> : <TitleText>{el.titleText}</TitleText>}
+          </Link>
+        </SliderSlide>
+      ));
+    } else {
+      return this.props.imgArray.map((el, idx) => (
         <SliderSlide key={idx}>
           <ResponsiveImage srcPath={el.imgUrl} imgAlt={el.imgAlt} />
           <Link href={el.link}>
             {el.titleImg !== undefined ? <TitleImage src={el.titleImg} /> : <TitleText>{el.titleText}</TitleText>}
           </Link>
         </SliderSlide>
-      );
-    });
+      ));
+    }
   };
 
   render() {
@@ -209,13 +230,19 @@ export default class ClickSlider extends React.Component {
       slidesToScroll: 1
     };
     return (
-      <SliderContainer index={this.props.index}>
-        {this.props.windowWidth > 1024 ? (
-          <Slider {...settings}>{this.createSlides()}</Slider>
-        ) : (
-          <MobileSlideList>{this.createSlides()}</MobileSlideList>
-        )}
-      </SliderContainer>
+      <Context.Consumer>
+        {context => {
+          return (
+            <SliderContainer index={this.props.index}>
+              {this.props.windowWidth > 1024 ? (
+                <Slider {...settings}>{this.createSlides(context)}</Slider>
+              ) : (
+                <MobileSlideList>{this.createSlides()}</MobileSlideList>
+              )}
+            </SliderContainer>
+          );
+        }}
+      </Context.Consumer>
     );
   }
 }
