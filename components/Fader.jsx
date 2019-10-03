@@ -67,6 +67,7 @@ const FaderContainer = styled.div`
       font-size: 32px;
       position: absolute;
       right: 50%;
+      top: 50%;
     }
   }
   & > .slick-slider > .slick-next {
@@ -84,6 +85,7 @@ const FaderContainer = styled.div`
       font-size: 32px;
       position: absolute;
       left: 50%;
+      top: 50%;
     }
   }
 `;

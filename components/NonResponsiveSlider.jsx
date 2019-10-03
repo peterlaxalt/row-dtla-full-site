@@ -69,6 +69,7 @@ const SliderContainer = styled.div`
       font-size: 32px;
       position: absolute;
       right: 50%;
+      top: 50%;
     }
     @media screen and (max-width: 1024px) {
       ${props => (props.showQuotes ? 'height: 80%;' : 'height: 100%;')}
@@ -91,6 +92,7 @@ const SliderContainer = styled.div`
       font-size: 32px;
       position: absolute;
       left: 50%;
+      top: 50%;
     }
     @media screen and (max-width: 1024px) {
       ${props => (props.showQuotes ? 'height: 80%;' : 'height: 100%;')}
