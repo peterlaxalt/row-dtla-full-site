@@ -6,6 +6,9 @@ import ResponsiveImage from '~/components/images/ResponsiveImage';
 const BeforeAfterContainer = styled.div`
   width: 100%;
   margin-bottom: 35px;
+  .responsive-image {
+    width: 100%;
+  }
 `;
 
 const SliderIconContainer = styled.div`
