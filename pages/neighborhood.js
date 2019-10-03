@@ -24,7 +24,6 @@ const MainCol = styled.div`
   padding: 0 15px;
   ${mediaMin.tabletLandscape`
     padding: 0;
-    margin-bottom: 200px;
     flex-direction: row;
   `}
 `;
@@ -389,7 +388,6 @@ const Location = () => (
             </BrandRow>
           </BrandSection>
         </Fade>
-        <Spacer />
         <ScrollUp />
         <CopyrightFooter />
       </div>
