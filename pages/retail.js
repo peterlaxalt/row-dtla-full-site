@@ -1,14 +1,17 @@
 import styled from 'styled-components';
-import ImageSlider from '../components/Slider';
-import retailSlider from '../data/retail';
-import AvailabilityList from '../components/AvailabilityList';
-import CopyrightFooter from '../components/CopyrightFooter';
-import ScrollUp from '../components/ScrollUp';
-import Context from '../config/Context';
-import ResponsiveImage from '../components/ResponsiveImage';
-import ContactCard from '~/components/ContactCard';
-import { mediaMin } from '../styles/MediaQueries';
 import Fade from 'react-reveal/Fade';
+
+import Context from '~/config/Context';
+
+import retailSlider from '~/data/retail';
+
+import ImageSlider from '~/components/Slider';
+import AvailabilityList from '~/components/AvailabilityList';
+import CopyrightFooter from '~/components/CopyrightFooter';
+import ScrollUp from '~/components/ScrollUp';
+import ResponsiveImage from '~/components/images/ResponsiveImage';
+import ContactCard from '~/components/ContactCard';
+import { mediaMin } from '~/styles/MediaQueries';
 
 const RetailCol = styled.div`
   display: flex;

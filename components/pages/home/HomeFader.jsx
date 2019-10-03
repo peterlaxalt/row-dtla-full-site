@@ -132,19 +132,20 @@ const DesktopSliderContainer = styled.div`
     background: rgba(256, 256, 256, 0);
     cursor: pointer;
     z-index: 11;
+    background: rgba(256, 256, 256, 0);
   }
 
   .prev-arrow {
     left: 0;
     &:hover {
-      background: linear-gradient(to right, #03a8f442, #ffff0000);
+      background: linear-gradient(to left, rgba(256,256,256,0), rgba(54,155,247,0.3));
     }
   }
 
   .next-arrow {
     right: 0;
     &:hover {
-      background: linear-gradient(to left, #03a8f442, #ffff0000);
+      background: linear-gradient(to right, rgba(256,256,256,0), rgba(54,155,247,0.3));
     }
   }
 

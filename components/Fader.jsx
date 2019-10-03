@@ -52,29 +52,14 @@ const FaderContainer = styled.div`
   & > .slick-slider > .slick-arrow {
     z-index: 10;
   }
-  & > .slick-slider > .slick-next {
-    display: block;
-    height: 100%;
-    width: 10%;
-    right: 0;
-    &:hover {
-      background-image: linear-gradient(to left, #03a8f442, #ffff0000);
-    }
-    &::before {
-      font: normal normal normal 14px/1 FontAwesome;
-      content: '\\f105';
-      font-size: 32px;
-      position: absolute;
-      left: 50%;
-    }
-  }
   & > .slick-slider > .slick-prev {
     display: block;
     height: 100%;
     width: 10%;
     left: 0;
+    background: rgba(256, 256, 256, 0);
     &:hover {
-      background-image: linear-gradient(to right, #03a8f442, #ffff0000);
+      background: linear-gradient(to left, rgba(256,256,256,0), rgba(54,155,247,0.3));
     }
     &::before {
       font: normal normal normal 14px/1 FontAwesome;
@@ -82,6 +67,23 @@ const FaderContainer = styled.div`
       font-size: 32px;
       position: absolute;
       right: 50%;
+    }
+  }
+  & > .slick-slider > .slick-next {
+    display: block;
+    height: 100%;
+    width: 10%;
+    right: 0;
+    background: rgba(256, 256, 256, 0);
+    &:hover {
+      background: linear-gradient(to right, rgba(256,256,256,0), rgba(54,155,247,0.3));
+    }
+    &::before {
+      font: normal normal normal 14px/1 FontAwesome;
+      content: '\\f105';
+      font-size: 32px;
+      position: absolute;
+      left: 50%;
     }
   }
 `;
