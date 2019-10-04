@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 
-import ImageSlider from '~/components/Slider';
+import Context from '~/config/Context';
+
+import ImageSlider from '~/components/sliders/Slider';
 import ScrollUp from '~/components/ScrollUp';
 import CopyrightFooter from '~/components/CopyrightFooter';
-import Context from '~/config/Context';
-import ResponsiveImage from '~/components/ResponsiveImage';
+import ResponsiveImage from '~/components/images/ResponsiveImage';
 import { mediaMin } from '~/styles/MediaQueries';
 import {
   locationArrayOne,
@@ -23,7 +24,6 @@ const MainCol = styled.div`
   padding: 0 15px;
   ${mediaMin.tabletLandscape`
     padding: 0;
-    margin-bottom: 200px;
     flex-direction: row;
   `}
 `;
@@ -103,6 +103,7 @@ const BrandRow = styled.div`
   margin-bottom: 20px;
   flex-wrap: wrap;
   justify-content: space-between;
+  min-height: 1px;
   ${mediaMin.tabletLandscape`
     justify-content: space-around;
     flex-wrap: no-wrap;
@@ -190,16 +191,16 @@ const Location = () => (
             <BrandHeading>Some of our current tenants in Hudson Square</BrandHeading>
             <BrandRow>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-viacom.png" alt="viacom" />
+                <img src="/static/images/tenants/viacom.png" alt="viacom" />
               </div>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-harrys.png" alt="harry's" />
+                <img src="/static/images/tenants/harrys.png" alt="harry's" />
               </div>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-medidata.png" alt="medidata" />
+                <img src="/static/images/tenants/medidata.png" alt="medidata" />
               </div>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-horizonmedia.png" alt="horizon media" />
+                <img src="/static/images/tenants/horizon_media.png" alt="horizon media" />
               </div>
             </BrandRow>
           </BrandSection>
@@ -253,16 +254,16 @@ const Location = () => (
             <BrandHeading>Some of our current tenants in Soho</BrandHeading>
             <BrandRow>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-ducati.png" alt="ducati" />
+                <img src="/static/images/tenants/ducati.png" alt="ducati" />
               </div>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-accenture.png" alt="accenture" />
+                <img src="/static/images/tenants/accenture.png" alt="accenture" />
               </div>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-twosigma.png" alt="two sigma" />
+                <img src="/static/images/tenants/twosigma.png" alt="two sigma" />
               </div>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-cafealtroparadiso.png" alt="cafe altro paradiso" />
+                <img src="/static/images/tenants/cafealtroparadiso.png" alt="cafe altro paradiso" />
               </div>
             </BrandRow>
           </BrandSection>
@@ -314,16 +315,16 @@ const Location = () => (
             <BrandHeading>Some of our current tenants in Tribeca</BrandHeading>
             <BrandRow>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-havas.png" alt="havas" />
+                <img src="/static/images/tenants/havas.png" alt="havas" />
               </div>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-wework.png" alt="we work" />
+                <img src="/static/images/tenants/we_work.png" alt="we work" />
               </div>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-arrojo.png" alt="arrojo" />
+                <img src="/static/images/tenants/arrojo.png" alt="arrojo" />
               </div>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-maman.png" alt="maman" />
+                <img src="/static/images/tenants/maman.png" alt="maman" />
               </div>
             </BrandRow>
           </BrandSection>
@@ -373,21 +374,20 @@ const Location = () => (
             <BrandHeading>Some of our current tenants in West Village</BrandHeading>
             <BrandRow>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-radicalmedia.png" alt="radical media" />
+                <img src="/static/images/tenants/radical_media.png" alt="radical media" />
               </div>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-adidas.png" alt="adidas" />
+                <img src="/static/images/tenants/adidas.png" alt="adidas" />
               </div>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-loreal.png" alt="l'oreal" />
+                <img src="/static/images/tenants/loreal.png" alt="l'oreal" />
               </div>
               <div className="img-col">
-                <img src="/static/images/tenants/logo-tenant-squarespace.png" alt="squarespace" />
+                <img src="/static/images/tenants/squarespace.png" alt="squarespace" />
               </div>
             </BrandRow>
           </BrandSection>
         </Fade>
-        <Spacer />
         <ScrollUp />
         <CopyrightFooter />
       </div>

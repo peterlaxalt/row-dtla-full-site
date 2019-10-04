@@ -81,7 +81,7 @@ const FloorplanSectionWrapper = styled.div`
     }
   }
   .floorplan-container {
-    widposition: relative;
+    position: relative;
     img {
       padding: 15px 15px;
       box-sizing: border-box;
@@ -129,11 +129,12 @@ class FloorplanSection extends Component {
 
   findAvailableSections() {
     const { listing } = this.props;
-
-    let availableSections = possibleBtnValues.filter(value => listing[value.slug]);
+    let availableSections = possibleBtnValues.filter(value => {
+      return listing[value.slug];
+    });
 
     // Set initial active section
-    let activeSection = availableSections[0].slug;
+    let activeSection = availableSections.length > 0 ? availableSections[0].slug : null;
 
     this.setState({ availableSections, activeSection });
   }
@@ -186,13 +187,17 @@ class FloorplanSection extends Component {
       <FloorplanSectionWrapper>
         <div className="floorplan-nav">
           {this.generateButtons()}
-          <a className="desktop-link" href={pdf_download} target="_blank" rel="noopener noreferrer">
+          {pdf_download && (
+            <a className="desktop-link" href={pdf_download} target="_blank" rel="noopener noreferrer">
+              View / Download Floor Plans and Detailed Specs
+            </a>
+          )}
+        </div>
+        {pdf_download && (
+          <a className="mobile-link" href={pdf_download} target="_blank" rel="noopener noreferrer">
             View / Download Floor Plans and Detailed Specs
           </a>
-        </div>
-        <a className="mobile-link" href={pdf_download} target="_blank" rel="noopener noreferrer">
-          View / Download Floor Plans and Detailed Specs
-        </a>
+        )}
         <div className="floorplan-container">{this.renderImages()}</div>
       </FloorplanSectionWrapper>
     );

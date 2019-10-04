@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import Map from '../components/Map';
 import styled from 'styled-components';
-import variables from '../styles/Variables';
-import { mediaMin } from '../styles/MediaQueries';
-import CopyrightFooter from '../components/CopyrightFooter';
+
+import Map from '~/components/Map';
+import variables from '~/styles/Variables';
+import { mediaMin } from '~/styles/MediaQueries';
+import CopyrightFooter from '~/components/CopyrightFooter';
 
 const { colors } = variables;
 
@@ -17,7 +18,7 @@ const MapContainer = styled.div`
   height: 100%;
   min-height: fit-content;
   ${mediaMin.tabletLandscape`
-  padding: 45px 40px 0 40px;
+    padding: 45px 40px 0 40px;
   `}
 `;
 
@@ -70,7 +71,7 @@ const SelectOption = styled.button`
   cursor: pointer;
   outline: inherit;
   font-weight: 500;
-  text-align: start;
+  text-align: left;
   font-size: 1.1em;
   line-height: 30px;
   margin-bottom: 0.5;

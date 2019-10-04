@@ -5,6 +5,7 @@ import NProgress from 'nprogress';
 import ContextProvider from '~/provider/ContextProvider';
 import fetch from 'isomorphic-unfetch';
 import config from 'react-reveal/globals';
+import parser from 'ua-parser-js';
 
 import Layout from '~/components/layouts/default';
 
@@ -34,6 +35,9 @@ export default class MyApp extends App {
     const isServer = typeof window === 'undefined';
 
     if (isServer) {
+      const ua = parser(ctx.req.headers['user-agent']);
+      const browserName = ua.browser.name;
+
       // Get Availability Data
       let availabilityData = [];
       const availabilityRes = await fetch('https://cms.dbox.com/wp-json/wp/v2/hsp_availability');
@@ -109,9 +113,7 @@ export default class MyApp extends App {
         pageProps = await Component.getInitialProps(ctx);
       }
 
-      // this.setState({ availabilityData, newsData, pressData, contactData }, () => console.log('done'));
-
-      return { contactData, availabilityData, fullAvailabilityData, newsData, pressData, pageProps };
+      return { browserName, contactData, availabilityData, fullAvailabilityData, newsData, pressData, pageProps };
     } else {
       let pageProps = {};
 

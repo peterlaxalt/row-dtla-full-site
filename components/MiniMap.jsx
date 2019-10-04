@@ -126,7 +126,7 @@ export default class MiniMap extends React.Component {
     return (
       <MapContainer heightProp={containerHeight}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyBSsLXxJ5NSrSgFjFW7U5hxmGyHnE1po88', libraries: ['places'] }}
+          bootstrapURLKeys={{ key: 'AIzaSyC4YULbDXc4lRIs8lS1vNHLzTXAzCvWrQs', libraries: ['places'] }}
           center={mapCenter}
           defaultZoom={17}
           options={miniMapOptions}

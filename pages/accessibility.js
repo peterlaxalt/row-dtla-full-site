@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { mediaMin } from '../styles/MediaQueries';
-import ScrollUp from '../components/ScrollUp';
-import CopyrightFooter from '../components/CopyrightFooter';
+
+import { mediaMin } from '~/styles/MediaQueries';
+import ScrollUp from '~/components/ScrollUp';
+import CopyrightFooter from '~/components/CopyrightFooter';
 
 const AccessibilityContainer = styled.div`
   display: flex;

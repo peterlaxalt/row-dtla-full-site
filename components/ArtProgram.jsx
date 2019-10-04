@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ResponsiveImage from './ResponsiveImage';
+import ResponsiveImage from '~/components/images/ResponsiveImage';
 import { mediaMin } from '~/styles/MediaQueries';
 import Fade from 'react-reveal/Fade';
 
@@ -200,28 +200,35 @@ const ArtProgram = () => {
       </Fade>
       <Fade>
         <ArtRow>
-          <Title>375 Hudson Street: Robert Kushner and Robert Swain</Title>
+          <Title>375 Hudson Street: Barnaby Furnas, Robert Swain and Robert Kushner</Title>
         </ArtRow>
         <ArtRow spacer>
           <LeftCol>
-            <ResponsiveImage srcPath="/static/images/news/lobby_art/6_lobby_art" imgAlt="" />
-            <span className="caption">Malinalco (detail) by Robert Kushner</span>
+            <ResponsiveImage srcPath="/static/images/news/lobby_art/8_lobby_art" imgAlt="" />
+            <span className="caption">
+              Untitled (crimson), 2019, Acrylic, pigment dispersions, dye and pencil on canvas
+            </span>
           </LeftCol>
           <RightCol>
-            Robert Kushner’s work has been exhibited extensively in the United States, Europe and Japan since 1975 when
-            one of his paintings was included in the Whitney Biennial. When Kushner was in his twenties, he worked as a
-            carpet restorer, and the palette and logic of fabric, of warp and weft, has remained at the core of his
-            practice. This is true at the level of structure, not just aesthetics. His paintings are majestic, in their
-            regal color, glorious floral depictions, and sheer size. Extraordinarily full, they burst with color and
-            animation, like the gardens that do so much to inspire him. He paints his flowers directly from life using
-            techniques to harness organic “chance operations” beloved of past avant garde artists, creating images that
-            seem almost to sprout from the canvas in the same slightly random way that they would from an actual garden
-            bed. His work balances these organic forms with more regimented structural ones. Though the works included
-            in the show were very different, all are organized according to a principle of rigorous division. Blocks of
-            color or metallic leaf demarcate them into zones, creating a push-pull of space, or as Kushner puts it, “a
-            series of passages.” By making, and then breaking up, the pattern with the linear forms of flowers or
-            plants, these forms seem to float atop the background.
-            <a target="_blank" href="/static/images/news/lobby_art/Kushner Brochurwebsite.pdf">
+            <p>
+              Barnaby Furnas’s monumental abstract paintings may resemble giant brush strokes or wall-sized spills, but
+              their origins lie in figurative depictions of biblical scenes. Born in Philadelphia and raised a Quaker,
+              Furnas made his first Flood painting in 2005 as part of a commission for the Lever House on Park Avenue.
+              For that project, titled Apocalypse, he envisioned the end times, with demons descending upon and
+              dismembering the damned — people left behind after the Rapture. The accompanying canvas depicts the
+              aftermath, a world awash in blood, rendered in strong red horizontal swaths that obscure a hazy blue sky
+              and sun. He has since become as well-known for his Flood paintings dominated by washes of red as for his
+              figurative work.
+            </p>
+            <p>
+              For his installation at 375 Hudson, Furnas has created works (all 2019) that respond to the architectural
+              space with dynamic angles and “frothy” areas of paint squirts and splatters to rival the veined marble
+              walls and dramatic patterned floor. These works represent a break from his previous Flood paintings in
+              that most do not retain a hint of sky and sun. Furnas has fully embraced them as abstractions, taking
+              pleasure in the medium of paint itself. More notably, and to his own surprise, he has also embraced colors
+              in addition to his familiar reds, adding viridian, yellow, magenta, and silver to his palette.
+            </p>
+            <a target="_blank" href="/static/images/news/lobby_art/barnaby_furnas_hines.pdf">
               View Brochure
             </a>
           </RightCol>
@@ -250,7 +257,33 @@ const ArtProgram = () => {
             spectral energy and emotional content, colors that are grouped yield vastly more complex and nuanced
             sensations than they would on their own. Color is experiential, and by witnessing it through Robert Swain’s
             unique lens and temperament, we truly understand its limitlessness, approaching the sublime. Color is life.
-            <a target="_blank" href="/static/images/news/lobby_art/Swain-Hines-web.pdf">
+            <a target="_blank" href="/static/images/news/lobby_art/robert_swain_hines.pdf">
+              View Brochure
+            </a>
+          </RightCol>
+        </ArtRow>
+      </Fade>
+      <Fade>
+        <ArtRow spacer>
+          <LeftCol>
+            <ResponsiveImage srcPath="/static/images/news/lobby_art/6_lobby_art" imgAlt="" />
+            <span className="caption">Malinalco (detail) by Robert Kushner</span>
+          </LeftCol>
+          <RightCol>
+            Robert Kushner’s work has been exhibited extensively in the United States, Europe and Japan since 1975 when
+            one of his paintings was included in the Whitney Biennial. When Kushner was in his twenties, he worked as a
+            carpet restorer, and the palette and logic of fabric, of warp and weft, has remained at the core of his
+            practice. This is true at the level of structure, not just aesthetics. His paintings are majestic, in their
+            regal color, glorious floral depictions, and sheer size. Extraordinarily full, they burst with color and
+            animation, like the gardens that do so much to inspire him. He paints his flowers directly from life using
+            techniques to harness organic “chance operations” beloved of past avant garde artists, creating images that
+            seem almost to sprout from the canvas in the same slightly random way that they would from an actual garden
+            bed. His work balances these organic forms with more regimented structural ones. Though the works included
+            in the show were very different, all are organized according to a principle of rigorous division. Blocks of
+            color or metallic leaf demarcate them into zones, creating a push-pull of space, or as Kushner puts it, “a
+            series of passages.” By making, and then breaking up, the pattern with the linear forms of flowers or
+            plants, these forms seem to float atop the background.
+            <a target="_blank" href="/static/images/news/lobby_art/robert_kushner_hines.pdf">
               View Brochure
             </a>
           </RightCol>

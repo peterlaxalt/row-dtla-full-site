@@ -3,19 +3,20 @@ import Link from 'next/link';
 import Fade from 'react-reveal/Fade';
 import styled from 'styled-components';
 
+import Context from '../config/Context';
+
 import { buildings } from '~/data/buildings';
-import BuildingHeader from '~/components/BuildingHeader';
+import BuildingHeader from '~/components/pages/building/BuildingHeader';
 import AvailabilityList from '~/components/AvailabilityList';
-import ImageSlider from '~/components/Slider';
+import ImageSlider from '~/components/sliders/Slider';
 import BeforeAfter from '~/components/BeforeAfter';
 import CopyrightFooter from '~/components/CopyrightFooter';
 import ScrollUp from '~/components/ScrollUp';
-import ResponsiveImage from '~/components/ResponsiveImage';
+import ResponsiveImage from '~/components/images/ResponsiveImage';
 import MiniMap from '~/components/MiniMap';
 import variables from '~/styles/Variables';
 import ContactCard from '~/components/ContactCard';
 import { mediaMin } from '../styles/MediaQueries';
-import Context from '../config/Context';
 
 const { colors } = variables;
 

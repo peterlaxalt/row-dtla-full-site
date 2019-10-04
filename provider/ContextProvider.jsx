@@ -16,6 +16,7 @@ class ContextProvider extends Component {
         activeSubNav: ''
       },
       appData: {
+        browserName: '',
         availabilityData: [],
         newsData: [],
         pressData: [],
@@ -34,9 +35,10 @@ class ContextProvider extends Component {
   }
 
   addInitialDataToState() {
-    const { availabilityData, fullAvailabilityData, contactData, newsData, pressData } = this.props;
+    const { browserName, availabilityData, fullAvailabilityData, contactData, newsData, pressData } = this.props;
 
     const dataObj = {
+      browserName,
       availabilityData,
       contactData,
       newsData,

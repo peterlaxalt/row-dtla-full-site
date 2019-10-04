@@ -8,7 +8,7 @@ import Context from '~/config/Context';
 import { buildings } from '~/data/buildings';
 import { mediaMin } from '~/styles/MediaQueries';
 import FloorplanSection from '~/components/pages/listing/FloorplanSection';
-import NonResponsiveSlider from '~/components/NonResponsiveSlider';
+import NonResponsiveSlider from '~/components/sliders/NonResponsiveSlider';
 import ContactSection from '~/components/pages/listing/ContactSection';
 import ScrollUp from '~/components/ScrollUp';
 import CopyrightFooter from '~/components/CopyrightFooter';
@@ -42,6 +42,7 @@ const ListingWrapper = styled.div`
 
     img.building-logo {
       width: 40%;
+      max-height: 100%;
       ${mediaMin.tablet`
         width: auto;
         height: 32px;
@@ -157,12 +158,18 @@ const Spacer = styled.div`
 
 const Listing = () => {
   const context = useContext(Context);
-  const { contactData, fullAvailabilityData, pageProps } = context;
+  const { pageProps } = context;
+
+  const fullAvailabilityData = context.fullAvailabilityData || context.state.appData.fullAvailabilityData;
+  const contactData = context.contactData || context.state.appData.contactData;
+
   const { building, building_slug, suite_floor_slug } = pageProps;
 
   let listing = fullAvailabilityData.find(obj => {
     return building_slug === obj.acf.building_slug && suite_floor_slug === obj.acf.suite_floor_slug;
-  }).acf;
+  });
+  let listingID = listing.id;
+  listing = listing.acf;
 
   const listingSliderArray = [listing.photo_1, listing.photo_2, listing.photo_3, listing.photo_4, listing.photo_5]
     .filter(obj => obj)
@@ -188,7 +195,7 @@ const Listing = () => {
         idArray
       };
     })
-    .filter(contact => contact.idArray.includes(listing.id));
+    .filter(contact => contact.idArray.includes(listingID));
 
   const { availability, neighborhood, axon, floor, suite, sqft, views } = listing;
 
@@ -205,7 +212,11 @@ const Listing = () => {
           <h3 className="floor-info-mobile">
             {suite} {floor && `${addOrdinalSuffix(floor)} Floor`}
           </h3>
-          <button onClick={() => Router.back()} aria-label={`Back to building page: ${building.title}`} title="Go Back" />
+          <button
+            onClick={() => Router.back()}
+            aria-label={`Back to building page: ${building.title}`}
+            title="Go Back"
+          />
         </div>
       </Fade>
       <Fade>

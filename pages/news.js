@@ -47,7 +47,12 @@ const ListItem = styled.div`
     width: 50%;
     margin-bottom: 0;
     height: 55vh;
-    padding: 15px 25px;
+    &:nth-child(odd) {
+      padding-right: 20px;
+    }
+    &:nth-child(even) {
+      padding-left: 20px;
+    }
   `}
   div {
     width: 100%;

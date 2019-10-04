@@ -5,3 +5,10 @@ export const capitalizeFirstLetter = string => {
 export const slugifyString = string => {
   return string.toLowerCase().replace(/ /g, '-');
 };
+
+export const stringifySlug = slug => {
+  return slug
+    .split('-')
+    .map(el => el.charAt(0, 1).toUpperCase() + el.slice(1))
+    .join(' ');
+};

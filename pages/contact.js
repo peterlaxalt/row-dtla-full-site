@@ -1,25 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import CopyrightFooter from '../components/CopyrightFooter';
-import Context from '../config/Context';
+
+import Context from '~/config/Context';
+
+import CopyrightFooter from '~/components/CopyrightFooter';
 import { buildings } from '~/data/buildings';
 
 import ContactCard from '~/components/ContactCard';
-
-// import {
-//   SeventyFiveVarick,
-//   OneSixtyVarick,
-//   ThreeFortyFiveHudson,
-//   ThreeFiftyHudson,
-//   ThreeSeventyFiveHudson,
-//   OneHundredAvenue,
-//   OneFiftyFiveAvenue,
-//   TwoHundredHudson,
-//   TwoOFiveHudson,
-//   TwoTwentyFiveVarick,
-//   FourThirtyFiveHudson,
-//   RetailLeasing
-// } from '../data/contacts';
 
 const ContactList = styled.ul`
   display: flex;

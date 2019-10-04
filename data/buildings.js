@@ -68,6 +68,10 @@ const buildings = [
       {
         imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/12-75varick',
         imgAlt: 'EET Cafe on the 3rd floor is open to all tenants'
+      },
+      {
+        imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/13-75varick',
+        imgAlt: '75 Varick Street tenant, Oscar Health'
       }
     ],
     beforeAfter: {
@@ -729,6 +733,14 @@ const buildings = [
     },
     sliderArray: [
       {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/lobby_1',
+        imgAlt: '435 Hudson Street Lobby'
+      },
+      {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/lobby_2',
+        imgAlt: '435 Hudson Street Lobby'
+      },
+      {
         imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/1',
         imgAlt: '435 Hudson Street white boxed space'
       },
@@ -737,16 +749,20 @@ const buildings = [
         imgAlt: 'View from 435 Hudson Street'
       },
       {
-        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/3',
-        imgAlt: 'Tenant Amenity Roof Deck (Currently Under Construction)'
-      },
-      {
         imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/4',
         imgAlt: 'View from 435 Hudson Street'
       },
       {
         imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/5',
         imgAlt: 'View from 435 Hudson Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/6',
+        imgAlt: 'Tenant Amenity Roof Deck'
+      },
+      {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/7',
+        imgAlt: 'Tenant Amenity Roof Deck'
       }
     ],
     beforeAfter: false,
@@ -758,6 +774,45 @@ const buildings = [
     }
   }
 ];
+
+const buildingsSlugMap = {
+  '75-varick-street': {
+    title: '75 Varick Street'
+  },
+  '160-varick-street': {
+    title: '160 Varick Street'
+  },
+  '345-hudson-street': {
+    title: '345 Hudson Street'
+  },
+  '350-hudson-street': {
+    title: '350 Hudson Street'
+  },
+  '375-hudson-street': {
+    title: '375-hudson-street'
+  },
+  '155-avenue-of-the-americas': {
+    title: '155 Avenue of the Americas'
+  },
+  '100-avenue-of-the-americas': {
+    title: '100 Avenue of the Americas'
+  },
+  '200-hudson-street': {
+    title: '200 Hudson Street'
+  },
+  '205-hudson-street': {
+    title: '205 Hudson Street'
+  },
+  '12-16-vestry-street': {
+    title: '12-16 Vestry Street'
+  },
+  '225-varick-street': {
+    title: '225 Varick Street'
+  },
+  '435-hudson-street': {
+    title: '435 Hudson Street'
+  }
+};
 
 const buildingsSlider = [
   {
@@ -834,4 +889,4 @@ const buildingsSlider = [
   }
 ];
 
-export { buildingsSlider, buildings };
+export { buildings, buildingsSlugMap, buildingsSlider };
