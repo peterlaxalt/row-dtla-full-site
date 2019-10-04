@@ -32,17 +32,17 @@ const beforeAfterTwo = {
 };
 
 const Heading = styled.h2`
-  font-size: 34px;
+  font-size: 20px;
+  padding: 0 15px 15px;
   font-weight: ${props => (props.bold ? '600' : '500')};
   line-height: 44px;
   letter-spacing: 1px;
   text-align: center;
-  padding: 0 15% 40px 15%;
-  @media screen and (max-width: 1024px) {
-    font-size: 20px;
+  ${mediaMin.tabletLandscape`
+    font-size: 34px;
     line-height: 30px;
-    padding: 0 15px 15px;
-  }
+    padding: 0 15% 40px 15%;
+  `}
 `;
 
 const MobileHeading = styled.h2`
@@ -59,29 +59,29 @@ const MobileHeading = styled.h2`
 `;
 
 const SubHeading = styled.h3`
+  line-height: 25px;
+  padding: 0 15px 15px;
+  text-align: left;
   font-weight: 400;
   font-size: 28px;
-  line-height: 42px;
-  text-align: center;
-  padding: 40px 25px 20px 25px;
-  @media screen and (max-width: 1024px) {
-    font-size: 17px;
-    font-weight: 400;
-    line-height: 25px;
-    padding: 0 15px 15px;
-    text-align: left;
-  }
+  ${mediaMin.tabletLandscape`
+    line-height: 42px;
+    padding: 40px 25px 20px 25px;
+    text-align: center;
+  `}
 `;
 
 const MainCol = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  padding: 0 15px;
   margin-bottom: 50px;
+  padding: 0 15px;
+
   ${mediaMin.tabletLandscape`
     margin-bottom: 200px;
     flex-direction: row;
+    padding: 0;
   `}
 `;
 

@@ -32,6 +32,7 @@ const possibleBtnValues = [
 
 const FloorplanSectionWrapper = styled.div`
   width: 100%;
+  overflow-x: hidden;
   .floorplan-nav {
     width: 100%;
     border-bottom: 3px solid black;
