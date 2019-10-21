@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 
-import Layout from '../components/layout';
-import SEO from '../components/seo';
+import Layout from '~/components/layouts';
+import SEO from '~/components/seo';
 
 const BlogPosts = ({ data }) => {
   const blogPosts = data.allContentfulBlogPost.edges;
