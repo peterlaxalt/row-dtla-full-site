@@ -65,10 +65,18 @@ const generateNav = () => {
   });
   navigation.push(
     <SocialMedia>
-      <a href="https://www.instagram.com/">
+      <a
+        href="https://www.instagram.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <img src={InstagramLogo} alt="instagram logo" />
       </a>
-      <a href="https://www.facebook.com/">
+      <a
+        href="https://www.facebook.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <img src={FacebookLogo} alt="facebook logo" />
       </a>
     </SocialMedia>
