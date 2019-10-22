@@ -45,7 +45,10 @@ const SubscribeForm = () => {
     setEmail(value);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = e => {
+    e.preventDefault();
+  };
+
   return (
     <Form onSubmit={handleSubmit}>
       <label htmlFor="email">EMAIL ADDRESS</label>

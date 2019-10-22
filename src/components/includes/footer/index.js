@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
+import ResponsiveImg from '../utils/ResponsiveImg';
 import SubscribeForm from './SubscribeForm';
 import InstagramLogo from '../../../images/icons/insta-white.svg';
 import FacebookLogo from '../../../images/icons/fb-white.svg';
@@ -18,7 +19,7 @@ const FooterWrapper = styled.footer`
 const FooterColumn = styled.div`
   display: flex;
   flex-direction: column;
-  width: 33%;
+  max-width: 33%;
   h2 {
     font-size: 3em;
     margin: 0;
@@ -73,7 +74,10 @@ const Footer = () => {
         </div>
       </FooterColumn>
       <FooterColumn>
-        <img src="" alt="map of area surrounding row dtla" />
+        <ResponsiveImg
+          srcPath="footer/map"
+          alt="map of area surrounding row dtla"
+        />
       </FooterColumn>
       <FooterColumn>
         <h2>Subscribe</h2>
