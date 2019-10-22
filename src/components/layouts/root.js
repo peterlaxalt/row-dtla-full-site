@@ -1,7 +1,7 @@
 import React from 'react';
 
 import GlobalStyles from '~/styles';
-import ContextProvider from '../../provider/ContextProvider';
+import ContextProvider from '~/provider/ContextProvider';
 
 const RootLayout = ({ children }) => {
   return (
