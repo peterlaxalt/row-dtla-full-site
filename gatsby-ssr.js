@@ -4,4 +4,8 @@
  * See: https://www.gatsbyjs.org/docs/ssr-apis/
  */
 
-// You can delete this file if you're not using it
+import RootLayout from '~/components/layouts/root';
+
+export const wrapRootElement = ({ element }) => (
+  <RootLayout>{element}</RootLayout>
+);

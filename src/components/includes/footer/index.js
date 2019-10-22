@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
 import ResponsiveImg from '../utils/ResponsiveImg';
-import SubscribeForm from './SubscribeForm';
+import SubscribeForm from '~/components/includes/forms/SubscribeForm';
 import InstagramLogo from '~/images/icons/insta-white.svg';
 import FacebookLogo from '~/images/icons/fb-white.svg';
 

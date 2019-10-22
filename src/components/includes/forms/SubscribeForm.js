@@ -13,12 +13,6 @@ const Form = styled.form`
   .row {
     display: flex;
     width: 100%;
-    input,
-    button,
-    submit {
-      border: none;
-    }
-
     input {
       color: #fff;
       background-color: rgba(255, 255, 255, 0.1);
