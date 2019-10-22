@@ -9,7 +9,15 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1em 4em;
+  padding: 1em 4em;
+  box-sizing: border-box;
+  background-color: #fff;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
 `;
 
 const NavRow = styled.nav`
