@@ -5,6 +5,21 @@ import Layout from '~/components/layouts';
 import Image from '~/components/image';
 import SEO from '~/components/seo';
 
+import styled from '@emotion/styled';
+import { minWidth } from '~/styles/mediaQueries';
+
+const TestDiv = styled.div`
+  padding: 32px;
+  background-color: hotpink;
+  font-size: 24px;
+  border-radius: 4px;
+  color: black;
+  font-weight: bold;
+  ${minWidth('phone')} {
+    font-size: 240px;
+  },
+`;
+
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
@@ -19,7 +34,7 @@ const IndexPage = () => (
           }}
         >
           <Image />
-          <h1>Hello There</h1>
+          <TestDiv>Hello There</TestDiv>
         </div>
       </div>
       <Link to="/blogposts/">View all posts</Link>
