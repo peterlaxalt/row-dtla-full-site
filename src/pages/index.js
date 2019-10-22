@@ -20,7 +20,9 @@ const IndexPage = () => (
           <Image />
         </div>
       </div>
-      <Link to="/blogposts/">View all posts</Link>
+      <Link to="/collective/">Collective Entries</Link>
+      <Link to="/events/">Events</Link>
+      <Link to="/news">News Items</Link>
     </div>
   </Layout>
 );

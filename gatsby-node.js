@@ -4,12 +4,14 @@ const slash = require(`slash`);
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const blogPostTemplate = path.resolve("./src/templates/blogpost.js");
-  const collectiveShowTemplate = path.resolve("./src/templates/collectiveShow.js");
+  const collectiveShowTemplate = path.resolve('./src/templates/collectiveShow.js');
+  const eventShowTemplate = path.resolve('./src/templates/eventShow.js');
+  const newsShowTemplate = path.resolve('./src/templates/newsShow.js');
 
-  const collectiveEntries = await graphql(`
+  // Collective Entries
+  const collectiveItems = await graphql(`
     {
-      allContentfulCollectiveEntry {
+      allContentfulCollectiveItem {
         edges {
           node {
             id
@@ -18,18 +20,72 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `)
+  `);
 
-  collectiveEntries.data.allContentfulCollectiveEntry.edges.forEach(edge => {
+  collectiveItems.data.allContentfulCollectiveItem.edges.forEach(edge => {
     const { slug, id } = edge.node;
 
     createPage({
-      path: `/collective/${edge.node.slug}`,
+      path: `/collective/${slug}`,
       component: slash(collectiveShowTemplate),
       context: {
-        slug, 
-        id
+        slug,
+        id,
+      },
+    });
+  });
+
+  // Events
+  const eventItems = await graphql(`
+    {
+      allContentfulEvent {
+        edges {
+          node {
+            id
+            slug
+          }
+        }
       }
-    })
-  })
+    }
+  `);
+
+  eventItems.data.allContentfulEvent.edges.forEach(edge => {
+    const { slug, id } = edge.node;
+
+    createPage({
+      path: `/events/${slug}`,
+      component: slash(eventShowTemplate),
+      context: {
+        slug,
+        id,
+      },
+    });
+  });
+
+  // News Entries
+  const newsEntries = await graphql(`
+    {
+      allContentfulNewsItem {
+        edges {
+          node {
+            id
+            slug
+          }
+        }
+      }
+    }
+  `);
+
+  newsEntries.data.allContentfulNewsItem.edges.forEach(edge => {
+    const { slug, id } = edge.node;
+
+    createPage({
+      path: `/news/${slug}`,
+      component: slash(newsShowTemplate),
+      context: {
+        slug,
+        id,
+      },
+    });
+  });
 };
