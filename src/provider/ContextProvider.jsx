@@ -9,7 +9,7 @@ const ContextProvider = props => {
 
   const closeCTA = () => {
     setCTAActive(false);
-    setCTAViewed(false);
+    setCTAViewed(true);
   };
 
   return (
