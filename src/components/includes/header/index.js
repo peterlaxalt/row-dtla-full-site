@@ -9,7 +9,7 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  margin: 1em 4em;
 `;
 
 const NavRow = styled.nav`
@@ -18,14 +18,29 @@ const NavRow = styled.nav`
     display: flex;
     li {
       margin-left: 2em;
-      h3 {
-        margin: 0;
+      a {
+        text-decoration: none;
+        color: #000;
+        &:visited,
+        &:hover {
+          color: #000;
+        }
+        h3 {
+          margin: 0;
+        }
       }
     }
   }
 `;
 
-const SocialMedia = styled.li``;
+const SocialMedia = styled.li`
+  a {
+    margin-left: 2em;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+`;
 
 const generateNav = () => {
   const navigation = routes.map(route => {
