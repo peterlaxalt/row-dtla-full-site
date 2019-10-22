@@ -4,6 +4,8 @@ import styled from '@emotion/styled';
 
 import Logo from './logo';
 import routes from '../../../data/routes';
+import FacebookLogo from '../../../images/icons/fb-black.svg';
+import InstagramLogo from '../../../images/icons/insta-black.svg';
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -18,6 +20,7 @@ const HeaderContainer = styled.header`
   left: 0;
   right: 0;
   height: 100px;
+  z-index 100;
 `;
 
 const NavRow = styled.nav`
@@ -62,8 +65,12 @@ const generateNav = () => {
   });
   navigation.push(
     <SocialMedia>
-      <a href="https://www.instagram.com/">IG</a>
-      <a href="https://www.facebook.com/">FB</a>
+      <a href="https://www.instagram.com/">
+        <img src={InstagramLogo} alt="facebook logo" />
+      </a>
+      <a href="https://www.facebook.com/">
+        <img src={FacebookLogo} alt="facebook logo" />
+      </a>
     </SocialMedia>
   );
   return navigation;
