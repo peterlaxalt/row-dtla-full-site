@@ -1,42 +1,90 @@
-import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'gatsby';
+import styled from '@emotion/styled';
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
+import Logo from './logo';
+import routes from '../../../data/routes';
+import FacebookLogo from '../../../images/icons/fb-black.svg';
+import InstagramLogo from '../../../images/icons/insta-black.svg';
+
+const HeaderContainer = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 4em;
+  box-sizing: border-box;
+  background-color: #fff;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  z-index 100;
+`;
+
+const NavRow = styled.nav`
+  ul {
+    list-style-type: none;
+    display: flex;
+    li {
+      margin-left: 2em;
+      a {
+        text-decoration: none;
+        color: #000;
+        &:visited,
+        &:hover {
+          color: #000;
+        }
+        h3 {
+          margin: 0;
+        }
+      }
+    }
+  }
+`;
+
+const SocialMedia = styled.li`
+  a {
+    margin-left: 2em;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+`;
+
+const generateNav = () => {
+  const navigation = routes.map(route => {
+    return (
+      <li>
+        <Link to={route.url}>
+          <h3>{route.link}</h3>
         </Link>
-      </h1>
-    </div>
-  </header>
+      </li>
+    );
+  });
+  navigation.push(
+    <SocialMedia>
+      <a href="https://www.instagram.com/">
+        <img src={InstagramLogo} alt="facebook logo" />
+      </a>
+      <a href="https://www.facebook.com/">
+        <img src={FacebookLogo} alt="facebook logo" />
+      </a>
+    </SocialMedia>
+  );
+  return navigation;
+};
+
+const Header = () => (
+  <HeaderContainer>
+    <Link to="/">
+      <Logo />
+    </Link>
+    <NavRow>
+      <ul>{generateNav()}</ul>
+    </NavRow>
+  </HeaderContainer>
 );
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-};
-
-Header.defaultProps = {
-  siteTitle: ``,
-};
 
 export default Header;
