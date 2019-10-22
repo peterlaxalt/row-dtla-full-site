@@ -33,6 +33,12 @@ const base = css`
     font-family: 'Apercu';
   }
 
+  input,
+  button,
+  submit {
+    border: none;
+  }
+
   div[role='group'][tabindex] {
     height: 100%;
   }
