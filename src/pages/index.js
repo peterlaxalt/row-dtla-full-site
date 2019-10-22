@@ -19,6 +19,7 @@ const IndexPage = () => (
           }}
         >
           <Image />
+          <h1>Hello There</h1>
         </div>
       </div>
       <Link to="/blogposts/">View all posts</Link>
