@@ -4,15 +4,14 @@ import { Link } from 'gatsby';
 
 import ResponsiveImg from '../utils/ResponsiveImg';
 import SubscribeForm from './SubscribeForm';
-import InstagramLogo from '../../../images/icons/insta-white.svg';
-import FacebookLogo from '../../../images/icons/fb-white.svg';
+import InstagramLogo from '~/images/icons/insta-white.svg';
+import FacebookLogo from '~/images/icons/fb-white.svg';
 
 const FooterWrapper = styled.footer`
   display: flex;
   justify-content: space-between;
   background-color: #000;
   padding: 2em 4em;
-  box-sizing: border-box;
   color: #fff;
 `;
 
