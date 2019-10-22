@@ -6,6 +6,10 @@ const containers = css`
     margin: 100px auto 0 auto;
     min-height: 100vh;
   }
+
+  .ReactModal__Overlay {
+    z-index: 101;
+  }
 `;
 
 export default containers;
