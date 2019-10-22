@@ -3,7 +3,8 @@ import { css } from '@emotion/core';
 const containers = css`
   .container {
     width: 95%;
-    margin: 0 auto;
+    margin: 100px auto 0 auto;
+    min-height: 100vh;
   }
 `;
 

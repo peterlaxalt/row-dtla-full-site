@@ -16,6 +16,23 @@ const base = css`
     padding: 0;
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'SangBleu Kingdom';
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  span,
+  div,
+  p {
+    font-family: 'Apercu';
+  }
+
   div[role='group'][tabindex] {
     height: 100%;
   }

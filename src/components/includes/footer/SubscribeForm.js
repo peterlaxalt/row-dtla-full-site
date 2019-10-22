@@ -25,6 +25,7 @@ const Form = styled.form`
       border-bottom: 1px solid #fff;
       font-size: 1.5em;
       padding: 0.5em;
+      width: 75%;
     }
     button {
       color: #fff;
@@ -33,6 +34,7 @@ const Form = styled.form`
       margin-left: 1em;
       padding: 0.5em 1em;
       font-size: 1em;
+      width: 25%;
     }
   }
 `;

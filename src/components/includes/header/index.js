@@ -3,9 +3,9 @@ import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 
 import Logo from './logo';
-import routes from '../../../data/routes';
-import FacebookLogo from '../../../images/icons/fb-black.svg';
-import InstagramLogo from '../../../images/icons/insta-black.svg';
+import routes from '~/data/routes';
+import FacebookLogo from '~/images/icons/fb-black.svg';
+import InstagramLogo from '~/images/icons/insta-black.svg';
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -58,17 +58,25 @@ const generateNav = () => {
     return (
       <li>
         <Link to={route.url}>
-          <h3>{route.link}</h3>
+          <span>{route.link}</span>
         </Link>
       </li>
     );
   });
   navigation.push(
     <SocialMedia>
-      <a href="https://www.instagram.com/">
-        <img src={InstagramLogo} alt="facebook logo" />
+      <a
+        href="https://www.instagram.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src={InstagramLogo} alt="instagram logo" />
       </a>
-      <a href="https://www.facebook.com/">
+      <a
+        href="https://www.facebook.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <img src={FacebookLogo} alt="facebook logo" />
       </a>
     </SocialMedia>
