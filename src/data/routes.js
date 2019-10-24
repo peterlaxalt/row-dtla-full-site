@@ -1,19 +1,19 @@
 const routes = [
   {
     url: '/',
-    link: "WHO'S HERE",
+    link: "Who's Here",
   },
   {
     url: '/',
-    link: "WHAT'S ON",
+    link: "What's On",
   },
   {
     url: '/',
-    link: "WHAT'S NEW",
+    link: "What's New",
   },
   {
     url: '/',
-    link: 'CONTACT',
+    link: 'Contact',
   },
 ];
 
