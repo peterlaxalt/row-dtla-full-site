@@ -6,6 +6,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import { mediaMin } from '~/styles/MediaQueries';
 import Slide from './Slide';
 import LeftArrow from '~/images/icons/arrow-left.svg';
 import RightArrow from '~/images/icons/arrow-right.svg';
@@ -30,7 +31,9 @@ const settings = {
 };
 
 const SliderContainer = styled.div`
-  height: calc(100vh - 100px);
+  ${mediaMin('tabletLandscape')} {
+    height: calc(100vh - 100px);
+  }
   .slick-slider {
     width: 100%;
     height: 100%;
@@ -41,7 +44,10 @@ const SliderContainer = styled.div`
       .slick-track {
         height: 100%;
         .slick-slide {
-          height: 90%;
+          height: 100%;
+          ${mediaMin('tabletLandscape')} {
+            height: 90%;
+          }
           div {
             height: 100%;
           }
@@ -50,24 +56,32 @@ const SliderContainer = styled.div`
     }
     .slick-arrow {
       display: block;
-      width: 10px;
-      z-index: 100;
-      bottom: 5%;
-      transform: translate(200%, 50%);
+      z-index: 10;
       top: initial;
+      width: 10px;
+      bottom: 0%;
+      ${mediaMin('tabletLandscape')} {
+        bottom: 5%;
+        transform: translate(200%, 50%);
+      }
     }
     .slick-next {
-      left: 2em;
+      right: calc(10% - 20px);
+      ${mediaMin('tabletLandscape')} {
+        left: 2em;
+      }
     }
     .slick-prev {
-      right: 2em;
+      right: calc(10% + 20px);
+      ${mediaMin('tabletLandscape')} {
+        right: 2em;
+      }
     }
   }
 `;
 
 const HomeSlider = ({ slideArray }) => {
   const SliderRef = useRef(null);
-  // const [activeSlide, setActiveSlide] = useState(0);
 
   const generateSlides = () => {
     return slideArray.reverse().map(slide => <Slide slide={slide} key={slide.contentful_id} />);

@@ -2,19 +2,28 @@ import React from 'react';
 import styled from '@emotion/styled';
 import ReactPlayer from 'react-player';
 
+import { mediaMin } from '~/styles/MediaQueries';
+
 const SliderSlide = styled.div`
   display: flex !important;
-  flex-direction: ${props => (props.slideStyle === 'Image Left' ? 'row-reverse' : 'row')};
   justify-content: center;
   align-items: center;
-  height: 100%;
-  min-width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  ${mediaMin('tabletLandscape')} {
+    height: 100%;
+    min-width: 100%;
+    flex-direction: ${props => (props.slideStyle === 'Image Left' ? 'row-reverse' : 'row')};
+  }
   img {
-    ${props => (props.slideStyle === 'Image Full' ? 'max-height: 100%; min-width: 100%;' : null)}
-    ${props =>
-      props.slideStyle === 'Image Left' || props.slideStyle === 'Image Right'
-        ? 'max-height: 100%; max-width: 50%;'
-        : null}
+    width: 100%;
+    ${mediaMin('tabletLandscape')} {
+      ${props => (props.slideStyle === 'Image Full' ? 'max-height: 100%; min-width: 100%;' : null)}
+      ${props =>
+        props.slideStyle === 'Image Left' || props.slideStyle === 'Image Right'
+          ? 'max-height: 100%; max-width: 50%;'
+          : null}
+    }
   }
 `;
 
@@ -24,24 +33,37 @@ const ContentColumn = styled.div`
   align-items: start;
   justify-content: center;
   text-align: left;
-  width: 50%;
-  padding: 4em;
+  max-width: 100%;
+  margin: 24px 0;
+  ${mediaMin('tabletLandscape')} {
+    margin: 0;
+    padding: 4em;
+    width: 50%;
+  }
   span {
     font-size: 15px;
     letter-spacing: 1px;
     line-height: 20px;
   }
   h3 {
-    font-size: 55px;
-    line-height: 60px;
     margin: 0;
+    font-size: 40px;
+    line-height: 44px;
+    ${mediaMin('tabletLandscape')} {
+      font-size: 55px;
+      line-height: 60px;
+    }
   }
   p {
     font-family: 'SangBleu Kingdom';
-    font-size: 21px;
+    font-size: 16px;
     font-weight: 500;
-    letter-spacing: -0.3px;
-    line-height: 28px;
+    line-height: 24px;
+    ${mediaMin('tabletLandscape')} {
+      font-size: 21px;
+      letter-spacing: -0.3px;
+      line-height: 28px;
+    }
   }
   a {
     border: 1px solid #000;
