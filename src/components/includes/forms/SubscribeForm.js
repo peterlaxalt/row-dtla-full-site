@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
+import { mediaMin } from '~/styles/mediaQueries';
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -28,7 +30,10 @@ const Form = styled.form`
       margin-left: 1em;
       padding: 0.5em 1em;
       font-size: 1em;
-      width: 25%;
+      width: 40%;
+      ${mediaMin('tabletLandscape')} {
+        width: 25%;
+      }
     }
   }
 `;

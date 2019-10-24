@@ -23,24 +23,26 @@ const breakpoints = {
   desktopXLarge: 2048,
 };
 
-const mediaMax = Object.keys(breakpoints).reduce((acc, label) => {
-  acc[label] = (...args) => css`
-    @media (max-width: ${breakpoints[label]}px) {
-      ${css(...args)}
-    }
-  `;
+const mediaMax = n => {
+  const bpArray = Object.keys(breakpoints).map(key => [key, breakpoints[key]]);
 
-  return acc;
-}, {});
+  const [result] = bpArray.reduce((acc, [name, size]) => {
+    if (n === name) return [...acc, `@media (max-width: ${size}px)`];
+    return acc;
+  }, []);
 
-const mediaMin = Object.keys(breakpoints).reduce((acc, label) => {
-  acc[label] = (...args) => css`
-    @media (min-width: ${breakpoints[label] / 16}em) {
-      ${css(...args)}
-    }
-  `;
+  return result;
+};
 
-  return acc;
-}, {});
+const mediaMin = n => {
+  const bpArray = Object.keys(breakpoints).map(key => [key, breakpoints[key]]);
+
+  const [result] = bpArray.reduce((acc, [name, size]) => {
+    if (n === name) return [...acc, `@media (min-width: ${size}px)`];
+    return acc;
+  }, []);
+
+  return result;
+};
 
 export { mediaMax, mediaMin };
