@@ -1,30 +1,46 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import Layout from '~/components/layouts';
-import Image from '~/components/image';
 import SEO from '~/components/seo';
+import HomeSlider from '~/components/includes/sliders/HomeSlider';
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <div className="home">
-      <h1>ROW DTLA</h1>
-      <div>
-        <div
-          style={{
-            maxWidth: `300px`,
-            margin: '0 auto 1.45rem',
-          }}
-        >
-          <Image />
-        </div>
-      </div>
-      <Link to="/collective/">Collective Entries</Link>
-      <Link to="/events/">Events</Link>
-      <Link to="/news">News Items</Link>
-    </div>
-  </Layout>
-);
+const IndexPage = ({ data }) => {
+  const { allContentfulHomeSlides } = data;
+  return (
+    <Layout>
+      <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+      <HomeSlider slideArray={allContentfulHomeSlides.nodes} />
+    </Layout>
+  );
+};
+
+export const query = graphql`
+  {
+    allContentfulHomeSlides {
+      nodes {
+        contentful_id
+        linkName
+        linkUrl
+        sectionName
+        style
+        title
+        body
+        videoUrl
+        heroImage {
+          description
+          title
+          file {
+            url
+          }
+          resolutions {
+            src
+            srcSet
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default IndexPage;

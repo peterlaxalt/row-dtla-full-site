@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import Context from '~/config/Context';
 
 const ContextProvider = props => {
-  const [CTAActive, setCTAActive] = useState(true);
+  const [CTAActive, setCTAActive] = useState(false);
   const [CTAViewed, setCTAViewed] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   const closeCTA = () => {
     setCTAActive(false);
@@ -19,6 +20,8 @@ const ContextProvider = props => {
         CTAActive,
         CTAViewed,
         closeCTA,
+        activeSlide,
+        setActiveSlide,
       }}
     >
       {props.children}
