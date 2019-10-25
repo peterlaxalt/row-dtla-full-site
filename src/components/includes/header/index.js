@@ -11,16 +11,16 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1em 4em;
+  padding: 1em 2.5%;
   box-sizing: border-box;
   background-color: #fff;
   position: fixed;
-  width: 100vw;
+  width: 100%;
   top: 0;
   left: 0;
   right: 0;
   height: 100px;
-  z-index 100;
+  z-index: 100;
 `;
 
 const NavRow = styled.nav`
@@ -56,7 +56,7 @@ const SocialMedia = styled.li`
 const generateNav = () => {
   const navigation = routes.map(route => {
     return (
-      <li>
+      <li key={route.url}>
         <Link to={route.url}>
           <span>{route.link}</span>
         </Link>
@@ -65,18 +65,10 @@ const generateNav = () => {
   });
   navigation.push(
     <SocialMedia>
-      <a
-        href="https://www.instagram.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
         <img src={InstagramLogo} alt="instagram logo" />
       </a>
-      <a
-        href="https://www.facebook.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
         <img src={FacebookLogo} alt="facebook logo" />
       </a>
     </SocialMedia>

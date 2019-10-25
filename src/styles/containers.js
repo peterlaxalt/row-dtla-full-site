@@ -1,10 +1,13 @@
 import { css } from '@emotion/core';
+import { mediaMin } from '~/styles/mediaQueries';
 
 const containers = css`
   .container {
-    width: 95%;
-    margin: 100px auto 0 auto;
-    min-height: 100vh;
+    min-height: 100%;
+    margin: 84px auto 0;
+    ${mediaMin('tabletLandscape')} {
+      margin: 100px 2.5% 0;
+    }
   }
 
   .ReactModal__Overlay {

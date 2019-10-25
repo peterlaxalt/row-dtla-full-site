@@ -17,29 +17,29 @@ const CollectiveShow = ({ data }) => {
 
 export default CollectiveShow;
 
-export const pageQuery = graphql`
-  query($slug: String!) {
-    contentfulCollectiveItem(slug: { eq: $slug }) {
-      title
-      type
-      address
-      closeTime
-      subtitle
-      website
-      description {
-        description
-      }
-      email
-      facebook
-      id
-      instagram
-      image {
-        file {
-          fileName
-        }
-      }
-      parking
-      openTime
-    }
-  }
-`;
+// export const pageQuery = graphql`
+//   query($slug: String!) {
+//     contentfulCollectiveItem(slug: { eq: $slug }) {
+//       title
+//       type
+//       address
+//       closeTime
+//       subtitle
+//       website
+//       description {
+//         description
+//       }
+//       email
+//       facebook
+//       id
+//       instagram
+//       image {
+//         file {
+//           fileName
+//         }
+//       }
+//       parking
+//       openTime
+//     }
+//   }
+// `;

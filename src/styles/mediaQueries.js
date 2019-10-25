@@ -5,7 +5,7 @@
 //   border-radius: 4px;
 //   color: black;
 //   font-weight: bold;
-//   ${minWidth('phone')} {
+//   ${mediaMin('phone')} {
 //     font-size: 240px;
 //   },
 // `;
