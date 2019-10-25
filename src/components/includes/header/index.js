@@ -14,7 +14,7 @@ const HeaderContainer = styled.header`
   box-sizing: border-box;
   background-color: #fff;
   position: fixed;
-  width: 100vw;
+  width: 100%;
   top: 0;
   left: 0;
   right: 0;
