@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import Event from '~/components/includes/events/event';
-import { mediaMin } from '~/styles/MediaQueries';
+import { mediaMin } from '~/styles/mediaQueries';
 
 const masonryOptions = {
   transitionDuration: 0,
