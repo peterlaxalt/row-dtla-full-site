@@ -41,6 +41,7 @@ module.exports = {
       options: {
         spaceId: `v5y5potka9e9`,
         accessToken: `U4Qe0URgCsIQHgoRvVnjwLRAc5auF9sC-GSidrRi86Y`,
+        environment: `develop`,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
