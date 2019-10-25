@@ -6,7 +6,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import { mediaMin } from '~/styles/MediaQueries';
+import { mediaMin } from '~/styles/mediaQueries';
 import Slide from './Slide';
 import LeftArrow from '~/images/icons/arrow-left.svg';
 import RightArrow from '~/images/icons/arrow-right.svg';

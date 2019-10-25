@@ -21,39 +21,39 @@ const CollectiveShow = ({ data }) => {
 
 export default CollectiveShow;
 
-export const pageQuery = graphql`
-  query($slug: String!) {
-    contentfulCollectiveItem(slug: { eq: $slug }) {
-      id
-      addressLine1
-      addressLine2
-      descriptionBody {
-        descriptionBody
-      }
-      parking
-      instagram
-      timeCloseFriday
-      timeCloseMonday
-      timeCloseSaturday
-      timeCloseSunday
-      timeOpenWednesday
-      timeOpenTuesday
-      timeOpenThursday
-      timeOpenSunday
-      timeOpenSaturday
-      timeOpenMonday
-      timeOpenFriday
-      timeCloseWednesday
-      timeCloseTuesday
-      timeCloseThursday
-      subtitle
-      seoDescription {
-        seoDescription
-      }
-      email
-      facebook
-      website
-      title
-    }
-  }
-`;
+// export const pageQuery = graphql`
+//   query($slug: String!) {
+//     contentfulCollectiveItem(slug: { eq: $slug }) {
+//       id
+//       addressLine1
+//       addressLine2
+//       descriptionBody {
+//         descriptionBody
+//       }
+//       parking
+//       instagram
+//       timeCloseFriday
+//       timeCloseMonday
+//       timeCloseSaturday
+//       timeCloseSunday
+//       timeOpenWednesday
+//       timeOpenTuesday
+//       timeOpenThursday
+//       timeOpenSunday
+//       timeOpenSaturday
+//       timeOpenMonday
+//       timeOpenFriday
+//       timeCloseWednesday
+//       timeCloseTuesday
+//       timeCloseThursday
+//       subtitle
+//       seoDescription {
+//         seoDescription
+//       }
+//       email
+//       facebook
+//       website
+//       title
+//     }
+//   }
+// `;
