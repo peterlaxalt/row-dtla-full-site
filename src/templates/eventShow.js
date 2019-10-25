@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import BackArrow from '~/images/icons/arrow-back.svg';
+import { mediaMin } from '~/styles/MediaQueries';
 
 const EventWrapper = styled.div`
   width: 100%;
@@ -14,14 +15,24 @@ const EventWrapper = styled.div`
 
 const EventInfo = styled.div`
   display: flex;
-  margin: 32px 0 0 0;
+  flex-direction: column-reverse;
+  margin: 24px 0 0 0;
+  ${mediaMin('tabletLandscape')} {
+    margin: 32px 0 0 0;
+    flex-direction: row;
+  }
 `;
 
 const CopyColumn = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
-  padding: 0 10% 0 0;
+  width: 100%;
+  margin-top: 24px;
+  ${mediaMin('tabletLandscape')} {
+    margin-top: 0;
+    width: 50%;
+    padding: 0 10% 0 0;
+  }
   h3 {
     font-size: 55px;
     line-height: 60px;
@@ -45,7 +56,10 @@ const CopyColumn = styled.div`
 const ImageColumn = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
+  ${mediaMin('tabletLandscape')} {
+    width: 50%;
+  }
   img {
     max-width: 100%;
     max-height: 100%;
