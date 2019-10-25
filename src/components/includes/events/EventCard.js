@@ -5,7 +5,7 @@ import { Link } from 'gatsby';
 import { mediaMin } from '~/styles/MediaQueries';
 
 const EventWrapper = styled.li`
-  margin-bottom: 16px;
+  margin-bottom: calc(64px / 3);
   padding: 0;
   width: 100%;
   border: 1px solid #000;
@@ -59,8 +59,8 @@ const truncateText = text => {
   return `${shortened.join(' ')}...`;
 };
 
-const Event = ({ event }) => {
-  const { address, bodyText, date, endDate, startTime, endTime, image, slug, suite, title, type } = event;
+const EventCard = ({ event }) => {
+  const { bodyText, date, endDate, startTime, endTime, image, slug, title } = event;
   return (
     <EventWrapper>
       <img src={image.file.url} alt={image.description} />
@@ -75,4 +75,4 @@ const Event = ({ event }) => {
   );
 };
 
-export default Event;
+export default EventCard;

@@ -5,8 +5,7 @@ import styled from '@emotion/styled';
 
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
-import Event from '~/components/includes/events/event';
-import { mediaMin } from '~/styles/MediaQueries';
+import EventCard from '~/components/includes/events/EventCard';
 
 const masonryOptions = {
   transitionDuration: 0,
@@ -29,7 +28,7 @@ const EventsWrapper = styled.div`
 const generateEvents = events => {
   return events.map(event => {
     const { id } = event;
-    return <Event className="event" event={event} key={id} />;
+    return <EventCard className="event" event={event} key={id} />;
   });
 };
 
@@ -55,15 +54,12 @@ export const query = graphql`
   {
     allContentfulEvent {
       nodes {
-        address
         date(formatString: "MMM Do")
         endDate(formatString: "MMM Do")
         id
         slug
-        suite
         title
         type
-        spaceId
         image {
           file {
             url
