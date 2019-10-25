@@ -3,9 +3,9 @@ import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 
 import Logo from './logo';
-import routes from '~/data/routes';
-import FacebookLogo from '~/images/icons/fb-black.svg';
-import InstagramLogo from '~/images/icons/insta-black.svg';
+import DesktopNavigation from './DesktopNavigation';
+import MobileNavigation from './MobileNavigation';
+import { mediaMin } from '~/styles/mediaQueries';
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -19,36 +19,17 @@ const HeaderContainer = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  height: 100px;
   z-index: 100;
-`;
-
-const NavRow = styled.nav`
-  ul {
-    list-style-type: none;
-    display: flex;
-    li {
-      margin-left: 2em;
-      a {
-        text-decoration: none;
-        color: #000;
-        &:visited,
-        &:hover {
-          color: #000;
-        }
-        h3 {
-          margin: 0;
-        }
-      }
-    }
+  height: 84px;
+  padding: 32px 14px;
+  ${mediaMin('tabletLandscape')}{
+    height: 100px;
+    padding: 1em 4em;
   }
-`;
-
-const SocialMedia = styled.li`
-  a {
-    margin-left: 2em;
-    &:first-child {
-      margin-left: 0;
+  a{
+    z-index: 101;
+    svg{
+      height: 20px;
     }
   }
 `;
@@ -81,9 +62,8 @@ const Header = () => (
     <Link to="/">
       <Logo />
     </Link>
-    <NavRow>
-      <ul>{generateNav()}</ul>
-    </NavRow>
+    <DesktopNavigation />
+    <MobileNavigation />
   </HeaderContainer>
 );
 
