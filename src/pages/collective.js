@@ -10,18 +10,6 @@ import { mediaMin } from '~/styles/mediaQueries';
 
 import collectiveItemsStub from '~/data/local/collectiveItems';
 
-// const TestDiv = styled.div`
-//   padding: 32px;
-//   background-color: hotpink;
-//   font-size: 24px;
-//   border-radius: 4px;
-//   color: black;
-//   font-weight: bold;
-//   ${mediaMin('phone')} {
-//     font-size: 240px;
-//   },
-// `;
-
 const CollectiveItemCard = styled(Link)`
   display: flex;
   flex-direction: column;
@@ -145,19 +133,19 @@ const CollectivePage = ({ data }) => {
 
 export default CollectivePage;
 
-export const query = graphql`
-  query CollectiveEntriesQuery {
-    allContentfulCollectiveItem {
-      nodes {
-        title
-        subtitle
-        slug
-        image {
-          file {
-            url
-          }
-        }
-      }
-    }
-  }
-`;
+// export const query = graphql`
+//   query CollectiveEntriesQuery {
+//     allContentfulCollectiveItem {
+//       nodes {
+//         title
+//         subtitle
+//         slug
+//         image {
+//           file {
+//             url
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;

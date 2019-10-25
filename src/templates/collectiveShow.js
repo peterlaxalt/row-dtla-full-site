@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+// import { Link, graphql } from 'gatsby';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 
@@ -19,27 +19,39 @@ export default CollectiveShow;
 
 // export const pageQuery = graphql`
 //   query($slug: String!) {
-//     contentfulCollectiveItem(slug: { eq: $slug }) {
-//       title
-//       type
-//       address
-//       closeTime
-//       subtitle
-//       website
-//       description {
-//         description
-//       }
-//       email
-//       facebook
-//       id
-//       instagram
-//       image {
-//         file {
-//           fileName
-//         }
-//       }
-//       parking
-//       openTime
+//     contentfulCollectiveItem(slug: {eq: "13-bonaparte-5"}) {
+//     id
+//     displayTitle {
+//       displayTitle
 //     }
+//     addressLine1
+//     addressLine2
+//     descriptionBody {
+//       descriptionBody
+//     }
+//     parking
+//     instagram
+//     timeCloseFriday
+//     timeCloseMonday
+//     timeCloseSaturday
+//     timeCloseSunday
+//     timeOpenWednesday
+//     timeOpenTuesday
+//     timeOpenThursday
+//     timeOpenSunday
+//     timeOpenSaturday
+//     timeOpenMonday
+//     timeOpenFriday
+//     timeCloseWednesday
+//     timeCloseTuesday
+//     timeCloseThursday
+//     subtitle
+//     seoDescription {
+//       seoDescription
+//     }
+//     email
+//     facebook
+//     website
+//   }
 //   }
 // `;
