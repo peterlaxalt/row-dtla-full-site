@@ -2,10 +2,11 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
-import { mediaMin } from '~/styles/mediaQueries';
+import { mediaMin } from '~/styles/MediaQueries';
+import { truncateText } from '~/components/includes/utils/helpers';
 
 const EventWrapper = styled.li`
-  margin-bottom: 16px;
+  margin-bottom: calc(64px / 3);
   padding: 0;
   width: 100%;
   border: 1px solid #000;
@@ -52,22 +53,15 @@ const CopySection = styled.div`
   }
 `;
 
-const truncateText = text => {
-  const textArray = text.split(' ');
-  if (textArray.length < 20) return text;
-  let shortened = textArray.slice(0, 20);
-  return `${shortened.join(' ')}...`;
-};
-
-const Event = ({ event }) => {
-  const { address, bodyText, date, endDate, startTime, endTime, image, slug, suite, title, type } = event;
+const EventCard = ({ event }) => {
+  const { bodyText, date, endDate, startTime, endTime, image, slug, title } = event;
   return (
     <EventWrapper>
       <img src={image.file.url} alt={image.description} />
       <CopySection>
         <span>{`${date}${endDate ? ` - ${endDate}` : ''}`}</span>
         <h3>{title}</h3>
-        <p>{truncateText(bodyText.bodyText)}</p>
+        <p>{truncateText(bodyText.bodyText, 20)}</p>
         <span>{`${startTime} - ${endTime}`}</span>
         <Link to={`/events/${slug}`}>LEARN MORE</Link>
       </CopySection>
@@ -75,4 +69,4 @@ const Event = ({ event }) => {
   );
 };
 
-export default Event;
+export default EventCard;
