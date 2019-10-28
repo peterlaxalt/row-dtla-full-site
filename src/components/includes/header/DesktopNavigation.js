@@ -42,6 +42,7 @@ const NavRow = styled.nav`
 `;
 
 const SocialMedia = styled.li`
+  display: flex;
   a {
     margin-left: 2em;
   }

@@ -34,29 +34,6 @@ const HeaderContainer = styled.header`
   }
 `;
 
-const generateNav = () => {
-  const navigation = routes.map(route => {
-    return (
-      <li key={route.url}>
-        <Link to={route.url}>
-          <span>{route.link}</span>
-        </Link>
-      </li>
-    );
-  });
-  navigation.push(
-    <SocialMedia>
-      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-        <img src={InstagramLogo} alt="instagram logo" />
-      </a>
-      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-        <img src={FacebookLogo} alt="facebook logo" />
-      </a>
-    </SocialMedia>
-  );
-  return navigation;
-};
-
 const Header = () => (
   <HeaderContainer>
     <Link to="/">

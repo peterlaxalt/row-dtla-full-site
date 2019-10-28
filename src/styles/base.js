@@ -16,6 +16,11 @@ const base = css`
     padding: 0;
   }
 
+  textarea,
+  input {
+    outline: none;
+  }
+
   div[role='group'][tabindex] {
     height: 100%;
   }

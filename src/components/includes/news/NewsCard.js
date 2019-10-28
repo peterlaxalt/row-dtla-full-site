@@ -37,9 +37,6 @@ const CopySection = styled.div`
   a {
     color: #000;
     text-decoration: none;
-    font-size: 15px;
-    letter-spacing: 1px;
-    line-height: 20px;
     &:visited {
       color: #000;
     }
@@ -51,11 +48,13 @@ const NewsCard = ({ article }) => {
   return (
     <NewsCardWrapper>
       <img src={image.file.url} alt={image.description} />
-      <CopySection>
-        <span>{date}</span>
-        <h3>{truncateText(title, 10)}</h3>
-        <Link to={`/news/${slug}`}>{publication}</Link>
-      </CopySection>
+      <Link to={`/news/${slug}`}>
+        <CopySection>
+          <span>{date}</span>
+          <h3>{truncateText(title, 10)}</h3>
+          <span>{publication}</span>
+        </CopySection>
+      </Link>
     </NewsCardWrapper>
   );
 };
