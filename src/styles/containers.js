@@ -4,9 +4,12 @@ import { mediaMin } from '~/styles/mediaQueries';
 const containers = css`
   .container {
     min-height: 100%;
-    margin: 84px 14px 0 14px;
+    padding: 84px 14px 0 14px;
     ${mediaMin('tabletLandscape')} {
-      margin: 100px 2.5% 0;
+      padding: 100px 2.5% 0;
+    }
+    &.dark {
+      background-color: #000;
     }
   }
 

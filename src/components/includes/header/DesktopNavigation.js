@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 
+import Context from '~/config/Context';
 import NavLink from '~/components/includes/header/NavLink';
 import routes from '~/data/routes';
 import { mediaMin } from '~/styles/mediaQueries';
-import FacebookLogo from '~/images/icons/fb-black.svg';
-import InstagramLogo from '~/images/icons/insta-black.svg';
+import FacebookLogoBlack from '~/images/icons/fb-black.svg';
+import InstagramLogoBlack from '~/images/icons/insta-black.svg';
+import FacebookLogoWhite from '~/images/icons/fb-white.svg';
+import InstagramLogoWhite from '~/images/icons/insta-white.svg';
 
 const NavRow = styled.nav`
   display: none;
@@ -23,7 +26,7 @@ const NavRow = styled.nav`
       height: 100%;
       a {
         text-decoration: none;
-        color: #000;
+        color: ${props => (props.dark ? '#fff' : '#000')};
         text-transform: uppercase;
         height: 100%;
         display: flex;
@@ -34,7 +37,7 @@ const NavRow = styled.nav`
         }
         &:visited,
         &:hover {
-          color: #000;
+          color: ${props => (props.dark ? '#fff' : '#000')};
         }
       }
     }
@@ -52,6 +55,8 @@ const SocialMedia = styled.li`
 `;
 
 const DesktopNavigation = () => {
+  const context = useContext(Context);
+  const { darkTheme } = context;
   const generateNav = () => {
     const navigation = routes.map(route => {
       return (
@@ -66,17 +71,17 @@ const DesktopNavigation = () => {
     navigation.push(
       <SocialMedia key="social-media">
         <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-          <img src={InstagramLogo} alt="instagram logo" />
+          <img src={darkTheme ? InstagramLogoWhite : InstagramLogoBlack} alt="instagram logo" />
         </a>
         <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-          <img src={FacebookLogo} alt="facebook logo" />
+          <img src={darkTheme ? FacebookLogoWhite : FacebookLogoBlack} alt="facebook logo" />
         </a>
       </SocialMedia>
     );
     return navigation;
   };
   return (
-    <NavRow>
+    <NavRow dark={darkTheme}>
       <ul>{generateNav()}</ul>
     </NavRow>
   );
