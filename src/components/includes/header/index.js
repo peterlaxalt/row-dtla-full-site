@@ -11,7 +11,7 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1em 2.5%;
+  padding: 0 2.5%;
   box-sizing: border-box;
   background-color: #fff;
   position: fixed;
@@ -22,40 +22,17 @@ const HeaderContainer = styled.header`
   z-index: 100;
   height: 84px;
   padding: 32px 14px;
-  ${mediaMin('tabletLandscape')}{
+  ${mediaMin('tabletLandscape')} {
     height: 100px;
-    padding: 1em 4em;
+    padding: 0 4em;
   }
-  a{
+  a {
     z-index: 101;
-    svg{
+    svg {
       height: 20px;
     }
   }
 `;
-
-const generateNav = () => {
-  const navigation = routes.map(route => {
-    return (
-      <li key={route.url}>
-        <Link to={route.url}>
-          <span>{route.link}</span>
-        </Link>
-      </li>
-    );
-  });
-  navigation.push(
-    <SocialMedia>
-      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-        <img src={InstagramLogo} alt="instagram logo" />
-      </a>
-      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-        <img src={FacebookLogo} alt="facebook logo" />
-      </a>
-    </SocialMedia>
-  );
-  return navigation;
-};
 
 const Header = () => (
   <HeaderContainer>

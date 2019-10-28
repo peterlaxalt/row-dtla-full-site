@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
 
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
+import Filter from '~/components/includes/sub-header/Filter';
 
 import { mediaMin } from '~/styles/mediaQueries';
 
 import collectiveItemsStub from '~/data/local/collectiveItems';
+
+const CollectiveWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  .masonry {
+    margin: 48px 0;
+  }
+`;
 
 const CollectiveItemCard = styled(Link)`
   display: flex;
@@ -18,7 +28,6 @@ const CollectiveItemCard = styled(Link)`
   width: 100%;
   ${mediaMin('tablet')} {
     margin-bottom: 40px;
-    margin-right: 40px;
   }
   &.small-vertical {
     ${mediaMin('tablet')} {
@@ -86,47 +95,54 @@ const parseTitle = title => {
   return titleArray.map(el => <h1 key={el}>{el}</h1>);
 };
 
-const generateCollectiveItems = collectiveItems => {
-  return collectiveItems.map((collectiveItem, idx) => {
-    // console.log(collectiveItem);
-    const { displayTitle, image, slug, subtitle } = collectiveItem;
-
-    return (
-      <CollectiveItemCard
-        className={`${generateCardClass(idx)} grid-item`}
-        to={`/collective/${slug}`}
-        key={`collective-item-${idx}`}
-        imgSrc={image.file.url}
-      >
-        <div className="image-container" title={image.description} />
-        <div className="description-container">
-          <p>{subtitle}</p>
-          {displayTitle && parseTitle(displayTitle.displayTitle)}
-        </div>
-      </CollectiveItemCard>
-    );
-  });
-};
-
 const masonryOptions = {
   transitionDuration: '.25s',
   itemSelector: '.grid-item',
   columnWidth: '.small-vertical',
+  gutter: '.gutter-sizer',
 };
 
 const CollectivePage = ({ data }) => {
+  const [filter, setFilter] = useState('ALL');
+  const filters = ['ALL', 'DINE', 'SHOP', 'LIFESTYLE', 'POP-UP'];
   // const collectiveItems = data.allContentfulCollectiveItem.nodes;
+
+  const generateCollectiveItems = collectiveItems => {
+    return collectiveItems.map((collectiveItem, idx) => {
+      // console.log(collectiveItem);
+      const { displayTitle, image, slug, subtitle } = collectiveItem;
+
+      return (
+        <CollectiveItemCard
+          className={`${generateCardClass(idx)} grid-item`}
+          to={`/collective/${slug}`}
+          key={`collective-item-${idx}`}
+          imgSrc={image.file.url}
+        >
+          <div className="image-container" title={image.description} />
+          <div className="description-container">
+            <p>{subtitle}</p>
+            {displayTitle && parseTitle(displayTitle.displayTitle)}
+          </div>
+        </CollectiveItemCard>
+      );
+    });
+  };
 
   return (
     <Layout>
       <SEO title="Collective" />
-      <Masonry
-        options={masonryOptions} // default {}
-        disableImagesLoaded={false} // default false
-        updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
-      >
-        {generateCollectiveItems(collectiveItemsStub)}
-      </Masonry>
+      <CollectiveWrapper>
+        <Filter title={'Discover\nROW DTLA'} filters={filters} activeFilter={filter} setFilter={setFilter} />
+        <Masonry
+          className="masonry"
+          options={masonryOptions} // default {}
+          disableImagesLoaded={false} // default false
+          updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+        >
+          {generateCollectiveItems(collectiveItemsStub)}
+        </Masonry>
+      </CollectiveWrapper>
     </Layout>
   );
 };
