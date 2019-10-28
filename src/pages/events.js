@@ -17,11 +17,7 @@ const EventsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  h2 {
-    font-size: 72px;
-    line-height: 80px;
-    margin: 0 0 32px 0;
-  }
+
   ul {
     padding: 0;
     list-style-type: none;
@@ -51,12 +47,7 @@ const EventsPage = ({ data }) => {
     <Layout>
       <SEO title="Events" />
       <EventsWrapper>
-        <h2>
-          What&apos;s on at
-          <br />
-          ROW DTLA
-        </h2>
-        <Filter filters={filters} activeFilter={filter} setFilter={setFilter} />
+        <Filter title={"What's on at\nROW DTLA"} filters={filters} activeFilter={filter} setFilter={setFilter} />
         <Masonry options={masonryOptions} elementType={'ul'}>
           {generateEvents(events)}
           <div className="gutter-sizer" />

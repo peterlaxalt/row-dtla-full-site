@@ -1,12 +1,20 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+import { mediaMin } from '~/styles/mediaQueries';
+
 const FilterMenu = styled.div`
   width: 100%;
   display: flex;
   background-color: #000;
   justify-content: center;
   height: 32px;
+  position: sticky;
+  z-index: 50;
+  top: 84px;
+  ${mediaMin('tabletLandscape')} {
+    top: 100px;
+  }
 `;
 
 const FilterButton = styled.button`
@@ -15,15 +23,32 @@ const FilterButton = styled.button`
   outline: none;
   border: none;
   cursor: pointer;
-  font-size: 15px;
-  letter-spacing: 1px;
-  line-height: 20px;
   padding: 0;
   margin: 0 16px;
+  border-bottom: 4px solid transparent;
   border-bottom: ${props => (props.active ? '4px solid #fff' : '4px solid transparent')};
+  font-size: 12px;
+  line-height: 12px;
+  ${mediaMin('tabletLandscape')} {
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 20px;
+  }
 `;
 
-const Filter = ({ filters, activeFilter, setFilter }) => {
+const PageTitle = styled.h2`
+  white-space: pre-line;
+  font-size: 40px;
+  line-height: 44px;
+  margin: 0 0 24px 0;
+  ${mediaMin('tabletLandscape')} {
+    margin: 0 0 32px 0;
+    font-size: 72px;
+    line-height: 80px;
+  }
+`;
+
+const Filter = ({ filters, activeFilter, setFilter, title }) => {
   const generateFilters = () => {
     return filters.map(filter => {
       return (
@@ -39,7 +64,12 @@ const Filter = ({ filters, activeFilter, setFilter }) => {
       );
     });
   };
-  return <FilterMenu>{generateFilters()}</FilterMenu>;
+  return (
+    <>
+      <PageTitle>{title}</PageTitle>
+      <FilterMenu>{generateFilters()}</FilterMenu>
+    </>
+  );
 };
 
 export default Filter;
