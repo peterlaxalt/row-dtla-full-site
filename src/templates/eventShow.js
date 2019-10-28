@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import BackArrow from '~/images/icons/arrow-back.svg';
-import { mediaMin } from '~/styles/MediaQueries';
+import { mediaMin } from '~/styles/mediaQueries';
 
 const EventWrapper = styled.div`
   width: 100%;
