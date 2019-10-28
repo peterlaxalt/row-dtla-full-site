@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 
+import Context from '~/config/Context';
 import Logo from './logo';
 import DesktopNavigation from './DesktopNavigation';
 import MobileNavigation from './MobileNavigation';
@@ -13,7 +14,7 @@ const HeaderContainer = styled.header`
   align-items: center;
   padding: 0 2.5%;
   box-sizing: border-box;
-  background-color: #fff;
+  background-color: ${props => (props.dark ? '#000' : '#fff')};
   position: fixed;
   width: 100%;
   top: 0;
@@ -34,14 +35,18 @@ const HeaderContainer = styled.header`
   }
 `;
 
-const Header = () => (
-  <HeaderContainer>
-    <Link to="/">
-      <Logo />
-    </Link>
-    <DesktopNavigation />
-    <MobileNavigation />
-  </HeaderContainer>
-);
+const Header = () => {
+  const context = useContext(Context);
+  const { darkTheme } = context;
+  return (
+    <HeaderContainer dark={darkTheme}>
+      <Link to="/">
+        <Logo />
+      </Link>
+      <DesktopNavigation />
+      <MobileNavigation />
+    </HeaderContainer>
+  );
+};
 
 export default Header;

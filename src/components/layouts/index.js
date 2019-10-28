@@ -5,19 +5,22 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
+import Context from '~/config/Context';
 import Header from '~/components/includes/header';
 import Footer from '~/components/includes/footer';
 import CTA from '~/components/includes/cta';
 
 const Layout = ({ children }) => {
+  const context = useContext(Context);
+  const { darkTheme } = context;
   return (
     <>
       <CTA />
       <Header />
-      <div className="container">
+      <div className={`container ${darkTheme ? 'dark' : ''}`}>
         <main>{children}</main>
       </div>
       <Footer />

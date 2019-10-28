@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Link, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 
+import Context from '~/config/Context';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import BackArrow from '~/images/icons/arrow-back.svg';
@@ -79,6 +80,13 @@ const BackgroundImage = styled.div`
 const EventShow = ({ data }) => {
   const { contentfulEvent } = data;
   const { bodyText, date, endDate, startTime, endTime, image, title } = contentfulEvent;
+  const context = useContext(Context);
+  const { setDarkTheme } = context;
+
+  useEffect(() => {
+    setDarkTheme(false);
+  }, []);
+
   return (
     <Layout>
       <SEO title={title} />

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
 
+import Context from '~/config/Context';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import NewsCard from '~/components/includes/news/NewsCard';
@@ -30,6 +31,8 @@ const NewsPage = ({ data }) => {
   const [filter, setFilter] = useState('ALL');
   const filters = ['ALL', 'ARTISTS IN RESIDENCE', 'IN THE NEIGHBORHOOD', 'PRESS'];
   const newsItems = data.allContentfulNewsItem.nodes;
+  const context = useContext(Context);
+  const { setDarkTheme } = context;
 
   const generateNewsItems = () => {
     let filteredNews = newsItems;
@@ -41,6 +44,10 @@ const NewsPage = ({ data }) => {
       return <NewsCard key={`news-item-${id}`} article={newsItem} />;
     });
   };
+
+  useEffect(() => {
+    setDarkTheme(false);
+  }, []);
 
   return (
     <Layout>

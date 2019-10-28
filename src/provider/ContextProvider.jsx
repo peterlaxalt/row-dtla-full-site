@@ -7,6 +7,7 @@ const ContextProvider = props => {
   const [CTAActive, setCTAActive] = useState(false);
   const [CTAViewed, setCTAViewed] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [darkTheme, setDarkTheme] = useState(false);
 
   const closeCTA = () => {
     setCTAActive(false);
@@ -22,6 +23,8 @@ const ContextProvider = props => {
         closeCTA,
         activeSlide,
         setActiveSlide,
+        darkTheme,
+        setDarkTheme,
       }}
     >
       {props.children}

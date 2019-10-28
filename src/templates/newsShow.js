@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Link, graphql } from 'gatsby';
+
+import Context from '~/config/Context';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 
 const EventShow = ({ data }) => {
   const { id, publication, title, type, date, body } = data.contentfulNewsItem;
+  const context = useContext(Context);
+  const { setDarkTheme } = context;
+
+  useEffect(() => {
+    setDarkTheme(false);
+  }, []);
 
   return (
     <Layout>
