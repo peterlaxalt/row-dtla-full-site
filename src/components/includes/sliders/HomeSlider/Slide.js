@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import ReactPlayer from 'react-player';
 
-import { mediaMin } from '~/styles/MediaQueries';
+import { mediaMin } from '~/styles/mediaQueries';
 
 const SliderSlide = styled.div`
   display: flex !important;

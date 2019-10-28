@@ -1,11 +1,12 @@
 import { css } from '@emotion/core';
-import { mediaMin } from '~/styles/MediaQueries';
+import { mediaMin } from '~/styles/mediaQueries';
+
 const containers = css`
   .container {
-    min-height: 100vh;
-    margin: 84px 14px 0 14px;
+    min-height: 100%;
+    margin: 84px auto 0;
     ${mediaMin('tabletLandscape')} {
-      margin: 100px 4em 0 4em;
+      margin: 100px 2.5% 0;
     }
   }
 

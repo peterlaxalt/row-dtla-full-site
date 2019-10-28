@@ -1,76 +1,151 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
+import styled from '@emotion/styled';
+import Masonry from 'react-masonry-component';
 
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 
+import { mediaMin } from '~/styles/mediaQueries';
+
+import collectiveItemsStub from '~/data/local/collectiveItems';
+
+const CollectiveItemCard = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin-bottom: 20px;
+  width: 100%;
+  ${mediaMin('tablet')} {
+    margin-bottom: 40px;
+    margin-right: 40px;
+  }
+  &.small-vertical {
+    ${mediaMin('tablet')} {
+      width: calc(25% - 40px);
+    }
+
+    .image-container {
+      height: 100%;
+      padding-bottom: 100%;
+    }
+  }
+  &.large-vertical {
+    ${mediaMin('tablet')} {
+      width: calc(50% - 40px);
+    }
+    .image-container {
+      height: 100%;
+      padding-bottom: 100%;
+    }
+  }
+  &.large-horizontal {
+    ${mediaMin('tablet')} {
+      width: calc(50% - 40px);
+    }
+    .image-container {
+      height: 50%;
+      padding-bottom: 50%;
+    }
+  }
+
+  .image-container {
+    background-image: ${props => `url(${props.imgSrc})`};
+    background-size: cover;
+  }
+
+  .description-container {
+    padding: 20px;
+    height: 180px;
+    h1 {
+      margin: 0;
+    }
+  }
+`;
+
+const generateCardClass = idx => {
+  let gridPosition = idx > 7 ? idx % 8 : idx;
+
+  const classObj = {
+    0: 'large-vertical',
+    1: 'large-horizontal',
+    2: 'small-vertical',
+    3: 'small-vertical',
+    4: 'large-horizontal',
+    5: 'large-vertical',
+    6: 'small-vertical',
+    7: 'small-vertical',
+  };
+
+  return classObj[gridPosition];
+};
+
+const parseTitle = title => {
+  const titleArray = title.split('\n');
+
+  return titleArray.map(el => <h1 key={el}>{el}</h1>);
+};
+
 const generateCollectiveItems = collectiveItems => {
-  return collectiveItems.map(collectiveItem => {
-    const {
-      closeTime,
-      description,
-      email,
-      facebook,
-      id,
-      image,
-      instagram,
-      openTime,
-      parking,
-      slug,
-      subtitle,
-      title,
-      type,
-      website,
-    } = collectiveItem;
+  return collectiveItems.map((collectiveItem, idx) => {
+    // console.log(collectiveItem);
+    const { displayTitle, image, slug, subtitle } = collectiveItem;
 
     return (
-      <div key={`entry-${id}`}>
-        <h1>{title}</h1>
-        <p>{description.description}</p>
-        <Link to={`/collective/${slug}`}>{title}</Link>
-      </div>
+      <CollectiveItemCard
+        className={`${generateCardClass(idx)} grid-item`}
+        to={`/collective/${slug}`}
+        key={`collective-item-${idx}`}
+        imgSrc={image.file.url}
+      >
+        <div className="image-container" title={image.description} />
+        <div className="description-container">
+          <p>{subtitle}</p>
+          {displayTitle && parseTitle(displayTitle.displayTitle)}
+        </div>
+      </CollectiveItemCard>
     );
   });
 };
 
+const masonryOptions = {
+  transitionDuration: '.25s',
+  itemSelector: '.grid-item',
+  columnWidth: '.small-vertical',
+};
+
 const CollectivePage = ({ data }) => {
-  const collectiveItems = data.allContentfulCollectiveItem.nodes;
+  // const collectiveItems = data.allContentfulCollectiveItem.nodes;
 
   return (
     <Layout>
       <SEO title="Collective" />
-      <div className="collective">{generateCollectiveItems(collectiveItems)}</div>
+      <Masonry
+        options={masonryOptions} // default {}
+        disableImagesLoaded={false} // default false
+        updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+      >
+        {generateCollectiveItems(collectiveItemsStub)}
+      </Masonry>
     </Layout>
   );
 };
 
 export default CollectivePage;
 
-export const query = graphql`
-  query CollectiveEntriesQuery {
-    allContentfulCollectiveItem {
-      nodes {
-        website
-        type
-        title
-        subtitle
-        slug
-        parking
-        instagram
-        image {
-          file {
-            url
-          }
-        }
-        id
-        facebook
-        email
-        description {
-          description
-        }
-        closeTime
-        openTime
-      }
-    }
-  }
-`;
+// export const query = graphql`
+//   query CollectiveEntriesQuery {
+//     allContentfulCollectiveItem {
+//       nodes {
+//         title
+//         subtitle
+//         slug
+//         image {
+//           file {
+//             url
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
