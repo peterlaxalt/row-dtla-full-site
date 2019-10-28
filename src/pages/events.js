@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import Masonry from 'react-masonry-component';
 import styled from '@emotion/styled';
@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import EventCard from '~/components/includes/events/EventCard';
+import Filter from '~/components/includes/sub-header/Filter';
 
 const masonryOptions = {
   transitionDuration: 0,
@@ -16,6 +17,11 @@ const EventsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  h2 {
+    font-size: 72px;
+    line-height: 80px;
+    margin: 0 0 32px 0;
+  }
   ul {
     padding: 0;
     list-style-type: none;
@@ -25,20 +31,32 @@ const EventsWrapper = styled.div`
   }
 `;
 
-const generateEvents = events => {
-  return events.map(event => {
-    const { id } = event;
-    return <EventCard className="event" event={event} key={id} />;
-  });
-};
-
 const EventsPage = ({ data }) => {
+  const [filter, setFilter] = useState('ALL');
+  const filters = ['ALL', 'FOOD TRUCKS', 'EVENTS', 'ARCHIVE'];
   const events = data.allContentfulEvent.nodes;
+
+  const generateEvents = events => {
+    let filteredEvents = events;
+    if (filter !== 'ALL') {
+      filteredEvents = filteredEvents.filter(newsItem => newsItem.type === filter);
+    }
+    return filteredEvents.map(event => {
+      const { id } = event;
+      return <EventCard className="event" event={event} key={id} />;
+    });
+  };
 
   return (
     <Layout>
       <SEO title="Events" />
       <EventsWrapper>
+        <h2>
+          What&apos;s on at
+          <br />
+          ROW DTLA
+        </h2>
+        <Filter filters={filters} activeFilter={filter} setFilter={setFilter} />
         <Masonry options={masonryOptions} elementType={'ul'}>
           {generateEvents(events)}
           <div className="gutter-sizer" />

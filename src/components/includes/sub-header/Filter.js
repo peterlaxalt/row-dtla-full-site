@@ -15,6 +15,11 @@ const FilterButton = styled.button`
   outline: none;
   border: none;
   cursor: pointer;
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 20px;
+  padding: 0;
+  margin: 0 16px;
   border-bottom: ${props => (props.active ? '4px solid #fff' : '4px solid transparent')};
 `;
 
