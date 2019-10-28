@@ -33,9 +33,9 @@ const NavRow = styled.nav`
 const SocialMedia = styled.li`
   a {
     margin-left: 2em;
-    &:first-child {
-      margin-left: 0;
-    }
+  }
+  a:first-of-type {
+    margin-left: 0;
   }
 `;
 
@@ -52,7 +52,7 @@ const DesktopNavigation = () => {
     });
 
     navigation.push(
-      <SocialMedia>
+      <SocialMedia key="social-media">
         <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
           <img src={InstagramLogo} alt="instagram logo" />
         </a>

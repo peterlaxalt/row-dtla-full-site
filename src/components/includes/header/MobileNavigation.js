@@ -11,9 +11,9 @@ import Hamburger from './Hamburger';
 const SocialMedia = styled.li`
   a {
     margin-left: 16px;
-    &:first-child {
-      margin-left: 0;
-    }
+  }
+  a:first-of-type {
+    margin-left: 0;
   }
 `;
 
@@ -87,7 +87,7 @@ const MobileNavigation = () => {
     });
 
     navigation.push(
-      <SocialMedia>
+      <SocialMedia key="social-media">
         <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
           <img src={InstagramLogo} alt="instagram logo" />
         </a>
