@@ -17,7 +17,6 @@ const EventsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-
   ul {
     padding: 0;
     list-style-type: none;

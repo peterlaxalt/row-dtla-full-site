@@ -28,7 +28,6 @@ const CollectiveItemCard = styled(Link)`
   width: 100%;
   ${mediaMin('tablet')} {
     margin-bottom: 40px;
-    margin-right: 40px;
   }
   &.small-vertical {
     ${mediaMin('tablet')} {
@@ -100,6 +99,7 @@ const masonryOptions = {
   transitionDuration: '.25s',
   itemSelector: '.grid-item',
   columnWidth: '.small-vertical',
+  gutter: '.gutter-sizer',
 };
 
 const CollectivePage = ({ data }) => {
