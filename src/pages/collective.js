@@ -99,7 +99,7 @@ const masonryOptions = {
   transitionDuration: '.25s',
   itemSelector: '.grid-item',
   columnWidth: '.small-vertical',
-  gutter: '.gutter-sizer',
+  gutter: 40,
 };
 
 const CollectivePage = ({ data }) => {
