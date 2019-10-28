@@ -60,30 +60,25 @@ const ImageColumn = styled.div`
   ${mediaMin('tabletLandscape')} {
     width: 50%;
   }
-  img {
-    max-width: 100%;
-    max-height: 100%;
-    height: 100%;
-    width: 100%;
+  div {
   }
+`;
+
+const BackgroundImage = styled.div`
+  background-image: url("${props => props.test}");
+  max-width: 100%;
+  max-height: 100%;
+  height: 100%;
+  width: 100%;
+  background-fit: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 `;
 
 const EventShow = ({ data }) => {
   const { contentfulEvent } = data;
-  const {
-    address,
-    bodyText,
-    date,
-    endDate,
-    startTime,
-    endTime,
-    image,
-    slug,
-    subTitle,
-    suite,
-    title,
-    type,
-  } = contentfulEvent;
+  const { bodyText, date, endDate, startTime, endTime, image, title } = contentfulEvent;
   return (
     <Layout>
       <SEO title={title} />
@@ -99,7 +94,7 @@ const EventShow = ({ data }) => {
             <p>{bodyText.bodyText}</p>
           </CopyColumn>
           <ImageColumn>
-            <img src={image.file.url} alt={image.description} />
+            <BackgroundImage test={image.file.url} alt={image.description} />
           </ImageColumn>
         </EventInfo>
       </EventWrapper>
