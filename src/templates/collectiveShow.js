@@ -7,25 +7,45 @@ import SEO from '~/components/seo';
 
 // import collectiveItem from '~/data/local/collectiveItem';
 
+import { mediaMin } from '~/styles/mediaQueries';
+
 import BackArrow from '~/images/icons/arrow-back.svg';
 import FacebookLogo from '~/images/icons/fb-black.svg';
 import InstagramLogo from '~/images/icons/insta-black.svg';
 
 const CollectiveWrapper = styled.div`
-  display: flex;
-  height: 100%;
-
-  .column {
-    width: 50%;
-  }
-
-  .right {
-    background: grey;
-    height: 100%;
+  width: 90%;
+  margin: 0 auto;
+  ${mediaMin('tabletLandscape')} {
+    width: 100%;
+    margin: initial;
   }
 `;
 
-const CollectiveDetails = styled.div`
+const CollectiveInfo = styled.div`
+  display: flex;
+  height: 100%;
+  flex-direction: column-reverse;
+  margin-top: 24px;
+
+  ${mediaMin('tabletLandscape')} {
+    flex-direction: row;
+  }
+
+  .column {
+    width: 100%;
+    ${mediaMin('tabletLandscape')} {
+      width: 50%;
+      margin: initial;
+    }
+  }
+`;
+
+const CopyColumn = styled.div`
+  ${mediaMin('tabletLandscape')} {
+    padding-right: 1em;
+  }
+
   .subtitle {
     text-transform: uppercase;
     font-family: 'Apercu';
@@ -33,8 +53,11 @@ const CollectiveDetails = styled.div`
   }
 
   .title {
-    font-size: 5rem;
+    font-size: 3rem;
     margin: 20px 0;
+    ${mediaMin('tabletLandscape')} {
+      font-size: 5rem;
+    }
   }
 
   .description {
@@ -85,6 +108,12 @@ const CollectiveDetails = styled.div`
   }
 `;
 
+const ImageColumn = styled.div`
+  img {
+    width: 100%;
+  }
+`;
+
 const CollectiveShow = ({ data }) => {
   const {
     addressLine1,
@@ -105,36 +134,39 @@ const CollectiveShow = ({ data }) => {
   return (
     <Layout>
       <SEO title={title} />
-      <Link to="/collective">
-        <img src={BackArrow} alt="back arrow" />
-      </Link>
+
       <CollectiveWrapper>
-        <CollectiveDetails className="column left">
-          <h3 className="subtitle">{subtitle}</h3>
-          <h1 className="title">{title}</h1>
-          <h4 className="description">{descriptionBody.descriptionBody}</h4>
-          <p className="info-paragraph parking-instructions">Park At {parking}</p>
-          <button className="parking-btn">Parking Directions</button>
-          <p className="info-paragraph address">{addressLine1}</p>
-          <p className="info-paragraph address">{addressLine2}</p>
-          <p className="info-paragraph">
-            <a href={websiteURL} target="_blank" rel="noopener noreferrer">
-              {websiteString}
+        <Link to="/collective">
+          <img src={BackArrow} alt="back arrow" />
+        </Link>
+        <CollectiveInfo>
+          <CopyColumn className="column left">
+            <h3 className="subtitle">{subtitle}</h3>
+            <h1 className="title">{title}</h1>
+            <h4 className="description">{descriptionBody.descriptionBody}</h4>
+            <p className="info-paragraph parking-instructions">Park At {parking}</p>
+            <button className="parking-btn">Parking Directions</button>
+            <p className="info-paragraph address">{addressLine1}</p>
+            <p className="info-paragraph address">{addressLine2}</p>
+            <p className="info-paragraph">
+              <a href={websiteURL} target="_blank" rel="noopener noreferrer">
+                {websiteString}
+              </a>
+            </p>
+            <a className="phone-number" href={`tel:${phoneNumber}`}>
+              {phoneNumber}
             </a>
-          </p>
-          <a className="phone-number" href={`tel:${phoneNumber}`}>
-            {phoneNumber}
-          </a>
-          <a className="social-icon" href={instagram} target="_blank" rel="noopener noreferrer">
-            <img src={InstagramLogo} alt="instagram logo" />
-          </a>
-          <a className="social-icon" href={facebook} target="_blank" rel="noopener noreferrer">
-            <img src={FacebookLogo} alt="facebook logo" />
-          </a>
-        </CollectiveDetails>
-        <div className="column right">
-          <img src={image.file.url} alt={image.description} />
-        </div>
+            <a className="social-icon" href={instagram} target="_blank" rel="noopener noreferrer">
+              <img src={InstagramLogo} alt="instagram logo" />
+            </a>
+            <a className="social-icon" href={facebook} target="_blank" rel="noopener noreferrer">
+              <img src={FacebookLogo} alt="facebook logo" />
+            </a>
+          </CopyColumn>
+          <ImageColumn className="column right">
+            <img src={image.file.url} alt={image.description} />
+          </ImageColumn>
+        </CollectiveInfo>
       </CollectiveWrapper>
     </Layout>
   );
