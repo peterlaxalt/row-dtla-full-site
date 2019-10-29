@@ -25,6 +25,6 @@ cache:
   directories:
     - node_modules
 dist: trusty
-install: npm install
+install: npm install && npm install -g gatsby-cli
 script: npm run build
-before_deploy: npm install -g gatsby-cli
+before_deploy: npm test
