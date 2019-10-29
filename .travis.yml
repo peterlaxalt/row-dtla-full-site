@@ -5,7 +5,7 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: $BUCKET_DEV
     acl: public_read
-    local_dir: build
+    local_dir: public
     skip_cleanup: true
     on:
       branch: 'develop'
@@ -15,7 +15,7 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: $BUCKET_PROD
     acl: public_read
-    local_dir: build
+    local_dir: public
     skip_cleanup: true
     on:
       branch: 'master'
@@ -27,4 +27,4 @@ cache:
 dist: trusty
 install: npm install
 script: npm run build
-before_deploy: npm test
+before_deploy: npm install -g gatsby-cli
