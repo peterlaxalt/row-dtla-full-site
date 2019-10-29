@@ -75,7 +75,7 @@ const TimeTable = styled.div`
   }
 `;
 
-const Parking = props => {
+const Parking = () => {
   const context = useContext(Context);
   const { setDarkTheme } = context;
 
