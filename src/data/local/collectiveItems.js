@@ -1,6 +1,6 @@
 const collectiveItems = [
   {
-    slug: '13-bonaparte-5',
+    slug: '13-bonaparte',
     title: '13 Bonaparte',
     subtitle: 'Contemporary Menswear',
     image: {
