@@ -7,6 +7,8 @@ import SEO from '~/components/seo';
 
 // import collectiveItem from '~/data/local/collectiveItem';
 
+// import { allEqual, formatTime } from '~/helpers/parseDates;';
+
 import { mediaMin } from '~/styles/mediaQueries';
 
 import BackArrow from '~/images/icons/arrow-back.svg';
@@ -70,6 +72,16 @@ const CopyColumn = styled.div`
     text-transform: uppercase;
   }
 
+  .hours-list {
+    padding-left: 0;
+    li {
+      list-style-type: none;
+      .info-paragraph {
+        margin: 0;
+      }
+    }
+  }
+
   .parking-instructions {
     text-transform: uppercase;
   }
@@ -114,6 +126,53 @@ const ImageColumn = styled.div`
   }
 `;
 
+const formatTime = datetime => {
+  const date = new Date(datetime);
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let dd = 'AM';
+
+  if (hours >= 12) {
+    hours = hours - 12;
+    dd = 'PM';
+  }
+
+  if (hours === 0) {
+    hours = 12;
+  }
+
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  return `${hours}:${minutes} ${dd}`;
+};
+
+const allEqual = arr => arr.every(value => value === arr[0]);
+
+const generateOpenHours = hours => {
+  let hoursCopy = hours;
+  const weekdayArray = Object.keys(hours);
+
+  weekdayArray.forEach(weekday => {
+    let openTime = formatTime(hours[weekday].timeOpen);
+    let closeTime = formatTime(hours[weekday].timeClose);
+
+    hoursCopy[weekday] = `${openTime} - ${closeTime}`;
+  });
+
+  // Check to see if all hours are the same
+  const weekdayHourValues = Object.values(hoursCopy);
+  if (allEqual(weekdayHourValues)) {
+    return <p className="info-paragraph">{`Daily ${weekdayHourValues[0]}`}</p>;
+  }
+
+  const listItemArray = weekdayArray.map(weekday => (
+    <li key={`${weekday}-hours`}>
+      <p className="info-paragraph">{`${weekday}: ${hoursCopy[weekday]}`}</p>
+    </li>
+  ));
+
+  return <ul className="hours-list">{listItemArray}</ul>;
+};
+
 const CollectiveShow = ({ data }) => {
   const {
     addressLine1,
@@ -128,8 +187,53 @@ const CollectiveShow = ({ data }) => {
     facebook,
     instagram,
     title,
+    timeCloseFriday,
+    timeCloseMonday,
+    timeCloseSaturday,
+    timeCloseSunday,
+    timeCloseThursday,
+    timeCloseTuesday,
+    timeCloseWednesday,
+    timeOpenFriday,
+    timeOpenMonday,
+    timeOpenSaturday,
+    timeOpenSunday,
+    timeOpenThursday,
+    timeOpenTuesday,
+    timeOpenWednesday,
   } = data.contentfulCollectiveItem;
   // const { descriptionBody, title } = collectiveItem;
+
+  const openHours = {
+    monday: {
+      timeOpen: timeOpenMonday,
+      timeClose: timeCloseMonday,
+    },
+    tuesday: {
+      timeOpen: timeOpenTuesday,
+      timeClose: timeCloseTuesday,
+    },
+    wednesday: {
+      timeOpen: timeOpenWednesday,
+      timeClose: timeCloseWednesday,
+    },
+    thursday: {
+      timeOpen: timeOpenThursday,
+      timeClose: timeCloseThursday,
+    },
+    friday: {
+      timeOpen: timeOpenFriday,
+      timeClose: timeCloseFriday,
+    },
+    saturday: {
+      timeOpen: timeOpenSaturday,
+      timeClose: timeCloseSaturday,
+    },
+    sunday: {
+      timeOpen: timeOpenSunday,
+      timeClose: timeCloseSunday,
+    },
+  };
 
   return (
     <Layout>
@@ -144,6 +248,7 @@ const CollectiveShow = ({ data }) => {
             <h3 className="subtitle">{subtitle}</h3>
             <h1 className="title">{title}</h1>
             <h4 className="description">{descriptionBody.descriptionBody}</h4>
+            {generateOpenHours(openHours)}
             <p className="info-paragraph parking-instructions">Park At {parking}</p>
             <button className="parking-btn">Parking Directions</button>
             <p className="info-paragraph address">{addressLine1}</p>
@@ -154,7 +259,7 @@ const CollectiveShow = ({ data }) => {
               </a>
             </p>
             <a className="phone-number" href={`tel:${phoneNumber}`}>
-              {phoneNumber}
+              <p className="info-paragraph">{phoneNumber}</p>
             </a>
             <a className="social-icon" href={instagram} target="_blank" rel="noopener noreferrer">
               <img src={InstagramLogo} alt="instagram logo" />
