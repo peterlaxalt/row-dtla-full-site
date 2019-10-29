@@ -96,7 +96,7 @@ const Footer = () => {
           <a href="https://goo.gl/maps/vuTZGz84t5xaqsgK6" target="_blank" rel="noopener noreferrer">
             DIRECTIONS
           </a>
-          <Link to="/">PARKING RATES</Link>
+          <Link to="/parking">PARKING RATES</Link>
         </div>
         <div className="row">
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">

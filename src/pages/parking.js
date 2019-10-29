@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import styled from '@emotion/styled';
-import { Link, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 
 import Context from '~/config/Context';
 import BackArrow from '~/images/icons/arrow-back-white.svg';
@@ -59,6 +59,9 @@ const TimeTable = styled.div`
     display: flex;
     width: 100%;
     justify-content: space-between;
+    ${mediaMin('tablet')} {
+      width: 50%;
+    }
     ${mediaMin('tabletLandscape')} {
       width: initial;
     }
