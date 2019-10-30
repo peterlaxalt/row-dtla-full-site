@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { Link, graphql } from 'gatsby';
 import styled from '@emotion/styled';
+import RichText from '@madebyconnor/rich-text-to-jsx';
 
 import Context from '~/config/Context';
 import Layout from '~/components/layouts';
@@ -34,10 +35,15 @@ const CopyColumn = styled.div`
     width: 50%;
     padding: 0 10% 0 0;
   }
-  h3 {
-    font-size: 55px;
-    line-height: 60px;
+  h2 {
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 44px;
     margin: 16px 0;
+    ${mediaMin('tabletLandscape')} {
+      font-size: 55px;
+      line-height: 60px;
+    }
   }
   span {
     font-size: 15px;
@@ -45,7 +51,7 @@ const CopyColumn = styled.div`
     line-height: 20px;
   }
   p {
-    margin: 32px 0;
+    margin: 32px 0 0 0;
     font-family: 'SangBleu Kingdom';
     font-size: 16px;
     font-weight: 500;
@@ -61,25 +67,17 @@ const ImageColumn = styled.div`
   ${mediaMin('tabletLandscape')} {
     width: 50%;
   }
-  div {
-  }
 `;
 
-const BackgroundImage = styled.div`
-  background-image: url("${props => props.imgsrc}");
+const HeroImage = styled.img`
   max-width: 100%;
   max-height: 100%;
-  height: 100%;
   width: 100%;
-  background-fit: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 `;
 
 const EventShow = ({ data }) => {
   const { contentfulEvent } = data;
-  const { bodyText, date, endDate, startTime, endTime, image, title } = contentfulEvent;
+  const { body, date, endDate, startTime, endTime, image, title } = contentfulEvent;
   const context = useContext(Context);
   const { setDarkTheme } = context;
 
@@ -96,13 +94,13 @@ const EventShow = ({ data }) => {
         </Link>
         <EventInfo>
           <CopyColumn>
-            <span>{`${date}${endDate && ` - ${endDate}`}`}</span>
-            <h3>{title}</h3>
+            <span>{`${date}${endDate ? ` - ${endDate}` : ''}`}</span>
+            <h2>{title}</h2>
             <span>{`${startTime} - ${endTime}`}</span>
-            <p>{bodyText.bodyText}</p>
+            <RichText richText={JSON.parse(body.body)} />
           </CopyColumn>
           <ImageColumn>
-            <BackgroundImage imgsrc={image.file.url} alt={image.description} />
+            <HeroImage src={image.file.url} alt={image.description} />
           </ImageColumn>
         </EventInfo>
       </EventWrapper>
@@ -116,8 +114,8 @@ export const pageQuery = graphql`
   query($slug: String!) {
     contentfulEvent(slug: { eq: $slug }) {
       address
-      bodyText {
-        bodyText
+      body {
+        body
       }
       date(formatString: "MMM Do")
       endDate(formatString: "MMM Do")

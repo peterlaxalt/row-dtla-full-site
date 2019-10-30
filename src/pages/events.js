@@ -67,7 +67,7 @@ export default EventsPage;
 
 export const query = graphql`
   {
-    allContentfulEvent {
+    allContentfulEvent(sort: { fields: date, order: DESC }) {
       nodes {
         date(formatString: "MMM Do")
         endDate(formatString: "MMM Do")
