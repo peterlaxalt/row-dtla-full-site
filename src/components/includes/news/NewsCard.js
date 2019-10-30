@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
-import { mediaMin } from '~/styles/MediaQueries';
+import { mediaMin } from '~/styles/mediaQueries';
 import { truncateText } from '~/components/includes/utils/helpers';
 
 const NewsCardWrapper = styled.li`
