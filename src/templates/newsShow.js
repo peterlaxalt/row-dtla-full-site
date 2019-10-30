@@ -90,16 +90,32 @@ const ImageColumn = styled.div`
   }
 `;
 
-const BackgroundImage = styled.div`
-  background-image: url("${props => props.imgsrc}");
+const MobileImages = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  ${mediaMin('tabletLandscape')} {
+    display: none;
+  }
+`;
+
+const SmallImageContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const HeroImage = styled.img`
   max-width: 100%;
   max-height: 100%;
-  height: 100%;
   width: 100%;
-  background-fit: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: contain;
+`;
+
+const SmallImage = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  width: 50%;
+  padding: 16px 8px 0 8px;
+  ${props => (props.position ? 'padding-left: 0;' : 'padding-right: 0;')}
 `;
 
 const MobileImage = styled.img`
@@ -114,7 +130,7 @@ const MobileImage = styled.img`
 
 const NewsShow = ({ data }) => {
   const { contentfulNewsItem } = data;
-  const { date, image, title, publication, body, articleURL } = contentfulNewsItem;
+  const { date, images, title, publication, body, articleURL } = contentfulNewsItem;
   const context = useContext(Context);
   const { setDarkTheme } = context;
 
@@ -134,14 +150,26 @@ const NewsShow = ({ data }) => {
             <span>{date}</span>
             <h2>{title}</h2>
             <span>{publication}</span>
-            <MobileImage src={image.file.url} />
+            <MobileImages>
+              <HeroImage src={images[0].file.url} />
+              <SmallImageContainer>
+                {images.slice(1).map((image, idx) => {
+                  return <SmallImage src={image.file.url} key={image.file.url} position={idx % 2 === 0} />;
+                })}
+              </SmallImageContainer>
+            </MobileImages>
             <RichText richText={JSON.parse(body.body)} />
             <BoxLink target="_blank" rel="noopener noreferrer" href={articleURL}>
               FULL ARTICLE
             </BoxLink>
           </CopyColumn>
           <ImageColumn>
-            <BackgroundImage imgsrc={image.file.url} />
+            <HeroImage src={images[0].file.url} />
+            <SmallImageContainer>
+              {images.slice(1).map((image, idx) => {
+                return <SmallImage src={image.file.url} key={image.file.url} position={idx % 2 === 0} />;
+              })}
+            </SmallImageContainer>
           </ImageColumn>
         </NewsInfo>
       </NewsWrapper>
@@ -162,8 +190,7 @@ export const pageQuery = graphql`
       body {
         body
       }
-      image {
-        description
+      images {
         file {
           url
         }

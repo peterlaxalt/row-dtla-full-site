@@ -76,8 +76,7 @@ export const query = graphql`
         publication
         id
         type
-        image {
-          description
+        images {
           file {
             url
           }

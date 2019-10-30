@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
-import { mediaMin } from '~/styles/MediaQueries';
+import { mediaMin } from '~/styles/mediaQueries';
 import { truncateText } from '~/components/includes/utils/helpers';
 
 const NewsCardWrapper = styled.li`
@@ -76,11 +76,11 @@ const MobileImage = styled.img`
 `;
 
 const NewsCard = ({ article }) => {
-  const { image, date, title, slug, publication } = article;
+  const { images, date, title, slug, publication } = article;
   return (
     <NewsCardWrapper>
-      <BackgroundImage imgsrc={image.file.url} />
-      <MobileImage src={image.file.url} />
+      <BackgroundImage imgsrc={images[0].file.url} />
+      <MobileImage src={images[0].file.url} />
       <Link to={`/news/${slug}`}>
         <CopySection>
           <span>{date}</span>
