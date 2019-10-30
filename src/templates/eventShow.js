@@ -66,7 +66,7 @@ const ImageColumn = styled.div`
 `;
 
 const BackgroundImage = styled.div`
-  background-image: url("${props => props.test}");
+  background-image: url("${props => props.imgsrc}");
   max-width: 100%;
   max-height: 100%;
   height: 100%;
@@ -102,7 +102,7 @@ const EventShow = ({ data }) => {
             <p>{bodyText.bodyText}</p>
           </CopyColumn>
           <ImageColumn>
-            <BackgroundImage test={image.file.url} alt={image.description} />
+            <BackgroundImage imgsrc={image.file.url} alt={image.description} />
           </ImageColumn>
         </EventInfo>
       </EventWrapper>

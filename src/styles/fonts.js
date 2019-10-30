@@ -46,10 +46,8 @@ const fonts = css`
   @font-face {
     font-family: 'Apercu';
     src: url(${ApercuLightEOT});
-    src: url(${ApercuLightEOT + '?#iefix'}) format('embedded-opentype'),
-      url(${ApercuLightWOFF2}) format('woff2'),
-      url(${ApercuLightWOFF}) format('woff'),
-      url(${ApercuLightTTF}) format('truetype');
+    src: url(${ApercuLightEOT + '?#iefix'}) format('embedded-opentype'), url(${ApercuLightWOFF2}) format('woff2'),
+      url(${ApercuLightWOFF}) format('woff'), url(${ApercuLightTTF}) format('truetype');
     font-weight: 300;
     font-style: normal;
   }
@@ -57,10 +55,8 @@ const fonts = css`
   @font-face {
     font-family: 'Apercu';
     src: url(${ApercuRegularEOT});
-    src: url(${ApercuRegularEOT + '?#iefix'}) format('embedded-opentype'),
-      url(${ApercuRegularWOFF2}) format('woff2'),
-      url(${ApercuRegularWOFF}) format('woff'),
-      url(${ApercuRegularTTF}) format('truetype');
+    src: url(${ApercuRegularEOT + '?#iefix'}) format('embedded-opentype'), url(${ApercuRegularWOFF2}) format('woff2'),
+      url(${ApercuRegularWOFF}) format('woff'), url(${ApercuRegularTTF}) format('truetype');
     font-weight: normal;
     font-style: normal;
   }
@@ -68,10 +64,8 @@ const fonts = css`
   @font-face {
     font-family: 'Apercu Mono';
     src: url(${ApercuMonoEOT});
-    src: url(${ApercuMonoEOT + '?#iefix'}) format('embedded-opentype'),
-      url(${ApercuMonoWOFF2}) format('woff2'),
-      url(${ApercuMonoWOFF}) format('woff'),
-      url(${ApercuMonoTTF}) format('truetype');
+    src: url(${ApercuMonoEOT + '?#iefix'}) format('embedded-opentype'), url(${ApercuMonoWOFF2}) format('woff2'),
+      url(${ApercuMonoWOFF}) format('woff'), url(${ApercuMonoTTF}) format('truetype');
     font-weight: normal;
     font-style: normal;
   }
@@ -79,10 +73,8 @@ const fonts = css`
   @font-face {
     font-family: 'SangBleu Kingdom';
     src: url(${SangBleuKingdomRegularEOT});
-    src: url(${SangBleuKingdomRegularEOT + '?#iefix'})
-        format('embedded-opentype'),
-      url(${SangBleuKingdomRegularWOFF2}) format('woff2'),
-      url(${SangBleuKingdomRegularWOFF}) format('woff'),
+    src: url(${SangBleuKingdomRegularEOT + '?#iefix'}) format('embedded-opentype'),
+      url(${SangBleuKingdomRegularWOFF2}) format('woff2'), url(${SangBleuKingdomRegularWOFF}) format('woff'),
       url(${SangBleuKingdomRegularTTF}) format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -91,10 +83,8 @@ const fonts = css`
   @font-face {
     font-family: 'SangBleu Kingdom';
     src: url(${SangBleuKingdomMediumEOT});
-    src: url(${SangBleuKingdomMediumEOT + '?#iefix'})
-        format('embedded-opentype'),
-      url(${SangBleuKingdomMediumWOFF2}) format('woff2'),
-      url(${SangBleuKingdomMediumWOFF}) format('woff'),
+    src: url(${SangBleuKingdomMediumEOT + '?#iefix'}) format('embedded-opentype'),
+      url(${SangBleuKingdomMediumWOFF2}) format('woff2'), url(${SangBleuKingdomMediumWOFF}) format('woff'),
       url(${SangBleuKingdomMediumTTF}) format('truetype');
     font-weight: 500;
     font-style: normal;
@@ -104,8 +94,7 @@ const fonts = css`
     font-family: 'SangBleu Kingdom';
     src: url(${SangBleuKingdomBoldEOT});
     src: url(${SangBleuKingdomBoldEOT + '?#iefix'}) format('embedded-opentype'),
-      url(${SangBleuKingdomBoldWOFF2}) format('woff2'),
-      url(${SangBleuKingdomBoldWOFF}) format('woff'),
+      url(${SangBleuKingdomBoldWOFF2}) format('woff2'), url(${SangBleuKingdomBoldWOFF}) format('woff'),
       url(${SangBleuKingdomBoldTTF}) format('truetype');
     font-weight: 500;
     font-style: italic;
@@ -114,13 +103,11 @@ const fonts = css`
   @font-face {
     font-family: 'SangBleu Kingdom';
     src: url(${SangBleuKingdomMediumItalicEOT});
-    src: url(${SangBleuKingdomMediumItalicEOT + '?#iefix'})
-        format('embedded-opentype'),
-      url(${SangBleuKingdomMediumItalicWOFF2}) format('woff2'),
-      url(${SangBleuKingdomMediumItalicWOFF}) format('woff'),
+    src: url(${SangBleuKingdomMediumItalicEOT + '?#iefix'}) format('embedded-opentype'),
+      url(${SangBleuKingdomMediumItalicWOFF2}) format('woff2'), url(${SangBleuKingdomMediumItalicWOFF}) format('woff'),
       url(${SangBleuKingdomMediumItalicTTF}) format('truetype');
     font-weight: bold;
-    font-style: normal;
+    font-style: italic;
   }
 `;
 
