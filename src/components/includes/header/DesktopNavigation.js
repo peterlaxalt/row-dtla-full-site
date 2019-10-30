@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import styled from '@emotion/styled';
+import { Link } from 'gatsby';
 
 import Context from '~/config/Context';
-import NavLink from '~/components/includes/header/NavLink';
+
 import routes from '~/data/routes';
 import { mediaMin } from '~/styles/mediaQueries';
+
 import FacebookLogoBlack from '~/images/icons/fb-black.svg';
 import InstagramLogoBlack from '~/images/icons/insta-black.svg';
 import FacebookLogoWhite from '~/images/icons/fb-white.svg';
@@ -30,12 +32,12 @@ const NavRow = styled.nav`
         text-transform: uppercase;
         height: 100%;
         display: flex;
+        transition: border-top 400ms ease, color 400ms ease;
         span {
           display: flex;
           align-items: center;
           height: 100%;
         }
-        &:visited,
         &:hover {
           color: ${props => (props.dark ? '#fff' : '#000')};
         }
@@ -55,15 +57,24 @@ const SocialMedia = styled.li`
 `;
 
 const DesktopNavigation = () => {
-  const context = useContext(Context);
-  const { darkTheme } = context;
+  const { darkTheme } = useContext(Context);
+
   const generateNav = () => {
     const navigation = routes.map(route => {
       return (
         <li key={route.link}>
-          <NavLink to={route.url}>
+          <Link
+            to={route.url}
+            getProps={({ isCurrent }) => {
+              return {
+                style: {
+                  borderTop: isCurrent ? `4px solid ${darkTheme ? '#fff' : '#000'}` : '4px solid transparent',
+                },
+              };
+            }}
+          >
             <span>{route.link}</span>
-          </NavLink>
+          </Link>
         </li>
       );
     });

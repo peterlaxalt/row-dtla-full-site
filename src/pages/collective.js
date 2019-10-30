@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
 
-import Context from '~/config/Context';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import Filter from '~/components/includes/sub-header/Filter';
@@ -19,9 +18,6 @@ const CollectiveWrapper = styled.div`
   .masonry {
     margin: 48px 0;
   }
-  .grid-sizer {
-    width: calc(144px / 3);
-  }
 `;
 
 const CollectiveItemCard = styled(Link)`
@@ -31,11 +27,11 @@ const CollectiveItemCard = styled(Link)`
   margin-bottom: 20px;
   width: 100%;
   ${mediaMin('tablet')} {
-    margin-bottom: 48px;
+    margin-bottom: 40px;
   }
   &.small-vertical {
     ${mediaMin('tablet')} {
-      width: calc(25% - 36px);
+      width: calc(25% - 40px);
     }
 
     .image-container {
@@ -45,7 +41,7 @@ const CollectiveItemCard = styled(Link)`
   }
   &.large-vertical {
     ${mediaMin('tablet')} {
-      width: calc(50% - 24px);
+      width: calc(50% - 40px);
     }
     .image-container {
       height: 100%;
@@ -54,7 +50,7 @@ const CollectiveItemCard = styled(Link)`
   }
   &.large-horizontal {
     ${mediaMin('tablet')} {
-      width: calc(50% - 24px);
+      width: calc(50% - 40px);
     }
     .image-container {
       height: 50%;
@@ -103,7 +99,28 @@ const masonryOptions = {
   transitionDuration: '.25s',
   itemSelector: '.grid-item',
   columnWidth: '.small-vertical',
-  gutter: '.grid-sizer',
+  gutter: 40,
+};
+
+const generateCollectiveItems = collectiveItems => {
+  return collectiveItems.map((collectiveItem, idx) => {
+    const { displayTitle, image, slug, subtitle } = collectiveItem;
+
+    return (
+      <CollectiveItemCard
+        className={`${generateCardClass(idx)} grid-item`}
+        to={`/collective/${slug}`}
+        key={`collective-item-${idx}`}
+        imgsrc={image.file.url}
+      >
+        <div className="image-container" title={image.description} />
+        <div className="description-container">
+          <p>{subtitle}</p>
+          {displayTitle && parseTitle(displayTitle.displayTitle)}
+        </div>
+      </CollectiveItemCard>
+    );
+  });
 };
 
 const CollectivePage = ({ data }) => {
@@ -111,37 +128,6 @@ const CollectivePage = ({ data }) => {
   const filters = ['ALL', 'DINE', 'SHOP', 'LIFESTYLE', 'POP-UP'];
 
   const collectiveItems = data.allContentfulCollectiveItem.nodes;
-  const context = useContext(Context);
-  const { setDarkTheme } = context;
-
-  const generateCollectiveItems = () => {
-    let filteredCollectives = collectiveItems;
-    if (filter !== 'ALL') {
-      filteredCollectives = filteredCollectives.filter(collectiveItem => collectiveItem.type === filter);
-    }
-    return filteredCollectives.map((collectiveItem, idx) => {
-      const { displayTitle, image, slug, subtitle } = collectiveItem;
-
-      return (
-        <CollectiveItemCard
-          className={`${generateCardClass(idx)} grid-item`}
-          to={`/collective/${slug}`}
-          key={`collective-item-${idx}`}
-          imgsrc={image.file.url}
-        >
-          <div className="image-container" title={image.description} />
-          <div className="description-container">
-            <p>{subtitle}</p>
-            {displayTitle && parseTitle(displayTitle.displayTitle)}
-          </div>
-        </CollectiveItemCard>
-      );
-    });
-  };
-
-  useEffect(() => {
-    setDarkTheme(false);
-  }, []);
 
   return (
     <Layout>
@@ -154,8 +140,7 @@ const CollectivePage = ({ data }) => {
           disableImagesLoaded={false} // default false
           updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
         >
-          {generateCollectiveItems()}
-          <div className="grid-sizer" />
+          {generateCollectiveItems(collectiveItems)}
         </Masonry>
       </CollectiveWrapper>
     </Layout>
@@ -166,7 +151,7 @@ export default CollectivePage;
 
 export const query = graphql`
   query CollectiveEntriesQuery {
-    allContentfulCollectiveItem(sort: { fields: title, order: ASC }) {
+    allContentfulCollectiveItem {
       nodes {
         displayTitle {
           displayTitle
@@ -174,7 +159,6 @@ export const query = graphql`
         title
         subtitle
         slug
-        type
         image {
           file {
             url
