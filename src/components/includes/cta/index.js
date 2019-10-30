@@ -4,19 +4,13 @@ import Modal from 'react-modal';
 
 import Context from '~/config/Context';
 import SubscribeForm from '~/components/includes/forms/SubscribeForm';
+import { mediaMin } from '~/styles/mediaQueries';
 
 const ModalStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    backgroundColor: '#000',
-    color: '#fff',
-    zIndex: '101',
-    width: '50%',
+  overlay: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 };
 
@@ -24,11 +18,18 @@ const ModalInner = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  margin: 8em;
+  margin: 64px 14px;
+  ${mediaMin('tabletLandscape')} {
+    margin: 8em;
+  }
   h3 {
-    font-size: 55px;
-    line-height: 60px;
     margin: 0;
+    font-size: 40px;
+    line-height: 44px;
+    ${mediaMin('tabletLandscape')} {
+      font-size: 55px;
+      line-height: 60px;
+    }
   }
   p {
     margin-bottom: 2em;
@@ -41,6 +42,7 @@ const CloseButton = styled.button`
   position: absolute;
   top: 24px;
   right: 24px;
+  border: none;
   svg {
     height: 24px;
     width: 24px;
@@ -51,7 +53,7 @@ const CTA = () => {
   const context = useContext(Context);
   const { CTAActive, closeCTA } = context;
   return (
-    <Modal isOpen={CTAActive} style={ModalStyles}>
+    <Modal isOpen={CTAActive} className="modal" style={ModalStyles}>
       <CloseButton onClick={closeCTA}>
         <svg
           viewBox="0 0 18 18"
@@ -78,8 +80,8 @@ const CTA = () => {
           Newsletter.
         </h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
         </p>
         <SubscribeForm />
       </ModalInner>

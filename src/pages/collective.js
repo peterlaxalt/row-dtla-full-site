@@ -28,13 +28,14 @@ const CollectiveItemCard = styled(Link)`
   display: flex;
   flex-direction: column;
   border: 1px solid black;
-  margin-bottom: 20px;
   width: 100%;
-  ${mediaMin('tablet')} {
-    margin-bottom: 48px;
-  }
+  margin-bottom: 48px;
+
   &.small-vertical {
     ${mediaMin('tablet')} {
+      width: calc(50% - 24px);
+    }
+    ${mediaMin('tabletLandscape')} {
       width: calc(25% - 36px);
     }
 
@@ -44,7 +45,7 @@ const CollectiveItemCard = styled(Link)`
     }
   }
   &.large-vertical {
-    ${mediaMin('tablet')} {
+    ${mediaMin('tabletLandscape')} {
       width: calc(50% - 24px);
     }
     .image-container {
@@ -53,7 +54,7 @@ const CollectiveItemCard = styled(Link)`
     }
   }
   &.large-horizontal {
-    ${mediaMin('tablet')} {
+    ${mediaMin('tabletLandscape')} {
       width: calc(50% - 24px);
     }
     .image-container {
