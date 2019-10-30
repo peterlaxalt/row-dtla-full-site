@@ -35,7 +35,7 @@ const CollectiveItemCard = styled(Link)`
   }
   &.small-vertical {
     ${mediaMin('tablet')} {
-      width: calc(25% - 48px);
+      width: calc(25% - 36px);
     }
 
     .image-container {
@@ -45,7 +45,7 @@ const CollectiveItemCard = styled(Link)`
   }
   &.large-vertical {
     ${mediaMin('tablet')} {
-      width: calc(50% - 48px);
+      width: calc(50% - 24px);
     }
     .image-container {
       height: 100%;
@@ -54,7 +54,7 @@ const CollectiveItemCard = styled(Link)`
   }
   &.large-horizontal {
     ${mediaMin('tablet')} {
-      width: calc(50% - 48px);
+      width: calc(50% - 24px);
     }
     .image-container {
       height: 50%;
