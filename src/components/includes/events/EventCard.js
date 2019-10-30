@@ -14,6 +14,9 @@ const EventWrapper = styled.li`
     width: 100%;
     height: 100%;
   }
+  ${mediaMin('tablet')} {
+    width: calc(50% - 16px);
+  }
   ${mediaMin('tabletLandscape')} {
     width: calc(25% - 16px);
   }
