@@ -118,16 +118,6 @@ const SmallImage = styled.img`
   ${props => (props.position ? 'padding-left: 0;' : 'padding-right: 0;')}
 `;
 
-const MobileImage = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-  width: 100%;
-  margin-top: 16px;
-  ${mediaMin('tabletLandscape')} {
-    display: none;
-  }
-`;
-
 const NewsShow = ({ data }) => {
   const { contentfulNewsItem } = data;
   const { date, images, title, publication, body, articleURL } = contentfulNewsItem;
