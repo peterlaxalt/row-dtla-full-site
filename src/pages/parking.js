@@ -1,14 +1,13 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
-import Context from '~/config/Context';
 import BackArrow from '~/images/icons/arrow-back-white.svg';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import { mediaMin } from '~/styles/mediaQueries';
 
-const ParkingPage = styled.div`
+const ParkingWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -75,18 +74,11 @@ const TimeTable = styled.div`
   }
 `;
 
-const Parking = () => {
-  const context = useContext(Context);
-  const { setDarkTheme } = context;
-
-  useEffect(() => {
-    setDarkTheme(true);
-  }, []);
-
+const ParkingPage = () => {
   return (
     <Layout>
       <SEO title="Parking" />
-      <ParkingPage>
+      <ParkingWrapper>
         <Link to="/">
           <img src={BackArrow} alt="back arrow" />
         </Link>
@@ -149,9 +141,9 @@ const Parking = () => {
             </div>
           </TimeTable>
         </ParkingContent>
-      </ParkingPage>
+      </ParkingWrapper>
     </Layout>
   );
 };
 
-export default Parking;
+export default ParkingPage;

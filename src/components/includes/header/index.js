@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'gatsby';
+import { Location } from '@reach/router';
 import styled from '@emotion/styled';
 
 import Context from '~/config/Context';
@@ -7,6 +8,9 @@ import Logo from './logo';
 import DesktopNavigation from './DesktopNavigation';
 import MobileNavigation from './MobileNavigation';
 import { mediaMin } from '~/styles/mediaQueries';
+
+import routes from '~/data/routes';
+
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -22,7 +26,7 @@ const HeaderContainer = styled.header`
   z-index: 100;
   height: 84px;
   padding: 32px 14px;
-  background: ${props => (props.dark ? '#000' : '#fff')};
+  background: ${props => (props.darkTheme ? '#000' : '#fff')};
   transition: background 400ms ease;
 
   ${mediaMin('tabletLandscape')} {
@@ -38,17 +42,26 @@ const HeaderContainer = styled.header`
 `;
 
 const Header = () => {
-  const context = useContext(Context);
-  const { darkTheme } = context;
-  
+  const { setDarkTheme, darkTheme } = useContext(Context);
+
   return (
-    <HeaderContainer dark={darkTheme}>
-      <Link to="/">
-        <Logo />
-      </Link>
-      <DesktopNavigation />
-      <MobileNavigation />
-    </HeaderContainer>
+    <Location>
+      {({ location }) => {
+        const currentRoute = routes.find(route => route.url === location.pathname);
+        const isDarkTheme = currentRoute ? currentRoute.darkTheme : false;
+        setDarkTheme(isDarkTheme);
+
+        return (
+          <HeaderContainer darkTheme={darkTheme}>
+            <Link to="/">
+              <Logo />
+            </Link>
+            <DesktopNavigation />
+            <MobileNavigation />
+          </HeaderContainer>
+        );
+      }}
+    </Location>
   );
 };
 

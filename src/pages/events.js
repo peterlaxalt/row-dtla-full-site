@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import Masonry from 'react-masonry-component';
 import styled from '@emotion/styled';
 
-import Context from '~/config/Context';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import EventCard from '~/components/includes/events/EventCard';
@@ -31,8 +30,6 @@ const EventsPage = ({ data }) => {
   const [filter, setFilter] = useState('ALL');
   const filters = ['ALL', 'FOOD TRUCKS', 'EVENTS', 'ARCHIVE'];
   const events = data.allContentfulEvent.nodes;
-  const context = useContext(Context);
-  const { setDarkTheme } = context;
 
   const generateEvents = events => {
     let filteredEvents = events;
@@ -45,9 +42,9 @@ const EventsPage = ({ data }) => {
     });
   };
 
-  useEffect(() => {
-    setDarkTheme(false);
-  }, []);
+  // useEffect(() => {
+  //   setDarkTheme(false);
+  // }, []);
 
   return (
     <Layout>

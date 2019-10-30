@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
 
-import Context from '~/config/Context';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import Filter from '~/components/includes/sub-header/Filter';
@@ -103,38 +102,32 @@ const masonryOptions = {
   gutter: 40,
 };
 
+const generateCollectiveItems = collectiveItems => {
+  return collectiveItems.map((collectiveItem, idx) => {
+    const { displayTitle, image, slug, subtitle } = collectiveItem;
+
+    return (
+      <CollectiveItemCard
+        className={`${generateCardClass(idx)} grid-item`}
+        to={`/collective/${slug}`}
+        key={`collective-item-${idx}`}
+        imgsrc={image.file.url}
+      >
+        <div className="image-container" title={image.description} />
+        <div className="description-container">
+          <p>{subtitle}</p>
+          {displayTitle && parseTitle(displayTitle.displayTitle)}
+        </div>
+      </CollectiveItemCard>
+    );
+  });
+};
+
 const CollectivePage = ({ data }) => {
   const [filter, setFilter] = useState('ALL');
   const filters = ['ALL', 'DINE', 'SHOP', 'LIFESTYLE', 'POP-UP'];
 
   const collectiveItems = data.allContentfulCollectiveItem.nodes;
-  const context = useContext(Context);
-  const { setDarkTheme } = context;
-
-  const generateCollectiveItems = collectiveItems => {
-    return collectiveItems.map((collectiveItem, idx) => {
-      const { displayTitle, image, slug, subtitle } = collectiveItem;
-
-      return (
-        <CollectiveItemCard
-          className={`${generateCardClass(idx)} grid-item`}
-          to={`/collective/${slug}`}
-          key={`collective-item-${idx}`}
-          imgsrc={image.file.url}
-        >
-          <div className="image-container" title={image.description} />
-          <div className="description-container">
-            <p>{subtitle}</p>
-            {displayTitle && parseTitle(displayTitle.displayTitle)}
-          </div>
-        </CollectiveItemCard>
-      );
-    });
-  };
-
-  useEffect(() => {
-    setDarkTheme(false);
-  }, []);
 
   return (
     <Layout>
