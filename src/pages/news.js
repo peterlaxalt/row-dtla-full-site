@@ -61,7 +61,7 @@ export default NewsPage;
 
 export const query = graphql`
   query NewsQuery {
-    allContentfulNewsItem {
+    allContentfulNewsItem(sort: { fields: date, order: DESC }) {
       nodes {
         slug
         title
