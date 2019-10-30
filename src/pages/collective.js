@@ -10,7 +10,7 @@ import Filter from '~/components/includes/sub-header/Filter';
 
 import { mediaMin } from '~/styles/mediaQueries';
 
-import collectiveItemsStub from '~/data/local/collectiveItems';
+// import collectiveItemsStub from '~/data/local/collectiveItems';
 
 const CollectiveWrapper = styled.div`
   display: flex;
@@ -60,7 +60,7 @@ const CollectiveItemCard = styled(Link)`
   }
 
   .image-container {
-    background-image: ${props => `url(${props.imgSrc})`};
+    background-image: ${props => `url(${props.imgsrc})`};
     background-size: cover;
   }
 
@@ -106,13 +106,13 @@ const masonryOptions = {
 const CollectivePage = ({ data }) => {
   const [filter, setFilter] = useState('ALL');
   const filters = ['ALL', 'DINE', 'SHOP', 'LIFESTYLE', 'POP-UP'];
-  // const collectiveItems = data.allContentfulCollectiveItem.nodes;
+
+  const collectiveItems = data.allContentfulCollectiveItem.nodes;
   const context = useContext(Context);
   const { setDarkTheme } = context;
 
   const generateCollectiveItems = collectiveItems => {
     return collectiveItems.map((collectiveItem, idx) => {
-      // console.log(collectiveItem);
       const { displayTitle, image, slug, subtitle } = collectiveItem;
 
       return (
@@ -120,7 +120,7 @@ const CollectivePage = ({ data }) => {
           className={`${generateCardClass(idx)} grid-item`}
           to={`/collective/${slug}`}
           key={`collective-item-${idx}`}
-          imgSrc={image.file.url}
+          imgsrc={image.file.url}
         >
           <div className="image-container" title={image.description} />
           <div className="description-container">
@@ -147,7 +147,7 @@ const CollectivePage = ({ data }) => {
           disableImagesLoaded={false} // default false
           updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
         >
-          {generateCollectiveItems(collectiveItemsStub)}
+          {generateCollectiveItems(collectiveItems)}
         </Masonry>
       </CollectiveWrapper>
     </Layout>
@@ -156,19 +156,23 @@ const CollectivePage = ({ data }) => {
 
 export default CollectivePage;
 
-// export const query = graphql`
-//   query CollectiveEntriesQuery {
-//     allContentfulCollectiveItem {
-//       nodes {
-//         title
-//         subtitle
-//         slug
-//         image {
-//           file {
-//             url
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
+export const query = graphql`
+  query CollectiveEntriesQuery {
+    allContentfulCollectiveItem {
+      nodes {
+        displayTitle {
+          displayTitle
+        }
+        title
+        subtitle
+        slug
+        image {
+          file {
+            url
+          }
+        }
+        id
+      }
+    }
+  }
+`;
