@@ -35,7 +35,7 @@ const CollectiveItemCard = styled(Link)`
   }
   &.small-vertical {
     ${mediaMin('tablet')} {
-      width: calc(25% - 48px);
+      width: calc(25% - 36px);
     }
 
     .image-container {
@@ -45,7 +45,7 @@ const CollectiveItemCard = styled(Link)`
   }
   &.large-vertical {
     ${mediaMin('tablet')} {
-      width: calc(50% - 48px);
+      width: calc(50% - 24px);
     }
     .image-container {
       height: 100%;
@@ -54,7 +54,7 @@ const CollectiveItemCard = styled(Link)`
   }
   &.large-horizontal {
     ${mediaMin('tablet')} {
-      width: calc(50% - 48px);
+      width: calc(50% - 24px);
     }
     .image-container {
       height: 50%;
@@ -114,8 +114,12 @@ const CollectivePage = ({ data }) => {
   const context = useContext(Context);
   const { setDarkTheme } = context;
 
-  const generateCollectiveItems = collectiveItems => {
-    return collectiveItems.map((collectiveItem, idx) => {
+  const generateCollectiveItems = () => {
+    let filteredCollectives = collectiveItems;
+    if (filter !== 'ALL') {
+      filteredCollectives = filteredCollectives.filter(collectiveItem => collectiveItem.type === filter);
+    }
+    return filteredCollectives.map((collectiveItem, idx) => {
       const { displayTitle, image, slug, subtitle } = collectiveItem;
 
       return (
@@ -150,7 +154,7 @@ const CollectivePage = ({ data }) => {
           disableImagesLoaded={false} // default false
           updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
         >
-          {generateCollectiveItems(collectiveItems)}
+          {generateCollectiveItems()}
           <div className="grid-sizer" />
         </Masonry>
       </CollectiveWrapper>
@@ -160,10 +164,9 @@ const CollectivePage = ({ data }) => {
 
 export default CollectivePage;
 
-
 export const query = graphql`
   query CollectiveEntriesQuery {
-    allContentfulCollectiveItem(sort: {fields: title, order: ASC}) {
+    allContentfulCollectiveItem(sort: { fields: title, order: ASC }) {
       nodes {
         displayTitle {
           displayTitle
@@ -171,6 +174,7 @@ export const query = graphql`
         title
         subtitle
         slug
+        type
         image {
           file {
             url
