@@ -19,6 +19,9 @@ const CollectiveWrapper = styled.div`
   .masonry {
     margin: 48px 0;
   }
+  .grid-sizer {
+    width: calc(144px / 3);
+  }
 `;
 
 const CollectiveItemCard = styled(Link)`
@@ -28,11 +31,11 @@ const CollectiveItemCard = styled(Link)`
   margin-bottom: 20px;
   width: 100%;
   ${mediaMin('tablet')} {
-    margin-bottom: 40px;
+    margin-bottom: 48px;
   }
   &.small-vertical {
     ${mediaMin('tablet')} {
-      width: calc(25% - 40px);
+      width: calc(25% - 48px);
     }
 
     .image-container {
@@ -42,7 +45,7 @@ const CollectiveItemCard = styled(Link)`
   }
   &.large-vertical {
     ${mediaMin('tablet')} {
-      width: calc(50% - 40px);
+      width: calc(50% - 48px);
     }
     .image-container {
       height: 100%;
@@ -51,7 +54,7 @@ const CollectiveItemCard = styled(Link)`
   }
   &.large-horizontal {
     ${mediaMin('tablet')} {
-      width: calc(50% - 40px);
+      width: calc(50% - 48px);
     }
     .image-container {
       height: 50%;
@@ -100,7 +103,7 @@ const masonryOptions = {
   transitionDuration: '.25s',
   itemSelector: '.grid-item',
   columnWidth: '.small-vertical',
-  gutter: 40,
+  gutter: '.grid-sizer',
 };
 
 const CollectivePage = ({ data }) => {
@@ -148,6 +151,7 @@ const CollectivePage = ({ data }) => {
           updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
         >
           {generateCollectiveItems(collectiveItems)}
+          <div className="grid-sizer" />
         </Masonry>
       </CollectiveWrapper>
     </Layout>
@@ -156,9 +160,10 @@ const CollectivePage = ({ data }) => {
 
 export default CollectivePage;
 
+
 export const query = graphql`
   query CollectiveEntriesQuery {
-    allContentfulCollectiveItem {
+    allContentfulCollectiveItem(sort: {fields: title, order: ASC}) {
       nodes {
         displayTitle {
           displayTitle

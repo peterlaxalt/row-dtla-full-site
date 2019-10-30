@@ -15,7 +15,7 @@ const FooterWrapper = styled.footer`
   flex-direction: column;
   padding: 40px 14px;
   ${mediaMin('tabletLandscape')} {
-    padding: 2em 4em;
+    padding: 64px 2.5% 48px 2.5%;
     flex-direction: row;
     justify-content: space-between;
   }
@@ -24,7 +24,6 @@ const FooterWrapper = styled.footer`
 const FooterColumn = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   margin-bottom: 32px;
   ${mediaMin('tabletLandscape')} {
     max-width: 33%;
@@ -60,12 +59,7 @@ const FooterColumn = styled.div`
       }
     }
   }
-  .section {
-    margin-bottom: 24px;
-    ${mediaMin('tabletLandscape')} {
-      margin-bottom: 0;
-    }
-  }
+
   .copyright {
     opacity: 0.5;
     font-size: 12px;
@@ -75,11 +69,18 @@ const FooterColumn = styled.div`
   }
 `;
 
+const Section = styled.div`
+  margin-bottom: 24px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
 const Footer = () => {
   return (
     <FooterWrapper>
       <FooterColumn>
-        <div className="section">
+        <Section>
           <h2>
             Visit <br />
             ROW DTLA
@@ -88,40 +89,46 @@ const Footer = () => {
             <span>777 S ALAMEDA ST</span>
             <span>LOS ANGELES CA 90021</span>
           </p>
-        </div>
-        <p className="section">
+        </Section>
+        <Section>
           <span>MONDAY TO SUNDAY 8AM - 10PM</span>
-        </p>
-        <div className="row section">
-          <a href="https://goo.gl/maps/vuTZGz84t5xaqsgK6" target="_blank" rel="noopener noreferrer">
-            DIRECTIONS
-          </a>
-          <Link to="/parking">PARKING RATES</Link>
-        </div>
-        <div className="row">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <img src={InstagramLogo} alt="instagram logo" />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <img src={FacebookLogo} alt="facebook logo" />
-          </a>
-        </div>
+        </Section>
+        <Section>
+          <div className="row">
+            <a href="https://goo.gl/maps/vuTZGz84t5xaqsgK6" target="_blank" rel="noopener noreferrer">
+              DIRECTIONS
+            </a>
+            <Link to="/parking">PARKING RATES</Link>
+          </div>
+        </Section>
+        <Section>
+          <div className="row">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <img src={InstagramLogo} alt="instagram logo" />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <img src={FacebookLogo} alt="facebook logo" />
+            </a>
+          </div>
+        </Section>
       </FooterColumn>
       <FooterColumn>
         <ResponsiveImg srcPath="footer/map" alt="map of area surrounding row dtla" />
       </FooterColumn>
       <FooterColumn>
-        <div className="section">
+        <Section>
           <h2>Subscribe</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua.
           </p>
-        </div>
-        <SubscribeForm />
-        <p>
+        </Section>
+        <Section>
+          <SubscribeForm />
+        </Section>
+        <Section>
           <span className="copyright">© 2019 ROW DTLA</span>
-        </p>
+        </Section>
       </FooterColumn>
     </FooterWrapper>
   );
