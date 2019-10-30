@@ -100,13 +100,14 @@ const CopyColumn = styled.div`
     }
   }
 
-  .address {
-    &:nth-child(1) {
-      margin-bottom: 0;
-    }
-
-    &:nth-child(2) {
-      margin-top: 0;
+  .address-container {
+    p {
+      &:nth-of-type(1) {
+        margin-bottom: 0;
+      }
+      &:nth-of-type(2) {
+        margin-top: 0;
+      }
     }
   }
 
@@ -251,8 +252,10 @@ const CollectiveShow = ({ data }) => {
             {generateOpenHours(openHours)}
             <p className="info-paragraph parking-instructions">Park At {parking}</p>
             <button className="parking-btn">Parking Directions</button>
-            <p className="info-paragraph address">{addressLine1}</p>
-            <p className="info-paragraph address">{addressLine2}</p>
+            <div className="address-container">
+              <p className="info-paragraph address">{addressLine1}</p>
+              <p className="info-paragraph address">{addressLine2}</p>
+            </div>
             <p className="info-paragraph">
               <a href={websiteURL} target="_blank" rel="noopener noreferrer">
                 {websiteString}
