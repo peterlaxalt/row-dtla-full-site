@@ -6,10 +6,7 @@ import Masonry from 'react-masonry-component';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import Filter from '~/components/includes/sub-header/Filter';
-
 import { mediaMin } from '~/styles/mediaQueries';
-
-// import collectiveItemsStub from '~/data/local/collectiveItems';
 
 const CollectiveWrapper = styled.div`
   display: flex;
