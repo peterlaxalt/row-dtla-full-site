@@ -44,10 +44,14 @@ const CopyColumn = styled.div`
     padding-right: 1em;
   }
   h1 {
-    font-size: 55px;
-    font-weight: bold;
-    line-height: 60px;
     margin: 16px 0;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 44px;
+    ${mediaMin('tabletLandscape')} {
+      font-size: 55px;
+      line-height: 60px;
+    }
   }
   h2,
   h6 {
@@ -98,11 +102,11 @@ const CopyColumn = styled.div`
 
   .contact-link {
     display: block;
-    margin: 20px 0 0 0;
     border: none;
     padding: 0;
+    margin: 8px 0 0 0;
     ${mediaMin('tabletLandscape')} {
-      margin: 20px 0;
+      margin: 20px 0 0 0;
     }
     &:hover {
       background: transparent;
@@ -112,8 +116,11 @@ const CopyColumn = styled.div`
 
   .social-icon {
     border: none;
-    margin-right: 10px;
     padding: 0;
+    margin: 8px 10px 0 0;
+    ${mediaMin('tabletLandscape')} {
+      margin: 20px 10px 0 0;
+    }
     &:hover {
       background: transparent;
       color: #000;
