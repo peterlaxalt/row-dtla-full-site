@@ -6,10 +6,6 @@ import RichText from '@madebyconnor/rich-text-to-jsx';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 
-// import collectiveItem from '~/data/local/collectiveItem';
-
-// import { allEqual, formatTime } from '~/helpers/parseDates;';
-
 import { mediaMin } from '~/styles/mediaQueries';
 
 import BackArrow from '~/images/icons/arrow-back.svg';
@@ -155,9 +151,6 @@ const CollectiveShow = ({ data }) => {
     websiteString,
     websiteURL,
   } = data.contentfulCollectiveItem;
-  // const { descriptionBody, title } = collectiveItem;
-
-  console.log(JSON.parse(body.body));
 
   return (
     <Layout>
