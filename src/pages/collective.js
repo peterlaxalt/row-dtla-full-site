@@ -6,10 +6,7 @@ import Masonry from 'react-masonry-component';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import Filter from '~/components/includes/sub-header/Filter';
-
 import { mediaMin } from '~/styles/mediaQueries';
-
-// import collectiveItemsStub from '~/data/local/collectiveItems';
 
 const CollectiveWrapper = styled.div`
   display: flex;
@@ -17,6 +14,9 @@ const CollectiveWrapper = styled.div`
   width: 100%;
   .masonry {
     margin: 48px 0;
+  }
+  .grid-sizer {
+    width: calc(144px / 3);
   }
 `;
 
@@ -26,16 +26,13 @@ const CollectiveItemCard = styled(Link)`
   border: 1px solid black;
   width: 100%;
   margin-bottom: 48px;
-
   &.small-vertical {
     ${mediaMin('tablet')} {
       width: calc(50% - 24px);
     }
     ${mediaMin('tabletLandscape')} {
-      width: calc(25% - 36px);
-
+      width: calc(25% - 32px);
     }
-
     .image-container {
       height: 100%;
       padding-bottom: 100%;
@@ -43,8 +40,7 @@ const CollectiveItemCard = styled(Link)`
   }
   &.large-vertical {
     ${mediaMin('tabletLandscape')} {
-      width: calc(50% - 24px);
-
+      width: calc(50% - 16px);
     }
     .image-container {
       height: 100%;
@@ -53,20 +49,17 @@ const CollectiveItemCard = styled(Link)`
   }
   &.large-horizontal {
     ${mediaMin('tabletLandscape')} {
-      width: calc(50% - 24px);
-
+      width: calc(50% - 16px);
     }
     .image-container {
       height: 50%;
       padding-bottom: 50%;
     }
   }
-
   .image-container {
     background-image: ${props => `url(${props.imgsrc})`};
     background-size: cover;
   }
-
   .description-container {
     padding: 20px;
     height: 180px;
@@ -106,32 +99,36 @@ const masonryOptions = {
   gutter: 40,
 };
 
-const generateCollectiveItems = collectiveItems => {
-  return collectiveItems.map((collectiveItem, idx) => {
-    const { displayTitle, image, slug, subtitle } = collectiveItem;
-
-    return (
-      <CollectiveItemCard
-        className={`${generateCardClass(idx)} grid-item`}
-        to={`/collective/${slug}`}
-        key={`collective-item-${idx}`}
-        imgsrc={image.file.url}
-      >
-        <div className="image-container" title={image.description} />
-        <div className="description-container">
-          <p>{subtitle}</p>
-          {displayTitle && parseTitle(displayTitle.displayTitle)}
-        </div>
-      </CollectiveItemCard>
-    );
-  });
-};
-
 const CollectivePage = ({ data }) => {
   const [filter, setFilter] = useState('ALL');
   const filters = ['ALL', 'DINE', 'SHOP', 'LIFESTYLE', 'POP-UP'];
 
   const collectiveItems = data.allContentfulCollectiveItem.nodes;
+
+  const generateCollectiveItems = () => {
+    let filteredCollectiveItems = collectiveItems;
+    if (filter !== 'ALL') {
+      filteredCollectiveItems = filteredCollectiveItems.filter(collectiveItem => collectiveItem.type === filter);
+    }
+    return filteredCollectiveItems.map((collectiveItem, idx) => {
+      const { displayTitle, image, slug, subtitle } = collectiveItem;
+
+      return (
+        <CollectiveItemCard
+          className={`${generateCardClass(idx)} grid-item`}
+          to={`/collective/${slug}`}
+          key={`collective-item-${idx}`}
+          imgsrc={image.file.url}
+        >
+          <div className="image-container" title={image.description} />
+          <div className="description-container">
+            <p>{subtitle}</p>
+            {displayTitle && parseTitle(displayTitle.displayTitle)}
+          </div>
+        </CollectiveItemCard>
+      );
+    });
+  };
 
   return (
     <Layout>
@@ -144,7 +141,8 @@ const CollectivePage = ({ data }) => {
           disableImagesLoaded={false} // default false
           updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
         >
-          {generateCollectiveItems(collectiveItems)}
+          {generateCollectiveItems()}
+          <div className="grid-sizer" />
         </Masonry>
       </CollectiveWrapper>
     </Layout>
@@ -161,6 +159,7 @@ export const query = graphql`
           displayTitle
         }
         title
+        type
         subtitle
         slug
         image {
