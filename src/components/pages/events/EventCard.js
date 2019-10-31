@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
 import { mediaMin } from '~/styles/mediaQueries';
-import { truncateText } from '~/components/includes/utils/helpers';
+import { truncateText } from '~/utils/helpers';
 
 const EventWrapper = styled.li`
   margin-bottom: calc(64px / 3);

@@ -5,7 +5,7 @@ import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import { mediaMin } from '~/styles/mediaQueries';
 
-import ContactForm from '~/components/includes/forms/ContactForm';
+import ContactForm from '~/components/pages/contact/ContactForm';
 
 const ContactWrapper = styled.div`
   color: #fff;

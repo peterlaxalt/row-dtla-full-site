@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import { mediaMin } from '~/styles/mediaQueries';
-import DropdownArrow from '~/images/icons/dropdown.svg';
+import DropdownArrow from '~/assets/images/icons/dropdown.svg';
 
 import formLogic from './formLogic';
 
