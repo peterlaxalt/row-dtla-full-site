@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
-import Context from '~/config/Context';
+import Context from '~/context/Context';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import BackArrow from '~/assets/images/icons/arrow-back.svg';

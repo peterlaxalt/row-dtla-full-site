@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
-import Context from '~/config/Context';
+import Context from '~/context/Context';
 
 import { navRoutes } from '~/data/routes';
 import { mediaMin } from '~/styles/mediaQueries';
