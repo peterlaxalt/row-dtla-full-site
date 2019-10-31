@@ -119,7 +119,7 @@ const CopyColumn = styled.div`
     padding: 0;
     margin: 8px 10px 0 0;
     ${mediaMin('tabletLandscape')} {
-      margin: 20px 10px 0 0;
+      margin: 20px 24px 0 0;
     }
     &:hover {
       background: transparent;

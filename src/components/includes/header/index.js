@@ -11,12 +11,10 @@ import { mediaMin } from '~/styles/mediaQueries';
 
 import routes from '~/data/routes';
 
-
 const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2.5%;
   box-sizing: border-box;
   position: fixed;
   width: 100%;
@@ -31,7 +29,7 @@ const HeaderContainer = styled.header`
 
   ${mediaMin('tabletLandscape')} {
     height: 100px;
-    padding: 0 4em;
+    padding: 0 2.5%;
   }
   a {
     z-index: 101;
