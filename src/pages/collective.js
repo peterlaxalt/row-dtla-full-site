@@ -43,7 +43,7 @@ const CollectiveItemCard = styled(Link)`
   }
   &.large-vertical {
     ${mediaMin('tabletLandscape')} {
-      width: calc(50% - 48px);
+      width: calc(50% - 16px);
     }
     .image-container {
       height: 100%;
@@ -52,7 +52,7 @@ const CollectiveItemCard = styled(Link)`
   }
   &.large-horizontal {
     ${mediaMin('tabletLandscape')} {
-      width: calc(50% - 48px);
+      width: calc(50% - 16px);
     }
     .image-container {
       height: 50%;
