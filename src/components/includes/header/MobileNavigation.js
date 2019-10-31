@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
-import routes from '~/data/routes';
+import { navRoutes } from '~/data/routes';
 import { mediaMin } from '~/styles/mediaQueries';
 import FacebookLogo from '~/images/icons/fb-white.svg';
 import InstagramLogo from '~/images/icons/insta-white.svg';
@@ -76,7 +76,7 @@ const MobileNavigation = () => {
   };
 
   const generateNav = () => {
-    const navigation = routes.map(route => {
+    const navigation = navRoutes.map(route => {
       return (
         <li key={route.link}>
           <Link to={route.url}>

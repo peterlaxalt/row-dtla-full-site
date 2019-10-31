@@ -1,29 +1,30 @@
-const routes = [
+export const navRoutes = [
   {
     url: '/collective',
     link: "Who's Here",
-    darkTheme: false
+    darkTheme: false,
   },
   {
     url: '/events',
     link: "What's On",
-    darkTheme: false
+    darkTheme: false,
   },
   {
     url: '/news',
     link: "What's New",
-    darkTheme: false
+    darkTheme: false,
   },
   {
     url: '/contact',
     link: 'Contact',
-    darkTheme: true
-  },
-  {
-    url: '/parking',
-    link: 'Parking',
-    darkTheme: true
+    darkTheme: true,
   },
 ];
 
-export default routes;
+export const darkThemeRoutes = {
+  collective: false,
+  events: false,
+  news: false,
+  contact: true,
+  parking: true,
+};

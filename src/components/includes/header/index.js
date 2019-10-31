@@ -9,7 +9,8 @@ import DesktopNavigation from './DesktopNavigation';
 import MobileNavigation from './MobileNavigation';
 import { mediaMin } from '~/styles/mediaQueries';
 
-import routes from '~/data/routes';
+
+import { darkThemeRoutes } from '~/data/routes';
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -45,8 +46,8 @@ const Header = () => {
   return (
     <Location>
       {({ location }) => {
-        const currentRoute = routes.find(route => route.url === location.pathname);
-        const isDarkTheme = currentRoute ? currentRoute.darkTheme : false;
+        const currentRoute = location.pathname.replace('/', '');
+        const isDarkTheme = darkThemeRoutes[currentRoute] || false;
         setDarkTheme(isDarkTheme);
 
         return (
