@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 
 import Context from '~/config/Context';
 
-import routes from '~/data/routes';
+import { navRoutes } from '~/data/routes';
 import { mediaMin } from '~/styles/mediaQueries';
 
 import FacebookLogoBlack from '~/images/icons/fb-black.svg';
@@ -60,7 +60,7 @@ const DesktopNavigation = () => {
   const { darkTheme } = useContext(Context);
 
   const generateNav = () => {
-    const navigation = routes.map(route => {
+    const navigation = navRoutes.map(route => {
       return (
         <li key={route.link}>
           <Link
