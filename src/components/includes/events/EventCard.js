@@ -57,14 +57,14 @@ const CopySection = styled.div`
 `;
 
 const EventCard = ({ event }) => {
-  const { bodyText, date, endDate, startTime, endTime, image, slug, title } = event;
+  const { body, date, endDate, startTime, endTime, image, slug, title } = event;
   return (
     <EventWrapper>
       <img src={image.file.url} alt={image.description} />
       <CopySection>
         <span>{`${date}${endDate ? ` - ${endDate}` : ''}`}</span>
         <h3>{title}</h3>
-        <p>{truncateText(bodyText.bodyText, 20)}</p>
+        <p>{truncateText(JSON.parse(body.body).content[0].content[0].value, 20)}</p>
         <span>{`${startTime} - ${endTime}`}</span>
         <Link to={`/events/${slug}`}>LEARN MORE</Link>
       </CopySection>

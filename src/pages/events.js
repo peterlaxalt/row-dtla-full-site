@@ -78,8 +78,8 @@ export const query = graphql`
           }
           description
         }
-        bodyText {
-          bodyText
+        body {
+          body
         }
         endTime
         startTime
