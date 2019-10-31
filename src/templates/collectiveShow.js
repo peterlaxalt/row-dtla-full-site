@@ -37,7 +37,7 @@ const CopyColumn = styled.div`
   display: flex;
   flex-direction: column;
   ${mediaMin('tabletLandscape')} {
-    padding-right: 1em;
+    padding-right: 10%;
   }
   h1 {
     margin: 16px 0;
