@@ -26,7 +26,7 @@ const FooterColumn = styled.div`
   flex-direction: column;
   margin-bottom: 32px;
   ${mediaMin('tabletLandscape')} {
-    max-width: 33%;
+    width: 33.3333%;
     margin-bottom: 0px;
   }
   h2 {
@@ -113,7 +113,7 @@ const Footer = () => {
         </Section>
       </FooterColumn>
       <FooterColumn>
-        <ResponsiveImg srcPath="footer/map" alt="map of area surrounding row dtla" />
+        <ResponsiveImg srcPath="footer/map" alt="map of area surrounding row dtla" width="80%" />
       </FooterColumn>
       <FooterColumn>
         <Section>

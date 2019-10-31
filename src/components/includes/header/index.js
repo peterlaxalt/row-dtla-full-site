@@ -32,6 +32,7 @@ const HeaderContainer = styled.header`
     height: 100px;
     padding: 0 2.5%;
   }
+
   a {
     z-index: 101;
     svg {
