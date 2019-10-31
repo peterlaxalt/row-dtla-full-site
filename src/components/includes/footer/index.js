@@ -2,10 +2,10 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
-import ResponsiveImg from '../utils/ResponsiveImg';
+import ResponsiveImg from '../images/ResponsiveImg';
 import SubscribeForm from '~/components/includes/forms/SubscribeForm';
-import InstagramLogo from '~/images/icons/insta-white.svg';
-import FacebookLogo from '~/images/icons/fb-white.svg';
+import InstagramLogo from '~/assets/images/icons/insta-white.svg';
+import FacebookLogo from '~/assets/images/icons/fb-white.svg';
 import { mediaMin } from '~/styles/mediaQueries';
 
 const FooterWrapper = styled.footer`

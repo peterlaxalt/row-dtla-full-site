@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
-import EventCard from '~/components/includes/events/EventCard';
+import EventCard from '~/components/pages/events/EventCard';
 import Filter from '~/components/includes/sub-header/Filter';
 
 const masonryOptions = {

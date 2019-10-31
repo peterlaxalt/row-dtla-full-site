@@ -4,8 +4,8 @@ import { Link } from 'gatsby';
 
 import { navRoutes } from '~/data/routes';
 import { mediaMin } from '~/styles/mediaQueries';
-import FacebookLogo from '~/images/icons/fb-white.svg';
-import InstagramLogo from '~/images/icons/insta-white.svg';
+import FacebookLogo from '~/assets/images/icons/fb-white.svg';
+import InstagramLogo from '~/assets/images/icons/insta-white.svg';
 import Hamburger from './Hamburger';
 
 const SocialMedia = styled.li`

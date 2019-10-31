@@ -8,9 +8,9 @@ import SEO from '~/components/seo';
 
 import { mediaMin } from '~/styles/mediaQueries';
 
-import BackArrow from '~/images/icons/arrow-back.svg';
-import FacebookLogo from '~/images/icons/fb-black.svg';
-import InstagramLogo from '~/images/icons/insta-black.svg';
+import BackArrow from '~/assets/images/icons/arrow-back.svg';
+import FacebookLogo from '~/assets/images/icons/fb-black.svg';
+import InstagramLogo from '~/assets/images/icons/insta-black.svg';
 
 const CollectiveWrapper = styled.div``;
 

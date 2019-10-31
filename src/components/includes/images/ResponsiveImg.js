@@ -9,15 +9,15 @@ const ResponsiveImg = styled.img`
 `;
 
 const ResponsiveImage = ({ ariaHidden, srcPath, imgClass, imgAlt, onClickProp, onLoadProp, refProp, width }) => {
-  const defaultPath = require(`~/images/${srcPath}.jpg`);
+  const defaultPath = require(`~/assets/images/${srcPath}.jpg`);
 
   const srcSetPaths = {
-    '400w': require(`~/images/${srcPath}_400.jpg`),
-    '800w': require(`~/images/${srcPath}_800.jpg`),
-    '1100w': require(`~/images/${srcPath}_1100.jpg`),
-    '1500w': require(`~/images/${srcPath}_1500.jpg`),
-    '2000w': require(`~/images/${srcPath}_2000.jpg`),
-    '2500w': require(`~/images/${srcPath}_2500.jpg`),
+    '400w': require(`~/assets/images/${srcPath}_400.jpg`),
+    '800w': require(`~/assets/images/${srcPath}_800.jpg`),
+    '1100w': require(`~/assets/images/${srcPath}_1100.jpg`),
+    '1500w': require(`~/assets/images/${srcPath}_1500.jpg`),
+    '2000w': require(`~/assets/images/${srcPath}_2000.jpg`),
+    '2500w': require(`~/assets/images/${srcPath}_2500.jpg`),
   };
 
   const srcSet = Object.entries(srcSetPaths)
