@@ -42,10 +42,6 @@ const EventsPage = ({ data }) => {
     });
   };
 
-  // useEffect(() => {
-  //   setDarkTheme(false);
-  // }, []);
-
   return (
     <Layout>
       <SEO title="Events" />

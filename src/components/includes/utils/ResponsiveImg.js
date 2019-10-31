@@ -5,17 +5,10 @@ import styled from '@emotion/styled';
 const ResponsiveImg = styled.img`
   max-width: 100%;
   max-height: 100%;
+  width: ${props => props.width || 'auto'};
 `;
 
-const ResponsiveImage = ({
-  ariaHidden,
-  srcPath,
-  imgClass,
-  imgAlt,
-  onClickProp,
-  onLoadProp,
-  refProp,
-}) => {
+const ResponsiveImage = ({ ariaHidden, srcPath, imgClass, imgAlt, onClickProp, onLoadProp, refProp, width }) => {
   const defaultPath = require(`~/images/${srcPath}.jpg`);
 
   const srcSetPaths = {
@@ -43,6 +36,7 @@ const ResponsiveImage = ({
       onClick={onClickProp}
       aria-hidden={ariaHidden === undefined ? false : ariaHidden}
       onLoad={onLoadProp}
+      width={width}
     />
   );
 };

@@ -16,6 +16,8 @@ const typography = css`
     font-weight: 500;
   }
 
+  button,
+  select,
   span,
   div,
   p {
@@ -37,6 +39,10 @@ const typography = css`
 
   a:active {
     color: inherit;
+  }
+
+  .no-margin {
+    margin: 0;
   }
 `;
 
