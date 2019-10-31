@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 import styled from '@emotion/styled';
+import RichText from '@madebyconnor/rich-text-to-jsx';
 
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
@@ -15,20 +16,13 @@ import BackArrow from '~/images/icons/arrow-back.svg';
 import FacebookLogo from '~/images/icons/fb-black.svg';
 import InstagramLogo from '~/images/icons/insta-black.svg';
 
-const CollectiveWrapper = styled.div`
-  width: 90%;
-  margin: 0 auto;
-  ${mediaMin('tabletLandscape')} {
-    width: 100%;
-    margin: initial;
-  }
-`;
+const CollectiveWrapper = styled.div``;
 
 const CollectiveInfo = styled.div`
   display: flex;
   height: 100%;
   flex-direction: column-reverse;
-  margin-top: 24px;
+  margin: 24px 0;
 
   ${mediaMin('tabletLandscape')} {
     flex-direction: row;
@@ -44,46 +38,52 @@ const CollectiveInfo = styled.div`
 `;
 
 const CopyColumn = styled.div`
+  display: flex;
+  flex-direction: column;
   ${mediaMin('tabletLandscape')} {
     padding-right: 1em;
   }
-
-  .subtitle {
-    text-transform: uppercase;
-    font-family: 'Apercu';
+  h1 {
+    font-size: 55px;
+    font-weight: bold;
+    line-height: 60px;
+    margin: 16px 0;
+  }
+  h2,
+  h6 {
+    font-family: Apercu;
+    font-size: 15px;
     letter-spacing: 1px;
+    line-height: 20px;
+    margin: 0;
+    text-transform: uppercase;
   }
-
-  .title {
-    font-size: 3rem;
-    margin: 20px 0;
-    ${mediaMin('tabletLandscape')} {
-      font-size: 5rem;
+  p {
+    font-family: 'SangBleu Kingdom';
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    margin: 0 0 32px 0;
+    display: flex;
+  }
+  a {
+    font-family: Apercu;
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    margin: 8px 0 0 0;
+    text-transform: uppercase;
+    border: 1px solid #000;
+    padding: 1em 2em;
+    &:hover {
+      background: #000;
+      color: #fff;
     }
   }
 
-  .description {
-    max-width: 800px;
-    font-size: 1.4rem;
-  }
-
-  .info-paragraph {
-    font-size: 1.2rem;
-    text-transform: uppercase;
-  }
-
-  .hours-list {
-    padding-left: 0;
-    li {
-      list-style-type: none;
-      .info-paragraph {
-        margin: 0;
-      }
-    }
-  }
-
-  .parking-instructions {
-    text-transform: uppercase;
+  .row {
+    display: flex;
+    flex-direction: row;
   }
 
   .parking-btn {
@@ -94,147 +94,63 @@ const CopyColumn = styled.div`
     text-transform: uppercase;
     cursor: pointer;
     transition: all 100ms ease;
-    &:hover {
-      background: #000;
-      color: #fff;
-    }
   }
 
-  .address-container {
-    p {
-      &:nth-of-type(1) {
-        margin-bottom: 0;
-      }
-      &:nth-of-type(2) {
-        margin-top: 0;
-      }
-    }
-  }
-
-  .phone-number {
+  .contact-link {
     display: block;
-    margin: 20px 0;
+    margin: 20px 0 0 0;
+    border: none;
+    padding: 0;
+    ${mediaMin('tabletLandscape')} {
+      margin: 20px 0;
+    }
+    &:hover {
+      background: transparent;
+      color: #000;
+    }
   }
 
   .social-icon {
+    border: none;
     margin-right: 10px;
+    padding: 0;
+    &:hover {
+      background: transparent;
+      color: #000;
+    }
   }
 `;
 
 const ImageColumn = styled.div`
+  margin-bottom: 16px;
+  ${mediaMin('tabletLandscape')} {
+    margin-bottom: 0;
+  }
   img {
     width: 100%;
   }
 `;
 
-const formatTime = datetime => {
-  const date = new Date(datetime);
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  let dd = 'AM';
-
-  if (hours >= 12) {
-    hours = hours - 12;
-    dd = 'PM';
-  }
-
-  if (hours === 0) {
-    hours = 12;
-  }
-
-  minutes = minutes < 10 ? '0' + minutes : minutes;
-  return `${hours}:${minutes} ${dd}`;
-};
-
-const allEqual = arr => arr.every(value => value === arr[0]);
-
-const generateOpenHours = hours => {
-  let hoursCopy = hours;
-  const weekdayArray = Object.keys(hours);
-
-  weekdayArray.forEach(weekday => {
-    let openTime = formatTime(hours[weekday].timeOpen);
-    let closeTime = formatTime(hours[weekday].timeClose);
-
-    hoursCopy[weekday] = `${openTime} - ${closeTime}`;
-  });
-
-  // Check to see if all hours are the same
-  const weekdayHourValues = Object.values(hoursCopy);
-  if (allEqual(weekdayHourValues)) {
-    return <p className="info-paragraph">{`Daily ${weekdayHourValues[0]}`}</p>;
-  }
-
-  const listItemArray = weekdayArray.map(weekday => (
-    <li key={`${weekday}-hours`}>
-      <p className="info-paragraph">{`${weekday}: ${hoursCopy[weekday]}`}</p>
-    </li>
-  ));
-
-  return <ul className="hours-list">{listItemArray}</ul>;
+const parsePhone = int => {
+  return int.toString().replace(/(\d{3})(\d{3})(\d{4})/, '$1.$2.$3');
 };
 
 const CollectiveShow = ({ data }) => {
   const {
-    addressLine1,
-    addressLine2,
-    descriptionBody,
+    body,
     image,
-    parking,
     subtitle,
-    websiteString,
-    websiteURL,
     phoneNumber,
     facebook,
     instagram,
     title,
-    timeCloseFriday,
-    timeCloseMonday,
-    timeCloseSaturday,
-    timeCloseSunday,
-    timeCloseThursday,
-    timeCloseTuesday,
-    timeCloseWednesday,
-    timeOpenFriday,
-    timeOpenMonday,
-    timeOpenSaturday,
-    timeOpenSunday,
-    timeOpenThursday,
-    timeOpenTuesday,
-    timeOpenWednesday,
+    email,
+    websiteString,
+    websiteURL,
   } = data.contentfulCollectiveItem;
   // const { descriptionBody, title } = collectiveItem;
 
-  const openHours = {
-    monday: {
-      timeOpen: timeOpenMonday,
-      timeClose: timeCloseMonday,
-    },
-    tuesday: {
-      timeOpen: timeOpenTuesday,
-      timeClose: timeCloseTuesday,
-    },
-    wednesday: {
-      timeOpen: timeOpenWednesday,
-      timeClose: timeCloseWednesday,
-    },
-    thursday: {
-      timeOpen: timeOpenThursday,
-      timeClose: timeCloseThursday,
-    },
-    friday: {
-      timeOpen: timeOpenFriday,
-      timeClose: timeCloseFriday,
-    },
-    saturday: {
-      timeOpen: timeOpenSaturday,
-      timeClose: timeCloseSaturday,
-    },
-    sunday: {
-      timeOpen: timeOpenSunday,
-      timeClose: timeCloseSunday,
-    },
-  };
+  console.log(JSON.parse(body.body));
 
   return (
     <Layout>
@@ -246,30 +162,36 @@ const CollectiveShow = ({ data }) => {
         </Link>
         <CollectiveInfo>
           <CopyColumn className="column left">
-            <h3 className="subtitle">{subtitle}</h3>
+            <h2 className="subtitle">{subtitle}</h2>
             <h1 className="title">{title}</h1>
-            <h4 className="description">{descriptionBody.descriptionBody}</h4>
-            {generateOpenHours(openHours)}
-            <p className="info-paragraph parking-instructions">Park At {parking}</p>
-            <button className="parking-btn">Parking Directions</button>
-            <div className="address-container">
-              <p className="info-paragraph address">{addressLine1}</p>
-              <p className="info-paragraph address">{addressLine2}</p>
-            </div>
-            <p className="info-paragraph">
-              <a href={websiteURL} target="_blank" rel="noopener noreferrer">
-                {websiteString}
+            <RichText richText={JSON.parse(body.body)} />
+            {websiteString && (
+              <a className="contact-link" href={websiteURL}>
+                <h6 className="info-paragraph">{websiteString}</h6>
               </a>
-            </p>
-            <a className="phone-number" href={`tel:${phoneNumber}`}>
-              <p className="info-paragraph">{phoneNumber}</p>
-            </a>
-            <a className="social-icon" href={instagram} target="_blank" rel="noopener noreferrer">
-              <img src={InstagramLogo} alt="instagram logo" />
-            </a>
-            <a className="social-icon" href={facebook} target="_blank" rel="noopener noreferrer">
-              <img src={FacebookLogo} alt="facebook logo" />
-            </a>
+            )}
+            {email && (
+              <a className="contact-link" href={`mailto:${email}`}>
+                <h6 className="info-paragraph">{email}</h6>
+              </a>
+            )}
+            {phoneNumber && (
+              <a className="contact-link" href={`tel:${phoneNumber}`}>
+                <h6 className="info-paragraph">{parsePhone(phoneNumber)}</h6>
+              </a>
+            )}
+            <div className="row">
+              {instagram && (
+                <a className="social-icon" href={instagram} target="_blank" rel="noopener noreferrer">
+                  <img src={InstagramLogo} alt="instagram logo" />
+                </a>
+              )}
+              {facebook && (
+                <a className="social-icon" href={facebook} target="_blank" rel="noopener noreferrer">
+                  <img src={FacebookLogo} alt="facebook logo" />
+                </a>
+              )}
+            </div>
           </CopyColumn>
           <ImageColumn className="column right">
             <img src={image.file.url} alt={image.description} />
@@ -288,35 +210,18 @@ export const pageQuery = graphql`
       id
       title
       subtitle
-      addressLine1
-      addressLine2
-      descriptionBody {
-        descriptionBody
-      }
       seoDescription {
         seoDescription
       }
-      parking
+      body {
+        body
+      }
       instagram
       facebook
       email
       websiteString
       websiteURL
       phoneNumber
-      timeOpenMonday
-      timeCloseMonday
-      timeOpenTuesday
-      timeCloseTuesday
-      timeOpenWednesday
-      timeCloseWednesday
-      timeOpenThursday
-      timeCloseThursday
-      timeOpenSunday
-      timeOpenSaturday
-      timeOpenFriday
-      timeCloseFriday
-      timeCloseSaturday
-      timeCloseSunday
       image {
         file {
           url
