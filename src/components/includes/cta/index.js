@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import Modal from 'react-modal';
 
-import Context from '~/config/Context';
+import Context from '~/context/Context';
 import SubscribeForm from '~/components/includes/forms/SubscribeForm';
 import { mediaMin } from '~/styles/mediaQueries';
 

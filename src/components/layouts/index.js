@@ -8,7 +8,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import Context from '~/config/Context';
+import Context from '~/context/Context';
 import Header from '~/components/includes/header';
 import Footer from '~/components/includes/footer';
 import CTA from '~/components/includes/cta';

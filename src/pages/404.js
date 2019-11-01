@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 
-import Context from '~/config/Context';
+import Context from '~/context/Context';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 

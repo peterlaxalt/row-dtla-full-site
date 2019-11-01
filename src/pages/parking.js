@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
-import BackArrow from '~/images/icons/arrow-back-white.svg';
+import BackArrow from '~/assets/images/icons/arrow-back-white.svg';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import { mediaMin } from '~/styles/mediaQueries';

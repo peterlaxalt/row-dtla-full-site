@@ -2,15 +2,15 @@ import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
-import Context from '~/config/Context';
+import Context from '~/context/Context';
 
 import { navRoutes } from '~/data/routes';
 import { mediaMin } from '~/styles/mediaQueries';
 
-import FacebookLogoBlack from '~/images/icons/fb-black.svg';
-import InstagramLogoBlack from '~/images/icons/insta-black.svg';
-import FacebookLogoWhite from '~/images/icons/fb-white.svg';
-import InstagramLogoWhite from '~/images/icons/insta-white.svg';
+import FacebookLogoBlack from '~/assets/images/icons/fb-black.svg';
+import InstagramLogoBlack from '~/assets/images/icons/insta-black.svg';
+import FacebookLogoWhite from '~/assets/images/icons/fb-white.svg';
+import InstagramLogoWhite from '~/assets/images/icons/insta-white.svg';
 
 const NavRow = styled.nav`
   display: none;

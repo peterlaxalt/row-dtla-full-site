@@ -8,8 +8,8 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import { mediaMin } from '~/styles/mediaQueries';
 import Slide from './Slide';
-import LeftArrow from '~/images/icons/arrow-left.svg';
-import RightArrow from '~/images/icons/arrow-right.svg';
+import LeftArrow from '~/assets/images/icons/arrow-left.svg';
+import RightArrow from '~/assets/images/icons/arrow-right.svg';
 
 const NextArrow = ({ className, onClick }) => (
   <img src={RightArrow} alt="next arrow" className={className} onClick={onClick} />

@@ -3,12 +3,11 @@ import { Link } from 'gatsby';
 import { Location } from '@reach/router';
 import styled from '@emotion/styled';
 
-import Context from '~/config/Context';
+import Context from '~/context/Context';
 import Logo from './logo';
 import DesktopNavigation from './DesktopNavigation';
 import MobileNavigation from './MobileNavigation';
 import { mediaMin } from '~/styles/mediaQueries';
-
 
 import { darkThemeRoutes } from '~/data/routes';
 
@@ -32,6 +31,7 @@ const HeaderContainer = styled.header`
     height: 100px;
     padding: 0 2.5%;
   }
+
   a {
     z-index: 101;
     svg {

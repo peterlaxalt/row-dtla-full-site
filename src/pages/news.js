@@ -5,7 +5,7 @@ import Masonry from 'react-masonry-component';
 
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
-import NewsCard from '~/components/includes/news/NewsCard';
+import NewsCard from '~/components/pages/news/NewsCard';
 import Filter from '~/components/includes/sub-header/Filter';
 
 const masonryOptions = {
