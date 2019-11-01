@@ -154,10 +154,10 @@ const ContactForm = () => {
       </FormRow>
       <FormRow>
         <label className="full">
-          <span>Please select the nature of your inquiry</span>
+          <span>* Please select the nature of your inquiry</span>
           <div className="select-wrapper">
             <img className="dropdown-arrow" src={DropdownArrow} alt="dropdown arrow" />
-            <select name="inquiryType" onBlur={handleChange} defaultValue={'DEFAULT'}>
+            <select name="inquiryType" onBlur={handleChange} defaultValue={'DEFAULT'} required>
               <option value={'DEFAULT'} disabled hidden>
                 &nbsp;&nbsp;--
               </option>
