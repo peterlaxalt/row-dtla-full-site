@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 import ReactPlayer from 'react-player';
 
 import { mediaMin } from '~/styles/mediaQueries';
+import PlayIcon from '~/images/icons/videoplay_icon.svg';
 
 const SliderSlide = styled.div`
   display: flex !important;
@@ -10,20 +11,50 @@ const SliderSlide = styled.div`
   align-items: center;
   flex-direction: column;
   overflow: hidden;
+  min-height: 100%;
+  ${props => (props.videoPlaceholder ? `background-image: url(${props.videoPlaceholder});` : '')}
   ${mediaMin('tabletLandscape')} {
-    height: 100%;
+    height: 90vh;
     min-width: 100%;
     flex-direction: ${props => (props.slideStyle === 'Image Left' ? 'row-reverse' : 'row')};
   }
-  img {
-    width: 100%;
-    ${mediaMin('tabletLandscape')} {
-      ${props => (props.slideStyle === 'Image Full' ? 'max-height: 100%; min-width: 100%;' : null)}
-      ${props =>
-        props.slideStyle === 'Image Left' || props.slideStyle === 'Image Right'
-          ? 'max-height: 100%; max-width: 50%;'
-          : null}
+  .react-player__preview {
+    .react-player__shadow {
+      background: none !important;
+      border-radius: 0 !important;
+      height: 200px !important;
+      width: 200px !important;
+      .react-player__play-icon {
+        border-style: none !important;
+        border-width: 0 !important;
+        margin-left: 0 !important;
+        background-image: url(${PlayIcon});
+        height: 100%;
+        width: 100%;
+      }
     }
+  }
+`;
+
+const DesktopImage = styled.div`
+  display: none;
+  ${mediaMin('tabletLandscape')} {
+    display: block;
+    background-image: url(${props => props.imgsrc});
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    ${props => (props.slideStyle === 'Image Left' || props.slideStyle === 'Image Right' ? 'width: 50%;' : null)}
+  }
+`;
+
+const MobileImage = styled.img`
+  width: 100%;
+  height: 100%;
+  ${mediaMin('tabletLandscape')} {
+    display: none !important;
   }
 `;
 
@@ -74,6 +105,10 @@ const ContentColumn = styled.div`
     &:visited {
       color: #000;
     }
+    &:hover {
+      color: #fff;
+      background-color: #000;
+    }
   }
 `;
 
@@ -89,14 +124,24 @@ const ContentBlock = ({ title, sectionName, body, linkName, linkUrl }) => {
 };
 
 const Slide = ({ slide }) => {
-  const { heroImage, linkName, linkUrl, style, title, sectionName, body, videoUrl } = slide;
+  const { heroImage, linkName, linkUrl, style, title, sectionName, body, videoUrl, videoPlaceholder } = slide;
+
   return (
     <SliderSlide slideStyle={style}>
       {style === 'Video' ? (
-        <ReactPlayer url={videoUrl} width="100%" height="100%" light controls />
+        <ReactPlayer
+          url={videoUrl}
+          config={{ preload: true }}
+          width="100%"
+          height="100%"
+          controls
+          playsinline
+          light={videoPlaceholder.file.url}
+        />
       ) : (
         <>
-          <img src={heroImage.file.url} alt={heroImage.description} />
+          <DesktopImage slideStyle={style} imgsrc={heroImage.file.url} alt={heroImage.description} />
+          <MobileImage slideStyle={style} src={heroImage.file.url} alt={heroImage.description} />
           {(style === 'Image Left' || style === 'Image Right') && (
             <ContentBlock title={title} sectionName={sectionName} body={body} linkName={linkName} linkUrl={linkUrl} />
           )}

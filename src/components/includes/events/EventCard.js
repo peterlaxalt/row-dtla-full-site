@@ -53,6 +53,10 @@ const CopySection = styled.div`
     &:visited {
       color: #000;
     }
+    &:hover {
+      background-color: #000;
+      color: #fff;
+    }
   }
 `;
 

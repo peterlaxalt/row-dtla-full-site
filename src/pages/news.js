@@ -9,7 +9,7 @@ import NewsCard from '~/components/includes/news/NewsCard';
 import Filter from '~/components/includes/sub-header/Filter';
 
 const masonryOptions = {
-  transitionDuration: 0,
+  transitionDuration: '0.25s',
   gutter: '.gutter-sizer',
 };
 
@@ -31,7 +31,7 @@ const NewsPage = ({ data }) => {
   const [filter, setFilter] = useState('ALL');
   const filters = ['ALL', 'ARTISTS IN RESIDENCE', 'IN THE NEIGHBORHOOD', 'PRESS'];
   const newsItems = data.allContentfulNewsItem.nodes;
-  
+
   const generateNewsItems = () => {
     let filteredNews = newsItems;
     if (filter !== 'ALL') {
