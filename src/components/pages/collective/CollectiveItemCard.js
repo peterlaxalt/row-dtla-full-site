@@ -80,7 +80,7 @@ const CollectiveItemCard = ({ cardData, idx }) => {
 
   return (
     <CollectiveItemCardWrapper
-      className={`${generateCardClass(idx)} grid-item`}
+      className={`${generateCardClass(idx)}`}
       to={`/collective/${slug}`}
       key={`collective-item-${idx}`}
       imgsrc={image.file.url}
