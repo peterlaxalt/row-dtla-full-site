@@ -113,7 +113,6 @@ export default EventShow;
 export const pageQuery = graphql`
   query($slug: String!) {
     contentfulEvent(slug: { eq: $slug }) {
-      address
       body {
         body
       }
@@ -127,7 +126,6 @@ export const pageQuery = graphql`
         description
       }
       startTime
-      suite
       title
       subtitle
       type
