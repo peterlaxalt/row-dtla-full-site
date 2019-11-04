@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from '@emotion/styled';
 import ReactPlayer from 'react-player';
 
@@ -10,8 +10,8 @@ const SliderSlide = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  overflow: hidden;
   min-height: 100%;
+  height: 100%;
   ${props => (props.videoPlaceholder ? `background-image: url(${props.videoPlaceholder});` : '')}
   ${mediaMin('tabletLandscape')} {
     height: 90vh;
@@ -52,7 +52,9 @@ const DesktopImage = styled.div`
 
 const MobileImage = styled.img`
   width: 100%;
-  height: 100%;
+  object-fit: cover;
+  ${props =>
+    props.slideStyle === 'Image Left' || props.slideStyle === 'Image Right' ? 'height: 50%;' : 'height: 100%;'}
   ${mediaMin('tabletLandscape')} {
     display: none !important;
   }
@@ -66,7 +68,9 @@ const ContentColumn = styled.div`
   text-align: left;
   max-width: 100%;
   margin: 24px 0;
+  height: 50%;
   ${mediaMin('tabletLandscape')} {
+    height: 100%;
     margin: 0;
     padding: 4em;
     width: 50%;
@@ -133,11 +137,16 @@ const ContentBlock = ({ title, sectionName, body, linkName, linkUrl }) => {
   );
 };
 
-const Slide = ({ slide, arrayLength }) => {
+const Slide = ({ slide, arrayLength, slideHeight }) => {
+  const SlideRef = useRef(null);
   const { heroImage, linkName, linkUrl, style, title, sectionName, body, videoUrl, videoPlaceholder, order } = slide;
 
+  useEffect(() => {
+    SlideRef.current.parentElement.style.height = '90%';
+  }, []);
+
   return (
-    <SliderSlide slideStyle={style}>
+    <SliderSlide ref={SlideRef} slideStyle={style} slideHeight={slideHeight}>
       {style === 'Video' ? (
         <>
           <ReactPlayer
