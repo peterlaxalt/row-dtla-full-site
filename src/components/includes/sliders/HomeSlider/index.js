@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -20,6 +20,7 @@ const PrevArrow = ({ className, onClick }) => (
 );
 
 const SliderContainer = styled.div`
+  ${props => `height: ${props.slideHeight}px;`}
   ${mediaMin('tabletLandscape')} {
     height: calc(100vh - 100px);
   }
@@ -36,9 +37,6 @@ const SliderContainer = styled.div`
           visibility: hidden;
           ${mediaMin('tabletLandscape')} {
             height: 90%;
-          }
-          div {
-            height: 100%;
           }
         }
         .slick-active {
@@ -69,7 +67,20 @@ const SliderContainer = styled.div`
   }
 `;
 
+const getTallestSlide = htmlCollection => {
+  let tallest = 0;
+  for (let idx = 0; idx < htmlCollection.length; idx += 1) {
+    console.log(htmlCollection);
+    if (htmlCollection[idx].clientHeight > tallest) {
+      tallest = htmlCollection[idx].clientHeight;
+    }
+  }
+  console.log(tallest);
+  return tallest;
+};
+
 const HomeSlider = ({ slideArray }) => {
+  const [tallestSlide, setTallestSlide] = useState(null);
   const SliderRef = useRef(null);
 
   const settings = {
@@ -85,11 +96,27 @@ const HomeSlider = ({ slideArray }) => {
   };
 
   const generateSlides = () => {
-    return slideArray.map(slide => <Slide slide={slide} arrayLength={slideArray.length} key={slide.contentful_id} />);
+    return slideArray.map(slide => (
+      <Slide slide={slide} arrayLength={slideArray.length} key={slide.contentful_id} slideHeight={tallestSlide} />
+    ));
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setTallestSlide(getTallestSlide(SliderRef.current.innerSlider.list.children[0].children));
+    }, 500);
+    document.addEventListener('resize', () => {
+      setTallestSlide(getTallestSlide(SliderRef.current.innerSlider.list.children[0].children));
+    });
+    return () => {
+      document.removeEventListener('resize', () => {
+        setTallestSlide(getTallestSlide(SliderRef.current.innerSlider.list.children[0].children));
+      });
+    };
+  }, []);
+
   return (
-    <SliderContainer>
+    <SliderContainer slideHeight={tallestSlide}>
       <Slider ref={SliderRef} {...settings}>
         {generateSlides()}
       </Slider>
