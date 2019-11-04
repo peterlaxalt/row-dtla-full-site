@@ -70,12 +70,10 @@ const SliderContainer = styled.div`
 const getTallestSlide = htmlCollection => {
   let tallest = 0;
   for (let idx = 0; idx < htmlCollection.length; idx += 1) {
-    console.log(htmlCollection);
     if (htmlCollection[idx].clientHeight > tallest) {
       tallest = htmlCollection[idx].clientHeight;
     }
   }
-  console.log(tallest);
   return tallest;
 };
 

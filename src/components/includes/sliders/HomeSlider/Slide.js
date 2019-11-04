@@ -4,7 +4,6 @@ import ReactPlayer from 'react-player';
 
 import { mediaMin } from '~/styles/mediaQueries';
 import PlayIcon from '~/images/icons/videoplay_icon.svg';
-import { useReducer } from 'react';
 
 const SliderSlide = styled.div`
   display: flex !important;
