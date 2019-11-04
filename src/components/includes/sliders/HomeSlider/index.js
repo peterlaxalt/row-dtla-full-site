@@ -19,18 +19,6 @@ const PrevArrow = ({ className, onClick }) => (
   <img src={LeftArrow} alt="previous arrow" className={className} onClick={onClick} />
 );
 
-const settings = {
-  dots: false,
-  infinite: true,
-  speed: 500,
-  fade: true,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  // lazyLoad: true,
-  nextArrow: <NextArrow />,
-  prevArrow: <PrevArrow />,
-};
-
 const SliderContainer = styled.div`
   ${mediaMin('tabletLandscape')} {
     height: calc(100vh - 100px);
@@ -59,23 +47,20 @@ const SliderContainer = styled.div`
       z-index: 10;
       top: initial;
       width: 10px;
-      bottom: 0%;
+      bottom: 5%;
+      left: unset;
+      right: 20%;
       ${mediaMin('tabletLandscape')} {
-        bottom: 5%;
-        transform: translate(200%, 50%);
+        right: unset;
+        left: 1%;
+        bottom: 4%;
       }
     }
     .slick-next {
-      right: calc(10% - 20px);
-      ${mediaMin('tabletLandscape')} {
-        left: 2em;
-      }
+      transform: translateX(10px);
     }
     .slick-prev {
-      right: calc(10% + 20px);
-      ${mediaMin('tabletLandscape')} {
-        right: 2em;
-      }
+      transform: translateX(-10px);
     }
   }
 `;
@@ -83,8 +68,20 @@ const SliderContainer = styled.div`
 const HomeSlider = ({ slideArray }) => {
   const SliderRef = useRef(null);
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    fade: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // lazyLoad: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
+
   const generateSlides = () => {
-    return slideArray.reverse().map(slide => <Slide slide={slide} key={slide.contentful_id} />);
+    return slideArray.map(slide => <Slide slide={slide} arrayLength={slideArray.length} key={slide.contentful_id} />);
   };
 
   return (

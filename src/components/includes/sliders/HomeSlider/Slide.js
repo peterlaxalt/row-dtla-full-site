@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import ReactPlayer from 'react-player';
 
@@ -112,6 +112,16 @@ const ContentColumn = styled.div`
   }
 `;
 
+const Progress = styled.span`
+  position: fixed;
+  bottom: 5%;
+  left: 9.5%;
+  ${mediaMin('tabletLandscape')} {
+    left: 0.5%;
+    bottom: 4%;
+  }
+`;
+
 const ContentBlock = ({ title, sectionName, body, linkName, linkUrl }) => {
   return (
     <ContentColumn>
@@ -123,21 +133,24 @@ const ContentBlock = ({ title, sectionName, body, linkName, linkUrl }) => {
   );
 };
 
-const Slide = ({ slide }) => {
-  const { heroImage, linkName, linkUrl, style, title, sectionName, body, videoUrl, videoPlaceholder } = slide;
+const Slide = ({ slide, arrayLength }) => {
+  const { heroImage, linkName, linkUrl, style, title, sectionName, body, videoUrl, videoPlaceholder, order } = slide;
 
   return (
     <SliderSlide slideStyle={style}>
       {style === 'Video' ? (
-        <ReactPlayer
-          url={videoUrl}
-          config={{ preload: true }}
-          width="100%"
-          height="100%"
-          controls
-          playsinline
-          light={videoPlaceholder.file.url}
-        />
+        <>
+          <ReactPlayer
+            url={videoUrl}
+            config={{ preload: true }}
+            width="100%"
+            height="100%"
+            controls
+            playsinline
+            light={videoPlaceholder.file.url}
+          />
+          <Progress>{`${order.toString().padStart(2, '0')}/${arrayLength.toString().padStart(2, '0')}`}</Progress>
+        </>
       ) : (
         <>
           <DesktopImage slideStyle={style} imgsrc={heroImage.file.url} alt={heroImage.description} />
@@ -145,6 +158,7 @@ const Slide = ({ slide }) => {
           {(style === 'Image Left' || style === 'Image Right') && (
             <ContentBlock title={title} sectionName={sectionName} body={body} linkName={linkName} linkUrl={linkUrl} />
           )}
+          <Progress>{`${order.toString().padStart(2, '0')}/${arrayLength.toString().padStart(2, '0')}`}</Progress>
         </>
       )}
     </SliderSlide>
