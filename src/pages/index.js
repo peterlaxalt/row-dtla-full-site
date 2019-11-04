@@ -18,8 +18,9 @@ const IndexPage = ({ data }) => {
 
 export const query = graphql`
   {
-    allContentfulHomeSlides {
+    allContentfulHomeSlides(sort: { order: ASC, fields: order }) {
       nodes {
+        order
         contentful_id
         linkName
         linkUrl
