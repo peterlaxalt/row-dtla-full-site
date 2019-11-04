@@ -23,9 +23,10 @@ const settings = {
   dots: false,
   infinite: true,
   speed: 500,
+  fade: true,
   slidesToShow: 1,
   slidesToScroll: 1,
-  lazyLoad: true,
+  // lazyLoad: true,
   nextArrow: <NextArrow />,
   prevArrow: <PrevArrow />,
 };
@@ -44,7 +45,6 @@ const SliderContainer = styled.div`
       .slick-track {
         height: 100%;
         .slick-slide {
-          height: 100%;
           ${mediaMin('tabletLandscape')} {
             height: 90%;
           }

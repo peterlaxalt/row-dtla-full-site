@@ -28,15 +28,16 @@ export const query = graphql`
         title
         body
         videoUrl
+        videoPlaceholder {
+          file {
+            url
+          }
+        }
         heroImage {
           description
           title
           file {
             url
-          }
-          resolutions {
-            src
-            srcSet
           }
         }
       }

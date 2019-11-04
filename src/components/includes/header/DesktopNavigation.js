@@ -49,6 +49,7 @@ const NavRow = styled.nav`
 const SocialMedia = styled.li`
   display: flex;
   a {
+    border-top: 4px solid transparent;
     margin-left: 2em;
   }
   a:first-of-type {

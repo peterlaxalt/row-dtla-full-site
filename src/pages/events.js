@@ -9,7 +9,7 @@ import EventCard from '~/components/pages/events/EventCard';
 import Filter from '~/components/includes/sub-header/Filter';
 
 const masonryOptions = {
-  transitionDuration: 0,
+  transitionDuration: '0.25s',
   gutter: '.gutter-sizer',
 };
 

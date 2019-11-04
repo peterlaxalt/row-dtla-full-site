@@ -78,6 +78,10 @@ const BoxLink = styled.a`
   letter-spacing: 1px;
   line-height: 20px;
   text-decoration: none !important;
+  &:hover {
+    background-color: #000;
+    color: #fff;
+  }
 `;
 
 const ImageColumn = styled.div`

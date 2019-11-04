@@ -18,9 +18,9 @@ const EventWrapper = styled.div`
 const EventInfo = styled.div`
   display: flex;
   flex-direction: column-reverse;
-  margin: 24px 0 0 0;
+  margin: 24px 0;
   ${mediaMin('tabletLandscape')} {
-    margin: 32px 0 0 0;
+    margin: 32px 0;
     flex-direction: row;
   }
 `;
