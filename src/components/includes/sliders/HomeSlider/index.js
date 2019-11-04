@@ -33,12 +33,16 @@ const SliderContainer = styled.div`
       .slick-track {
         height: 100%;
         .slick-slide {
+          visibility: hidden;
           ${mediaMin('tabletLandscape')} {
             height: 90%;
           }
           div {
             height: 100%;
           }
+        }
+        .slick-active {
+          visibility: visible;
         }
       }
     }
