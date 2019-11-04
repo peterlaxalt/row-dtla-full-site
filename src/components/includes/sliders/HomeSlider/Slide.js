@@ -14,7 +14,6 @@ const SliderSlide = styled.div`
   height: 100%;
   ${props => (props.videoPlaceholder ? `background-image: url(${props.videoPlaceholder});` : '')}
   ${mediaMin('tabletLandscape')} {
-    height: 90vh;
     min-width: 100%;
     flex-direction: ${props => (props.slideStyle === 'Image Left' ? 'row-reverse' : 'row')};
   }
@@ -142,7 +141,11 @@ const Slide = ({ slide, arrayLength, slideHeight }) => {
   const { heroImage, linkName, linkUrl, style, title, sectionName, body, videoUrl, videoPlaceholder, order } = slide;
 
   useEffect(() => {
-    SlideRef.current.parentElement.style.height = '90%';
+    if (window.innerWidth > 1024) {
+      SlideRef.current.parentElement.style.height = '100%';
+    } else {
+      SlideRef.current.parentElement.style.height = '90%';
+    }
   }, []);
 
   return (
