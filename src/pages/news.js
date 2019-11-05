@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
 
+import { mediaMin } from '~/styles/mediaQueries';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import NewsCard from '~/components/pages/news/NewsCard';
@@ -27,8 +28,30 @@ const NewsWrapper = styled.div`
   }
 `;
 
+const LoadMoreButton = styled.button`
+  opacity: ${props => (props.visible ? '1' : '0')};
+  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
+  border: 1px solid #000;
+  height: 40px;
+  margin: 0 auto 120px auto;
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 20px;
+  cursor: pointer;
+  width: 75%;
+  background-color: #fff;
+  ${mediaMin('tabletLandscape')} {
+    width: 25%;
+  }
+  &:hover {
+    color: #fff;
+    background-color: #000;
+  }
+`;
+
 const NewsPage = ({ data }) => {
   const [filter, setFilter] = useState('ALL');
+  const [loaded, setLoaded] = useState(10);
   const filters = ['ALL', 'ARTISTS IN RESIDENCE', 'IN THE NEIGHBORHOOD', 'PRESS'];
   const newsItems = data.allContentfulNewsItem.nodes;
 
@@ -37,10 +60,14 @@ const NewsPage = ({ data }) => {
     if (filter !== 'ALL') {
       filteredNews = filteredNews.filter(newsItem => newsItem.type === filter);
     }
-    return filteredNews.map(newsItem => {
+    return filteredNews.slice(0, loaded).map(newsItem => {
       const { id } = newsItem;
       return <NewsCard key={`news-item-${id}`} article={newsItem} />;
     });
+  };
+
+  const loadMore = () => {
+    setLoaded(loaded + 10);
   };
 
   return (
@@ -49,9 +76,12 @@ const NewsPage = ({ data }) => {
       <NewsWrapper>
         <Filter title={"What's new at\nROW DTLA"} filters={filters} activeFilter={filter} setFilter={setFilter} />
         <Masonry options={masonryOptions} elementType={'ul'}>
-          {generateNewsItems(newsItems)}
+          {generateNewsItems()}
           <div className="gutter-sizer" />
         </Masonry>
+        <LoadMoreButton onClick={loadMore} visible={loaded < newsItems.length}>
+          LOAD MORE
+        </LoadMoreButton>
       </NewsWrapper>
     </Layout>
   );
