@@ -28,8 +28,6 @@ const ResponsiveImage = ({ ariaHidden, srcPath, imgClass, imgAlt, onClickProp, o
     .map(([name, path]) => `${path} ${name}`)
     .join(', ');
 
-  // console.log(srcSet)
-
   return (
     <ResponsiveImg
       src={defaultPath}

@@ -5,6 +5,8 @@ import { Link } from 'gatsby';
 import { mediaMin } from '~/styles/mediaQueries';
 import { truncateText } from '~/utils/helpers';
 
+import placeholderImg from '~/images/backup/backup_image.jpg';
+
 const EventWrapper = styled.li`
   margin-bottom: calc(64px / 3);
   padding: 0;
@@ -64,7 +66,7 @@ const EventCard = ({ event }) => {
   const { body, date, endDate, startTime, endTime, image, slug, title } = event;
   return (
     <EventWrapper>
-      <img src={image.file.url} alt={image.description} />
+      <img src={image ? image.file.url : placeholderImg} alt={image ? image.description : 'Placeholder Image'} />
       <CopySection>
         <span>{`${date}${endDate ? ` - ${endDate}` : ''}`}</span>
         <h3>{title}</h3>

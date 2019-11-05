@@ -1,3 +1,7 @@
+const parsePhone = int => {
+  return int.toString().replace(/(\d{3})(\d{3})(\d{4})/, '$1.$2.$3');
+};
+
 const truncateText = (text, wordLimit) => {
   const textArray = text.split(' ');
   if (textArray.length < wordLimit) return text;
@@ -5,4 +9,4 @@ const truncateText = (text, wordLimit) => {
   return `${shortened.join(' ')}...`;
 };
 
-export { truncateText };
+export { parsePhone, truncateText };

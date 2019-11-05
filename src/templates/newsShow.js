@@ -1,9 +1,8 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import { Link, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
-import Context from '~/context/Context';
 import SEO from '~/components/seo';
 import BackArrow from '~/assets/images/icons/arrow-back.svg';
 import { mediaMin } from '~/styles/mediaQueries';
@@ -122,14 +121,7 @@ const SmallImage = styled.img`
 `;
 
 const NewsShow = ({ data }) => {
-  const { contentfulNewsItem } = data;
-  const { date, images, title, publication, body, articleURL } = contentfulNewsItem;
-  const context = useContext(Context);
-  const { setDarkTheme } = context;
-
-  useEffect(() => {
-    setDarkTheme(false);
-  }, []);
+  const { date, images, title, publication, body, articleURL } = data.contentfulNewsItem;
 
   return (
     <>
