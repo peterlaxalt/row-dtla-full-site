@@ -3,7 +3,6 @@ import { Link, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
-import Layout from '~/layouts';
 import SEO from '~/components/seo';
 
 import { mediaMin } from '~/styles/mediaQueries';
@@ -153,7 +152,7 @@ const CollectiveShow = ({ data }) => {
   } = data.contentfulCollectiveItem;
 
   return (
-    <Layout>
+    <>
       <SEO title={title} />
 
       <CollectiveWrapper>
@@ -198,7 +197,7 @@ const CollectiveShow = ({ data }) => {
           </ImageColumn>
         </CollectiveInfo>
       </CollectiveWrapper>
-    </Layout>
+    </>
   );
 };
 

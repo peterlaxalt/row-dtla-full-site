@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
 import Context from '~/context/Context';
-import Layout from '~/layouts';
 import SEO from '~/components/seo';
 import BackArrow from '~/assets/images/icons/arrow-back.svg';
 import { mediaMin } from '~/styles/mediaQueries';
@@ -133,7 +132,7 @@ const NewsShow = ({ data }) => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <SEO title={title} />
       <NewsWrapper>
         <Link to="/news">
@@ -167,7 +166,7 @@ const NewsShow = ({ data }) => {
           </ImageColumn>
         </NewsInfo>
       </NewsWrapper>
-    </Layout>
+    </>
   );
 };
 
