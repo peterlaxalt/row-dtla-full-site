@@ -37,7 +37,7 @@ const CollectivePage = ({ data }) => {
 
   const collectiveItems = data.allContentfulCollectiveItem.nodes;
 
-  const generateCollectiveItems = useCallback(() => {
+  const generateCollectiveItemCards = useCallback(() => {
     let filteredCollectiveItems = collectiveItems;
     if (filter !== 'ALL') {
       filteredCollectiveItems = filteredCollectiveItems.filter(collectiveItem => collectiveItem.type === filter);
@@ -53,7 +53,7 @@ const CollectivePage = ({ data }) => {
       <CollectiveWrapper>
         <Filter title={'Discover\nROW DTLA'} filters={filters} activeFilter={filter} setFilter={setFilter} />
         <Masonry options={masonryOptions} elementType={'ul'}>
-          {generateCollectiveItemCards(filteredCollectiveItems)}
+          {generateCollectiveItemCards()}
         </Masonry>
       </CollectiveWrapper>
     </Layout>
