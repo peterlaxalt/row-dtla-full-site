@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import styled from '@emotion/styled';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -93,11 +93,11 @@ const HomeSlider = ({ slideArray }) => {
     prevArrow: <PrevArrow />,
   };
 
-  const generateSlides = () => {
+  const generateSlides = useCallback(() => {
     return slideArray.map(slide => (
       <Slide slide={slide} arrayLength={slideArray.length} key={slide.contentful_id} slideHeight={tallestSlide} />
     ));
-  };
+  }, [tallestSlide, slideArray]);
 
   useEffect(() => {
     setTimeout(() => {

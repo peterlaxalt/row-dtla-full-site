@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
@@ -60,7 +60,7 @@ const SocialMedia = styled.li`
 const DesktopNavigation = () => {
   const { darkTheme } = useContext(Context);
 
-  const generateNav = () => {
+  const generateNav = useCallback(() => {
     const navigation = navRoutes.map(route => {
       return (
         <li key={route.link}>
@@ -91,7 +91,8 @@ const DesktopNavigation = () => {
       </SocialMedia>
     );
     return navigation;
-  };
+  }, [darkTheme]);
+
   return (
     <NavRow dark={darkTheme}>
       <ul>{generateNav()}</ul>
