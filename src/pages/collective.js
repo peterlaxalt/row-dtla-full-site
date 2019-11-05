@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
@@ -31,23 +31,21 @@ const masonryOptions = {
   gutter: 40,
 };
 
-const generateCollectiveItemCards = collectiveItems => {
-  return collectiveItems.map((collectiveItem, idx) => (
-    <CollectiveItemCard key={`collective-item-card-${idx}`} idx={idx} cardData={collectiveItem} />
-  ));
-};
-
 const CollectivePage = ({ data }) => {
   const [filter, setFilter] = useState('ALL');
   const filters = ['ALL', 'DINE', 'SHOP', 'LIFESTYLE', 'POP-UP'];
 
   const collectiveItems = data.allContentfulCollectiveItem.nodes;
 
-  let filteredCollectiveItems = collectiveItems;
-
-  if (filter !== 'ALL') {
-    filteredCollectiveItems = filteredCollectiveItems.filter(collectiveItem => collectiveItem.type === filter);
-  }
+  const generateCollectiveItems = useCallback(() => {
+    let filteredCollectiveItems = collectiveItems;
+    if (filter !== 'ALL') {
+      filteredCollectiveItems = filteredCollectiveItems.filter(collectiveItem => collectiveItem.type === filter);
+    }
+    return filteredCollectiveItems.map((collectiveItem, idx) => {
+      return <CollectiveItemCard key={`collective-item-card-${idx}`} idx={idx} cardData={collectiveItem} />;
+    });
+  }, [filter, collectiveItems]);
 
   return (
     <Layout>

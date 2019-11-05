@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import styled from '@emotion/styled';
 import ReactPlayer from 'react-player';
 
@@ -140,13 +140,13 @@ const Slide = ({ slide, arrayLength, slideHeight }) => {
   const SlideRef = useRef(null);
   const { heroImage, linkName, linkUrl, style, title, sectionName, body, videoUrl, videoPlaceholder, order } = slide;
 
-  const setSliderDivHeight = () => {
+  const setSliderDivHeight = useCallback(() => {
     if (window.innerWidth > 1024) {
       SlideRef.current.parentElement.style.height = '100%';
     } else {
       SlideRef.current.parentElement.style.height = '90%';
     }
-  };
+  }, [SlideRef]);
 
   useEffect(() => {
     setSliderDivHeight();
