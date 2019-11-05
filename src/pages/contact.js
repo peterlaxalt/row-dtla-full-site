@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import { mediaMin } from '~/styles/mediaQueries';
 
@@ -70,7 +69,7 @@ const ContactSection = styled.div`
 
 const ContactPage = () => {
   return (
-    <Layout>
+    <>
       <SEO title="Contact" />
       <ContactWrapper>
         <h2>
@@ -129,7 +128,7 @@ const ContactPage = () => {
           </ContactColumn>
         </ContactContent>
       </ContactWrapper>
-    </Layout>
+    </>
   );
 };
 

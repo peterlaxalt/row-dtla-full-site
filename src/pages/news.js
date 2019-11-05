@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
 
 import { mediaMin } from '~/styles/mediaQueries';
-import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import NewsCard from '~/components/pages/news/NewsCard';
 import Filter from '~/components/includes/sub-header/Filter';
@@ -70,7 +69,7 @@ const NewsPage = ({ data }) => {
   }, [loaded]);
 
   return (
-    <Layout>
+    <>
       <SEO title="Events" />
       <NewsWrapper>
         <Filter title={"What's new at\nROW DTLA"} filters={filters} activeFilter={filter} setFilter={setFilter} />
@@ -82,7 +81,7 @@ const NewsPage = ({ data }) => {
           LOAD MORE
         </LoadMoreButton>
       </NewsWrapper>
-    </Layout>
+    </>
   );
 };
 

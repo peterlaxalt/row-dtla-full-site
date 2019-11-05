@@ -4,8 +4,6 @@
  * See: https://www.gatsbyjs.org/docs/ssr-apis/
  */
 
-import RootLayout from '~/components/layouts/root';
+import RootLayout from '~/layouts/root';
 
-export const wrapRootElement = ({ element }) => (
-  <RootLayout>{element}</RootLayout>
-);
+export const wrapRootElement = ({ element }) => <RootLayout>{element}</RootLayout>;

@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
 import Context from '~/context/Context';
-import Layout from '~/components/layouts';
+import Layout from '~/layouts';
 import SEO from '~/components/seo';
 import BackArrow from '~/assets/images/icons/arrow-back.svg';
 import { mediaMin } from '~/styles/mediaQueries';

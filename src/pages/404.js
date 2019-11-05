@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 
 import Context from '~/context/Context';
-import Layout from '~/components/layouts';
+import Layout from '~/layouts';
 import SEO from '~/components/seo';
 
 const NotFoundPage = () => {
