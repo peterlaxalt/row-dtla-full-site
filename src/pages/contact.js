@@ -10,7 +10,6 @@ import ContactForm from '~/components/pages/contact/ContactForm';
 const ContactWrapper = styled.div`
   color: #fff;
   margin: 24px auto 0;
-  width: 95%;
   ${mediaMin('tabletLandscape')} {
     margin: 64px 0 0 0;
     width: 100%;
@@ -60,7 +59,7 @@ const ContactSection = styled.div`
   p {
     margin: 0;
     text-transform: uppercase;
-    font-weight: 200;
+    font-weight: 300;
     margin-bottom: 5px;
     letter-spacing: 1px;
   }
@@ -86,18 +85,22 @@ const ContactPage = () => {
           <ContactColumn width="40%" className="right">
             <ContactSection>
               <h6>General Contact</h6>
-              <p>INFO@URL.COM</p>
-              <p>213.988.8890</p>
+              <div className="contact">
+                <p>INFO@URL.COM</p>
+                <p>213.988.8890</p>
+              </div>
             </ContactSection>
             <ContactSection>
               <h6>Retail Leasing</h6>
-              <p>RUNYON</p>
-              <p>INFO@RUNYONGROUP.COM</p>
-              <p>310.275.0483</p>
+              <div className="contact">
+                <p>RUNYON</p>
+                <p>INFO@RUNYONGROUP.COM</p>
+                <p>310.275.0483</p>
+              </div>
             </ContactSection>
             <ContactSection>
+              <h6>Creative Office Leasing</h6>
               <div className="contact">
-                <h6>Creative Office Leasing</h6>
                 <p>Jeff Pion</p>
                 <p>JEFF.PION@CBRE.COM</p>
                 <p>310.550.2537</p>

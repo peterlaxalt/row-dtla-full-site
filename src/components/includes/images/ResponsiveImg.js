@@ -2,13 +2,17 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+import { mediaMin } from '~/styles/mediaQueries';
+
 const ResponsiveImg = styled.img`
   max-width: 100%;
   max-height: 100%;
-  width: ${props => props.width || 'auto'};
+  ${mediaMin('tabletLandscape')} {
+    width: ${props => props.desktopWidth || 'auto'};
+  }
 `;
 
-const ResponsiveImage = ({ ariaHidden, srcPath, imgClass, imgAlt, onClickProp, onLoadProp, refProp, width }) => {
+const ResponsiveImage = ({ ariaHidden, srcPath, imgClass, imgAlt, onClickProp, onLoadProp, refProp, desktopWidth }) => {
   const defaultPath = require(`~/assets/images/${srcPath}.jpg`);
 
   const srcSetPaths = {
@@ -36,7 +40,7 @@ const ResponsiveImage = ({ ariaHidden, srcPath, imgClass, imgAlt, onClickProp, o
       onClick={onClickProp}
       aria-hidden={ariaHidden === undefined ? false : ariaHidden}
       onLoad={onLoadProp}
-      width={width}
+      desktopWidth={desktopWidth}
     />
   );
 };
