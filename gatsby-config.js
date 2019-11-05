@@ -31,6 +31,12 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/layouts`),
+      },
+    },
+    {
       resolve: 'gatsby-plugin-root-import',
       options: {
         '~': path.join(__dirname, 'src/'),

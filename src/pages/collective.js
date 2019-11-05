@@ -3,7 +3,6 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
 
-import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 
 import { mediaMin } from '~/styles/mediaQueries';
@@ -48,7 +47,7 @@ const CollectivePage = ({ data }) => {
   }, [filter, collectiveItems]);
 
   return (
-    <Layout>
+    <>
       <SEO title="Collective" />
       <CollectiveWrapper>
         <Filter title={'Discover\nROW DTLA'} filters={filters} activeFilter={filter} setFilter={setFilter} />
@@ -56,7 +55,7 @@ const CollectivePage = ({ data }) => {
           {generateCollectiveItemCards()}
         </Masonry>
       </CollectiveWrapper>
-    </Layout>
+    </>
   );
 };
 

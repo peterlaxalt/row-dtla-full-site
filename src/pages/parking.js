@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
 import BackArrow from '~/assets/images/icons/arrow-back-white.svg';
-import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import { mediaMin } from '~/styles/mediaQueries';
 
@@ -76,7 +75,7 @@ const TimeTable = styled.div`
 
 const ParkingPage = () => {
   return (
-    <Layout>
+    <>
       <SEO title="Parking" />
       <ParkingWrapper>
         <Link to="/">
@@ -142,7 +141,7 @@ const ParkingPage = () => {
           </TimeTable>
         </ParkingContent>
       </ParkingWrapper>
-    </Layout>
+    </>
   );
 };
 

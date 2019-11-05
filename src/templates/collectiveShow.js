@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
-import Layout from '~/components/layouts';
+import Layout from '~/layouts';
 import SEO from '~/components/seo';
 
 import { mediaMin } from '~/styles/mediaQueries';

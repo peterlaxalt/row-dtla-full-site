@@ -4,7 +4,6 @@ import Masonry from 'react-masonry-component';
 import styled from '@emotion/styled';
 
 import { mediaMin } from '~/styles/mediaQueries';
-import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import EventCard from '~/components/pages/events/EventCard';
 import Filter from '~/components/includes/sub-header/Filter';
@@ -70,7 +69,7 @@ const EventsPage = ({ data }) => {
   }, [loaded]);
 
   return (
-    <Layout>
+    <>
       <SEO title="Events" />
       <EventsWrapper>
         <Filter title={"What's on at\nROW DTLA"} filters={filters} activeFilter={filter} setFilter={setFilter} />
@@ -82,7 +81,7 @@ const EventsPage = ({ data }) => {
           LOAD MORE
         </LoadMoreButton>
       </EventsWrapper>
-    </Layout>
+    </>
   );
 };
 
