@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
 
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
+
+import { mediaMin } from '~/styles/mediaQueries';
 
 import Filter from '~/components/includes/sub-header/Filter';
 import CollectiveItemCard from '~/components/pages/collective/CollectiveItemCard';
@@ -15,7 +17,11 @@ const CollectiveWrapper = styled.div`
   width: 100%;
   ul {
     padding: 0;
+    margin-top: 20px;
     list-style-type: none;
+    ${mediaMin('tablet')} {
+      margin-bottom: 40px;
+    }
   }
 `;
 
@@ -25,10 +31,11 @@ const masonryOptions = {
   gutter: 40,
 };
 
-const generateCollectiveItemCards = collectiveItems =>
-  collectiveItems.map((collectiveItem, idx) => (
+const generateCollectiveItemCards = collectiveItems => {
+  return collectiveItems.map((collectiveItem, idx) => (
     <CollectiveItemCard key={`collective-item-card-${idx}`} idx={idx} cardData={collectiveItem} />
   ));
+};
 
 const CollectivePage = ({ data }) => {
   const [filter, setFilter] = useState('ALL');
