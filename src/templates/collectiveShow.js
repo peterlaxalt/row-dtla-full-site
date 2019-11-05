@@ -6,10 +6,13 @@ import RichText from '@madebyconnor/rich-text-to-jsx';
 import SEO from '~/components/seo';
 
 import { mediaMin } from '~/styles/mediaQueries';
+import { parsePhone } from '~/utils/helpers';
 
 import BackArrow from '~/assets/images/icons/arrow-back.svg';
 import FacebookLogo from '~/assets/images/icons/fb-black.svg';
 import InstagramLogo from '~/assets/images/icons/insta-black.svg';
+
+import placeholderImg from '~/images/backup/backup_image.jpg';
 
 const CollectiveWrapper = styled.div``;
 
@@ -133,10 +136,6 @@ const ImageColumn = styled.div`
   }
 `;
 
-const parsePhone = int => {
-  return int.toString().replace(/(\d{3})(\d{3})(\d{4})/, '$1.$2.$3');
-};
-
 const CollectiveShow = ({ data }) => {
   const {
     body,
@@ -193,7 +192,7 @@ const CollectiveShow = ({ data }) => {
             </div>
           </CopyColumn>
           <ImageColumn className="column right">
-            <img src={image.file.url} alt={image.description} />
+            <img src={image ? image.file.url : placeholderImg} alt={image ? image.description : 'Placeholder Image'} />
           </ImageColumn>
         </CollectiveInfo>
       </CollectiveWrapper>

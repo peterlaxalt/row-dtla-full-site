@@ -1,12 +1,13 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import { Link, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
-import Context from '~/context/Context';
 import SEO from '~/components/seo';
 import BackArrow from '~/assets/images/icons/arrow-back.svg';
 import { mediaMin } from '~/styles/mediaQueries';
+
+import placeholderImg from '~/images/backup/backup_image.jpg';
 
 const EventWrapper = styled.div`
   width: 100%;
@@ -77,12 +78,6 @@ const HeroImage = styled.img`
 const EventShow = ({ data }) => {
   const { contentfulEvent } = data;
   const { body, date, endDate, startTime, endTime, image, title } = contentfulEvent;
-  const context = useContext(Context);
-  const { setDarkTheme } = context;
-
-  useEffect(() => {
-    setDarkTheme(false);
-  }, []);
 
   return (
     <>
@@ -99,7 +94,10 @@ const EventShow = ({ data }) => {
             <RichText richText={JSON.parse(body.body)} />
           </CopyColumn>
           <ImageColumn>
-            <HeroImage src={image.file.url} alt={image.description} />
+            <HeroImage
+              src={image ? image.file.url : placeholderImg}
+              alt={image ? image.description : 'Placeholder Image'}
+            />
           </ImageColumn>
         </EventInfo>
       </EventWrapper>

@@ -3,6 +3,8 @@ import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import { mediaMin } from '~/styles/mediaQueries';
 
+import placeholderImg from '~/images/backup/backup_image.jpg';
+
 const CollectiveItemCardWrapper = styled(Link)`
   display: flex;
   flex-direction: column;
@@ -102,15 +104,14 @@ const generateCardClass = idx => {
 
 const CollectiveItemCard = ({ cardData, idx }) => {
   const { slug, image, subtitle, displayTitle } = cardData;
-
   return (
     <CollectiveItemCardWrapper
       className={`${generateCardClass(idx)}`}
       to={`/collective/${slug}`}
       key={`collective-item-${idx}`}
-      imgsrc={image.file.url}
+      imgsrc={image ? image.file.url : placeholderImg}
     >
-      <div className="image-container" title={image.description} />
+      <div className="image-container" title={image ? image.description : 'Placeholder Image'} />
       <div className="description-container">
         <p>{subtitle}</p>
         {displayTitle && parseTitle(displayTitle.displayTitle)}
