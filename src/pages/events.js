@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import Masonry from 'react-masonry-component';
 import styled from '@emotion/styled';
 
+import { mediaMin } from '~/styles/mediaQueries';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 import EventCard from '~/components/pages/events/EventCard';
@@ -26,8 +27,30 @@ const EventsWrapper = styled.div`
   }
 `;
 
+const LoadMoreButton = styled.button`
+  opacity: ${props => (props.visible ? '1' : '0')};
+  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
+  border: 1px solid #000;
+  height: 40px;
+  margin: 0 auto 120px auto;
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 20px;
+  cursor: pointer;
+  background-color: #fff;
+  width: 75%;
+  ${mediaMin('tabletLandscape')} {
+    width: 25%;
+  }
+  &:hover {
+    color: #fff;
+    background-color: #000;
+  }
+`;
+
 const EventsPage = ({ data }) => {
   const [filter, setFilter] = useState('ALL');
+  const [loaded, setLoaded] = useState(10);
   const filters = ['ALL', 'FOOD TRUCKS', 'EVENTS', 'ARCHIVE'];
   const events = data.allContentfulEvent.nodes;
 
@@ -36,10 +59,14 @@ const EventsPage = ({ data }) => {
     if (filter !== 'ALL') {
       filteredEvents = filteredEvents.filter(newsItem => newsItem.type === filter);
     }
-    return filteredEvents.map(event => {
+    return filteredEvents.slice(0, loaded).map(event => {
       const { id } = event;
       return <EventCard className="event" event={event} key={id} />;
     });
+  };
+
+  const loadMore = () => {
+    setLoaded(loaded + 10);
   };
 
   return (
@@ -51,6 +78,9 @@ const EventsPage = ({ data }) => {
           {generateEvents(events)}
           <div className="gutter-sizer" />
         </Masonry>
+        <LoadMoreButton onClick={loadMore} visible={loaded < events.length}>
+          LOAD MORE
+        </LoadMoreButton>
       </EventsWrapper>
     </Layout>
   );
