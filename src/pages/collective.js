@@ -6,6 +6,8 @@ import Masonry from 'react-masonry-component';
 import Layout from '~/components/layouts';
 import SEO from '~/components/seo';
 
+import { mediaMin } from '~/styles/mediaQueries';
+
 import Filter from '~/components/includes/sub-header/Filter';
 import CollectiveItemCard from '~/components/pages/collective/CollectiveItemCard';
 
@@ -13,19 +15,26 @@ const CollectiveWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  .masonry {
-    margin: 48px 0;
-  }
-  .grid-sizer {
-    width: calc(144px / 3);
+  ul {
+    padding: 0;
+    margin-top: 20px;
+    list-style-type: none;
+    ${mediaMin('tablet')} {
+      margin-bottom: 40px;
+    }
   }
 `;
 
 const masonryOptions = {
-  transitionDuration: '.25s',
-  itemSelector: '.grid-item',
+  transitionDuration: '0.25s',
   columnWidth: '.small-vertical',
   gutter: 40,
+};
+
+const generateCollectiveItemCards = collectiveItems => {
+  return collectiveItems.map((collectiveItem, idx) => (
+    <CollectiveItemCard key={`collective-item-card-${idx}`} idx={idx} cardData={collectiveItem} />
+  ));
 };
 
 const CollectivePage = ({ data }) => {
@@ -34,24 +43,19 @@ const CollectivePage = ({ data }) => {
 
   const collectiveItems = data.allContentfulCollectiveItem.nodes;
 
-  const generateCollectiveItems = () => {
-    let filteredCollectiveItems = collectiveItems;
-    if (filter !== 'ALL') {
-      filteredCollectiveItems = filteredCollectiveItems.filter(collectiveItem => collectiveItem.type === filter);
-    }
-    return filteredCollectiveItems.map((collectiveItem, idx) => {
-      return <CollectiveItemCard key={`collective-item-card-${idx}`} idx={idx} cardData={collectiveItem} />;
-    });
-  };
+  let filteredCollectiveItems = collectiveItems;
+
+  if (filter !== 'ALL') {
+    filteredCollectiveItems = filteredCollectiveItems.filter(collectiveItem => collectiveItem.type === filter);
+  }
 
   return (
     <Layout>
       <SEO title="Collective" />
       <CollectiveWrapper>
         <Filter title={'Discover\nROW DTLA'} filters={filters} activeFilter={filter} setFilter={setFilter} />
-        <Masonry className="masonry" options={masonryOptions}>
-          {generateCollectiveItems()}
-          <div className="grid-sizer" />
+        <Masonry options={masonryOptions} elementType={'ul'}>
+          {generateCollectiveItemCards(filteredCollectiveItems)}
         </Masonry>
       </CollectiveWrapper>
     </Layout>
