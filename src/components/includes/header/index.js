@@ -36,7 +36,7 @@ const HeaderContainer = styled.header`
     z-index: 101;
     height: 100%;
     ${mediaMin('tabletLandscape')} {
-      height: 100px;
+      height: initial;
     }
     svg {
       height: 20px;
