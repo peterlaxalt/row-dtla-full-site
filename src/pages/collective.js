@@ -20,7 +20,7 @@ const CollectiveWrapper = styled.div`
     margin-top: 20px;
     list-style-type: none;
     ${mediaMin('tablet')} {
-      margin-bottom: 40px;
+      margin-top: 40px;
     }
   }
 `;

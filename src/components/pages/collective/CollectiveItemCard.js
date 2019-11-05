@@ -12,6 +12,12 @@ const CollectiveItemCardWrapper = styled(Link)`
   ${mediaMin('tablet')} {
     margin-bottom: 40px;
   }
+  ${mediaMin('tabletLandscape')} {
+    transition: box-shadow 300ms ease;
+    &:hover {
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    }
+  }
   &.small-vertical {
     ${mediaMin('tablet')} {
       width: calc(50% - 20px);
