@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
@@ -34,7 +34,7 @@ const CollectivePage = ({ data }) => {
 
   const collectiveItems = data.allContentfulCollectiveItem.nodes;
 
-  const generateCollectiveItems = () => {
+  const generateCollectiveItems = useCallback(() => {
     let filteredCollectiveItems = collectiveItems;
     if (filter !== 'ALL') {
       filteredCollectiveItems = filteredCollectiveItems.filter(collectiveItem => collectiveItem.type === filter);
@@ -42,7 +42,7 @@ const CollectivePage = ({ data }) => {
     return filteredCollectiveItems.map((collectiveItem, idx) => {
       return <CollectiveItemCard key={`collective-item-card-${idx}`} idx={idx} cardData={collectiveItem} />;
     });
-  };
+  }, [filter, collectiveItems]);
 
   return (
     <Layout>

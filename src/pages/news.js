@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
@@ -55,7 +55,7 @@ const NewsPage = ({ data }) => {
   const filters = ['ALL', 'ARTISTS IN RESIDENCE', 'IN THE NEIGHBORHOOD', 'PRESS'];
   const newsItems = data.allContentfulNewsItem.nodes;
 
-  const generateNewsItems = () => {
+  const generateNewsItems = useCallback(() => {
     let filteredNews = newsItems;
     if (filter !== 'ALL') {
       filteredNews = filteredNews.filter(newsItem => newsItem.type === filter);
@@ -64,11 +64,11 @@ const NewsPage = ({ data }) => {
       const { id } = newsItem;
       return <NewsCard key={`news-item-${id}`} article={newsItem} />;
     });
-  };
+  }, [filter, loaded, newsItems]);
 
-  const loadMore = () => {
+  const loadMore = useCallback(() => {
     setLoaded(loaded + 10);
-  };
+  }, [loaded]);
 
   return (
     <Layout>

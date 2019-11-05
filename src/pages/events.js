@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { graphql } from 'gatsby';
 import Masonry from 'react-masonry-component';
 import styled from '@emotion/styled';
@@ -54,7 +54,7 @@ const EventsPage = ({ data }) => {
   const filters = ['ALL', 'FOOD TRUCKS', 'EVENTS', 'ARCHIVE'];
   const events = data.allContentfulEvent.nodes;
 
-  const generateEvents = events => {
+  const generateEvents = useCallback(() => {
     let filteredEvents = events;
     if (filter !== 'ALL') {
       filteredEvents = filteredEvents.filter(newsItem => newsItem.type === filter);
@@ -63,11 +63,11 @@ const EventsPage = ({ data }) => {
       const { id } = event;
       return <EventCard className="event" event={event} key={id} />;
     });
-  };
+  }, [filter, events, loaded]);
 
-  const loadMore = () => {
+  const loadMore = useCallback(() => {
     setLoaded(loaded + 10);
-  };
+  }, [loaded]);
 
   return (
     <Layout>
@@ -75,7 +75,7 @@ const EventsPage = ({ data }) => {
       <EventsWrapper>
         <Filter title={"What's on at\nROW DTLA"} filters={filters} activeFilter={filter} setFilter={setFilter} />
         <Masonry options={masonryOptions} elementType={'ul'}>
-          {generateEvents(events)}
+          {generateEvents()}
           <div className="gutter-sizer" />
         </Masonry>
         <LoadMoreButton onClick={loadMore} visible={loaded < events.length}>
