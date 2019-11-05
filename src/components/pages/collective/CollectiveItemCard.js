@@ -8,13 +8,22 @@ const CollectiveItemCardWrapper = styled(Link)`
   flex-direction: column;
   border: 1px solid black;
   width: 100%;
-  margin-bottom: 48px;
+  margin-bottom: 20px;
+  ${mediaMin('tablet')} {
+    margin-bottom: 40px;
+  }
+  ${mediaMin('tabletLandscape')} {
+    transition: box-shadow 300ms ease;
+    &:hover {
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    }
+  }
   &.small-vertical {
     ${mediaMin('tablet')} {
-      width: calc(50% - 24px);
+      width: calc(50% - 20px);
     }
     ${mediaMin('tabletLandscape')} {
-      width: calc(25% - 32px);
+      width: calc(25% - 30px);
     }
     .image-container {
       height: 100%;
@@ -23,7 +32,7 @@ const CollectiveItemCardWrapper = styled(Link)`
   }
   &.large-vertical {
     ${mediaMin('tabletLandscape')} {
-      width: calc(50% - 16px);
+      width: calc(50% - 20px);
     }
     .image-container {
       height: 100%;
@@ -32,11 +41,15 @@ const CollectiveItemCardWrapper = styled(Link)`
   }
   &.large-horizontal {
     ${mediaMin('tabletLandscape')} {
-      width: calc(50% - 16px);
+      width: calc(50% - 20px);
     }
     .image-container {
-      height: 50%;
-      padding-bottom: 50%;
+      height: 100%;
+      padding-bottom: 100%;
+      ${mediaMin('tablet')} {
+        height: 50%;
+        padding-bottom: 50%;
+      }
     }
   }
   .image-container {
@@ -45,9 +58,21 @@ const CollectiveItemCardWrapper = styled(Link)`
   }
   .description-container {
     padding: 20px;
-    height: 180px;
+    height: 200px;
     h1 {
-      margin: 0;
+      font-size: 2rem;
+      ${mediaMin('tabletLandscape')} {
+        font-size: 1.8rem;
+      }
+      &:nth-of-type(1) {
+        margin-bottom: 0;
+        ${mediaMin('tabletLandscape')} {
+          margin: 5px;
+        }
+      }
+      &:nth-of-type(2) {
+        margin-top: 0;
+      }
     }
   }
 `;
@@ -80,7 +105,7 @@ const CollectiveItemCard = ({ cardData, idx }) => {
 
   return (
     <CollectiveItemCardWrapper
-      className={`${generateCardClass(idx)} grid-item`}
+      className={`${generateCardClass(idx)}`}
       to={`/collective/${slug}`}
       key={`collective-item-${idx}`}
       imgsrc={image.file.url}
