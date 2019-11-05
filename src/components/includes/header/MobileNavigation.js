@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
@@ -71,15 +71,15 @@ const MobileMenu = styled.div`
 const MobileNavigation = () => {
   const [navActive, setNavActive] = useState(false);
 
-  const toggleActive = () => {
+  const toggleActive = useCallback(() => {
     setNavActive(!navActive);
-  };
+  }, [navActive]);
 
   const generateNav = () => {
     const navigation = navRoutes.map(route => {
       return (
         <li key={route.link}>
-          <Link to={route.url}>
+          <Link to={route.url} onClick={toggleActive}>
             <h3>{route.link}</h3>
           </Link>
         </li>
