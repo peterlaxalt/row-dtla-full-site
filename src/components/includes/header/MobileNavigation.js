@@ -79,7 +79,7 @@ const MobileNavigation = () => {
     const navigation = navRoutes.map(route => {
       return (
         <li key={route.link}>
-          <Link to={route.url}>
+          <Link to={route.url} onClick={toggleActive}>
             <h3>{route.link}</h3>
           </Link>
         </li>
