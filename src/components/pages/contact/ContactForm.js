@@ -19,6 +19,13 @@ const FormRow = styled.div`
     flex-direction: row;
   }
 
+  &.last-row {
+    margin-bottom: 0;
+    ${mediaMin('tabletLandscape')} {
+      margin-bottom: 40px;
+    }
+  }
+
   label {
     &.half {
       width: 100%;
@@ -46,8 +53,13 @@ const FormRow = styled.div`
     span {
       display: block;
       text-transform: uppercase;
-      font-size: 1.4rem;
       margin: 0.5em 0;
+      font-size: 0.8rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+      ${mediaMin('tabletLandscape')} {
+        font-size: 1rem;
+      }
     }
 
     input {
@@ -76,13 +88,14 @@ const FormRow = styled.div`
       select {
         width: 100%;
         height: 50px;
-        font-size: 1.4rem;
+        font-size: 1rem;
         background: rgba(255, 255, 255, 0.1);
         border: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.7);
         text-transform: uppercase;
         color: #fff;
         appearance: none;
+        padding-left: 10px;
         option {
           font-size: 1.4rem;
           color: #000;
@@ -99,13 +112,26 @@ const FormRow = styled.div`
       font-size: 1.4rem;
       color: #fff;
       caret-color: #fff;
-      padding: 20px;
+      padding: 10px;
+      ${mediaMin('tabletLandscape')} {
+        padding: 20px;
+      }
     }
   }
 
   &.submit-row {
     justify-content: space-between;
     align-items: flex-start;
+    span {
+      display: block;
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+      margin: 1em 0;
+      ${mediaMin('tabletLandscape')} {
+        margin: 0;
+      }
+    }
     button {
       background: none;
       border: 1px solid #fff;
@@ -114,12 +140,18 @@ const FormRow = styled.div`
       transition: all 300ms ease;
       font-size: 2rem;
       padding: 0.5em 0;
-      width: 45%;
+      width: 100%;
       text-transform: uppercase;
-      font-weight: 200;
-      &:hover {
-        background: #fff;
-        color: #000;
+      font-weight: 300;
+      margin: 1em 0;
+      letter-spacing: 2px;
+      ${mediaMin('tabletLandscape')} {
+        width: 45%;
+        margin: 0;
+        &:hover {
+          background: #fff;
+          color: #000;
+        }
       }
     }
   }
@@ -132,12 +164,12 @@ const ContactForm = () => {
     <FormStyled onSubmit={handleSubmit}>
       <FormRow>
         <label className="half">
-          <span>* First Name</span>
-          <input type="text" name="firstName" onChange={handleChange} value={inputs.firstName} required />
+          <span>First Name</span>
+          <input type="text" name="firstName" onChange={handleChange} value={inputs.firstName} />
         </label>
         <label className="half">
-          <span>* Last Name</span>
-          <input type="text" name="lastName" onChange={handleChange} value={inputs.lastName} required />
+          <span>Last Name</span>
+          <input type="text" name="lastName" onChange={handleChange} value={inputs.lastName} />
         </label>
       </FormRow>
       <FormRow>
@@ -148,8 +180,8 @@ const ContactForm = () => {
       </FormRow>
       <FormRow>
         <label className="full">
-          <span>* Phone</span>
-          <input type="tel" name="phone" onChange={handleChange} value={inputs.phone} required />
+          <span>Phone</span>
+          <input type="tel" name="phone" onChange={handleChange} value={inputs.phone} />
         </label>
       </FormRow>
       <FormRow>
@@ -170,14 +202,14 @@ const ContactForm = () => {
           </div>
         </label>
       </FormRow>
-      <FormRow>
+      <FormRow className="last-row">
         <label className="full">
           <span>Let us know how we can help</span>
           <textarea rows="6" type="text" name="canWeHelp" onChange={handleChange} value={inputs.canWeHelp} />
         </label>
       </FormRow>
       <FormRow className="submit-row">
-        <p className="no-margin">* required fields</p>
+        <span className="no-margin">* required fields</span>
         <button type="submit" value="Submit" className={submitted ? 'active' : ''}>
           Submit
         </button>

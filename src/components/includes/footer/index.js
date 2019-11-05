@@ -113,7 +113,7 @@ const Footer = () => {
         </Section>
       </FooterColumn>
       <FooterColumn>
-        <ResponsiveImg srcPath="footer/map" alt="map of area surrounding row dtla" width="80%" />
+        <ResponsiveImg srcPath="footer/map" alt="map of area surrounding row dtla" desktopWidth="80%" />
       </FooterColumn>
       <FooterColumn>
         <Section>

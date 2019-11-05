@@ -20,6 +20,7 @@ const typography = css`
   select,
   span,
   div,
+  textarea,
   p {
     font-family: 'Apercu';
   }
