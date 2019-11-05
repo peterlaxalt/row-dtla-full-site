@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
 import Context from '~/context/Context';
-import Layout from '~/layouts';
 import SEO from '~/components/seo';
 import BackArrow from '~/assets/images/icons/arrow-back.svg';
 import { mediaMin } from '~/styles/mediaQueries';
@@ -86,7 +85,7 @@ const EventShow = ({ data }) => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <SEO title={title} />
       <EventWrapper>
         <Link to="/events">
@@ -104,7 +103,7 @@ const EventShow = ({ data }) => {
           </ImageColumn>
         </EventInfo>
       </EventWrapper>
-    </Layout>
+    </>
   );
 };
 
