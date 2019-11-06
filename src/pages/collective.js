@@ -54,7 +54,6 @@ const CollectivePage = ({ data }) => {
   const [loaded, setLoaded] = useState(10);
 
   const loadMore = useCallback(() => {
-    console.log('loading');
     setLoaded(loaded + 10);
   }, [loaded, setLoaded]);
 
