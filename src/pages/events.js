@@ -66,7 +66,7 @@ const EventsPage = ({ data }) => {
 
   const loadMore = useCallback(() => {
     setLoaded(loaded + 10);
-  }, [loaded]);
+  }, [setLoaded, loaded]);
 
   return (
     <>
