@@ -51,7 +51,7 @@ const LoadMoreButton = styled.button`
 const NewsPage = ({ data }) => {
   const [filter, setFilter] = useState('ALL');
   const [loaded, setLoaded] = useState(10);
-  const filters = ['ALL', 'ARTISTS IN RESIDENCE', 'IN THE NEIGHBORHOOD', 'PRESS'];
+  const filters = ['ALL', 'INSIDER NEWS', 'IN THE NEWS'];
   const newsItems = data.allContentfulNewsItem.nodes;
 
   const generateNewsItems = useCallback(() => {
