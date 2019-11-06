@@ -62,11 +62,14 @@ const CollectivePage = ({ data }) => {
     if (filter !== 'ALL') {
       filteredCollectiveItems = filteredCollectiveItems.filter(collectiveItem => collectiveItem.type === filter);
     }
-    return filteredCollectiveItems
-      .slice(0, window.innerWidth > 1024 ? collectiveItems.length : loaded)
-      .map((collectiveItem, idx) => {
-        return <CollectiveItemCard key={`collective-item-card-${idx}`} idx={idx} cardData={collectiveItem} />;
-      });
+
+    if (typeof window !== `undefined`) {
+      return filteredCollectiveItems
+        .slice(0, window.innerWidth > 1024 ? collectiveItems.length : loaded)
+        .map((collectiveItem, idx) => {
+          return <CollectiveItemCard key={`collective-item-card-${idx}`} idx={idx} cardData={collectiveItem} />;
+        });
+    }
   }, [filter, collectiveItems, loaded]);
 
   return (
