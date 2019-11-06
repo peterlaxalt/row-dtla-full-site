@@ -20,6 +20,7 @@ const NewsWrapper = styled.div`
   ul {
     padding: 0;
     list-style-type: none;
+    margin: calc(63px / 2) 0;
     .gutter-sizer {
       width: calc(63px / 2);
     }
