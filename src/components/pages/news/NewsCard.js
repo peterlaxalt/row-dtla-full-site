@@ -19,6 +19,10 @@ const NewsCardWrapper = styled.li`
   }
   ${mediaMin('tabletLandscape')} {
     height: 620px;
+    width: calc(50% - 16px);
+  }
+  ${mediaMin('desktop')} {
+    height: 620px;
     width: calc(33% - 16px);
   }
 `;
