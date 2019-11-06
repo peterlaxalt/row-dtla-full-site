@@ -24,6 +24,23 @@ const CollectiveWrapper = styled.div`
   }
 `;
 
+const LoadMoreButton = styled.button`
+  opacity: ${props => (props.visible ? '1' : '0')};
+  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
+  border: 1px solid #000;
+  height: 40px;
+  margin: 0 auto 120px auto;
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 20px;
+  cursor: pointer;
+  background-color: #fff;
+  width: 75%;
+  ${mediaMin('tabletLandscape')} {
+    display: none;
+  }
+`;
+
 const masonryOptions = {
   transitionDuration: '0.25s',
   columnWidth: '.small-vertical',
@@ -31,20 +48,27 @@ const masonryOptions = {
 };
 
 const CollectivePage = ({ data }) => {
+  const collectiveItems = data.allContentfulCollectiveItem.nodes;
   const [filter, setFilter] = useState('ALL');
   const filters = ['ALL', 'DINE', 'SHOP', 'LIFESTYLE', 'POP-UP'];
+  const [loaded, setLoaded] = useState(10);
 
-  const collectiveItems = data.allContentfulCollectiveItem.nodes;
+  const loadMore = useCallback(() => {
+    console.log('loading');
+    setLoaded(loaded + 10);
+  }, [loaded, setLoaded]);
 
   const generateCollectiveItemCards = useCallback(() => {
     let filteredCollectiveItems = collectiveItems;
     if (filter !== 'ALL') {
       filteredCollectiveItems = filteredCollectiveItems.filter(collectiveItem => collectiveItem.type === filter);
     }
-    return filteredCollectiveItems.map((collectiveItem, idx) => {
-      return <CollectiveItemCard key={`collective-item-card-${idx}`} idx={idx} cardData={collectiveItem} />;
-    });
-  }, [filter, collectiveItems]);
+    return filteredCollectiveItems
+      .slice(0, window.innerWidth > 1024 ? collectiveItems.length : loaded)
+      .map((collectiveItem, idx) => {
+        return <CollectiveItemCard key={`collective-item-card-${idx}`} idx={idx} cardData={collectiveItem} />;
+      });
+  }, [filter, collectiveItems, loaded]);
 
   return (
     <>
@@ -54,6 +78,9 @@ const CollectivePage = ({ data }) => {
         <Masonry options={masonryOptions} elementType={'ul'}>
           {generateCollectiveItemCards()}
         </Masonry>
+        <LoadMoreButton onClick={loadMore} visible={loaded < collectiveItems.length}>
+          LOAD MORE
+        </LoadMoreButton>
       </CollectiveWrapper>
     </>
   );
