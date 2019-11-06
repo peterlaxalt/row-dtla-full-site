@@ -57,6 +57,7 @@ const CollectiveItemCardWrapper = styled(Link)`
   .image-container {
     background-image: ${props => `url(${props.imgsrc})`};
     background-size: cover;
+    background-position: center;
   }
   .description-container {
     padding: 20px;
