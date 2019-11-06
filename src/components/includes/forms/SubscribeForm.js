@@ -48,6 +48,36 @@ const SubscribeForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    const text = `Hi,\n Subscriber Details:\n\n
+        \n\nEmail: ${email}
+      `;
+
+    var emailData = {
+      from: '"ROW DTLA" <no_reply_row_dtla@dbox.com>',
+      to: `"ROW DTLA" <rowdtlaoffice@atlas-cap.com>`,
+      subject: 'ROW DTLA - New Subscriber',
+      text: text,
+    };
+
+    // fetch('https://form.api.dbxd.com/post-ses-email', {
+    //   method: 'POST',
+    //   mode: 'cors',
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(emailData),
+    // })
+    //   .then(response => response.json())
+    //   .then(result => {
+    //     console.log('email sending successful ', result);
+    //     setEmail('');
+    //   })
+    //   .catch(error => {
+    //     /* eslint-disable no-console */
+    //     console.log('error sending email ', error);
+    //     /* eslint-enable no-console */
+    //   });
   };
 
   return (
