@@ -14,7 +14,7 @@ const CollectiveWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  ul {
+  .masonry {
     padding: 0;
     margin-top: 20px;
     list-style-type: none;
@@ -77,7 +77,7 @@ const CollectivePage = ({ data }) => {
       <SEO title="Collective" />
       <CollectiveWrapper>
         <Filter title={'Discover\nROW DTLA'} filters={filters} activeFilter={filter} setFilter={setFilter} />
-        <Masonry options={masonryOptions} elementType={'ul'}>
+        <Masonry options={masonryOptions} className="masonry">
           {generateCollectiveItemCards()}
         </Masonry>
         <LoadMoreButton onClick={loadMore} visible={loaded < collectiveItems.length}>

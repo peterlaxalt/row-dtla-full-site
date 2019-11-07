@@ -5,8 +5,8 @@ import { Link } from 'gatsby';
 import { mediaMin } from '~/styles/mediaQueries';
 import { truncateText } from '~/utils/helpers';
 
-const NewsCardWrapper = styled.li`
-  margin-bottom: calc(63px / 2);
+const NewsCardWrapper = styled(Link)`
+  margin-bottom: 20px;
   padding: 0;
   width: 100%;
   border: 1px solid #000;
@@ -15,15 +15,18 @@ const NewsCardWrapper = styled.li`
     height: 100%;
   }
   ${mediaMin('tablet')} {
-    width: calc(50% - 16px);
+    width: calc(50% - 10px);
   }
   ${mediaMin('tabletLandscape')} {
     height: 620px;
-    width: calc(50% - 16px);
+    transition: box-shadow 300ms ease;
+    &:hover {
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    }
   }
   ${mediaMin('desktop')} {
     height: 620px;
-    width: calc(33% - 16px);
+    width: calc(33.33% - 14px);
   }
 `;
 
@@ -81,17 +84,20 @@ const MobileImage = styled.img`
 
 const NewsCard = ({ article }) => {
   const { images, date, title, slug, publication } = article;
+
   return (
-    <NewsCardWrapper>
-      <BackgroundImage imgsrc={images[0].file.url} />
-      <MobileImage src={images[0].file.url} />
-      <Link to={`/news/${slug}`}>
-        <CopySection>
-          <span>{date}</span>
-          <h3>{truncateText(title, 10)}</h3>
-          <span className="publication">{publication}</span>
-        </CopySection>
-      </Link>
+    <NewsCardWrapper to={`/news/${slug}`}>
+      {images && (
+        <>
+          <BackgroundImage imgsrc={images[0].file.url} />
+          <MobileImage src={images[0].file.url} />
+        </>
+      )}
+      <CopySection>
+        <span>{date}</span>
+        <h3>{truncateText(title, 10)}</h3>
+        <span className="publication">{publication}</span>
+      </CopySection>
     </NewsCardWrapper>
   );
 };
