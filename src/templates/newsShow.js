@@ -136,12 +136,16 @@ const NewsShow = ({ data }) => {
             <h2>{title}</h2>
             <span>{publication}</span>
             <MobileImages>
-              <HeroImage src={images[0].file.url} />
-              <SmallImageContainer>
-                {images.slice(1).map((image, idx) => {
-                  return <SmallImage src={image.file.url} key={image.file.url} position={idx % 2 === 0} />;
-                })}
-              </SmallImageContainer>
+              {images && (
+                <>
+                  <HeroImage src={images[0].file.url} />
+                  <SmallImageContainer>
+                    {images.slice(1).map((image, idx) => {
+                      return <SmallImage src={image.file.url} key={image.file.url} position={idx % 2 === 0} />;
+                    })}
+                  </SmallImageContainer>
+                </>
+              )}
             </MobileImages>
             <RichText richText={JSON.parse(body.body)} />
             <BoxLink target="_blank" rel="noopener noreferrer" href={articleURL}>
@@ -149,12 +153,16 @@ const NewsShow = ({ data }) => {
             </BoxLink>
           </CopyColumn>
           <ImageColumn>
-            <HeroImage src={images[0].file.url} />
-            <SmallImageContainer>
-              {images.slice(1).map((image, idx) => {
-                return <SmallImage src={image.file.url} key={image.file.url} position={idx % 2 === 0} />;
-              })}
-            </SmallImageContainer>
+            {images && (
+              <>
+                <HeroImage src={images[0].file.url} />
+                <SmallImageContainer>
+                  {images.slice(1).map((image, idx) => {
+                    return <SmallImage src={image.file.url} key={image.file.url} position={idx % 2 === 0} />;
+                  })}
+                </SmallImageContainer>
+              </>
+            )}
           </ImageColumn>
         </NewsInfo>
       </NewsWrapper>
