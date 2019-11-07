@@ -10,20 +10,17 @@ import Filter from '~/components/includes/sub-header/Filter';
 
 const masonryOptions = {
   transitionDuration: '0.25s',
-  gutter: '.gutter-sizer',
+  gutter: 20,
 };
 
 const NewsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  ul {
+  .masonry {
     padding: 0;
     list-style-type: none;
-    margin: calc(63px / 2) 0;
-    .gutter-sizer {
-      width: calc(63px / 2);
-    }
+    margin: 20px 0 40px;
   }
 `;
 
@@ -74,9 +71,8 @@ const NewsPage = ({ data }) => {
       <SEO title="Events" />
       <NewsWrapper>
         <Filter title={"What's new at\nROW DTLA"} filters={filters} activeFilter={filter} setFilter={setFilter} />
-        <Masonry options={masonryOptions} elementType={'ul'}>
+        <Masonry options={masonryOptions} className="masonry">
           {generateNewsItems()}
-          <div className="gutter-sizer" />
         </Masonry>
         <LoadMoreButton onClick={loadMore} visible={loaded < newsItems.length}>
           LOAD MORE
