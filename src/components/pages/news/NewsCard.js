@@ -84,10 +84,15 @@ const MobileImage = styled.img`
 
 const NewsCard = ({ article }) => {
   const { images, date, title, slug, publication } = article;
+
   return (
     <NewsCardWrapper>
-      <BackgroundImage imgsrc={images[0].file.url} />
-      <MobileImage src={images[0].file.url} />
+      {images && (
+        <>
+          <BackgroundImage imgsrc={images[0].file.url} />
+          <MobileImage src={images[0].file.url} />
+        </>
+      )}
       <Link to={`/news/${slug}`}>
         <CopySection>
           <span>{date}</span>
