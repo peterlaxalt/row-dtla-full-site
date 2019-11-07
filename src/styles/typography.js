@@ -37,6 +37,7 @@ const typography = css`
     font-size: 15px;
     letter-spacing: 1px;
     line-height: 20px;
+    font-weight: 500;
   }
 
   a {

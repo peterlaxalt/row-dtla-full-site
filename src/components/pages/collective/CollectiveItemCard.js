@@ -61,9 +61,12 @@ const CollectiveItemCardWrapper = styled(Link)`
   }
   .description-container {
     padding: 20px;
-    height: 200px;
+    height: 172px;
+    display: flex;
+    flex-direction: column;
+
     .title-container {
-      margin: 16px 0 0 0;
+      margin: 0;
       h2 {
         margin: 0;
         font-weight: bold;
@@ -76,7 +79,7 @@ const CollectiveItemCardWrapper = styled(Link)`
       }
     }
     span {
-      margin: 24px 0 0 0;
+      margin: 0 0 16px 0;
     }
   }
 `;
