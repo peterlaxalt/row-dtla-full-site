@@ -211,7 +211,7 @@ const ContactForm = () => {
       <FormRow className="submit-row">
         <span className="no-margin">* required fields</span>
         <button type="submit" value="Submit" className={submitted ? 'active' : ''}>
-          Submit
+          <span>Submit</span>
         </button>
       </FormRow>
     </FormStyled>

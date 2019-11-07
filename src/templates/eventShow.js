@@ -54,7 +54,6 @@ const CopyColumn = styled.div`
     margin: 32px 0 0 0;
     font-family: 'SangBleu Kingdom';
     font-size: 16px;
-    font-weight: 500;
     line-height: 24px;
     white-space: pre-line;
   }

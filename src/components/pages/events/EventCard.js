@@ -49,7 +49,7 @@ const CopySection = styled.div`
   a {
     color: #000;
     border: 1px solid #000;
-    padding: 8px;
+    padding: 8px 16px;
     width: fit-content;
     text-decoration: none;
     &:visited {
@@ -72,7 +72,9 @@ const EventCard = ({ event }) => {
         <h3>{title}</h3>
         <p>{truncateText(JSON.parse(body.body).content[0].content[0].value, 20)}</p>
         <span>{`${startTime} - ${endTime}`}</span>
-        <Link to={`/events/${slug}`}>LEARN MORE</Link>
+        <Link to={`/events/${slug}`}>
+          <span>LEARN MORE</span>
+        </Link>
       </CopySection>
     </EventWrapper>
   );

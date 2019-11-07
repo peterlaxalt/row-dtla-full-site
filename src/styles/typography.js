@@ -14,6 +14,7 @@ const typography = css`
     font-family: 'SangBleu Kingdom';
     font-style: normal;
     font-weight: 500;
+    text-transform: none;
   }
 
   button,
@@ -23,6 +24,20 @@ const typography = css`
   textarea,
   p {
     font-family: 'Apercu';
+    font-weight: 300;
+  }
+
+  strong {
+    font-weight: 500;
+  }
+
+  button,
+  span {
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    font-weight: 500;
   }
 
   a {

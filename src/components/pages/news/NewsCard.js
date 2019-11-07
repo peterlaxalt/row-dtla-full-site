@@ -41,9 +41,6 @@ const CopySection = styled.div`
     margin: 0 0 0 0;
   }
   span {
-    font-size: 15px;
-    letter-spacing: 1px;
-    line-height: 20px;
     margin: 0 0 16px 0;
   }
   .publication {

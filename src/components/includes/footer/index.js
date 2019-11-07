@@ -96,9 +96,11 @@ const Footer = () => {
         <Section>
           <div className="row">
             <a href="https://goo.gl/maps/vuTZGz84t5xaqsgK6" target="_blank" rel="noopener noreferrer">
-              DIRECTIONS
+              <span>DIRECTIONS</span>
             </a>
-            <Link to="/parking">PARKING RATES</Link>
+            <Link to="/parking">
+              <span>PARKING RATES</span>
+            </Link>
           </div>
         </Section>
         <Section>
@@ -118,10 +120,10 @@ const Footer = () => {
       <FooterColumn>
         <Section>
           <h2>Subscribe</h2>
-          <p>
+          <span>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua.
-          </p>
+          </span>
         </Section>
         <Section>
           <SubscribeForm />
