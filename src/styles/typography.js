@@ -24,6 +24,11 @@ const typography = css`
   textarea,
   p {
     font-family: 'Apercu';
+    font-weight: 300;
+  }
+
+  strong {
+    font-weight: 500;
   }
 
   button,

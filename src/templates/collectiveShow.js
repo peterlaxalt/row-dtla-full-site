@@ -63,7 +63,6 @@ const CopyColumn = styled.div`
   p {
     font-family: 'SangBleu Kingdom';
     font-size: 16px;
-    font-weight: 500;
     line-height: 24px;
     margin: 0 0 32px 0;
     display: flex;

@@ -54,7 +54,6 @@ const CopyColumn = styled.div`
   p {
     font-family: 'SangBleu Kingdom';
     font-size: 16px;
-    font-weight: 500;
     line-height: 24px;
     white-space: pre-line;
   }
@@ -149,7 +148,7 @@ const NewsShow = ({ data }) => {
             </MobileImages>
             <RichText richText={JSON.parse(body.body)} />
             <BoxLink target="_blank" rel="noopener noreferrer" href={articleURL}>
-              FULL ARTICLE
+              <span>FULL ARTICLE</span>
             </BoxLink>
           </CopyColumn>
           <ImageColumn>
