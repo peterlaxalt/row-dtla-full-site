@@ -35,6 +35,9 @@ const CopySection = styled.div`
   flex-direction: column;
   padding: 24px;
   height: 45%;
+  ${mediaMin('desktopLarge')} {
+    height: 40%;
+  }
   h3 {
     font-size: 32px;
     line-height: 36px;
@@ -62,15 +65,18 @@ const BackgroundImage = styled.div`
   background-image: url(${props => props.imgsrc});
   max-width: 100%;
   max-height: 100%;
-  height: 55%;
   width: 100%;
   background-fit: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   display: none;
+  height: 55%;
   ${mediaMin('tabletLandscape')} {
     display: block;
+  }
+  ${mediaMin('desktopLarge')} {
+    height: 60%;
   }
 `;
 

@@ -77,7 +77,9 @@ const EventCard = ({ event }) => {
           <h3>{title}</h3>
           <p>{truncateText(JSON.parse(body.body).content[0].content[0].value, 20)}</p>
           <span>{`${startTime} - ${endTime}`}</span>
-          <div className="fake-button">LEARN MORE</div>
+          <div className="fake-button">
+            <span>LEARN MORE</span>
+          </div>
         </CopySection>
       </Link>
     </EventWrapper>
