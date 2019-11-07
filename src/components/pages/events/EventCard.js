@@ -21,6 +21,10 @@ const EventWrapper = styled.li`
   }
   ${mediaMin('tabletLandscape')} {
     width: calc(25% - 16px);
+    transition: box-shadow 300ms ease;
+    &:hover {
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    }
   }
 `;
 
@@ -46,7 +50,7 @@ const CopySection = styled.div`
     line-height: 20px;
     margin: 0 0 16px 0;
   }
-  a {
+  .fake-button {
     color: #000;
     border: 1px solid #000;
     padding: 8px 16px;
@@ -66,16 +70,16 @@ const EventCard = ({ event }) => {
   const { body, date, endDate, startTime, endTime, image, slug, title } = event;
   return (
     <EventWrapper>
-      <img src={image ? image.file.url : placeholderImg} alt={image ? image.description : 'Placeholder Image'} />
-      <CopySection>
-        <span>{`${date}${endDate ? ` - ${endDate}` : ''}`}</span>
-        <h3>{title}</h3>
-        <p>{truncateText(JSON.parse(body.body).content[0].content[0].value, 20)}</p>
-        <span>{`${startTime} - ${endTime}`}</span>
-        <Link to={`/events/${slug}`}>
-          <span>LEARN MORE</span>
-        </Link>
-      </CopySection>
+      <Link to={`/events/${slug}`}>
+        <img src={image ? image.file.url : placeholderImg} alt={image ? image.description : 'Placeholder Image'} />
+        <CopySection>
+          <span>{`${date}${endDate ? ` - ${endDate}` : ''}`}</span>
+          <h3>{title}</h3>
+          <p>{truncateText(JSON.parse(body.body).content[0].content[0].value, 20)}</p>
+          <span>{`${startTime} - ${endTime}`}</span>
+          <div className="fake-button">LEARN MORE</div>
+        </CopySection>
+      </Link>
     </EventWrapper>
   );
 };
