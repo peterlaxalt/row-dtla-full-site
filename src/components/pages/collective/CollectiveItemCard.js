@@ -62,20 +62,21 @@ const CollectiveItemCardWrapper = styled(Link)`
   .description-container {
     padding: 20px;
     height: 200px;
-    h1 {
-      font-size: 2rem;
-      ${mediaMin('tabletLandscape')} {
-        font-size: 1.8rem;
-      }
-      &:nth-of-type(1) {
-        margin-bottom: 0;
+    .title-container {
+      margin: 16px 0 0 0;
+      h2 {
+        margin: 0;
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 36px;
         ${mediaMin('tabletLandscape')} {
-          margin: 5px;
+          font-size: 40px;
+          line-height: 44px;
         }
       }
-      &:nth-of-type(2) {
-        margin-top: 0;
-      }
+    }
+    span {
+      margin: 24px 0 0 0;
     }
   }
 `;
@@ -83,7 +84,13 @@ const CollectiveItemCardWrapper = styled(Link)`
 const parseTitle = title => {
   const titleArray = title.split('\n');
 
-  return titleArray.map(el => <h1 key={el}>{el}</h1>);
+  return (
+    <div className="title-container">
+      {titleArray.map(el => (
+        <h2 key={el}>{el}</h2>
+      ))}
+    </div>
+  );
 };
 
 const generateCardClass = idx => {
@@ -114,7 +121,7 @@ const CollectiveItemCard = ({ cardData, idx }) => {
     >
       <div className="image-container" title={image ? image.description : 'Placeholder Image'} />
       <div className="description-container">
-        <p>{subtitle}</p>
+        <span>{subtitle}</span>
         {displayTitle && parseTitle(displayTitle.displayTitle)}
       </div>
     </CollectiveItemCardWrapper>
