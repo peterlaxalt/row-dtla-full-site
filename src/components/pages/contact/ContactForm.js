@@ -10,6 +10,14 @@ const FormStyled = styled.form`
   width: 100%;
 `;
 
+const Success = styled.div`
+  display: flex;
+  flex-direction: column;
+  span {
+    color: #fff;
+  }
+`;
+
 const FormRow = styled.div`
   width: 100%;
   display: flex;
@@ -62,20 +70,6 @@ const FormRow = styled.div`
       }
     }
 
-    input {
-      width: 100%;
-      border: none;
-      background: rgba(255, 255, 255, 0.1);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-      padding-bottom: 5px;
-      padding-left: 5px;
-      height: 50px;
-      font-size: 1.4rem;
-      color: #fff;
-      caret-color: #fff;
-      text-transform: uppercase;
-    }
-
     .select-wrapper {
       position: relative;
       color: red;
@@ -84,22 +78,6 @@ const FormRow = styled.div`
         right: 0;
         top: 20px;
         right: 20px;
-      }
-      select {
-        width: 100%;
-        height: 50px;
-        font-size: 1rem;
-        background: rgba(255, 255, 255, 0.1);
-        border: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-        text-transform: uppercase;
-        color: #fff;
-        appearance: none;
-        padding-left: 10px;
-        option {
-          font-size: 1.4rem;
-          color: #000;
-        }
       }
     }
 
@@ -157,39 +135,91 @@ const FormRow = styled.div`
   }
 `;
 
-const ContactForm = () => {
-  const { inputs, handleChange, handleSubmit, submitted } = formLogic();
+const Input = styled.input`
+  width: 100%;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom: ${props => (props.error ? '1px solid red' : '1px solid rgba(255, 255, 255, 0.7)')};
+  padding-bottom: 5px;
+  padding-left: 5px;
+  height: 50px;
+  font-size: 1.4rem;
+  color: #fff;
+  caret-color: #fff;
+  text-transform: uppercase;
+`;
 
-  return (
+const Select = styled.select`
+  width: 100%;
+  height: 50px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-bottom: ${props => (props.error ? '1px solid red' : '1px solid rgba(255, 255, 255, 0.7)')};
+  text-transform: uppercase;
+  color: #fff;
+  appearance: none;
+  padding-left: 10px;
+  border-radius: 0;
+  option {
+    font-size: 1.4rem;
+    color: #000;
+  }
+`;
+
+const ContactForm = () => {
+  const { inputs, handleChange, handleSubmit, handleBlur, errors, submitted } = formLogic();
+
+  return submitted ? (
+    <Success>
+      <span>Thank you for your interest in ROW DTLA</span>
+      <span>WE WILL BE IN TOUCH SOON</span>
+    </Success>
+  ) : (
     <FormStyled onSubmit={handleSubmit}>
       <FormRow>
-        <label className="half">
+        <label htmlFor="firstName" className="half">
           <span>First Name</span>
-          <input type="text" name="firstName" onChange={handleChange} value={inputs.firstName} />
+          <Input type="text" name="firstName" id="firstName" onChange={handleChange} value={inputs.firstName} />
         </label>
-        <label className="half">
+        <label htmlFor="lastName" className="half">
           <span>Last Name</span>
-          <input type="text" name="lastName" onChange={handleChange} value={inputs.lastName} />
+          <Input type="text" name="lastName" id="lastName" onChange={handleChange} value={inputs.lastName} />
         </label>
       </FormRow>
       <FormRow>
-        <label className="full">
+        <label htmlFor="email" className="full">
           <span>* Email</span>
-          <input type="email" name="email" onChange={handleChange} value={inputs.email} required />
+          <Input
+            type="email"
+            name="email"
+            id="email"
+            error={errors.email}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={inputs.email}
+          />
         </label>
       </FormRow>
       <FormRow>
-        <label className="full">
+        <label htmlFor="phone" className="full">
           <span>Phone</span>
-          <input type="tel" name="phone" onChange={handleChange} value={inputs.phone} />
+          <Input type="tel" name="phone" id="phone" onChange={handleChange} value={inputs.phone} />
         </label>
       </FormRow>
       <FormRow>
-        <label className="full">
+        <label htmlFor="inquiryType" className="full">
           <span>* Please select the nature of your inquiry</span>
           <div className="select-wrapper">
             <img className="dropdown-arrow" src={DropdownArrow} alt="dropdown arrow" />
-            <select name="inquiryType" onBlur={handleChange} defaultValue={'DEFAULT'} required>
+            <Select
+              name="inquiryType"
+              id="inquiryType"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              error={errors.inquiryType}
+              defaultValue={'DEFAULT'}
+            >
               <option value={'DEFAULT'} disabled hidden>
                 &nbsp;&nbsp;--
               </option>
@@ -198,14 +228,21 @@ const ContactForm = () => {
               <option value="creative">Creative Office Leasing</option>
               <option value="event">Event Inquiry</option>
               <option value="press">Press Inquiry</option>
-            </select>
+            </Select>
           </div>
         </label>
       </FormRow>
       <FormRow className="last-row">
-        <label className="full">
+        <label htmlFor="canWeHelp" className="full">
           <span>Let us know how we can help</span>
-          <textarea rows="6" type="text" name="canWeHelp" onChange={handleChange} value={inputs.canWeHelp} />
+          <textarea
+            rows="6"
+            type="text"
+            name="canWeHelp"
+            id="canWeHelp"
+            onChange={handleChange}
+            value={inputs.canWeHelp}
+          />
         </label>
       </FormRow>
       <FormRow className="submit-row">
