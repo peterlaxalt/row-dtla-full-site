@@ -62,9 +62,15 @@ const CollectiveItemCardWrapper = styled(Link)`
   }
   .description-container {
     padding: 20px;
-    height: 172px;
     display: flex;
     flex-direction: column;
+    height: 172px;
+    ${mediaMin('tabletLandscape')} {
+      height: 200px;
+    }
+    ${mediaMin('desktopLarge')} {
+      height: 172px;
+    }
 
     .title-container {
       margin: 0;
