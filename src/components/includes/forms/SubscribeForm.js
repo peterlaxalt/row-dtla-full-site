@@ -19,7 +19,7 @@ const Form = styled.form`
       color: #fff;
       background-color: rgba(255, 255, 255, 0.1);
       border: 0;
-      border-bottom: 1px solid #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
       font-size: 1.5em;
       padding: 0.5em;
       width: 75%;
@@ -27,7 +27,7 @@ const Form = styled.form`
     button {
       color: #fff;
       background-color: #000;
-      border: 1px solid #fff;
+      border: 1px solid rgba(255, 255, 255, 0.7);
       margin-left: 1em;
       padding: 0.5em 1em;
       font-size: 1em;
@@ -49,16 +49,16 @@ const SubscribeForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const text = `Hi,\n Subscriber Details:\n\n
-        \n\nEmail: ${email}
-      `;
+    // const text = `Hi,\n Subscriber Details:\n\n
+    //     \n\nEmail: ${email}
+    //   `;
 
-    var emailData = {
-      from: '"ROW DTLA" <no_reply_row_dtla@dbox.com>',
-      to: `"ROW DTLA" <rowdtlaoffice@atlas-cap.com>`,
-      subject: 'ROW DTLA - New Subscriber',
-      text: text,
-    };
+    // var emailData = {
+    //   from: '"ROW DTLA" <no_reply_row_dtla@dbox.com>',
+    //   to: `"ROW DTLA" <rowdtlaoffice@atlas-cap.com>`,
+    //   subject: 'ROW DTLA - New Subscriber',
+    //   text: text,
+    // };
 
     // fetch('https://form.api.dbxd.com/post-ses-email', {
     //   method: 'POST',

@@ -57,9 +57,9 @@ const ContactSection = styled.div`
     margin-top: 0;
     margin-bottom: 10px;
   }
-  span {
-    margin: 0;
-    margin-bottom: 5px;
+  span,
+  a {
+    margin: 0 0 5px 0;
   }
   .contact {
     margin-bottom: 20px;
@@ -89,45 +89,71 @@ const ContactPage = () => {
             <ContactSection>
               <h6>General Contact</h6>
               <div className="contact">
-                <span>INFO@URL.COM</span>
-                <span>213.988.8890</span>
+                <a href="mailto:info@url.com">
+                  <span>INFO@URL.COM</span>
+                </a>
+                <a href="tel:2139888890">
+                  <span>213.988.8890</span>
+                </a>
               </div>
             </ContactSection>
             <ContactSection>
               <h6>Retail Leasing</h6>
               <div className="contact">
                 <span>RUNYON</span>
-                <span>INFO@RUNYONGROUP.COM</span>
-                <span>310.275.0483</span>
+                <a href="mailto:INFO@RUNYONGROUP.COM">
+                  <span>INFO@RUNYONGROUP.COM</span>
+                </a>
+                <a href="tel:3102750483">
+                  <span>310.275.0483</span>
+                </a>
               </div>
             </ContactSection>
             <ContactSection>
               <h6>Creative Office Leasing</h6>
               <div className="contact">
                 <span>Jeff Pion</span>
-                <span>JEFF.PION@CBRE.COM</span>
-                <span>310.550.2537</span>
+                <a href="mailto:JEFF.PION@CBRE.COM">
+                  <span>JEFF.PION@CBRE.COM</span>
+                </a>
+                <a href="tel:3105502537">
+                  <span>310.550.2537</span>
+                </a>
               </div>
               <div className="contact">
                 <span>Michelle Esquivel</span>
-                <span>MICHELLE.ESQUIVEL@CBRE.COM</span>
-                <span>310.550.2525</span>
+                <a href="mailto:MICHELLE.ESQUIVEL@CBRE.COM">
+                  <span>MICHELLE.ESQUIVEL@CBRE.COM</span>
+                </a>
+                <a href="tel:3105502525">
+                  <span>310.550.2525</span>
+                </a>
               </div>
               <div className="contact">
                 <span>Chris Penrose</span>
-                <span>CHRIS.PENROSE@CBRE.COM</span>
-                <span>213.613.3108</span>
+                <a href="mailto:CHRIS.PENROSE@CBRE.COM">
+                  <span>CHRIS.PENROSE@CBRE.COM</span>
+                </a>
+                <a href="tel:2136133108">
+                  <span>213.613.3108</span>
+                </a>
               </div>
             </ContactSection>
             <ContactSection>
               <h6>Venue Leasing</h6>
               <span>First Lastname</span>
-              <span>firstlastname@URL.COM</span>
-              <span>310.555.5555</span>
+              <a href="mailto:firstlastname@URL.COM">
+                <span>firstlastname@URL.COM</span>
+              </a>
+              <a href="tel:3105555555">
+                <span>310.555.5555</span>
+              </a>
             </ContactSection>
             <ContactSection>
               <h6>For PR or media inquiries, please contact:</h6>
-              <span>ROWDTLA@WAGSTAFFWORLDWIDE.COM</span>
+              <a href="mailto:ROWDTLA@WAGSTAFFWORLDWIDE.COM">
+                <span>ROWDTLA@WAGSTAFFWORLDWIDE.COM</span>
+              </a>
             </ContactSection>
           </ContactColumn>
         </ContactContent>
