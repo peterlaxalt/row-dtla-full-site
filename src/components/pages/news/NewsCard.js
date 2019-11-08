@@ -1,15 +1,19 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
+import Fade from 'react-reveal/Fade';
 
 import { mediaMin } from '~/styles/mediaQueries';
 import { truncateText } from '~/utils/helpers';
 
-const NewsCardWrapper = styled(Link)`
+const NewsCardWrapper = styled.div`
   margin-bottom: 20px;
   padding: 0;
   width: 100%;
   border: 1px solid #000;
+  .react-reveal {
+    height: 100%;
+  }
   img {
     width: 100%;
     height: 100%;
@@ -92,18 +96,18 @@ const NewsCard = ({ article }) => {
   const { images, date, title, slug, publication } = article;
 
   return (
-    <NewsCardWrapper to={`/news/${slug}`}>
-      {images && (
-        <>
+    <NewsCardWrapper>
+      <Fade>
+        <Link to={`/news/${slug}`}>
           <BackgroundImage imgsrc={images[0].file.url} />
           <MobileImage src={images[0].file.url} />
-        </>
-      )}
-      <CopySection>
-        <span>{date}</span>
-        <h3>{truncateText(title, 10)}</h3>
-        <span className="publication">{publication}</span>
-      </CopySection>
+          <CopySection>
+            <span>{date}</span>
+            <h3>{truncateText(title, 10)}</h3>
+            <span className="publication">{publication}</span>
+          </CopySection>
+        </Link>
+      </Fade>
     </NewsCardWrapper>
   );
 };
