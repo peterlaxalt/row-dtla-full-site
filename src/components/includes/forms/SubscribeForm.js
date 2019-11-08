@@ -18,6 +18,7 @@ const Form = styled.form`
     input {
       color: #fff;
       background-color: rgba(255, 255, 255, 0.1);
+      border: 0;
       border-bottom: 1px solid #fff;
       font-size: 1.5em;
       padding: 0.5em;
