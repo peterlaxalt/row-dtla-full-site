@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
-import { mediaMin } from '~/styles/mediaQueries';
+import Fade from 'react-reveal/Fade';
 
+import { mediaMin } from '~/styles/mediaQueries';
 import placeholderImg from '~/images/backup/backup_image.jpg';
 
 const CollectiveItemCardWrapper = styled(Link)`
@@ -61,9 +62,15 @@ const CollectiveItemCardWrapper = styled(Link)`
   }
   .description-container {
     padding: 20px;
-    height: 172px;
     display: flex;
     flex-direction: column;
+    height: 172px;
+    ${mediaMin('tabletLandscape')} {
+      height: 200px;
+    }
+    ${mediaMin('desktopLarge')} {
+      height: 172px;
+    }
 
     .title-container {
       margin: 0;
@@ -97,7 +104,7 @@ const parseTitle = title => {
 };
 
 const generateCardClass = idx => {
-  let gridPosition = idx > 7 ? idx % 8 : idx;
+  let gridPosition = idx % 8;
 
   const classObj = {
     0: 'large-vertical',
@@ -122,11 +129,13 @@ const CollectiveItemCard = ({ cardData, idx }) => {
       key={`collective-item-${idx}`}
       imgsrc={image ? image.file.url : placeholderImg}
     >
-      <div className="image-container" title={image ? image.description : 'Placeholder Image'} />
-      <div className="description-container">
-        <span>{subtitle}</span>
-        {displayTitle && parseTitle(displayTitle.displayTitle)}
-      </div>
+      <Fade>
+        <div className="image-container" title={image ? image.description : 'Placeholder Image'} />
+        <div className="description-container">
+          <span>{subtitle}</span>
+          {displayTitle && parseTitle(displayTitle.displayTitle)}
+        </div>
+      </Fade>
     </CollectiveItemCardWrapper>
   );
 };
