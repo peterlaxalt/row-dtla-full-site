@@ -32,8 +32,13 @@ const Form = styled.form`
       padding: 0.5em 1em;
       font-size: 1em;
       width: 40%;
+      cursor: pointer;
       ${mediaMin('tabletLandscape')} {
         width: 25%;
+      }
+      &:hover {
+        background-color: #fff;
+        color: #000;
       }
     }
   }
