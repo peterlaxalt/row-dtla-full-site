@@ -56,10 +56,13 @@ const NewsPage = ({ data }) => {
     if (filter !== 'ALL') {
       filteredNews = filteredNews.filter(newsItem => newsItem.type === filter);
     }
-    return filteredNews.slice(0, loaded).map(newsItem => {
-      const { id } = newsItem;
-      return <NewsCard key={`news-item-${id}`} article={newsItem} />;
-    });
+    return filteredNews
+      .filter(newsItem => newsItem.images)
+      .slice(0, loaded)
+      .map(newsItem => {
+        const { id } = newsItem;
+        return <NewsCard key={`news-item-${id}`} article={newsItem} />;
+      });
   }, [filter, loaded, newsItems]);
 
   const loadMore = useCallback(() => {
@@ -74,7 +77,7 @@ const NewsPage = ({ data }) => {
         <Masonry options={masonryOptions} className="masonry">
           {generateNewsItems()}
         </Masonry>
-        <LoadMoreButton onClick={loadMore} visible={loaded < newsItems.length}>
+        <LoadMoreButton onClick={loadMore} visible={loaded < newsItems.filter(newsItem => newsItem.images).length}>
           LOAD MORE
         </LoadMoreButton>
       </NewsWrapper>

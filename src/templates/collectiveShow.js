@@ -68,18 +68,9 @@ const CopyColumn = styled.div`
     display: flex;
   }
   a {
-    font-family: Apercu;
-    font-size: 15px;
-    letter-spacing: 1px;
-    line-height: 20px;
-    margin: 8px 0 0 0;
-    text-transform: uppercase;
-    border: 1px solid #000;
-    padding: 1em 2em;
-    &:hover {
-      background: #000;
-      color: #fff;
-    }
+    font-weight: 500;
+    text-decoration: underline;
+    margin: 0;
   }
 
   .row {
@@ -102,12 +93,29 @@ const CopyColumn = styled.div`
     border: none;
     padding: 0;
     margin: 8px 0 0 0;
+    text-decoration: none;
     ${mediaMin('tabletLandscape')} {
       margin: 20px 0 0 0;
     }
     &:hover {
       background: transparent;
       color: #000;
+    }
+  }
+
+  .parking-link {
+    display: block;
+    border: 1px solid #000;
+    padding: 8px 16px;
+    margin: 0;
+    width: fit-content;
+    text-decoration: none;
+    ${mediaMin('tabletLandscape')} {
+      margin: 8px 0 0 0;
+    }
+    &:hover {
+      background: #000;
+      color: #fff;
     }
   }
 
@@ -147,6 +155,8 @@ const CollectiveShow = ({ data }) => {
     email,
     websiteString,
     websiteURL,
+    parkingLink,
+    parkingText,
   } = data.contentfulCollectiveItem;
 
   return (
@@ -162,6 +172,14 @@ const CollectiveShow = ({ data }) => {
             <h2 className="subtitle">{subtitle}</h2>
             <h1 className="title">{title}</h1>
             <RichText richText={JSON.parse(body.body)} />
+            {parkingLink && parkingText && (
+              <>
+                <span>{parkingText}</span>
+                <a className="parking-link" href={parkingLink}>
+                  <span>PARKING DIRECTIONS</span>
+                </a>
+              </>
+            )}
             {websiteString && (
               <a className="contact-link" href={websiteURL}>
                 <h6 className="info-paragraph">{websiteString}</h6>
@@ -219,6 +237,8 @@ export const pageQuery = graphql`
       websiteString
       websiteURL
       phoneNumber
+      parkingLink
+      parkingText
       image {
         file {
           url

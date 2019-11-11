@@ -18,7 +18,8 @@ const Form = styled.form`
     input {
       color: #fff;
       background-color: rgba(255, 255, 255, 0.1);
-      border-bottom: 1px solid #fff;
+      border: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
       font-size: 1.5em;
       padding: 0.5em;
       width: 75%;
@@ -26,13 +27,18 @@ const Form = styled.form`
     button {
       color: #fff;
       background-color: #000;
-      border: 1px solid #fff;
+      border: 1px solid rgba(255, 255, 255, 0.7);
       margin-left: 1em;
       padding: 0.5em 1em;
       font-size: 1em;
       width: 40%;
+      cursor: pointer;
       ${mediaMin('tabletLandscape')} {
         width: 25%;
+      }
+      &:hover {
+        background-color: #fff;
+        color: #000;
       }
     }
   }

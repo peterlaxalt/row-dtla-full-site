@@ -1,15 +1,19 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
+import Fade from 'react-reveal/Fade';
 
 import { mediaMin } from '~/styles/mediaQueries';
 import { truncateText } from '~/utils/helpers';
 
-const NewsCardWrapper = styled(Link)`
+const NewsCardWrapper = styled.div`
   margin-bottom: 20px;
   padding: 0;
   width: 100%;
   border: 1px solid #000;
+  .react-reveal {
+    height: 100%;
+  }
   img {
     width: 100%;
     height: 100%;
@@ -35,6 +39,9 @@ const CopySection = styled.div`
   flex-direction: column;
   padding: 24px;
   height: 45%;
+  ${mediaMin('desktopLarge')} {
+    height: 40%;
+  }
   h3 {
     font-size: 32px;
     line-height: 36px;
@@ -62,15 +69,18 @@ const BackgroundImage = styled.div`
   background-image: url(${props => props.imgsrc});
   max-width: 100%;
   max-height: 100%;
-  height: 55%;
   width: 100%;
   background-fit: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   display: none;
+  height: 55%;
   ${mediaMin('tabletLandscape')} {
     display: block;
+  }
+  ${mediaMin('desktopLarge')} {
+    height: 60%;
   }
 `;
 
@@ -86,18 +96,18 @@ const NewsCard = ({ article }) => {
   const { images, date, title, slug, publication } = article;
 
   return (
-    <NewsCardWrapper to={`/news/${slug}`}>
-      {images && (
-        <>
+    <NewsCardWrapper>
+      <Fade>
+        <Link to={`/news/${slug}`}>
           <BackgroundImage imgsrc={images[0].file.url} />
           <MobileImage src={images[0].file.url} />
-        </>
-      )}
-      <CopySection>
-        <span>{date}</span>
-        <h3>{truncateText(title, 10)}</h3>
-        <span className="publication">{publication}</span>
-      </CopySection>
+          <CopySection>
+            <span>{date}</span>
+            <h3>{truncateText(title, 10)}</h3>
+            <span className="publication">{publication}</span>
+          </CopySection>
+        </Link>
+      </Fade>
     </NewsCardWrapper>
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
+import Fade from 'react-reveal/Fade';
 
 import { mediaMin } from '~/styles/mediaQueries';
 import { truncateText } from '~/utils/helpers';
@@ -21,6 +22,10 @@ const EventWrapper = styled.li`
   }
   ${mediaMin('tabletLandscape')} {
     width: calc(25% - 16px);
+    transition: box-shadow 300ms ease;
+    &:hover {
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    }
   }
 `;
 
@@ -46,7 +51,7 @@ const CopySection = styled.div`
     line-height: 20px;
     margin: 0 0 16px 0;
   }
-  a {
+  .fake-button {
     color: #000;
     border: 1px solid #000;
     padding: 8px 16px;
@@ -66,16 +71,20 @@ const EventCard = ({ event }) => {
   const { body, date, endDate, startTime, endTime, image, slug, title } = event;
   return (
     <EventWrapper>
-      <img src={image ? image.file.url : placeholderImg} alt={image ? image.description : 'Placeholder Image'} />
-      <CopySection>
-        <span>{`${date}${endDate ? ` - ${endDate}` : ''}`}</span>
-        <h3>{title}</h3>
-        <p>{truncateText(JSON.parse(body.body).content[0].content[0].value, 20)}</p>
-        <span>{`${startTime} - ${endTime}`}</span>
+      <Fade>
         <Link to={`/events/${slug}`}>
-          <span>LEARN MORE</span>
+          <img src={image ? image.file.url : placeholderImg} alt={image ? image.description : 'Placeholder Image'} />
+          <CopySection>
+            <span>{`${date}${endDate ? ` - ${endDate}` : ''}`}</span>
+            <h3>{title}</h3>
+            <p>{truncateText(JSON.parse(body.body).content[0].content[0].value, 20)}</p>
+            <span>{`${startTime} - ${endTime}`}</span>
+            <div className="fake-button">
+              <span>LEARN MORE</span>
+            </div>
+          </CopySection>
         </Link>
-      </CopySection>
+      </Fade>
     </EventWrapper>
   );
 };
