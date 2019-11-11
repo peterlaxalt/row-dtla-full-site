@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import Fade from 'react-reveal/Fade';
@@ -16,7 +16,6 @@ const EventWrapper = styled(Link)`
   border: 1px solid #000;
   img {
     width: 100%;
-    height: 100%;
   }
   ${mediaMin('tablet')} {
     width: calc(50% - 16px);
