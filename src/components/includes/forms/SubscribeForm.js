@@ -48,43 +48,39 @@ const SubscribeForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const text = `Hi,\n Subscriber Details:\n\n
-        \n\nEmail: ${email}
-      `;
 
-    var emailData = {
-      from: '"ROW DTLA" <no_reply_row_dtla@dbox.com>',
-      to: `"ROW DTLA" <rowdtlaoffice@atlas-cap.com>`,
-      subject: 'ROW DTLA - New Subscriber',
-      text: text,
+    const data = {
+      email_address: email
     };
 
-    // fetch('https://form.api.dbxd.com/post-ses-email', {
-    //   method: 'POST',
-    //   mode: 'cors',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(emailData),
-    // })
-    //   .then(response => response.json())
-    //   .then(result => {
-    //     console.log('email sending successful ', result);
-    //     setEmail('');
-    //   })
-    //   .catch(error => {
-    //     /* eslint-disable no-console */
-    //     console.log('error sending email ', error);
-    //     /* eslint-enable no-console */
-    //   });
+    fetch('http://localhost:3001/add-mailchimp-subscriber?projectname=rowdtla', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(() => {
+        /* eslint-disable no-console */
+        console.log('email sending successful');
+        /* eslint-enable no-console */
+
+        setEmail('');
+      })
+      .catch(error => {
+        /* eslint-disable no-console */
+        console.log('error sending email ', error);
+        /* eslint-enable no-console */
+      });
   };
 
   return (
     <Form onSubmit={handleSubmit}>
       <label htmlFor="email">EMAIL ADDRESS</label>
       <div className="row">
-        <input type="email" name="email" onChange={handleInput} />
+        <input type="email" name="email" onChange={handleInput} required />
         <button type="submit">SIGN UP</button>
       </div>
     </Form>
