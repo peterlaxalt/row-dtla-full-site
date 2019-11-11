@@ -77,21 +77,15 @@ const SubscribeForm = () => {
         const { status, title } = data;
 
         if (status === 400) {
-          /* eslint-disable no-console */
           throw new Error('duplicate email');
-          /* eslint-enable no-console */
         } else {
-          /* eslint-disable no-console */
           console.log('successfull sent email', title);
-          /* eslint-enable no-console */
           setEmail('');
           toggleSending(false);
         }
       })
       .catch(error => {
-        /* eslint-disable no-console */
         console.log('error sending email ', error);
-        /* eslint-enable no-console */
         toggleSending(false);
       });
   };

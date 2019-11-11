@@ -73,15 +73,11 @@ const formLogic = () => {
       })
         .then(response => response.json())
         .then(result => {
-          /* eslint-disable no-console */
           console.log('email sending successful ', result);
-          /* eslint-enable no-console */
           setFormSubmitted(true);
         })
         .catch(error => {
-          /* eslint-disable no-console */
           console.log('error sending email ', error);
-          /* eslint-enable no-console */
         });
     }
   };

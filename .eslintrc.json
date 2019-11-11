@@ -10,11 +10,7 @@
     "browser": true,
     "es6": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended"
-  ],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:jsx-a11y/recommended"],
   "globals": {
     "React": true
   },
@@ -32,6 +28,7 @@
     "semi": ["error", "always"],
     "react/prop-types": 0,
     "react/jsx-no-undef": [2, { "allowGlobals": true }],
-    "jsx-a11y/anchor-is-valid": 1
+    "jsx-a11y/anchor-is-valid": 1,
+    "no-console": 1
   }
 }
