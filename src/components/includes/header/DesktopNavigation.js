@@ -66,10 +66,13 @@ const DesktopNavigation = () => {
         <li key={route.link}>
           <Link
             to={route.url}
-            getProps={({ isCurrent }) => {
+            getProps={({ isCurrent, isPartiallyCurrent }) => {
               return {
                 style: {
-                  borderTop: isCurrent ? `4px solid ${darkTheme ? '#fff' : '#000'}` : '4px solid transparent',
+                  borderTop:
+                    isCurrent || isPartiallyCurrent
+                      ? `4px solid ${darkTheme ? '#fff' : '#000'}`
+                      : '4px solid transparent',
                 },
               };
             }}
