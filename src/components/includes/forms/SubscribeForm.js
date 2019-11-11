@@ -59,7 +59,7 @@ const SubscribeForm = () => {
       email_address: email
     };
 
-    fetch('http://localhost:3001/add-mailchimp-subscriber?projectname=rowdtla', {
+    fetch('https://form.api.dbxd.com/add-mailchimp-subscriber?projectname=rowdtla', {
       method: 'POST',
       mode: 'cors',
       headers: {
