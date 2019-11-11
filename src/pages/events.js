@@ -1,7 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import Masonry from 'react-masonry-component';
 import styled from '@emotion/styled';
+import moment from 'moment';
 
 import { mediaMin } from '~/styles/mediaQueries';
 import SEO from '~/components/seo';
@@ -17,7 +18,7 @@ const EventsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  ul {
+  .masonry {
     padding: 0;
     list-style-type: none;
     .gutter-sizer {
@@ -50,34 +51,62 @@ const LoadMoreButton = styled.button`
 const EventsPage = ({ data }) => {
   const [filter, setFilter] = useState('ALL');
   const [loaded, setLoaded] = useState(10);
+  const [listLength, setListLength] = useState(0);
+  const [eventList, setEventList] = useState([]);
   const filters = ['ALL', 'FOOD TRUCKS', 'EVENTS', 'ARCHIVE'];
   const events = data.allContentfulEvent.nodes;
 
   const generateEvents = useCallback(() => {
     let filteredEvents = events;
-    if (filter !== 'ALL') {
-      filteredEvents = filteredEvents.filter(newsItem => newsItem.type === filter);
+    if (filter === 'ARCHIVE') {
+      filteredEvents = filteredEvents.filter(newsItem => {
+        if (newsItem.endDate) {
+          return moment(Date.now()).isSameOrAfter(newsItem.endDate);
+        } else {
+          return moment(Date.now()).isSameOrAfter(newsItem.date);
+        }
+      });
+    } else {
+      filteredEvents = filteredEvents.filter(newsItem => {
+        if (newsItem.endDate) {
+          return moment(Date.now()).isSameOrBefore(newsItem.endDate);
+        } else {
+          return moment(Date.now()).isSameOrBefore(newsItem.date);
+        }
+      });
+      if (filter !== 'ALL') {
+        filteredEvents = filteredEvents.filter(newsItem => newsItem.type === filter);
+      }
     }
+    setListLength(filteredEvents.length);
     return filteredEvents.slice(0, loaded).map(event => {
       const { id } = event;
       return <EventCard className="event" event={event} key={id} />;
     });
-  }, [filter, events, loaded]);
+  }, [filter, events, loaded, listLength]);
 
   const loadMore = useCallback(() => {
     setLoaded(loaded + 10);
   }, [setLoaded, loaded]);
+
+  useEffect(() => {
+    setEventList(generateEvents());
+  }, []);
+
+  useEffect(() => {
+    setEventList(generateEvents());
+  }, [filter]);
 
   return (
     <>
       <SEO title="Events" />
       <EventsWrapper>
         <Filter title={"What's on at\nROW DTLA"} filters={filters} activeFilter={filter} setFilter={setFilter} />
-        <Masonry options={masonryOptions} elementType={'ul'}>
-          {generateEvents()}
+        <Masonry options={masonryOptions} className="masonry">
+          {eventList}
           <div className="gutter-sizer" />
         </Masonry>
-        <LoadMoreButton onClick={loadMore} visible={loaded < events.length}>
+        <LoadMoreButton onClick={loadMore} visible={loaded < listLength}>
           LOAD MORE
         </LoadMoreButton>
       </EventsWrapper>
@@ -91,8 +120,8 @@ export const query = graphql`
   {
     allContentfulEvent(sort: { fields: date, order: DESC }) {
       nodes {
-        date(formatString: "MMM Do")
-        endDate(formatString: "MMM Do")
+        date
+        endDate
         id
         slug
         title
