@@ -19,6 +19,7 @@ const EventsWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   .masonry {
+    margin: calc(64px / 3) 0;
     padding: 0;
     list-style-type: none;
     .gutter-sizer {
@@ -95,7 +96,7 @@ const EventsPage = ({ data }) => {
 
   useEffect(() => {
     setEventList(generateEvents());
-  }, [filter]);
+  }, [filter, loaded]);
 
   return (
     <>
