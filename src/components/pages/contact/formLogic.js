@@ -8,7 +8,7 @@ const formLogic = () => {
     phone: '',
     email: '',
     inquryType: '',
-    canWeHelp: '',
+    canWeHelp: ''
   });
   const [submitted, setFormSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
@@ -18,63 +18,71 @@ const formLogic = () => {
     const { email, firstName, lastName, phone, inquiryType, canWeHelp } = inputs;
     const newErrors = validateForm(inputs);
     setErrors(newErrors);
+
     if (Object.keys(errors).length === 0) {
-      // const text = `Hi,\n\nRegistrant Details:\n\n
-      // \n\nName: ${firstName} ${lastName}
-      // \n\nEmail: ${email}
-      // \n\nPhone: ${phone}
-      // \n\nNature of Inquiry: ${inquiryType}
-      // \n\nHow can we help: ${canWeHelp}
-      // `;
-      // const emailAddresses = {
-      //   general: 'info@rowdtla.com',
-      //   retail: 'info@runyongroup.com',
-      //   creative: 'jeff.pion@cbre.com',
-      //   event: 'events@rowdtla.com',
-      //   press: 'rowdtla@wagstaffworldwide.com',
-      // };
-      // const emailRecipient = emailAddresses[inquiryType];
-      // console.log(emailRecipient);
-      // General
-      // INFO@ROWDTLA.COM
-      // Retail Leasing
-      // INFO@RUNYONGROUP.COM
-      // Creative Office Leasing (which one for dropdown?)
-      // JEFF.PION@CBRE.COM
-      // MICHELLE.ESQUIVEL@CBRE.COM
-      // CHRIS.PENROSE@CBRE.COM
-      // Venue Leasing
-      // EVENTS@ROWDTLA.COM
-      // For PR or media inquiries, please contact:
-      // ROWDTLA@WAGSTAFFWORLDWIDE.COM
-      // var emailData = {
-      //   from: '"ROW DTLA" <no_reply_row_dtla@dbox.com>',
-      //   // to: `"ROW DTLA" <rowdtlaoffice@atlas-cap.com>`,
-      //   to: `"Joel Hoelting" <joel.hoelting@dbox.com>`,
-      //   subject: 'ROW DTLA - You have received an inquiry',
-      //   text: text,
-      // };
-      // fetch('https://form.api.dbxd.com/post-ses-email', {
-      //   method: 'POST',
-      //   mode: 'cors',
-      //   headers: {
-      //     Accept: 'application/json',
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(emailData),
-      // })
-      //   .then(response => response.json())
-      //   .then(result => {
-      //     /* eslint-disable no-console */
-      //     console.log('email sending successful ', result);
-      //     /* eslint-enable no-console */
-      //     setFormSubmitted(true);
-      //   })
-      //   .catch(error => {
-      //     /* eslint-disable no-console */
-      //     console.log('error sending email ', error);
-      //     /* eslint-enable no-console */
-      //   });
+      const text = `Hi,\n\nRegistrant Details:\n\n
+        \n\nName: ${firstName} ${lastName}
+        \n\nEmail: ${email}
+        \n\nPhone: ${phone}
+        \n\nNature of Inquiry: ${inquiryType}
+        \n\nHow can we help: ${canWeHelp}
+      `;
+
+      const directory = {
+        general: {
+          // recipientEmail: 'info@rowdtla.com',
+          recipientEmail: 'joel.hoelting@dbox.com',
+          // recipientName: 'ROWDTLA Info'
+          recipientName: 'Joel Hoelting'
+        },
+        retail: {
+          recipientEmail: 'info@runyongroup.com',
+          recipientName: 'Runyon Group'
+        },
+        creative: {
+          recipientEmail: 'jeff.pion@cbre.com',
+          recipientName: 'Jeff Pion'
+        },
+        event: {
+          recipientEmail: 'events@rowdtla.com',
+          recipientName: 'ROWDTLA Events'
+        },
+        press: {
+          recipientEmail: 'rowdtla@wagstaffworldwide.com',
+          recipientName: 'ROWDTLA Press'
+        }
+      };
+
+      const { recipientEmail, recipientName } = directory[inquiryType];
+
+      var emailData = {
+        from: '"ROW DTLA" <no_reply_row_dtla@dbox.com>',
+        to: `"${recipientName}" <${recipientEmail}>`,
+        subject: 'ROW DTLA - You have received an inquiry',
+        text: text
+      };
+
+      fetch('https://form.api.dbxd.com/post-ses-email', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(emailData)
+      })
+        .then(response => response.json())
+        .then(result => {
+          /* eslint-disable no-console */
+          console.log('email sending successful ', result);
+          /* eslint-enable no-console */
+          setFormSubmitted(true);
+        })
+        .catch(error => {
+          /* eslint-disable no-console */
+          console.log('error sending email ', error);
+          /* eslint-enable no-console */
+        });
     }
   };
 
@@ -94,7 +102,7 @@ const formLogic = () => {
     inputs,
     submitted,
     handleBlur,
-    errors,
+    errors
   };
 };
 
