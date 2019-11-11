@@ -46,6 +46,7 @@ const Form = styled.form`
 
 const SubscribeForm = () => {
   const [email, setEmail] = useState('');
+  const [sending, toggleSending] = useState(false);
 
   const handleInput = e => {
     const { value } = e.target;
@@ -54,6 +55,9 @@ const SubscribeForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    // Disable submit button on sign up
+    toggleSending(true);
 
     const data = {
       email_address: email
@@ -68,17 +72,27 @@ const SubscribeForm = () => {
       },
       body: JSON.stringify(data)
     })
-      .then(() => {
-        /* eslint-disable no-console */
-        console.log('email sending successful');
-        /* eslint-enable no-console */
+      .then(response => response.json())
+      .then(data => {
+        const { status, title } = data;
 
-        setEmail('');
+        if (status === 400) {
+          /* eslint-disable no-console */
+          throw new Error('duplicate email');
+          /* eslint-enable no-console */
+        } else {
+          /* eslint-disable no-console */
+          console.log('successfull sent email', title);
+          /* eslint-enable no-console */
+          setEmail('');
+          toggleSending(false);
+        }
       })
       .catch(error => {
         /* eslint-disable no-console */
         console.log('error sending email ', error);
         /* eslint-enable no-console */
+        toggleSending(false);
       });
   };
 
@@ -87,7 +101,9 @@ const SubscribeForm = () => {
       <label htmlFor="email">EMAIL ADDRESS</label>
       <div className="row">
         <input type="email" name="email" onChange={handleInput} required />
-        <button type="submit">SIGN UP</button>
+        <button type="submit" disabled={sending}>
+          SIGN UP
+        </button>
       </div>
     </Form>
   );
