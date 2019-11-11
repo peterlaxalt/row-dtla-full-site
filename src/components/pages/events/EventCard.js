@@ -13,6 +13,7 @@ const EventWrapper = styled(Link)`
   margin-bottom: calc(64px / 3);
   padding: 0;
   width: 100%;
+  min-height: 650px;
   border: 1px solid #000;
   img {
     width: 100%;
