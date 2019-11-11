@@ -101,8 +101,13 @@ const MobileImages = styled.div`
 `;
 
 const SmallImageContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  img {
+    object-fit: cover;
+  }
+  ${mediaMin('tabletLandscape')} {
+    display: flex;
+    flex-wrap: wrap;
+  }
 `;
 
 const HeroImage = styled.img`
