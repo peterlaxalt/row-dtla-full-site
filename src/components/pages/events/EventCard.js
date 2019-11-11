@@ -2,13 +2,14 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import Fade from 'react-reveal/Fade';
+import moment from 'moment';
 
 import { mediaMin } from '~/styles/mediaQueries';
 import { truncateText } from '~/utils/helpers';
 
 import placeholderImg from '~/images/backup/backup_image.jpg';
 
-const EventWrapper = styled.li`
+const EventWrapper = styled(Link)`
   margin-bottom: calc(64px / 3);
   padding: 0;
   width: 100%;
@@ -69,21 +70,21 @@ const CopySection = styled.div`
 
 const EventCard = ({ event }) => {
   const { body, date, endDate, startTime, endTime, image, slug, title } = event;
+  const parsedStartDate = moment(date).format('MMM Do');
+  const parsedEndDate = moment(endDate).format('MMM Do');
   return (
-    <EventWrapper>
+    <EventWrapper to={`/events/${slug}`}>
       <Fade>
-        <Link to={`/events/${slug}`}>
-          <img src={image ? image.file.url : placeholderImg} alt={image ? image.description : 'Placeholder Image'} />
-          <CopySection>
-            <span>{`${date}${endDate ? ` - ${endDate}` : ''}`}</span>
-            <h3>{title}</h3>
-            <p>{truncateText(JSON.parse(body.body).content[0].content[0].value, 20)}</p>
-            <span>{`${startTime} - ${endTime}`}</span>
-            <div className="fake-button">
-              <span>LEARN MORE</span>
-            </div>
-          </CopySection>
-        </Link>
+        <img src={image ? image.file.url : placeholderImg} alt={image ? image.description : 'Placeholder Image'} />
+        <CopySection>
+          <span>{`${parsedStartDate}${endDate ? ` - ${parsedEndDate}` : ''}`}</span>
+          <h3>{title}</h3>
+          <p>{truncateText(JSON.parse(body.body).content[0].content[0].value, 20)}</p>
+          <span>{`${startTime} - ${endTime}`}</span>
+          <div className="fake-button">
+            <span>LEARN MORE</span>
+          </div>
+        </CopySection>
       </Fade>
     </EventWrapper>
   );
