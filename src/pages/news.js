@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
@@ -48,6 +48,8 @@ const LoadMoreButton = styled.button`
 const NewsPage = ({ data }) => {
   const [filter, setFilter] = useState('ALL');
   const [loaded, setLoaded] = useState(9);
+  const [listLength, setListLength] = useState(0);
+  const [newsList, setNewsList] = useState([]);
   const filters = ['ALL', 'INSIDER NEWS', 'IN THE NEWS'];
   const newsItems = data.allContentfulNewsItem.nodes;
 
@@ -56,18 +58,25 @@ const NewsPage = ({ data }) => {
     if (filter !== 'ALL') {
       filteredNews = filteredNews.filter(newsItem => newsItem.type === filter);
     }
-    return filteredNews
-      .filter(newsItem => newsItem.images)
-      .slice(0, loaded)
-      .map(newsItem => {
-        const { id } = newsItem;
-        return <NewsCard key={`news-item-${id}`} article={newsItem} />;
-      });
-  }, [filter, loaded, newsItems]);
+    filteredNews = filteredNews.filter(newsItem => newsItem.images);
+    setListLength(filteredNews.length);
+    return filteredNews.slice(0, loaded).map(newsItem => {
+      const { id } = newsItem;
+      return <NewsCard key={`news-item-${id}`} article={newsItem} />;
+    });
+  }, [filter, loaded, newsItems, listLength]);
 
   const loadMore = useCallback(() => {
     setLoaded(loaded + 9);
   }, [setLoaded, loaded]);
+
+  useEffect(() => {
+    setNewsList(generateNewsItems);
+  }, []);
+
+  useEffect(() => {
+    setNewsList(generateNewsItems);
+  }, [filter, loaded]);
 
   return (
     <>
@@ -75,9 +84,9 @@ const NewsPage = ({ data }) => {
       <NewsWrapper>
         <Filter title={"What's new at\nROW DTLA"} filters={filters} activeFilter={filter} setFilter={setFilter} />
         <Masonry options={masonryOptions} className="masonry">
-          {generateNewsItems()}
+          {newsList}
         </Masonry>
-        <LoadMoreButton onClick={loadMore} visible={loaded < newsItems.filter(newsItem => newsItem.images).length}>
+        <LoadMoreButton onClick={loadMore} visible={loaded < listLength}>
           LOAD MORE
         </LoadMoreButton>
       </NewsWrapper>
