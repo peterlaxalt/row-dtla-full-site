@@ -24,7 +24,7 @@ const ContextProvider = props => {
         activeSlide,
         setActiveSlide,
         darkTheme,
-        setDarkTheme,
+        setDarkTheme
       }}
     >
       {props.children}
