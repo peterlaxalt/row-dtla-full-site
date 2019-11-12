@@ -51,7 +51,7 @@ const LoadMoreButton = styled.button`
 
 const EventsPage = ({ data }) => {
   const [filter, setFilter] = useState('ALL');
-  const [loaded, setLoaded] = useState(10);
+  const [loaded, setLoaded] = useState(8);
   const [listLength, setListLength] = useState(0);
   const [eventList, setEventList] = useState([]);
   const filters = ['ALL', 'FOOD TRUCKS', 'EVENTS', 'ARCHIVE'];
@@ -95,7 +95,7 @@ const EventsPage = ({ data }) => {
   }, [filter, events, loaded, listLength]);
 
   const loadMore = useCallback(() => {
-    setLoaded(loaded + 10);
+    setLoaded(loaded + 8);
   }, [setLoaded, loaded]);
 
   useEffect(() => {

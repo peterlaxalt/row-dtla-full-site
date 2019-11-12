@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
@@ -50,8 +50,10 @@ const masonryOptions = {
 const CollectivePage = ({ data }) => {
   const collectiveItems = data.allContentfulCollectiveItem.nodes;
   const [filter, setFilter] = useState('ALL');
-  const filters = ['ALL', 'DINE', 'SHOP', 'LIFESTYLE', 'POP-UP'];
   const [loaded, setLoaded] = useState(10);
+  const [collectiveList, setCollectiveList] = useState([]);
+  const [listLength, setListLength] = useState(0);
+  const filters = ['ALL', 'DINE', 'SHOP', 'LIFESTYLE', 'POP-UP'];
 
   const loadMore = useCallback(() => {
     setLoaded(loaded + 10);
@@ -62,7 +64,7 @@ const CollectivePage = ({ data }) => {
     if (filter !== 'ALL') {
       filteredCollectiveItems = filteredCollectiveItems.filter(collectiveItem => collectiveItem.type === filter);
     }
-
+    setListLength(filteredCollectiveItems.length);
     if (typeof window !== `undefined`) {
       return filteredCollectiveItems
         .slice(0, window.innerWidth > 1024 ? collectiveItems.length : loaded)
@@ -72,15 +74,23 @@ const CollectivePage = ({ data }) => {
     }
   }, [filter, collectiveItems, loaded]);
 
+  useEffect(() => {
+    setCollectiveList(generateCollectiveItemCards());
+  }, []);
+
+  useEffect(() => {
+    setCollectiveList(generateCollectiveItemCards());
+  }, [filter, loaded]);
+
   return (
     <>
       <SEO title="Collective" />
       <CollectiveWrapper>
         <Filter title={'Discover\nROW DTLA'} filters={filters} activeFilter={filter} setFilter={setFilter} />
         <Masonry options={masonryOptions} className="masonry">
-          {generateCollectiveItemCards()}
+          {collectiveList}
         </Masonry>
-        <LoadMoreButton onClick={loadMore} visible={loaded < collectiveItems.length}>
+        <LoadMoreButton onClick={loadMore} visible={loaded < listLength}>
           LOAD MORE
         </LoadMoreButton>
       </CollectiveWrapper>
