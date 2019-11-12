@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import styled from '@emotion/styled';
 import Modal from 'react-modal';
 
@@ -10,9 +10,11 @@ const ModalStyles = {
   overlay: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
-  },
+    alignItems: 'center'
+  }
 };
+
+Modal.setAppElement('#___gatsby');
 
 const ModalInner = styled.div`
   display: flex;
@@ -52,8 +54,23 @@ const CloseButton = styled.button`
 const CTA = () => {
   const context = useContext(Context);
   const { CTAActive, closeCTA } = context;
+
+  const handleEscape = useCallback(event => {
+    if (event.keyCode === 27) {
+      closeCTA();
+      document.removeEventListener('keydown', handleEscape);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, []);
+
   return (
-    <Modal isOpen={CTAActive} className="modal" style={ModalStyles}>
+    <Modal isOpen={CTAActive} onRequestClose={closeCTA} className="modal" style={ModalStyles} closeTimeoutMS={200}>
       <CloseButton onClick={closeCTA}>
         <svg
           viewBox="0 0 18 18"
