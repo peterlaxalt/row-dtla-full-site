@@ -47,7 +47,7 @@ const LoadMoreButton = styled.button`
 
 const NewsPage = ({ data }) => {
   const [filter, setFilter] = useState('ALL');
-  const [loaded, setLoaded] = useState(10);
+  const [loaded, setLoaded] = useState(9);
   const filters = ['ALL', 'INSIDER NEWS', 'IN THE NEWS'];
   const newsItems = data.allContentfulNewsItem.nodes;
 
@@ -66,7 +66,7 @@ const NewsPage = ({ data }) => {
   }, [filter, loaded, newsItems]);
 
   const loadMore = useCallback(() => {
-    setLoaded(loaded + 10);
+    setLoaded(loaded + 9);
   }, [setLoaded, loaded]);
 
   return (

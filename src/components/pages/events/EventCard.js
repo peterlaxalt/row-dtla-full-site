@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import Fade from 'react-reveal/Fade';
