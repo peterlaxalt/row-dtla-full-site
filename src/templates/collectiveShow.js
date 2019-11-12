@@ -1,147 +1,16 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import styled from '@emotion/styled';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
 import SEO from '~/components/seo';
 
-import { mediaMin } from '~/styles/mediaQueries';
 import { parsePhone } from '~/utils/helpers';
+import { ShowOuter, ShowInner, CopyColumn, ImageColumn } from './styles';
 
 import BackArrow from '~/assets/images/icons/arrow-back.svg';
 import FacebookLogo from '~/assets/images/icons/fb-black.svg';
 import InstagramLogo from '~/assets/images/icons/insta-black.svg';
-
 import placeholderImg from '~/images/backup/backup_image.jpg';
-
-const CollectiveWrapper = styled.div``;
-
-const CollectiveInfo = styled.div`
-  display: flex;
-  height: 100%;
-  flex-direction: column-reverse;
-  margin: 24px 0;
-
-  ${mediaMin('tabletLandscape')} {
-    flex-direction: row;
-  }
-
-  .column {
-    width: 100%;
-    ${mediaMin('tabletLandscape')} {
-      width: 50%;
-      margin: initial;
-    }
-  }
-`;
-
-const CopyColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  ${mediaMin('tabletLandscape')} {
-    padding-right: 10%;
-  }
-  h1 {
-    margin: 16px 0;
-    font-size: 40px;
-    font-weight: bold;
-    line-height: 44px;
-    ${mediaMin('tabletLandscape')} {
-      font-size: 55px;
-      line-height: 60px;
-    }
-  }
-  h2,
-  h6 {
-    font-family: Apercu;
-    font-size: 15px;
-    letter-spacing: 1px;
-    line-height: 20px;
-    margin: 0;
-    text-transform: uppercase;
-  }
-  p {
-    font-family: 'SangBleu Kingdom';
-    font-size: 16px;
-    line-height: 24px;
-    margin: 0 0 32px 0;
-    display: flex;
-  }
-  a {
-    font-weight: 500;
-    text-decoration: underline;
-    margin: 0;
-  }
-
-  .row {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .parking-btn {
-    font-size: 1.4rem;
-    border: 1px solid black;
-    background: none;
-    padding: 10px 50px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 100ms ease;
-  }
-
-  .contact-link {
-    display: block;
-    border: none;
-    padding: 0;
-    margin: 8px 0 0 0;
-    text-decoration: none;
-    ${mediaMin('tabletLandscape')} {
-      margin: 20px 0 0 0;
-    }
-    &:hover {
-      background: transparent;
-      color: #000;
-    }
-  }
-
-  .parking-link {
-    display: block;
-    border: 1px solid #000;
-    padding: 8px 16px;
-    margin: 0;
-    width: fit-content;
-    text-decoration: none;
-    ${mediaMin('tabletLandscape')} {
-      margin: 8px 0 0 0;
-    }
-    &:hover {
-      background: #000;
-      color: #fff;
-    }
-  }
-
-  .social-icon {
-    border: none;
-    padding: 0;
-    margin: 8px 10px 0 0;
-    ${mediaMin('tabletLandscape')} {
-      margin: 20px 24px 0 0;
-    }
-    &:hover {
-      background: transparent;
-      color: #000;
-    }
-  }
-`;
-
-const ImageColumn = styled.div`
-  margin-bottom: 16px;
-  ${mediaMin('tabletLandscape')} {
-    margin-bottom: 0;
-  }
-  img {
-    width: 100%;
-  }
-`;
 
 const CollectiveShow = ({ data }) => {
   const {
@@ -163,12 +32,12 @@ const CollectiveShow = ({ data }) => {
     <>
       <SEO title={title} />
 
-      <CollectiveWrapper>
+      <ShowOuter>
         <Link to="/collective">
           <img src={BackArrow} alt="back arrow" />
         </Link>
-        <CollectiveInfo>
-          <CopyColumn className="column left">
+        <ShowInner>
+          <CopyColumn>
             <h2 className="subtitle">{subtitle}</h2>
             <h1 className="title">{title}</h1>
             <RichText richText={JSON.parse(body.body)} />
@@ -211,8 +80,8 @@ const CollectiveShow = ({ data }) => {
           <ImageColumn className="column right">
             <img src={image ? image.file.url : placeholderImg} alt={image ? image.description : 'Placeholder Image'} />
           </ImageColumn>
-        </CollectiveInfo>
-      </CollectiveWrapper>
+        </ShowInner>
+      </ShowOuter>
     </>
   );
 };
