@@ -1,29 +1,39 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 
 import { mediaMin } from '~/styles/mediaQueries';
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  label {
-    font-size: 12px;
-    line-height: 12px;
-    letter-spacing: 1px;
-    margin-bottom: 4px;
-  }
-  .row {
+  position: relative;
+
+  .input-row {
     display: flex;
     width: 100%;
-    input {
-      color: #fff;
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
-      font-size: 1.5em;
-      padding: 0.5em;
-      width: 75%;
+    transition: all 300ms ease;
+    opacity: ${props => (!props.formSubmitted ? 1 : 0)};
+    visibility: ${props => (!props.formSubmitted ? 'visible' : 'hidden')};
+    label {
+      letter-spacing: 1px;
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+      span {
+        height: 30%;
+      }
+      input {
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+        font-size: 1.5em;
+        padding: 0.5em;
+        height: 70%;
+      }
     }
+
     button {
       color: #fff;
       background-color: #000;
@@ -32,13 +42,34 @@ const Form = styled.form`
       padding: 0.5em 1em;
       font-size: 1em;
       width: 40%;
-      cursor: pointer;
+      cursor: ${props => (props.disableSubmit ? 'initial' : 'pointer')};
+      opacity: ${props => (props.disableSubmit ? 0.4 : 1)};
+      height: 70%;
+      margin-top: auto;
       ${mediaMin('tabletLandscape')} {
         width: 25%;
       }
-      &:hover {
-        background-color: #fff;
-        color: #000;
+
+      ${props =>
+        !props.disableSubmit &&
+        css`
+          &:hover {
+            background-color: #fff;
+            color: #000;
+          }
+        `}}
+    }
+
+    .thank-you-row {
+      position: absolute;
+      left: 0;
+      bottom: 50%;
+      transform: translateY(50%);
+      opacity: ${props => (props.formSubmitted ? 1 : 0)};
+      visibility: ${props => (props.formSubmitted ? 'visible' : 'hidden')};
+      transition: all 300ms ease;
+      p {
+        font-size: 2rem;
       }
     }
   }
@@ -46,7 +77,8 @@ const Form = styled.form`
 
 const SubscribeForm = () => {
   const [email, setEmail] = useState('');
-  const [sending, toggleSending] = useState(false);
+  const [disableSubmit, toggleDisableSubmit] = useState(false);
+  const [formSubmitted, toggleFormSubmit] = useState(false);
 
   const handleInput = e => {
     const { value } = e.target;
@@ -57,7 +89,7 @@ const SubscribeForm = () => {
     e.preventDefault();
 
     // Disable submit button on sign up
-    toggleSending(true);
+    toggleDisableSubmit(true);
 
     const data = {
       email_address: email
@@ -80,26 +112,37 @@ const SubscribeForm = () => {
           throw new Error('duplicate email');
         } else {
           console.log('successfull sent email', title);
+          toggleFormSubmit(true);
           setEmail('');
-          toggleSending(false);
+          setTimeout(() => {
+            toggleFormSubmit(false);
+            toggleDisableSubmit(false);
+          }, 10000);
         }
       })
       .catch(error => {
         console.log('error sending email ', error);
-        toggleSending(false);
+        toggleDisableSubmit(false);
       });
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <label htmlFor="email">EMAIL ADDRESS</label>
-      <div className="row">
-        <input type="email" name="email" onChange={handleInput} required />
-        <button type="submit" disabled={sending}>
-          SIGN UP
-        </button>
-      </div>
-    </Form>
+    <>
+      <Form formSubmitted={formSubmitted} disableSubmit={disableSubmit} onSubmit={handleSubmit}>
+        <div className="input-row">
+          <label htmlFor="email">
+            <span>EMAIL ADDRESS</span>
+            <input type="email" name="email" onChange={handleInput} required />
+          </label>
+          <button type="submit" disabled={disableSubmit}>
+            SIGN UP
+          </button>
+        </div>
+        <div className="thank-you-row">
+          <p>Thank you for subscribing</p>
+        </div>
+      </Form>
+    </>
   );
 };
 
