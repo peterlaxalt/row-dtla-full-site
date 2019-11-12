@@ -45,6 +45,29 @@ const CopyColumn = styled.div`
     line-height: 20px;
     text-transform: uppercase;
     margin: 0;
+  }
+  h5 {
+    font-family: Apercu;
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    padding: 0 10%;
+    border: 1px solid #000;
+    height: 40px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    text-decoration: none !important;
+    margin: 16px 0 !important;
+    &:hover {
+      background-color: #000;
+      color: #fff;
+    }
     a {
       text-decoration: none;
     }
