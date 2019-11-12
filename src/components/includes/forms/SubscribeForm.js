@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
+
+import Context from '~/context/Context';
 
 import { mediaMin } from '~/styles/mediaQueries';
 
@@ -76,6 +78,9 @@ const Form = styled.form`
 `;
 
 const SubscribeForm = () => {
+  const context = useContext(Context);
+  const { CTAActive, closeCTA } = context;
+
   const [email, setEmail] = useState('');
   const [disableSubmit, toggleDisableSubmit] = useState(false);
   const [formSubmitted, toggleFormSubmit] = useState(false);
@@ -113,7 +118,15 @@ const SubscribeForm = () => {
         } else {
           console.log('successfull sent email', title);
           toggleFormSubmit(true);
+
+          if (CTAActive) {
+            setTimeout(() => {
+              closeCTA();
+            }, 2000);
+          }
+
           setEmail('');
+
           setTimeout(() => {
             toggleFormSubmit(false);
             toggleDisableSubmit(false);
