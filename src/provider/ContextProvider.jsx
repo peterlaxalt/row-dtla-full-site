@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Context from '~/context/Context';
 
 const ContextProvider = props => {
-  const [CTAActive, setCTAActive] = useState(true);
+  const [CTAActive, setCTAActive] = useState(false);
   const [CTAViewed, setCTAViewed] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const [darkTheme, setDarkTheme] = useState(false);
