@@ -1,78 +1,12 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import styled from '@emotion/styled';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
 import SEO from '~/components/seo';
 import BackArrow from '~/assets/images/icons/arrow-back.svg';
-import { mediaMin } from '~/styles/mediaQueries';
+import { ShowOuter, ShowInner, CopyColumn, ImageColumn, HeroImage } from './styles';
 
 import placeholderImg from '~/images/backup/backup_image.jpg';
-
-const EventWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-
-const EventInfo = styled.div`
-  display: flex;
-  flex-direction: column-reverse;
-  margin: 24px 0;
-  ${mediaMin('tabletLandscape')} {
-    margin: 32px 0;
-    flex-direction: row;
-  }
-`;
-
-const CopyColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 24px;
-  ${mediaMin('tabletLandscape')} {
-    margin-top: 0;
-    width: 50%;
-    padding: 0 10% 0 0;
-  }
-  h2 {
-    font-size: 40px;
-    font-weight: bold;
-    line-height: 44px;
-    margin: 16px 0;
-    ${mediaMin('tabletLandscape')} {
-      font-size: 55px;
-      line-height: 60px;
-    }
-  }
-  span {
-    font-size: 15px;
-    letter-spacing: 1px;
-    line-height: 20px;
-  }
-  p {
-    margin: 32px 0 0 0;
-    font-family: 'SangBleu Kingdom';
-    font-size: 16px;
-    line-height: 24px;
-    white-space: pre-line;
-  }
-`;
-
-const ImageColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  ${mediaMin('tabletLandscape')} {
-    width: 50%;
-  }
-`;
-
-const HeroImage = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-  width: 100%;
-`;
 
 const EventShow = ({ data }) => {
   const { contentfulEvent } = data;
@@ -81,15 +15,15 @@ const EventShow = ({ data }) => {
   return (
     <>
       <SEO title={title} />
-      <EventWrapper>
+      <ShowOuter>
         <Link to="/events">
           <img src={BackArrow} alt="back arrow" />
         </Link>
-        <EventInfo>
+        <ShowInner>
           <CopyColumn>
-            <span>{`${date}${endDate ? ` - ${endDate}` : ''}`}</span>
-            <h2>{title}</h2>
-            <span>{`${startTime} - ${endTime}`}</span>
+            <h2>{`${date}${endDate ? ` - ${endDate}` : ''}`}</h2>
+            <h1>{title}</h1>
+            <h2>{`${startTime} - ${endTime}`}</h2>
             <RichText richText={JSON.parse(body.body)} />
           </CopyColumn>
           <ImageColumn>
@@ -98,8 +32,8 @@ const EventShow = ({ data }) => {
               alt={image ? image.description : 'Placeholder Image'}
             />
           </ImageColumn>
-        </EventInfo>
-      </EventWrapper>
+        </ShowInner>
+      </ShowOuter>
     </>
   );
 };

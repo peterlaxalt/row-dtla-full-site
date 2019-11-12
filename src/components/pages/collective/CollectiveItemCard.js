@@ -80,6 +80,14 @@ const CollectiveItemCardWrapper = styled(Link)`
         font-size: 32px;
         line-height: 36px;
         ${mediaMin('tabletLandscape')} {
+          font-size: 28px;
+          line-height: 32px;
+        }
+        ${mediaMin('desktopSmall')} {
+          font-size: 32px;
+          line-height: 36px;
+        }
+        ${mediaMin('desktop')} {
           font-size: 40px;
           line-height: 44px;
         }
