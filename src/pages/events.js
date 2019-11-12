@@ -61,19 +61,27 @@ const EventsPage = ({ data }) => {
     let filteredEvents = events;
     if (filter === 'ARCHIVE') {
       filteredEvents = filteredEvents.filter(newsItem => {
-        if (newsItem.endDate) {
-          return moment(Date.now()).isSameOrAfter(newsItem.endDate);
-        } else {
-          return moment(Date.now()).isSameOrAfter(newsItem.date);
-        }
+        const today = new Date();
+        const yesterday = today.setDate(today.getDate() - 1);
+        const compareDate = newsItem.endDate || newsItem.date;
+        return moment(yesterday).isSameOrAfter(compareDate);
+      });
+      filteredEvents = filteredEvents.sort((a, b) => {
+        const aCompare = a.endDate || a.date;
+        const bCompare = b.endDate || b.date;
+        return new Date(bCompare) - new Date(aCompare);
       });
     } else {
       filteredEvents = filteredEvents.filter(newsItem => {
-        if (newsItem.endDate) {
-          return moment(Date.now()).isSameOrBefore(newsItem.endDate);
-        } else {
-          return moment(Date.now()).isSameOrBefore(newsItem.date);
-        }
+        const today = new Date();
+        const yesterday = today.setDate(today.getDate() - 1);
+        const compareDate = newsItem.endDate || newsItem.date;
+        return moment(yesterday).isSameOrBefore(compareDate);
+      });
+      filteredEvents = filteredEvents.sort((a, b) => {
+        const aCompare = a.endDate || a.date;
+        const bCompare = b.endDate || b.date;
+        return new Date(aCompare) - new Date(bCompare);
       });
       if (filter !== 'ALL') {
         filteredEvents = filteredEvents.filter(newsItem => newsItem.type === filter);
@@ -119,7 +127,7 @@ export default EventsPage;
 
 export const query = graphql`
   {
-    allContentfulEvent(sort: { fields: date, order: DESC }) {
+    allContentfulEvent {
       nodes {
         date
         endDate
@@ -142,3 +150,5 @@ export const query = graphql`
     }
   }
 `;
+
+// (sort: { fields: date, order: ASC })
