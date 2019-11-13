@@ -46,6 +46,14 @@ const CopyColumn = styled.div`
     text-transform: uppercase;
     margin: 0;
   }
+  h3 {
+    font-size: 32px;
+    line-height: 36px;
+  }
+  h4 {
+    font-size: 24px;
+    line-height: 28px;
+  }
   h5 {
     font-family: Apercu;
     font-size: 15px;

@@ -11,7 +11,7 @@ import Filter from '~/components/includes/sub-header/Filter';
 
 const masonryOptions = {
   transitionDuration: '0.25s',
-  gutter: '.gutter-sizer',
+  gutter: '.gutter-sizer'
 };
 
 const EventsWrapper = styled.div`
@@ -19,7 +19,7 @@ const EventsWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   .masonry {
-    margin: calc(64px / 3) 0;
+    margin: calc(64px / 3) 0 0 0;
     padding: 0;
     list-style-type: none;
     .gutter-sizer {

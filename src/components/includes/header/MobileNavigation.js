@@ -48,9 +48,31 @@ const MobileMenu = styled.div`
     list-style-type: none;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     height: 100%;
     li {
       margin-bottom: 15%;
+      opacity: ${props => (props.navActive ? '1' : '0')};
+      transform: ${props => (props.navActive ? 'translateX(0)' : 'translateX(-16px)')};
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      ${mediaMin('tablet')} {
+        margin-bottom: 10%;
+      }
+      &:nth-child(2) {
+        transition-delay: 0.15s;
+      }
+      &:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+      &:nth-child(4) {
+        transition-delay: 0.45s;
+      }
+      &:nth-child(5) {
+        transition-delay: 0.6s;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
       a {
         color: #fff;
         text-decoration: none;
