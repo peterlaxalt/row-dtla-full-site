@@ -44,7 +44,7 @@ const LoadMoreButton = styled.button`
 const masonryOptions = {
   transitionDuration: '0.25s',
   columnWidth: '.small-vertical',
-  gutter: 40,
+  gutter: 40
 };
 
 const CollectivePage = ({ data }) => {
@@ -60,7 +60,10 @@ const CollectivePage = ({ data }) => {
   }, [loaded, setLoaded]);
 
   const generateCollectiveItemCards = useCallback(() => {
-    let filteredCollectiveItems = collectiveItems;
+    let filteredCollectiveItems = collectiveItems.sort((a, b) => {
+      return a.title.localeCompare(b.title);
+    });
+
     if (filter !== 'ALL') {
       filteredCollectiveItems = filteredCollectiveItems.filter(collectiveItem => collectiveItem.type === filter);
     }
@@ -102,7 +105,7 @@ export default CollectivePage;
 
 export const query = graphql`
   query CollectiveEntriesQuery {
-    allContentfulCollectiveItem(sort: { order: ASC, fields: title }) {
+    allContentfulCollectiveItem {
       nodes {
         displayTitle {
           displayTitle
