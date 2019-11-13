@@ -16,10 +16,10 @@ const CollectiveWrapper = styled.div`
   width: 100%;
   .masonry {
     padding: 0;
-    margin-top: 20px;
+    margin: 20px 0 0 0;
     list-style-type: none;
     ${mediaMin('tablet')} {
-      margin-top: 40px;
+      margin: 40px 0 160px 0;
     }
   }
 `;
