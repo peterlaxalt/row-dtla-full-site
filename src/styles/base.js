@@ -9,6 +9,7 @@ const base = css`
   body,
   #___gatsby {
     height: 100%;
+    overscroll-behavior-y: none;
   }
 
   body {
