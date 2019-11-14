@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
 import SEO from '~/components/seo';
-import BackArrow from '~/assets/images/icons/arrow-back.svg';
+import BackArrow from '~/assets/images/icons/arrow-back-white.svg';
 import { ShowOuter, ShowInner, CopyColumn, ImageColumn, HeroImage } from './styles';
 
 import placeholderImg from '~/images/backup/backup_image.jpg';

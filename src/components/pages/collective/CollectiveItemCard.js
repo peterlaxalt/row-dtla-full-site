@@ -16,7 +16,7 @@ const CollectiveItemCardWrapper = styled(Link)`
     margin-bottom: 40px;
   }
   ${mediaMin('tabletLandscape')} {
-    transition: box-shadow 300ms ease;
+    transition: all 300ms ease;
     &:hover {
       box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
     }
@@ -122,7 +122,7 @@ const generateCardClass = idx => {
     4: 'large-horizontal',
     5: 'large-vertical',
     6: 'small-vertical',
-    7: 'small-vertical',
+    7: 'small-vertical'
   };
 
   return classObj[gridPosition];
