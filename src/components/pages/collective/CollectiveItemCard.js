@@ -16,7 +16,7 @@ const CollectiveItemCardWrapper = styled(Link)`
     margin-bottom: 40px;
   }
   ${mediaMin('tabletLandscape')} {
-    transition: all 300ms ease;
+    transition: box-shadow 300ms ease;
     &:hover {
       box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
     }

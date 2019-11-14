@@ -50,12 +50,7 @@ const Header = () => {
   return (
     <Location>
       {({ location }) => {
-        const currentRouteAry = location.pathname.replace('/', '').split('/');
-        let currentRoute = currentRouteAry[0];
-
-        if (currentRouteAry.length === 2) {
-          currentRoute = currentRoute + 'Show';
-        }
+        const currentRoute = location.pathname.replace('/', '').split('/')[0];
 
         const isDarkTheme = darkThemeRoutes[currentRoute] || false;
         setDarkTheme(isDarkTheme);
