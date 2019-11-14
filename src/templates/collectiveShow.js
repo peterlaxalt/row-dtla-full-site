@@ -8,8 +8,8 @@ import { parsePhone } from '~/utils/helpers';
 import { ShowOuter, ShowInner, CopyColumn, ImageColumn } from './styles';
 
 import BackArrow from '~/assets/images/icons/arrow-back-white.svg';
-import FacebookLogo from '~/assets/images/icons/fb-black.svg';
-import InstagramLogo from '~/assets/images/icons/insta-black.svg';
+import FacebookLogo from '~/assets/images/icons/fb-white.svg';
+import InstagramLogo from '~/assets/images/icons/insta-white.svg';
 import placeholderImg from '~/images/backup/backup_image.jpg';
 
 const CollectiveShow = ({ data }) => {
