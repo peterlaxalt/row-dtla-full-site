@@ -22,6 +22,7 @@ const ShowInner = styled.div`
 const CopyColumn = styled.div`
   display: flex;
   flex-direction: column;
+  color: white;
   ${mediaMin('tabletLandscape')} {
     padding-right: 10%;
     width: 50%;
@@ -57,7 +58,7 @@ const CopyColumn = styled.div`
     align-items: center;
     width: fit-content;
     padding: 0 10%;
-    border: 1px solid #000;
+    border: 1px solid #fff;
     height: 40px;
     font-size: 15px;
     letter-spacing: 1px;
@@ -65,7 +66,7 @@ const CopyColumn = styled.div`
     text-decoration: none !important;
     margin: 16px 0 !important;
     &:hover {
-      background-color: #000;
+      background-color: #fff;
       color: #fff;
     }
     a {
@@ -96,7 +97,7 @@ const CopyColumn = styled.div`
 
   .parking-btn {
     font-size: 1.4rem;
-    border: 1px solid black;
+    border: 1px solid white;
     background: none;
     padding: 10px 50px;
     text-transform: uppercase;
@@ -115,13 +116,13 @@ const CopyColumn = styled.div`
     }
     &:hover {
       background: transparent;
-      color: #000;
+      color: #fff;
     }
   }
 
   .parking-link {
     display: block;
-    border: 1px solid #000;
+    border: 1px solid #fff;
     padding: 8px 16px;
     margin: 0;
     width: fit-content;
@@ -130,8 +131,8 @@ const CopyColumn = styled.div`
       margin: 8px 0 0 0;
     }
     &:hover {
-      background: #000;
-      color: #fff;
+      background: #fff;
+      color: #000;
     }
   }
 

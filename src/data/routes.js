@@ -2,29 +2,32 @@ export const navRoutes = [
   {
     url: '/collective',
     link: "Who's Here",
-    darkTheme: false,
+    darkTheme: false
   },
   {
     url: '/events',
     link: "What's On",
-    darkTheme: false,
+    darkTheme: false
   },
   {
     url: '/news',
     link: "What's New",
-    darkTheme: false,
+    darkTheme: false
   },
   {
     url: '/contact',
     link: 'Contact',
-    darkTheme: true,
-  },
+    darkTheme: true
+  }
 ];
 
 export const darkThemeRoutes = {
   collective: false,
+  collectiveShow: true,
   events: false,
+  eventsShow: true,
   news: false,
+  newsShow: true,
   contact: true,
-  parking: true,
+  parking: true
 };
