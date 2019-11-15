@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
 import SEO from '~/components/seo';
-import BackArrow from '~/assets/images/icons/arrow-back.svg';
+import BackArrow from '~/assets/images/icons/arrow-back-white.svg';
 import { mediaMin } from '~/styles/mediaQueries';
 import { ShowOuter, ShowInner, CopyColumn, ImageColumn, HeroImage, SmallImageContainer, SmallImage } from './styles';
 
@@ -14,16 +14,17 @@ const BoxLink = styled.a`
   align-items: center;
   width: fit-content;
   padding: 0 10%;
-  border: 1px solid #000;
+  border: 1px solid #fff;
   height: 40px;
   font-size: 15px;
   letter-spacing: 1px;
   line-height: 20px;
   text-decoration: none !important;
   margin: 16px 0 !important;
+  transition: all 200ms ease;
   &:hover {
-    background-color: #000;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
   }
 `;
 
