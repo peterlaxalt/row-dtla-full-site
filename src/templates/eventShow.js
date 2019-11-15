@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, graphql } from 'gatsby';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
@@ -11,22 +11,32 @@ import placeholderImg from '~/images/backup/backup_image.jpg';
 const EventShow = ({ data }) => {
   const { contentfulEvent } = data;
   const { body, date, endDate, startTime, endTime, image, title } = contentfulEvent;
+  const [mounted, setMounted] = useState(false);
+  const CopyRef = useRef(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
       <SEO title={title} />
       <ShowOuter>
         <Link to="/events">
-          <img src={BackArrow} alt="back arrow" />
+          <img className="back-arrow" src={BackArrow} alt="back arrow" />
         </Link>
         <ShowInner>
-          <CopyColumn>
+          <CopyColumn
+            mounted={mounted}
+            ref={CopyRef}
+            numChildren={CopyRef.current ? CopyRef.current.children.length : 50}
+          >
             <h2>{`${date}${endDate ? ` - ${endDate}` : ''}`}</h2>
             <h1>{title}</h1>
             <h2>{`${startTime} - ${endTime}`}</h2>
             <RichText richText={JSON.parse(body.body)} />
           </CopyColumn>
-          <ImageColumn>
+          <ImageColumn mounted={mounted}>
             <HeroImage
               src={image ? image.file.url : placeholderImg}
               alt={image ? image.description : 'Placeholder Image'}
