@@ -146,6 +146,13 @@ const CopyColumn = styled.div`
       margin-top: 28px;
     }
   }
+  blockquote {
+    p {
+      font-family: 'SangBleu Kingdom';
+      font-weight: bold;
+      font-style: italic;
+    }
+  }
   a {
     font-weight: 500;
     text-decoration: underline;

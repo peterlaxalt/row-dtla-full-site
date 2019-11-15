@@ -10,15 +10,17 @@ const CollectiveItemCardWrapper = styled(Link)`
   display: flex;
   flex-direction: column;
   border: 1px solid black;
+  border-style: outset;
   width: 100%;
   margin-bottom: 20px;
   ${mediaMin('tablet')} {
     margin-bottom: 40px;
   }
   ${mediaMin('tabletLandscape')} {
-    transition: box-shadow 300ms ease;
+    transition: box-shadow 0.5s ease, border 0.5s ease;
     &:hover {
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
     }
   }
   &.small-vertical {
@@ -59,6 +61,10 @@ const CollectiveItemCardWrapper = styled(Link)`
     background-image: ${props => `url(${props.imgsrc})`};
     background-size: cover;
     background-position: center;
+    overflow: hidden;
+    &:hover {
+      transform: scale(1.2);
+    }
   }
   .description-container {
     padding: 20px;

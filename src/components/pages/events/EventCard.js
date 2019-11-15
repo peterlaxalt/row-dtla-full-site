@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import Fade from 'react-reveal/Fade';
@@ -15,17 +15,21 @@ const EventWrapper = styled(Link)`
   width: 100%;
   min-height: 650px;
   border: 1px solid #000;
+  overflow: hidden;
   img {
     width: 100%;
+    transition: transform 0.5s ease-in-out;
+    transform: ${props => (props.hovered ? 'scale(1.025)' : 'scale(1)')};
   }
   ${mediaMin('tablet')} {
     width: calc(50% - 16px);
   }
   ${mediaMin('tabletLandscape')} {
     width: calc(25% - 16px);
-    transition: box-shadow 300ms ease;
+    transition: box-shadow 0.5s ease, border 0.5s ease;
     &:hover {
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
     }
   }
 `;
@@ -34,6 +38,7 @@ const CopySection = styled.div`
   display: flex;
   flex-direction: column;
   padding: 24px;
+  background-color: #fff;
   h3 {
     font-size: 40px;
     line-height: 44px;
@@ -72,8 +77,14 @@ const EventCard = ({ event }) => {
   const { body, date, endDate, startTime, endTime, image, slug, title } = event;
   const parsedStartDate = moment(date).format('MMM Do');
   const parsedEndDate = moment(endDate).format('MMM Do');
+  const [hovered, setHovered] = useState(false);
   return (
-    <EventWrapper to={`/events/${slug}`}>
+    <EventWrapper
+      to={`/events/${slug}`}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      hovered={hovered}
+    >
       <Fade>
         <img src={image ? image.file.url : placeholderImg} alt={image ? image.description : 'Placeholder Image'} />
         <CopySection>

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import styled from '@emotion/styled';
 import ReactPlayer from 'react-player';
 
@@ -125,6 +125,16 @@ const Progress = styled.span`
   }
 `;
 
+const TimerBar = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  transition: width 0.25s ease;
+  width: ${props => props.progress * 10}%;
+  height: 2px;
+`;
+
 const ContentBlock = ({ title, sectionName, body, linkName, linkUrl }) => {
   return (
     <ContentColumn>
@@ -136,7 +146,7 @@ const ContentBlock = ({ title, sectionName, body, linkName, linkUrl }) => {
   );
 };
 
-const Slide = ({ slide, arrayLength, slideHeight }) => {
+const Slide = ({ slide, arrayLength, slideHeight, progress }) => {
   const SlideRef = useRef(null);
   const { heroImage, linkName, linkUrl, style, title, sectionName, body, videoUrl, videoPlaceholder, order } = slide;
 
@@ -181,6 +191,7 @@ const Slide = ({ slide, arrayLength, slideHeight }) => {
           <Progress>{`${order.toString().padStart(2, '0')}/${arrayLength.toString().padStart(2, '0')}`}</Progress>
         </>
       )}
+      {/* <TimerBar progress={progress} /> */}
     </SliderSlide>
   );
 };

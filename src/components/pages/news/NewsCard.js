@@ -23,9 +23,10 @@ const NewsCardWrapper = styled.div`
   }
   ${mediaMin('tabletLandscape')} {
     height: 620px;
-    transition: box-shadow 300ms ease;
+    transition: box-shadow 0.5s ease, border 0.5s ease;
     &:hover {
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
     }
   }
   ${mediaMin('desktop')} {
