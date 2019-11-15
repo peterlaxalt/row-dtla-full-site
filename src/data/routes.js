@@ -23,11 +23,8 @@ export const navRoutes = [
 
 export const darkThemeRoutes = {
   collective: false,
-  collectiveShow: true,
   events: false,
-  eventsShow: true,
   news: false,
-  newsShow: true,
   contact: true,
   parking: true
 };
