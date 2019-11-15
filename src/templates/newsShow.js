@@ -6,7 +6,7 @@ import RichText from '@madebyconnor/rich-text-to-jsx';
 import SEO from '~/components/seo';
 import BackArrow from '~/assets/images/icons/arrow-back.svg';
 import { mediaMin } from '~/styles/mediaQueries';
-import { ShowOuter, ShowInner, CopyColumn, ImageColumn, HeroImage } from './styles';
+import { ShowOuter, ShowInner, CopyColumn, ImageColumn, HeroImage, SmallImageContainer, SmallImage } from './styles';
 
 const BoxLink = styled.a`
   display: flex;
@@ -36,28 +36,11 @@ const MobileImages = styled.div`
   }
 `;
 
-const SmallImageContainer = styled.div`
-  img {
-    object-fit: cover;
-  }
-  ${mediaMin('tabletLandscape')} {
-    display: flex;
-    flex-wrap: wrap;
-  }
-`;
-
-const SmallImage = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-  width: 50%;
-  padding: 16px 8px 0 8px;
-  ${props => (props.position ? 'padding-left: 0;' : 'padding-right: 0;')}
-`;
-
 const NewsShow = ({ data }) => {
   const { date, images, title, publication, body, articleURL } = data.contentfulNewsItem;
   const [mounted, setMounted] = useState(false);
   const CopyRef = useRef(null);
+  const ImageRef = useRef(null);
 
   useEffect(() => {
     setMounted(true);
@@ -68,7 +51,7 @@ const NewsShow = ({ data }) => {
       <SEO title={title} />
       <ShowOuter>
         <Link to="/news">
-          <img src={BackArrow} alt="back arrow" />
+          <img className="back-arrow" src={BackArrow} alt="back arrow" />
         </Link>
         <ShowInner>
           <CopyColumn
@@ -99,8 +82,12 @@ const NewsShow = ({ data }) => {
           <ImageColumn noDesktop>
             {images && (
               <>
-                <HeroImage src={images[0].file.url} />
-                <SmallImageContainer>
+                <HeroImage src={images[0].file.url} mounted={mounted} />
+                <SmallImageContainer
+                  mounted={mounted}
+                  ref={ImageRef}
+                  numChildren={CopyRef.current ? CopyRef.current.children.length : 50}
+                >
                   {images.slice(1).map((image, idx) => {
                     return <SmallImage src={image.file.url} key={image.file.url} position={idx % 2 === 0} />;
                   })}
