@@ -66,9 +66,9 @@ const NewsShow = ({ data }) => {
             <MobileImages>
               {images && (
                 <>
-                  <HeroImage src={images[0].file.url} />
-                  <SmallImageContainer>
-                    {images.slice(1).map((image, idx) => {
+                  <HeroImage src={images[0].file.url} mounted={mounted} />
+                  <SmallImageContainer mounted={mounted}>
+                    {images.slice(1, 3).map((image, idx) => {
                       return <SmallImage src={image.file.url} key={image.file.url} position={idx % 2 === 0} />;
                     })}
                   </SmallImageContainer>
