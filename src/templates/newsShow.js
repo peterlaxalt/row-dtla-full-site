@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import RichText from '@madebyconnor/rich-text-to-jsx';
@@ -56,6 +56,12 @@ const SmallImage = styled.img`
 
 const NewsShow = ({ data }) => {
   const { date, images, title, publication, body, articleURL } = data.contentfulNewsItem;
+  const [mounted, setMounted] = useState(false);
+  const CopyRef = useRef(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
@@ -65,7 +71,11 @@ const NewsShow = ({ data }) => {
           <img src={BackArrow} alt="back arrow" />
         </Link>
         <ShowInner>
-          <CopyColumn>
+          <CopyColumn
+            ref={CopyRef}
+            numChildren={CopyRef.current ? CopyRef.current.children.length : 50}
+            mounted={mounted}
+          >
             <h2>{date}</h2>
             <h1>{title}</h1>
             <h2>{publication}</h2>

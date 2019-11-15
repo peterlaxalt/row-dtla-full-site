@@ -32,7 +32,7 @@ const Form = styled.form`
         border-bottom: 1px solid rgba(255, 255, 255, 0.7);
         font-size: 1.5em;
         padding: 0.5em;
-        height: 70%;
+        height: 48px;
       }
     }
 
@@ -41,12 +41,11 @@ const Form = styled.form`
       background-color: #000;
       border: 1px solid rgba(255, 255, 255, 0.7);
       margin-left: 1em;
-      padding: 0.5em 1em;
       font-size: 1em;
       width: 40%;
       cursor: ${props => (props.disableSubmit ? 'initial' : 'pointer')};
       opacity: ${props => (props.disableSubmit ? 0.4 : 1)};
-      height: 70%;
+      height: 48px;
       margin-top: auto;
       ${mediaMin('tabletLandscape')} {
         width: 25%;

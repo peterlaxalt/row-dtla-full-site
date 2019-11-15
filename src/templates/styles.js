@@ -1,6 +1,23 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 
 import { mediaMin } from '~/styles/mediaQueries';
+
+const animateChildren = ({ numChildren, mounted }) => {
+  let childStyles = ``;
+  for (let idx = 1; idx < numChildren; idx += 1) {
+    childStyles += `
+      &:nth-child(${idx}) {
+        opacity: ${mounted ? '1' : '0'};
+        transform: ${mounted ? 'translateY(0)' : 'translateY(-8px)'};
+        transition: all 0.2s ease ${idx * 0.2}s;
+      }
+    `;
+  }
+  return css`
+    ${childStyles}
+  `;
+};
 
 const ShowOuter = styled.div`
   width: 100%;
@@ -22,6 +39,9 @@ const ShowInner = styled.div`
 const CopyColumn = styled.div`
   display: flex;
   flex-direction: column;
+  & > * {
+    ${animateChildren}
+  }
   ${mediaMin('tabletLandscape')} {
     padding-right: 10%;
     width: 50%;
@@ -47,12 +67,14 @@ const CopyColumn = styled.div`
     margin: 0;
   }
   h3 {
-    font-size: 32px;
-    line-height: 36px;
+    font-size: 28px;
+    line-height: 32px;
+    margin: 16px 0;
   }
   h4 {
-    font-size: 24px;
-    line-height: 28px;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 16px 0;
   }
   h5 {
     font-family: Apercu;
@@ -84,8 +106,11 @@ const CopyColumn = styled.div`
     font-family: 'SangBleu Kingdom';
     font-size: 16px;
     line-height: 24px;
-    margin: 16px 0;
+    margin: 8px 0;
     display: block;
+    &:first-child {
+      margin-top: 28px;
+    }
   }
   a {
     font-weight: 500;

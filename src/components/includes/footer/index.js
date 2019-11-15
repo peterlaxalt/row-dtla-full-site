@@ -121,8 +121,8 @@ const Footer = () => {
         <Section>
           <h2>Subscribe</h2>
           <span>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua.
+            Be a ROW Insider! Exciting events, upcoming openings and announcements, special promotions and giveaways
+            delivered straight to your Inbox.
           </span>
         </Section>
         <Section>
