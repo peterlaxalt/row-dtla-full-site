@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, graphql } from 'gatsby';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
@@ -13,6 +13,8 @@ import InstagramLogo from '~/assets/images/icons/insta-white.svg';
 import placeholderImg from '~/images/backup/backup_image.jpg';
 
 const CollectiveShow = ({ data }) => {
+  const [mounted, setMounted] = useState(false);
+  const CopyRef = useRef(null);
   const {
     body,
     image,
@@ -28,15 +30,23 @@ const CollectiveShow = ({ data }) => {
     parkingText
   } = data.contentfulCollectiveItem;
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <>
       <SEO title={title} />
       <ShowOuter>
         <Link to="/collective">
-          <img src={BackArrow} alt="back arrow" />
+          <img className="back-arrow" src={BackArrow} alt="back arrow" />
         </Link>
         <ShowInner>
-          <CopyColumn>
+          <CopyColumn
+            mounted={mounted}
+            ref={CopyRef}
+            numChildren={CopyRef.current ? CopyRef.current.children.length : 50}
+          >
             <h2 className="subtitle">{subtitle}</h2>
             <h1 className="title">{title}</h1>
             <RichText richText={JSON.parse(body.body)} />
@@ -76,7 +86,7 @@ const CollectiveShow = ({ data }) => {
               )}
             </div>
           </CopyColumn>
-          <ImageColumn className="column right">
+          <ImageColumn className="column right" mounted={mounted}>
             <img src={image ? image.file.url : placeholderImg} alt={image ? image.description : 'Placeholder Image'} />
           </ImageColumn>
         </ShowInner>

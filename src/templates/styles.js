@@ -1,11 +1,61 @@
 import styled from '@emotion/styled';
+import { css, keyframes } from '@emotion/core';
 
 import { mediaMin } from '~/styles/mediaQueries';
+
+const animateChildren = ({ numChildren, mounted }) => {
+  let childStyles = ``;
+  for (let idx = 1; idx < numChildren; idx += 1) {
+    childStyles += `
+      &:nth-child(${idx}) {
+        opacity: ${mounted ? '1' : '0'};
+        transform: ${mounted ? 'translateY(0)' : 'translateY(-8px)'};
+        transition: all 0.25s ease-in-out ${idx * 0.125}s;
+      }
+    `;
+  }
+  return css`
+    ${childStyles}
+  `;
+};
+
+const animateChildrenImages = ({ numChildren, mounted }) => {
+  let childStyles = ``;
+  for (let idx = 2; idx < numChildren + 1; idx += 1) {
+    childStyles += `
+      &:nth-child(${idx - 1}) {
+        opacity: ${mounted ? '1' : '0'};
+        transition: all 1s ease-in-out ${idx * 0.5}s;
+      }
+    `;
+  }
+  return css`
+    ${childStyles}
+  `;
+};
+
+const bounceArrow = keyframes`
+  0%{
+    transform: translateX(0);
+  }
+  25%{
+    transform: translateX(16px);
+  }
+  50%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(0);
+  }
+`;
 
 const ShowOuter = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  .back-arrow {
+    animation: ${bounceArrow} 5s ease-in-out infinite;
+  }
 `;
 
 const ShowInner = styled.div`
@@ -22,6 +72,9 @@ const ShowInner = styled.div`
 const CopyColumn = styled.div`
   display: flex;
   flex-direction: column;
+  & > * {
+    ${animateChildren}
+  }
   color: white;
   ${mediaMin('tabletLandscape')} {
     padding-right: 10%;
@@ -48,12 +101,14 @@ const CopyColumn = styled.div`
     margin: 0;
   }
   h3 {
-    font-size: 32px;
-    line-height: 36px;
+    font-size: 28px;
+    line-height: 32px;
+    margin: 16px 0;
   }
   h4 {
-    font-size: 24px;
-    line-height: 28px;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 16px 0;
   }
   h5 {
     font-family: Apercu;
@@ -85,8 +140,11 @@ const CopyColumn = styled.div`
     font-family: 'SangBleu Kingdom';
     font-size: 16px;
     line-height: 24px;
-    margin: 16px 0;
+    margin: 8px 0;
     display: block;
+    &:first-child {
+      margin-top: 28px;
+    }
   }
   a {
     font-weight: 500;
@@ -158,6 +216,35 @@ const CopyColumn = styled.div`
   }
 `;
 
+const HeroImage = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  opacity: ${props => (props.mounted ? '1' : '0')};
+  transition: opacity 1s ease-in-out;
+`;
+
+const SmallImageContainer = styled.div`
+  & > * {
+    ${animateChildrenImages}
+  }
+  img {
+    object-fit: cover;
+  }
+  ${mediaMin('tabletLandscape')} {
+    display: flex;
+    flex-wrap: wrap;
+  }
+`;
+
+const SmallImage = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  width: 50%;
+  padding: 16px 8px 0 8px;
+  ${props => (props.position ? 'padding-left: 0;' : 'padding-right: 0;')}
+`;
+
 const ImageColumn = styled.div`
   margin-bottom: 16px;
   display: ${props => (props.noDesktop ? 'none' : 'block')};
@@ -171,10 +258,4 @@ const ImageColumn = styled.div`
   }
 `;
 
-const HeroImage = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-  width: 100%;
-`;
-
-export { ShowOuter, ShowInner, CopyColumn, ImageColumn, HeroImage };
+export { ShowOuter, ShowInner, CopyColumn, ImageColumn, HeroImage, SmallImageContainer, SmallImage };
