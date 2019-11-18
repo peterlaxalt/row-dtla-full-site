@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import Fade from 'react-reveal/Fade';
@@ -9,7 +9,7 @@ import { truncateText } from '~/utils/helpers';
 
 import placeholderImg from '~/images/backup/backup_image.jpg';
 
-const EventWrapper = styled(Link)`
+const EventWrapper = styled.div`
   margin-bottom: calc(64px / 3);
   padding: 0;
   width: 100%;
@@ -30,6 +30,11 @@ const EventWrapper = styled(Link)`
     &:hover {
       border: 1px solid rgba(0, 0, 0, 0.2);
       box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+      img {
+        transform: scale(1.025);
+        transform-origin: center;
+        border: none !important;
+      }
     }
   }
 `;
@@ -77,25 +82,21 @@ const EventCard = ({ event }) => {
   const { body, date, endDate, startTime, endTime, image, slug, title } = event;
   const parsedStartDate = moment(date).format('MMM Do');
   const parsedEndDate = moment(endDate).format('MMM Do');
-  const [hovered, setHovered] = useState(false);
   return (
-    <EventWrapper
-      to={`/events/${slug}`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      hovered={hovered}
-    >
+    <EventWrapper>
       <Fade>
-        <img src={image ? image.file.url : placeholderImg} alt={image ? image.description : 'Placeholder Image'} />
-        <CopySection>
-          <span>{`${parsedStartDate}${endDate ? ` - ${parsedEndDate}` : ''}`}</span>
-          <h3>{title}</h3>
-          <p>{truncateText(JSON.parse(body.body).content[0].content[0].value, 20)}</p>
-          <span>{`${startTime} - ${endTime}`}</span>
-          <div className="fake-button">
-            <span>LEARN MORE</span>
-          </div>
-        </CopySection>
+        <Link to={`/events/${slug}`}>
+          <img src={image ? image.file.url : placeholderImg} alt={image ? image.description : 'Placeholder Image'} />
+          <CopySection>
+            <span>{`${parsedStartDate}${endDate ? ` - ${parsedEndDate}` : ''}`}</span>
+            <h3>{title}</h3>
+            <p>{truncateText(JSON.parse(body.body).content[0].content[0].value, 20)}</p>
+            <span>{`${startTime} - ${endTime}`}</span>
+            <div className="fake-button">
+              <span>LEARN MORE</span>
+            </div>
+          </CopySection>
+        </Link>
       </Fade>
     </EventWrapper>
   );

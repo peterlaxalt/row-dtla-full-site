@@ -6,11 +6,32 @@ import Fade from 'react-reveal/Fade';
 import { mediaMin } from '~/styles/mediaQueries';
 import { truncateText } from '~/utils/helpers';
 
+const BackgroundImage = styled.div`
+  background-image: url(${props => props.imgsrc});
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  background-fit: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: none;
+  height: 55%;
+  transition: transform 0.5s ease-in-out;
+  ${mediaMin('tabletLandscape')} {
+    display: block;
+  }
+  ${mediaMin('desktopLarge')} {
+    height: 60%;
+  }
+`;
+
 const NewsCardWrapper = styled.div`
   margin-bottom: 20px;
   padding: 0;
   width: 100%;
   border: 1px solid #000;
+  overflow: hidden;
   .react-reveal {
     height: 100%;
   }
@@ -27,6 +48,11 @@ const NewsCardWrapper = styled.div`
     &:hover {
       border: 1px solid rgba(0, 0, 0, 0.2);
       box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+      ${BackgroundImage} {
+        transform: scale(1.025);
+        transform-origin: center;
+        border: none !important;
+      }
     }
   }
   ${mediaMin('desktop')} {
@@ -63,25 +89,6 @@ const CopySection = styled.div`
     &:visited {
       color: #000;
     }
-  }
-`;
-
-const BackgroundImage = styled.div`
-  background-image: url(${props => props.imgsrc});
-  max-width: 100%;
-  max-height: 100%;
-  width: 100%;
-  background-fit: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  display: none;
-  height: 55%;
-  ${mediaMin('tabletLandscape')} {
-    display: block;
-  }
-  ${mediaMin('desktopLarge')} {
-    height: 60%;
   }
 `;
 
