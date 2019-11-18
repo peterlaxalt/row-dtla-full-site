@@ -6,13 +6,14 @@ import Fade from 'react-reveal/Fade';
 import { mediaMin } from '~/styles/mediaQueries';
 import placeholderImg from '~/images/backup/backup_image.jpg';
 
-const CollectiveItemCardWrapper = styled(Link)`
+const CollectiveItemCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   border: 1px solid black;
   border-style: outset;
   width: 100%;
   margin-bottom: 20px;
+  overflow: hidden;
   ${mediaMin('tablet')} {
     margin-bottom: 40px;
   }
@@ -21,6 +22,11 @@ const CollectiveItemCardWrapper = styled(Link)`
     &:hover {
       border: 1px solid rgba(0, 0, 0, 0.2);
       box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+      .image-container {
+        transform: scale(1.025);
+        transform-origin: center;
+        border: none !important;
+      }
     }
   }
   &.small-vertical {
@@ -61,10 +67,8 @@ const CollectiveItemCardWrapper = styled(Link)`
     background-image: ${props => `url(${props.imgsrc})`};
     background-size: cover;
     background-position: center;
-    overflow: hidden;
-    &:hover {
-      transform: scale(1.2);
-    }
+    transition: transform 0.5s ease-in-out;
+    border: none !important;
   }
   .description-container {
     padding: 20px;
@@ -139,16 +143,17 @@ const CollectiveItemCard = ({ cardData, idx }) => {
   return (
     <CollectiveItemCardWrapper
       className={`${generateCardClass(idx)}`}
-      to={`/collective/${slug}`}
       key={`collective-item-${idx}`}
       imgsrc={image ? image.file.url : placeholderImg}
     >
       <Fade>
-        <div className="image-container" title={image ? image.description : 'Placeholder Image'} />
-        <div className="description-container">
-          <span>{subtitle}</span>
-          {displayTitle && parseTitle(displayTitle.displayTitle)}
-        </div>
+        <Link to={`/collective/${slug}`}>
+          <div className="image-container" title={image ? image.description : 'Placeholder Image'} />
+          <div className="description-container">
+            <span>{subtitle}</span>
+            {displayTitle && parseTitle(displayTitle.displayTitle)}
+          </div>
+        </Link>
       </Fade>
     </CollectiveItemCardWrapper>
   );
