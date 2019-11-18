@@ -10,6 +10,7 @@ const ContextProvider = props => {
   const [darkTheme, setDarkTheme] = useState(false);
 
   const [activeFilters, setActiveFilters] = useState({ collective: 'ALL', events: 'ALL', news: 'ALL' });
+
   const updateActiveFilters = useCallback(
     (property, value) => {
       setActiveFilters({ ...activeFilters, [property]: value });
