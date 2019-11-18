@@ -36,8 +36,9 @@ const EventShow = ({ data }) => {
             <h2>{`${startTime} - ${endTime}`}</h2>
             <RichText richText={JSON.parse(body.body)} />
           </CopyColumn>
-          <ImageColumn mounted={mounted}>
+          <ImageColumn>
             <HeroImage
+              mounted={mounted}
               src={image ? image.file.url : placeholderImg}
               alt={image ? image.description : 'Placeholder Image'}
             />

@@ -5,7 +5,7 @@ import RichText from '@madebyconnor/rich-text-to-jsx';
 import SEO from '~/components/seo';
 
 import { parsePhone } from '~/utils/helpers';
-import { ShowOuter, ShowInner, CopyColumn, ImageColumn } from './styles';
+import { ShowOuter, ShowInner, CopyColumn, ImageColumn, HeroImage } from './styles';
 
 import BackArrow from '~/assets/images/icons/arrow-back.svg';
 import FacebookLogo from '~/assets/images/icons/fb-black.svg';
@@ -86,8 +86,12 @@ const CollectiveShow = ({ data }) => {
               )}
             </div>
           </CopyColumn>
-          <ImageColumn className="column right" mounted={mounted}>
-            <img src={image ? image.file.url : placeholderImg} alt={image ? image.description : 'Placeholder Image'} />
+          <ImageColumn className="column right">
+            <HeroImage
+              mounted={mounted}
+              src={image ? image.file.url : placeholderImg}
+              alt={image ? image.description : 'Placeholder Image'}
+            />
           </ImageColumn>
         </ShowInner>
       </ShowOuter>
