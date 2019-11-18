@@ -1,9 +1,11 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useContext, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
 
 import SEO from '~/components/seo';
+
+import Context from '~/context/Context';
 
 import { mediaMin } from '~/styles/mediaQueries';
 
@@ -48,18 +50,20 @@ const masonryOptions = {
 };
 
 const CollectivePage = ({ data }) => {
+  const { activeFilters } = useContext(Context);
+
   const collectiveItems = data.allContentfulCollectiveItem.nodes;
-  const [filter, setFilter] = useState('ALL');
   const [loaded, setLoaded] = useState(10);
   const [collectiveList, setCollectiveList] = useState([]);
   const [listLength, setListLength] = useState(0);
-  const filters = ['ALL', 'DINE', 'SHOP', 'LIFESTYLE', 'POP-UP'];
 
   const loadMore = useCallback(() => {
     setLoaded(loaded + 10);
   }, [loaded, setLoaded]);
 
   const generateCollectiveItemCards = useCallback(() => {
+    const filter = activeFilters.collective;
+
     let filteredCollectiveItems = collectiveItems.sort((a, b) => {
       return a.title.localeCompare(b.title);
     });
@@ -75,7 +79,7 @@ const CollectivePage = ({ data }) => {
           return <CollectiveItemCard key={`collective-item-card-${idx}`} idx={idx} cardData={collectiveItem} />;
         });
     }
-  }, [filter, collectiveItems, loaded]);
+  }, [activeFilters, collectiveItems, loaded]);
 
   useEffect(() => {
     setCollectiveList(generateCollectiveItemCards());
@@ -83,13 +87,17 @@ const CollectivePage = ({ data }) => {
 
   useEffect(() => {
     setCollectiveList(generateCollectiveItemCards());
-  }, [filter, loaded]);
+  }, [activeFilters, loaded]);
 
   return (
     <>
       <SEO title="Collective" />
       <CollectiveWrapper>
-        <Filter title={'Discover\nROW DTLA'} filters={filters} activeFilter={filter} setFilter={setFilter} />
+        <Filter
+          title={'Discover\nROW DTLA'}
+          contextTitle="collective"
+          filters={['ALL', 'DINE', 'SHOP', 'LIFESTYLE', 'POP-UP']}
+        />
         <Masonry options={masonryOptions} className="masonry">
           {collectiveList}
         </Masonry>

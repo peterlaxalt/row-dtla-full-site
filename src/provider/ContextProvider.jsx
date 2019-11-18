@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import Context from '~/context/Context';
 
@@ -8,6 +8,15 @@ const ContextProvider = props => {
   const [CTAViewed, setCTAViewed] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const [darkTheme, setDarkTheme] = useState(false);
+
+  const [activeFilters, setActiveFilters] = useState({ collective: 'ALL', events: 'ALL', news: 'ALL' });
+
+  const updateActiveFilters = useCallback(
+    (property, value) => {
+      setActiveFilters({ ...activeFilters, [property]: value });
+    },
+    [activeFilters]
+  );
 
   const closeCTA = () => {
     setCTAActive(false);
@@ -24,7 +33,9 @@ const ContextProvider = props => {
         activeSlide,
         setActiveSlide,
         darkTheme,
-        setDarkTheme
+        setDarkTheme,
+        activeFilters,
+        updateActiveFilters
       }}
     >
       {props.children}
