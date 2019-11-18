@@ -10,7 +10,7 @@ const animateChildren = ({ numChildren, mounted }) => {
       &:nth-child(${idx}) {
         opacity: ${mounted ? '1' : '0'};
         transform: ${mounted ? 'translateY(0)' : 'translateY(-8px)'};
-        transition: all 0.25s ease-in-out ${idx * 0.125}s;
+        transition: opacity 0.25s ease-in-out ${idx * 0.125}s, transform 0.25s ease-in-out ${idx * 0.125}s;
       }
     `;
   }
@@ -25,7 +25,7 @@ const animateChildrenImages = ({ numChildren, mounted }) => {
     childStyles += `
       &:nth-child(${idx - 1}) {
         opacity: ${mounted ? '1' : '0'};
-        transition: all 1s ease-in-out ${idx * 0.5}s;
+        transition: opacity 1s ease-in-out ${idx * 0.5}s;
       }
     `;
   }
@@ -200,10 +200,12 @@ const CopyColumn = styled.div`
     margin: 0;
     width: fit-content;
     text-decoration: none;
+
     ${mediaMin('tabletLandscape')} {
       margin: 8px 0 0 0;
     }
     &:hover {
+      transition: background 200ms ease, color 200ms ease;
       background: #000;
       color: #fff;
     }
