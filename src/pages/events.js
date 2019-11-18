@@ -1,13 +1,17 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useContext, useEffect } from 'react';
 import { graphql } from 'gatsby';
-import Masonry from 'react-masonry-component';
 import styled from '@emotion/styled';
+import Masonry from 'react-masonry-component';
 import moment from 'moment';
 
-import { mediaMin } from '~/styles/mediaQueries';
 import SEO from '~/components/seo';
-import EventCard from '~/components/pages/events/EventCard';
+
+import Context from '~/context/Context';
+
+import { mediaMin } from '~/styles/mediaQueries';
+
 import Filter from '~/components/includes/sub-header/Filter';
+import EventCard from '~/components/pages/events/EventCard';
 
 const masonryOptions = {
   transitionDuration: '0.25s',
@@ -50,14 +54,16 @@ const LoadMoreButton = styled.button`
 `;
 
 const EventsPage = ({ data }) => {
-  const [filter, setFilter] = useState('ALL');
+  const { activeFilters } = useContext(Context);
+
   const [loaded, setLoaded] = useState(8);
   const [listLength, setListLength] = useState(0);
   const [eventList, setEventList] = useState([]);
-  const filters = ['ALL', 'FOOD TRUCKS', 'EVENTS', 'ARCHIVE'];
   const events = data.allContentfulEvent.nodes;
 
   const generateEvents = useCallback(() => {
+    const filter = activeFilters.events;
+
     let filteredEvents = events;
     if (filter === 'ARCHIVE') {
       filteredEvents = filteredEvents.filter(newsItem => {
@@ -92,7 +98,7 @@ const EventsPage = ({ data }) => {
       const { id } = event;
       return <EventCard className="event" event={event} key={id} />;
     });
-  }, [filter, events, loaded, listLength]);
+  }, [activeFilters, events, loaded, listLength]);
 
   const loadMore = useCallback(() => {
     setLoaded(loaded + 8);
@@ -104,13 +110,17 @@ const EventsPage = ({ data }) => {
 
   useEffect(() => {
     setEventList(generateEvents());
-  }, [filter, loaded]);
+  }, [activeFilters, loaded]);
 
   return (
     <>
       <SEO title="Events" />
       <EventsWrapper>
-        <Filter title={"What's on at\nROW DTLA"} filters={filters} activeFilter={filter} setFilter={setFilter} />
+        <Filter
+          title={"What's on at\nROW DTLA"}
+          contextTitle="events"
+          filters={['ALL', 'FOOD TRUCKS', 'EVENTS', 'ARCHIVE']}
+        />
         <Masonry options={masonryOptions} className="masonry">
           {eventList}
           <div className="gutter-sizer" />

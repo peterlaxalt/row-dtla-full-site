@@ -1,16 +1,20 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useContext, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
 
-import { mediaMin } from '~/styles/mediaQueries';
 import SEO from '~/components/seo';
+
+import Context from '~/context/Context';
+
+import { mediaMin } from '~/styles/mediaQueries';
+
 import NewsCard from '~/components/pages/news/NewsCard';
 import Filter from '~/components/includes/sub-header/Filter';
 
 const masonryOptions = {
   transitionDuration: '0.25s',
-  gutter: 20,
+  gutter: 20
 };
 
 const NewsWrapper = styled.div`
@@ -46,14 +50,16 @@ const LoadMoreButton = styled.button`
 `;
 
 const NewsPage = ({ data }) => {
-  const [filter, setFilter] = useState('ALL');
+  const { activeFilters } = useContext(Context);
+
   const [loaded, setLoaded] = useState(9);
   const [listLength, setListLength] = useState(0);
   const [newsList, setNewsList] = useState([]);
-  const filters = ['ALL', 'INSIDER NEWS', 'IN THE NEWS'];
   const newsItems = data.allContentfulNewsItem.nodes;
 
   const generateNewsItems = useCallback(() => {
+    const filter = activeFilters.news;
+
     let filteredNews = newsItems;
     if (filter !== 'ALL') {
       filteredNews = filteredNews.filter(newsItem => newsItem.type === filter);
@@ -64,7 +70,7 @@ const NewsPage = ({ data }) => {
       const { id } = newsItem;
       return <NewsCard key={`news-item-${id}`} article={newsItem} />;
     });
-  }, [filter, loaded, newsItems, listLength]);
+  }, [activeFilters, loaded, newsItems, listLength]);
 
   const loadMore = useCallback(() => {
     setLoaded(loaded + 9);
@@ -76,13 +82,17 @@ const NewsPage = ({ data }) => {
 
   useEffect(() => {
     setNewsList(generateNewsItems);
-  }, [filter, loaded]);
+  }, [activeFilters, loaded]);
 
   return (
     <>
       <SEO title="Events" />
       <NewsWrapper>
-        <Filter title={"What's new at\nROW DTLA"} filters={filters} activeFilter={filter} setFilter={setFilter} />
+        <Filter
+          title={"What's new at\nROW DTLA"}
+          contextTitle="news"
+          filters={['ALL', 'INSIDER NEWS', 'IN THE NEWS']}
+        />
         <Masonry options={masonryOptions} className="masonry">
           {newsList}
         </Masonry>

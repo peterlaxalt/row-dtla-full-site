@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from '@emotion/styled';
+import Context from '~/context/Context';
 
 import { mediaMin } from '~/styles/mediaQueries';
 
@@ -48,14 +49,18 @@ const PageTitle = styled.h2`
   }
 `;
 
-const Filter = ({ filters, activeFilter, setFilter, title }) => {
+const Filter = ({ filters, title, contextTitle }) => {
+  const { activeFilters, updateActiveFilters } = useContext(Context);
+
   const generateFilters = () => {
+    const activeFilter = activeFilters[contextTitle];
+
     return filters.map(filter => {
       return (
         <FilterButton
           active={activeFilter === filter}
           onClick={() => {
-            setFilter(filter);
+            updateActiveFilters(contextTitle, filter);
           }}
           key={filter}
         >
