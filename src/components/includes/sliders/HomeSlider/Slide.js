@@ -143,7 +143,7 @@ const Quote = styled.div`
 const Progress = styled.span`
   position: fixed;
   bottom: 5%;
-  left: 9.5%;
+  left: 80vw;
   ${mediaMin('tabletLandscape')} {
     left: 0.5%;
     bottom: 4%;
@@ -182,11 +182,11 @@ const Slide = ({ slide, arrayLength, slideHeight }) => {
     body,
     videoUrl,
     videoPlaceholder,
+    autoplay,
     order,
     quoteAttribution,
     quote
   } = slide;
-  console.log(quote);
 
   const setSliderDivHeight = useCallback(() => {
     if (window.innerWidth > 1024) {
@@ -214,7 +214,9 @@ const Slide = ({ slide, arrayLength, slideHeight }) => {
           height="100%"
           controls
           playsinline
-          light={videoPlaceholder.file.url}
+          light={autoplay ? false : videoPlaceholder.file.url}
+          playing={autoplay}
+          loop={autoplay}
         />
       )}
 
