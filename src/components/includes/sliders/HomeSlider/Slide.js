@@ -123,18 +123,19 @@ const Quote = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   ${mediaMin('tabletLandscape')} {
+    justify-content: center;
     padding-right: ${props => (props.slideStyle === 'Quote Full' ? '20%' : '50%')};
   }
   blockquote {
     font-family: 'SangBleu Kingdom';
     font-style: italic;
     font-weight: 600;
-    font-size: 24px;
-    line-height: 28px;
-    margin: 48px 0;
+    font-size: 26px;
+    line-height: 35px;
+    margin: 15px 0;
     ${mediaMin('tabletLandscape')} {
       font-size: 48px;
-      line-height: 52px;
+      line-height: 64px;
     }
   }
 `;
