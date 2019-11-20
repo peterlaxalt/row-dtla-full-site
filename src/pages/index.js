@@ -27,6 +27,10 @@ export const query = graphql`
         style
         title
         body
+        quoteAttribution
+        quote {
+          quote
+        }
         videoUrl
         videoPlaceholder {
           file {

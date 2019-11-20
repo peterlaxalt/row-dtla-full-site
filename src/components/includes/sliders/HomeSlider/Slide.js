@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback, useState } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import styled from '@emotion/styled';
 import ReactPlayer from 'react-player';
 
@@ -115,6 +115,31 @@ const ContentColumn = styled.div`
   }
 `;
 
+const Quote = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  ${mediaMin('tabletLandscape')} {
+    justify-content: center;
+    padding-right: ${props => (props.slideStyle === 'Quote Full' ? '20%' : '50%')};
+  }
+  blockquote {
+    font-family: 'SangBleu Kingdom';
+    font-style: italic;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 35px;
+    margin: 15px 0;
+    ${mediaMin('tabletLandscape')} {
+      font-size: 48px;
+      line-height: 64px;
+    }
+  }
+`;
+
 const Progress = styled.span`
   position: fixed;
   bottom: 5%;
@@ -123,16 +148,6 @@ const Progress = styled.span`
     left: 0.5%;
     bottom: 4%;
   }
-`;
-
-const TimerBar = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background-color: #000;
-  transition: width 0.25s ease;
-  width: ${props => props.progress * 10}%;
-  height: 2px;
 `;
 
 const ContentBlock = ({ title, sectionName, body, linkName, linkUrl }) => {
@@ -146,9 +161,32 @@ const ContentBlock = ({ title, sectionName, body, linkName, linkUrl }) => {
   );
 };
 
-const Slide = ({ slide, arrayLength, slideHeight, progress }) => {
+const QuoteSlide = ({ slideStyle, quote, quoteAttribution }) => {
+  return (
+    <Quote slideStyle={slideStyle}>
+      <blockquote>{quote}</blockquote>
+      <span>{quoteAttribution}</span>
+    </Quote>
+  );
+};
+
+const Slide = ({ slide, arrayLength, slideHeight }) => {
   const SlideRef = useRef(null);
-  const { heroImage, linkName, linkUrl, style, title, sectionName, body, videoUrl, videoPlaceholder, order } = slide;
+  const {
+    heroImage,
+    linkName,
+    linkUrl,
+    style,
+    title,
+    sectionName,
+    body,
+    videoUrl,
+    videoPlaceholder,
+    order,
+    quoteAttribution,
+    quote
+  } = slide;
+  console.log(quote);
 
   const setSliderDivHeight = useCallback(() => {
     if (window.innerWidth > 1024) {
@@ -168,30 +206,34 @@ const Slide = ({ slide, arrayLength, slideHeight, progress }) => {
 
   return (
     <SliderSlide ref={SlideRef} slideStyle={style} slideHeight={slideHeight}>
-      {style === 'Video' ? (
-        <>
-          <ReactPlayer
-            url={videoUrl}
-            config={{ preload: true }}
-            width="100%"
-            height="100%"
-            controls
-            playsinline
-            light={videoPlaceholder.file.url}
-          />
-          <Progress>{`${order.toString().padStart(2, '0')}/${arrayLength.toString().padStart(2, '0')}`}</Progress>
-        </>
-      ) : (
-        <>
-          <DesktopImage slideStyle={style} imgsrc={heroImage.file.url} alt={heroImage.description} />
-          <MobileImage slideStyle={style} src={heroImage.file.url} alt={heroImage.description} />
-          {(style === 'Image Left' || style === 'Image Right') && (
-            <ContentBlock title={title} sectionName={sectionName} body={body} linkName={linkName} linkUrl={linkUrl} />
-          )}
-          <Progress>{`${order.toString().padStart(2, '0')}/${arrayLength.toString().padStart(2, '0')}`}</Progress>
-        </>
+      {style === 'Video' && (
+        <ReactPlayer
+          url={videoUrl}
+          config={{ preload: true }}
+          width="100%"
+          height="100%"
+          controls
+          playsinline
+          light={videoPlaceholder.file.url}
+        />
       )}
-      {/* <TimerBar progress={progress} /> */}
+
+      {(style === 'Quote Full' || style === 'Quote Left') && (
+        <QuoteSlide slideStyle={style} quote={quote.quote} quoteAttribution={quoteAttribution} />
+      )}
+
+      {style !== 'Video' &&
+        style !== 'Quote Full' &&
+        (style !== 'Quote Left' && (
+          <>
+            <DesktopImage slideStyle={style} imgsrc={heroImage.file.url} alt={heroImage.description} />
+            <MobileImage slideStyle={style} src={heroImage.file.url} alt={heroImage.description} />
+            {(style === 'Image Left' || style === 'Image Right') && (
+              <ContentBlock title={title} sectionName={sectionName} body={body} linkName={linkName} linkUrl={linkUrl} />
+            )}
+          </>
+        ))}
+      <Progress>{`${order.toString().padStart(2, '0')}/${arrayLength.toString().padStart(2, '0')}`}</Progress>
     </SliderSlide>
   );
 };
