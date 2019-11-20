@@ -203,7 +203,7 @@ const Slide = ({ slide, arrayLength, slideHeight }) => {
       document.removeEventListener('resize', setSliderDivHeight);
     };
   }, []);
-  console.log(autoplay);
+
   return (
     <SliderSlide ref={SlideRef} slideStyle={style} slideHeight={slideHeight}>
       {style === 'Video' && (
