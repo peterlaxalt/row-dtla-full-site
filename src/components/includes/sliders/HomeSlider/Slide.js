@@ -143,7 +143,7 @@ const Quote = styled.div`
 const Progress = styled.span`
   position: fixed;
   bottom: 5%;
-  left: 9.5%;
+  left: 80vw;
   ${mediaMin('tabletLandscape')} {
     left: 0.5%;
     bottom: 4%;
