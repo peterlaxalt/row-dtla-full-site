@@ -182,11 +182,11 @@ const Slide = ({ slide, arrayLength, slideHeight }) => {
     body,
     videoUrl,
     videoPlaceholder,
+    autoplay,
     order,
     quoteAttribution,
     quote
   } = slide;
-  console.log(quote);
 
   const setSliderDivHeight = useCallback(() => {
     if (window.innerWidth > 1024) {
@@ -203,7 +203,7 @@ const Slide = ({ slide, arrayLength, slideHeight }) => {
       document.removeEventListener('resize', setSliderDivHeight);
     };
   }, []);
-
+  console.log(autoplay);
   return (
     <SliderSlide ref={SlideRef} slideStyle={style} slideHeight={slideHeight}>
       {style === 'Video' && (
@@ -214,7 +214,9 @@ const Slide = ({ slide, arrayLength, slideHeight }) => {
           height="100%"
           controls
           playsinline
-          light={videoPlaceholder.file.url}
+          light={autoplay ? false : videoPlaceholder.file.url}
+          playing={autoplay}
+          loop={autoplay}
         />
       )}
 

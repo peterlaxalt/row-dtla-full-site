@@ -27,6 +27,7 @@ export const query = graphql`
         style
         title
         body
+        autoplay
         quoteAttribution
         quote {
           quote
