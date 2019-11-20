@@ -78,9 +78,7 @@ const getTallestSlide = htmlCollection => {
 };
 
 const HomeSlider = ({ slideArray }) => {
-  const [activeSlide, setActiveSlide] = useState(0);
   const [tallestSlide, setTallestSlide] = useState(null);
-  const [progress, setProgress] = useState(0);
   const SliderRef = useRef(null);
 
   const settings = {
@@ -92,33 +90,12 @@ const HomeSlider = ({ slideArray }) => {
     slidesToScroll: 1,
     // lazyLoad: true,
     nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    afterChange: idx => {
-      setActiveSlide(idx);
-    }
+    prevArrow: <PrevArrow />
   };
-
-  const startTimer = useCallback(() => {
-    setProgress(0);
-    const timer = setInterval(() => {
-      if (progress >= 10) clearInterval(timer);
-      setProgress(prevProgress => prevProgress + 0.1);
-    }, 100);
-  }, [progress, setProgress]);
-
-  useEffect(() => {
-    startTimer();
-  }, [activeSlide]);
 
   const generateSlides = useCallback(() => {
     return slideArray.map(slide => (
-      <Slide
-        slide={slide}
-        arrayLength={slideArray.length}
-        key={slide.contentful_id}
-        slideHeight={tallestSlide}
-        progress={progress}
-      />
+      <Slide slide={slide} arrayLength={slideArray.length} key={slide.contentful_id} slideHeight={tallestSlide} />
     ));
   }, [tallestSlide, slideArray]);
 
