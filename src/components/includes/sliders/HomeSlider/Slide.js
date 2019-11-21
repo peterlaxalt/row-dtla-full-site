@@ -172,7 +172,6 @@ const QuoteSlide = ({ slideStyle, quote, quoteAttribution }) => {
 
 const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
   const SlideRef = useRef(null);
-  const VideoRef = useRef(null);
   const {
     heroImage,
     linkName,
@@ -209,7 +208,6 @@ const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
     <SliderSlide ref={SlideRef} slideStyle={style} slideHeight={slideHeight}>
       {style === 'Video' && (
         <ReactPlayer
-          ref={VideoRef}
           url={videoUrl}
           config={{ preload: true }}
           width="100%"
