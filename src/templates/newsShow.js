@@ -6,7 +6,17 @@ import RichText from '@madebyconnor/rich-text-to-jsx';
 import SEO from '~/components/seo';
 import BackArrow from '~/assets/images/icons/arrow-back.svg';
 import { mediaMin } from '~/styles/mediaQueries';
-import { ShowOuter, ShowInner, CopyColumn, ImageColumn, HeroImage, SmallImageContainer, SmallImage } from './styles';
+import {
+  ShowOuter,
+  ShowInner,
+  CopyColumn,
+  Copy,
+  ImageColumn,
+  HeroImage,
+  SmallImageContainer,
+  SmallImage,
+  Images
+} from './styles';
 
 const BoxLink = styled.a`
   display: flex;
@@ -55,34 +65,32 @@ const NewsShow = ({ data }) => {
           <img className="back-arrow" src={BackArrow} alt="back arrow" />
         </Link>
         <ShowInner>
-          <CopyColumn
-            ref={CopyRef}
-            numChildren={CopyRef.current ? CopyRef.current.children.length : 50}
-            mounted={mounted}
-          >
-            <h2>{date}</h2>
-            <h1>{title}</h1>
-            <h2>{publication}</h2>
-            <MobileImages>
-              {images && (
-                <>
-                  <HeroImage src={images[0].file.url} mounted={mounted} />
-                  <SmallImageContainer mounted={mounted}>
-                    {images.slice(1, 3).map((image, idx) => {
-                      return <SmallImage src={image.file.url} key={image.file.url} position={idx % 2 === 0} />;
-                    })}
-                  </SmallImageContainer>
-                </>
-              )}
-            </MobileImages>
-            <RichText richText={JSON.parse(body.body)} />
-            <BoxLink target="_blank" rel="noopener noreferrer" href={articleURL}>
-              <span>FULL ARTICLE</span>
-            </BoxLink>
+          <CopyColumn>
+            <Copy ref={CopyRef} numChildren={CopyRef.current ? CopyRef.current.children.length : 50} mounted={mounted}>
+              <h2>{date}</h2>
+              <h1>{title}</h1>
+              <h2>{publication}</h2>
+              <MobileImages>
+                {images && (
+                  <>
+                    <HeroImage src={images[0].file.url} mounted={mounted} />
+                    <SmallImageContainer mounted={mounted}>
+                      {images.slice(1, 3).map((image, idx) => {
+                        return <SmallImage src={image.file.url} key={image.file.url} position={idx % 2 === 0} />;
+                      })}
+                    </SmallImageContainer>
+                  </>
+                )}
+              </MobileImages>
+              <RichText richText={JSON.parse(body.body)} />
+              <BoxLink target="_blank" rel="noopener noreferrer" href={articleURL}>
+                <span>FULL ARTICLE</span>
+              </BoxLink>
+            </Copy>
           </CopyColumn>
           <ImageColumn noDesktop>
             {images && (
-              <>
+              <Images>
                 <HeroImage src={images[0].file.url} mounted={mounted} />
                 <SmallImageContainer
                   mounted={mounted}
@@ -93,7 +101,7 @@ const NewsShow = ({ data }) => {
                     return <SmallImage src={image.file.url} key={image.file.url} position={idx % 2 === 0} />;
                   })}
                 </SmallImageContainer>
-              </>
+              </Images>
             )}
           </ImageColumn>
         </ShowInner>

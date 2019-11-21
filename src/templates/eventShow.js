@@ -4,7 +4,7 @@ import RichText from '@madebyconnor/rich-text-to-jsx';
 
 import SEO from '~/components/seo';
 import BackArrow from '~/assets/images/icons/arrow-back.svg';
-import { ShowOuter, ShowInner, CopyColumn, ImageColumn, HeroImage } from './styles';
+import { ShowOuter, ShowInner, CopyColumn, ImageColumn, HeroImage, Copy, Images } from './styles';
 
 import placeholderImg from '~/images/backup/backup_image.jpg';
 
@@ -26,22 +26,22 @@ const EventShow = ({ data }) => {
           <img className="back-arrow" src={BackArrow} alt="back arrow" />
         </Link>
         <ShowInner>
-          <CopyColumn
-            mounted={mounted}
-            ref={CopyRef}
-            numChildren={CopyRef.current ? CopyRef.current.children.length : 50}
-          >
-            <h2>{`${date}${endDate ? ` - ${endDate}` : ''}`}</h2>
-            <h1>{title}</h1>
-            <h2>{`${startTime} - ${endTime}`}</h2>
-            <RichText richText={JSON.parse(body.body)} />
+          <CopyColumn>
+            <Copy mounted={mounted} ref={CopyRef} numChildren={CopyRef.current ? CopyRef.current.children.length : 50}>
+              <h2>{`${date}${endDate ? ` - ${endDate}` : ''}`}</h2>
+              <h1>{title}</h1>
+              <h2>{`${startTime} - ${endTime}`}</h2>
+              <RichText richText={JSON.parse(body.body)} />
+            </Copy>
           </CopyColumn>
           <ImageColumn>
-            <HeroImage
-              mounted={mounted}
-              src={image ? image.file.url : placeholderImg}
-              alt={image ? image.description : 'Placeholder Image'}
-            />
+            <Images>
+              <HeroImage
+                mounted={mounted}
+                src={image ? image.file.url : placeholderImg}
+                alt={image ? image.description : 'Placeholder Image'}
+              />
+            </Images>
           </ImageColumn>
         </ShowInner>
       </ShowOuter>
