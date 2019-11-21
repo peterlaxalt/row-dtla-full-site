@@ -79,6 +79,7 @@ const getTallestSlide = htmlCollection => {
 
 const HomeSlider = ({ slideArray }) => {
   const [tallestSlide, setTallestSlide] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const SliderRef = useRef(null);
 
   const settings = {
@@ -88,16 +89,25 @@ const HomeSlider = ({ slideArray }) => {
     fade: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // lazyLoad: true,
     nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />
+    prevArrow: <PrevArrow />,
+    afterChange: idx => {
+      setCurrentSlide(idx);
+    }
   };
 
   const generateSlides = useCallback(() => {
-    return slideArray.map(slide => (
-      <Slide slide={slide} arrayLength={slideArray.length} key={slide.contentful_id} slideHeight={tallestSlide} />
+    return slideArray.map((slide, idx) => (
+      <Slide
+        slide={slide}
+        arrayLength={slideArray.length}
+        key={slide.contentful_id}
+        slideHeight={tallestSlide}
+        currentSlide={currentSlide}
+        slideIdx={idx}
+      />
     ));
-  }, [tallestSlide, slideArray]);
+  }, [tallestSlide, slideArray, currentSlide]);
 
   useEffect(() => {
     setTimeout(() => {

@@ -170,8 +170,9 @@ const QuoteSlide = ({ slideStyle, quote, quoteAttribution }) => {
   );
 };
 
-const Slide = ({ slide, arrayLength, slideHeight }) => {
+const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
   const SlideRef = useRef(null);
+  const VideoRef = useRef(null);
   const {
     heroImage,
     linkName,
@@ -208,14 +209,14 @@ const Slide = ({ slide, arrayLength, slideHeight }) => {
     <SliderSlide ref={SlideRef} slideStyle={style} slideHeight={slideHeight}>
       {style === 'Video' && (
         <ReactPlayer
+          ref={VideoRef}
           url={videoUrl}
           config={{ preload: true }}
           width="100%"
           height="100%"
           controls
           playsinline
-          light={autoplay ? false : videoPlaceholder.file.url}
-          playing={autoplay}
+          playing={currentSlide === slideIdx}
           loop={autoplay}
         />
       )}
