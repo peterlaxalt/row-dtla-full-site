@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { Link, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import RichText from '@madebyconnor/rich-text-to-jsx';
@@ -55,7 +55,17 @@ const NewsShow = ({ data }) => {
 
   useEffect(() => {
     setMounted(true);
+    fixLinks();
   }, []);
+
+  const fixLinks = useCallback(() => {
+    const bodyLinks = CopyRef.current.getElementsByTagName('a');
+    for (let idx = 0; idx < bodyLinks.length; idx += 1) {
+      let link = bodyLinks[idx];
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    }
+  }, [CopyRef]);
 
   return (
     <>

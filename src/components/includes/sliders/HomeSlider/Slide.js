@@ -170,7 +170,7 @@ const QuoteSlide = ({ slideStyle, quote, quoteAttribution }) => {
   );
 };
 
-const Slide = ({ slide, arrayLength, slideHeight }) => {
+const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
   const SlideRef = useRef(null);
   const {
     heroImage,
@@ -214,8 +214,7 @@ const Slide = ({ slide, arrayLength, slideHeight }) => {
           height="100%"
           controls
           playsinline
-          light={autoplay ? false : videoPlaceholder.file.url}
-          playing={autoplay}
+          playing={currentSlide === slideIdx}
           loop={autoplay}
         />
       )}
