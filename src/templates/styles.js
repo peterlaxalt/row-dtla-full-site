@@ -72,13 +72,20 @@ const ShowInner = styled.div`
 const CopyColumn = styled.div`
   display: flex;
   flex-direction: column;
-  & > * {
-    ${animateChildren}
-  }
 
   ${mediaMin('tabletLandscape')} {
     padding-right: 10%;
     width: 50%;
+  }
+`;
+
+const Copy = styled.div`
+  & > * {
+    ${animateChildren}
+  }
+  ${mediaMin('tabletLandscape')} {
+    position: sticky;
+    top: 100px;
   }
   h1 {
     margin: 0;
@@ -267,4 +274,9 @@ const ImageColumn = styled.div`
   }
 `;
 
-export { ShowOuter, ShowInner, CopyColumn, ImageColumn, HeroImage, SmallImageContainer, SmallImage };
+const Images = styled.div`
+  position: sticky;
+  top: 100px;
+`;
+
+export { ShowOuter, ShowInner, CopyColumn, Copy, ImageColumn, HeroImage, SmallImageContainer, SmallImage, Images };
