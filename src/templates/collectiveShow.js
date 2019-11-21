@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, graphql } from 'gatsby';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
@@ -30,8 +30,18 @@ const CollectiveShow = ({ data }) => {
     parkingText
   } = data.contentfulCollectiveItem;
 
+  const fixLinks = useCallback(() => {
+    const bodyLinks = CopyRef.current.getElementsByTagName('a');
+    for (let idx = 0; idx < bodyLinks.length; idx += 1) {
+      let link = bodyLinks[idx];
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    }
+  }, [CopyRef]);
+
   useEffect(() => {
     setMounted(true);
+    fixLinks();
   }, []);
 
   return (
@@ -56,17 +66,17 @@ const CollectiveShow = ({ data }) => {
                 </>
               )}
               {websiteString && (
-                <a className="contact-link" href={websiteURL}>
+                <a className="contact-link" target="_blank" rel="noopener noreferrer" href={websiteURL}>
                   <h6 className="info-paragraph">{websiteString}</h6>
                 </a>
               )}
               {email && (
-                <a className="contact-link" href={`mailto:${email}`}>
+                <a className="contact-link" target="_blank" rel="noopener noreferrer" href={`mailto:${email}`}>
                   <h6 className="info-paragraph">{email}</h6>
                 </a>
               )}
               {phoneNumber && (
-                <a className="contact-link" href={`tel:${phoneNumber}`}>
+                <a className="contact-link" target="_blank" rel="noopener noreferrer" href={`tel:${phoneNumber}`}>
                   <h6 className="info-paragraph">{parsePhone(phoneNumber)}</h6>
                 </a>
               )}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, graphql } from 'gatsby';
 import RichText from '@madebyconnor/rich-text-to-jsx';
 
@@ -14,8 +14,18 @@ const EventShow = ({ data }) => {
   const [mounted, setMounted] = useState(false);
   const CopyRef = useRef(null);
 
+  const fixLinks = useCallback(() => {
+    const bodyLinks = CopyRef.current.getElementsByTagName('a');
+    for (let idx = 0; idx < bodyLinks.length; idx += 1) {
+      let link = bodyLinks[idx];
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    }
+  }, [CopyRef]);
+
   useEffect(() => {
     setMounted(true);
+    fixLinks();
   }, []);
 
   return (
