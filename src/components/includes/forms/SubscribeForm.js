@@ -95,10 +95,6 @@ const SubscribeForm = () => {
     // Disable submit button on sign up
     toggleDisableSubmit(true);
 
-    const data = {
-      email_address: email
-    };
-
     fetch('https://form.api.dbxd.com/add-mailchimp-subscriber?projectname=rowdtla', {
       method: 'POST',
       mode: 'cors',
@@ -106,34 +102,29 @@ const SubscribeForm = () => {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify({
+        email_address: email
+      })
     })
       .then(response => response.json())
-      .then(data => {
-        const { status, title } = data;
+      .then(() => {
+        toggleFormSubmit(true);
 
-        if (status === 400) {
-          throw new Error('duplicate email');
-        } else {
-          console.log('successfull sent email', title);
-          toggleFormSubmit(true);
-
-          if (CTAActive) {
-            setTimeout(() => {
-              closeCTA();
-            }, 2000);
-          }
-
-          setEmail('');
-
+        if (CTAActive) {
           setTimeout(() => {
-            toggleFormSubmit(false);
-            toggleDisableSubmit(false);
-          }, 10000);
+            closeCTA();
+          }, 2000);
         }
+
+        setEmail('');
+
+        setTimeout(() => {
+          toggleFormSubmit(false);
+          toggleDisableSubmit(false);
+        }, 10000);
       })
       .catch(error => {
-        console.log('error sending email ', error);
+        console.log('error posting email address', error);
         toggleDisableSubmit(false);
       });
   };

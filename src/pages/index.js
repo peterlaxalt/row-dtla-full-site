@@ -28,10 +28,6 @@ export const query = graphql`
         title
         body
         autoplay
-        quoteAttribution
-        quote {
-          quote
-        }
         videoUrl
         videoPlaceholder {
           file {
