@@ -93,9 +93,11 @@ const NewsShow = ({ data }) => {
                 )}
               </MobileImages>
               <RichText richText={JSON.parse(body.body)} />
-              <BoxLink target="_blank" rel="noopener noreferrer" href={articleURL}>
-                <span>FULL ARTICLE</span>
-              </BoxLink>
+              {articleURL && (
+                <BoxLink target="_blank" rel="noopener noreferrer" href={articleURL}>
+                  <span>FULL ARTICLE</span>
+                </BoxLink>
+              )}
             </Copy>
           </CopyColumn>
           <ImageColumn noDesktop>
