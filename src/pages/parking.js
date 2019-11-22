@@ -138,6 +138,12 @@ const ParkingPage = () => {
                 <span>Daily Max Rate: $12.00</span>
               </div>
             </div>
+            <h4>Market Row </h4>
+            <div className="row">
+              <div className="col">
+                <span>FREE (MON - SAT)</span>
+              </div>
+            </div>
           </TimeTable>
         </ParkingContent>
       </ParkingWrapper>
