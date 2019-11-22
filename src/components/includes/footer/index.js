@@ -95,7 +95,11 @@ const Footer = () => {
         </Section>
         <Section>
           <div className="row">
-            <a href="https://g.page/Best-Mall-In-Los-Angeles?share" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.google.com/maps/place/Parking+Structure+--+ROW+DTLA/@34.033383,-118.2406877,19z/data=!4m5!3m4!1s0x80c2c7a66edf4251:0xa1aa81e6fc050d31!8m2!3d34.0333118!4d-118.2405382"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <span>DIRECTIONS</span>
             </a>
             <Link to="/parking">
