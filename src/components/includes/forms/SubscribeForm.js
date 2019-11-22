@@ -71,6 +71,11 @@ const Form = styled.form`
       transition: all 300ms ease;
       p {
         font-size: 2rem;
+        letter-spacing: 1px;
+      }
+      h2 {
+        font-size: 2rem;
+        letter-spacing: 0.5px;
       }
     }
   }
@@ -142,7 +147,7 @@ const SubscribeForm = () => {
           </button>
         </div>
         <div className="thank-you-row">
-          <p>Thank you for subscribing</p>
+          <h2>You are now on the list!</h2>
         </div>
       </Form>
     </>

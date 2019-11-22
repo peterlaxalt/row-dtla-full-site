@@ -35,6 +35,8 @@ const ModalInner = styled.div`
   }
   p {
     margin-bottom: 2em;
+    font-weight: 500;
+    letter-spacing: 1px;
   }
 `;
 
@@ -97,8 +99,8 @@ const CTA = () => {
           Newsletter.
         </h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua.
+          BE A ROW INSIDER! SIGN UP FOR EXCITING EVENTS, UPCOMING OPENINGS, ANNOUNCEMENTS, SPECIAL PROMOTIONS AND
+          GIVEAWAYS DELIVERED STRAIGHT TO YOUR INBOX.
         </p>
         <SubscribeForm />
       </ModalInner>
