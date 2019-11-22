@@ -115,7 +115,9 @@ const Footer = () => {
         </Section>
       </FooterColumn>
       <FooterColumn>
-        <ResponsiveImg srcPath="footer/map" alt="map of area surrounding row dtla" desktopWidth="80%" />
+        <a href="https://g.page/Best-Mall-In-Los-Angeles?share" target="_blank" rel="noopener noreferrer">
+          <ResponsiveImg srcPath="footer/map" alt="map of area surrounding row dtla" desktopWidth="80%" />
+        </a>
       </FooterColumn>
       <FooterColumn>
         <Section>
