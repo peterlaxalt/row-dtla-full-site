@@ -109,7 +109,7 @@ const ParkingPage = () => {
             <h4>Saturday</h4>
             <div className="row">
               <div className="col">
-                <span className="margin-bottom">WITH VALIDATION</span>
+                <span className="margin-bottom">NO VALIDATION REQUIRED</span>
                 <span>1st Hour: FREE</span>
                 <span>2nd Hour: FREE</span>
                 <span>3rd Hour: $2.50</span>
