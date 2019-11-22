@@ -87,10 +87,10 @@ const ContactPage = () => {
           </ContactColumn>
           <ContactColumn width="40%" className="right">
             <ContactSection>
-              <h6>General Contact</h6>
+              <h6>General Inquiries</h6>
               <div className="contact">
                 <a href="mailto:info@url.com">
-                  <span>INFO@URL.COM</span>
+                  <span>INFO@ROWDTLA.COM</span>
                 </a>
                 <a href="tel:2139888890">
                   <span>213.988.8890</span>
@@ -140,19 +140,20 @@ const ContactPage = () => {
               </div>
             </ContactSection>
             <ContactSection>
-              <h6>Venue Leasing</h6>
-              <span>First Lastname</span>
-              <a href="mailto:firstlastname@URL.COM">
-                <span>firstlastname@URL.COM</span>
-              </a>
-              <a href="tel:3105555555">
-                <span>310.555.5555</span>
-              </a>
+              <h6>Event & Shoot Inquiries</h6>
+              <div className="contact">
+                <a href="mailto:ROWDTLA@WAGSTAFFWORLDWIDE.COM">
+                  <span>NAME@EMAIL.COM</span>
+                </a>
+              </div>
             </ContactSection>
             <ContactSection>
-              <h6>For PR or media inquiries, please contact:</h6>
+              <h6>PR & Media Inquiries</h6>
               <a href="mailto:ROWDTLA@WAGSTAFFWORLDWIDE.COM">
                 <span>ROWDTLA@WAGSTAFFWORLDWIDE.COM</span>
+              </a>
+              <a href="tel:3238711151">
+                <span>323.871.1151</span>
               </a>
             </ContactSection>
           </ContactColumn>
