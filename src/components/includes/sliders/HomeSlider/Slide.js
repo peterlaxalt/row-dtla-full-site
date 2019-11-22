@@ -106,12 +106,14 @@ const ContentColumn = styled.div`
     cursor: pointer;
     text-decoration: none;
     color: #000;
-    &:visited {
-      color: #000;
-    }
+    letter-spacing: 1px;
+    font-weight: 500;
+    transition: background 200ms ease, color 200ms ease;
+    font-size: 15px;
+
     &:hover {
+      background: #000;
       color: #fff;
-      background-color: #000;
     }
   }
 `;

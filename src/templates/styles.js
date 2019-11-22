@@ -207,6 +207,7 @@ const Copy = styled.div`
     margin: 0;
     width: fit-content;
     text-decoration: none;
+    margin: 1em 0;
 
     ${mediaMin('tabletLandscape')} {
       margin: 8px 0 0 0;
