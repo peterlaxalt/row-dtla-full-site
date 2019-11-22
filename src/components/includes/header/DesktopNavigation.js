@@ -72,8 +72,8 @@ const DesktopNavigation = () => {
                   borderTop:
                     isCurrent || isPartiallyCurrent
                       ? `4px solid ${darkTheme ? '#fff' : '#000'}`
-                      : '4px solid transparent',
-                },
+                      : '4px solid transparent'
+                }
               };
             }}
           >
@@ -85,10 +85,10 @@ const DesktopNavigation = () => {
 
     navigation.push(
       <SocialMedia key="social-media">
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.instagram.com/rowdtla" target="_blank" rel="noopener noreferrer">
           <img src={darkTheme ? InstagramLogoWhite : InstagramLogoBlack} alt="instagram logo" />
         </a>
-        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.facebook.com/ROWDTLA/" target="_blank" rel="noopener noreferrer">
           <img src={darkTheme ? FacebookLogoWhite : FacebookLogoBlack} alt="facebook logo" />
         </a>
       </SocialMedia>

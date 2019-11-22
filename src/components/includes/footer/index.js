@@ -105,10 +105,10 @@ const Footer = () => {
         </Section>
         <Section>
           <div className="row">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/rowdtla" target="_blank" rel="noopener noreferrer">
               <img src={InstagramLogo} alt="instagram logo" />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/ROWDTLA/" target="_blank" rel="noopener noreferrer">
               <img src={FacebookLogo} alt="facebook logo" />
             </a>
           </div>
