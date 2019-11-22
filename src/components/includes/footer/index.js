@@ -95,7 +95,7 @@ const Footer = () => {
         </Section>
         <Section>
           <div className="row">
-            <a href="https://goo.gl/maps/vuTZGz84t5xaqsgK6" target="_blank" rel="noopener noreferrer">
+            <a href="https://g.page/Best-Mall-In-Los-Angeles?share" target="_blank" rel="noopener noreferrer">
               <span>DIRECTIONS</span>
             </a>
             <Link to="/parking">
@@ -115,14 +115,16 @@ const Footer = () => {
         </Section>
       </FooterColumn>
       <FooterColumn>
-        <ResponsiveImg srcPath="footer/map" alt="map of area surrounding row dtla" desktopWidth="80%" />
+        <a href="https://g.page/Best-Mall-In-Los-Angeles?share" target="_blank" rel="noopener noreferrer">
+          <ResponsiveImg srcPath="footer/map" alt="map of area surrounding row dtla" desktopWidth="80%" />
+        </a>
       </FooterColumn>
       <FooterColumn>
         <Section>
           <h2>Subscribe</h2>
           <span>
-            Be a ROW Insider! Exciting events, upcoming openings and announcements, special promotions and giveaways
-            delivered straight to your Inbox.
+            BE A ROW INSIDER! SIGN UP FOR EXCITING EVENTS, UPCOMING OPENINGS, ANNOUNCEMENTS, SPECIAL PROMOTIONS AND
+            GIVEAWAYS DELIVERED STRAIGHT TO YOUR INBOX.
           </span>
         </Section>
         <Section>

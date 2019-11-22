@@ -75,6 +75,7 @@ const ContentColumn = styled.div`
     width: 50%;
   }
   span {
+    margin: 20px 0;
     font-size: 15px;
     letter-spacing: 1px;
     line-height: 20px;

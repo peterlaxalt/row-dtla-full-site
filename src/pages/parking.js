@@ -109,7 +109,7 @@ const ParkingPage = () => {
             <h4>Saturday</h4>
             <div className="row">
               <div className="col">
-                <span className="margin-bottom">WITH VALIDATION</span>
+                <span className="margin-bottom">NO VALIDATION REQUIRED</span>
                 <span>1st Hour: FREE</span>
                 <span>2nd Hour: FREE</span>
                 <span>3rd Hour: $2.50</span>
@@ -136,6 +136,12 @@ const ParkingPage = () => {
                 <span>3rd Hour: $5.00</span>
                 <span>4th Hour: $8.00</span>
                 <span>Daily Max Rate: $12.00</span>
+              </div>
+            </div>
+            <h4>Market Row </h4>
+            <div className="row">
+              <div className="col">
+                <span>FREE (MON - SAT)</span>
               </div>
             </div>
           </TimeTable>
