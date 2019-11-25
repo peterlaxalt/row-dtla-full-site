@@ -22,7 +22,7 @@ const ModalInner = styled.div`
   position: relative;
   margin: 64px 14px;
   ${mediaMin('tabletLandscape')} {
-    margin: 8em;
+    margin: 4em;
   }
   h3 {
     margin: 0;

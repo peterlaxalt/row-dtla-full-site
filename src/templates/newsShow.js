@@ -93,7 +93,6 @@ const NewsShow = ({ data }) => {
                 )}
               </MobileImages>
               <RichText richText={JSON.parse(body.body)} />
-              <p className="spacer" />
               {articleURL && (
                 <BoxLink target="_blank" rel="noopener noreferrer" href={articleURL}>
                   <span>FULL ARTICLE</span>

@@ -57,7 +57,6 @@ const CollectiveShow = ({ data }) => {
               <h2 className="subtitle">{subtitle}</h2>
               <h1 className="title">{title}</h1>
               <RichText richText={JSON.parse(body.body)} />
-              <p className="spacer" />
               {parkingLink && parkingText && (
                 <>
                   <span>{parkingText}</span>
