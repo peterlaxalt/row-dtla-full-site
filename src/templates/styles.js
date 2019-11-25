@@ -87,6 +87,16 @@ const Copy = styled.div`
     position: sticky;
     top: 100px;
   }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  p {
+    min-height: 24px;
+  }
   h1 {
     margin: 0;
     font-size: 40px;
