@@ -91,16 +91,10 @@ const CTA = () => {
         </svg>
       </CloseButton>
       <ModalInner>
-        <h3>
-          Subscribe to the
-          <br />
-          ROW DTLA
-          <br />
-          Newsletter.
-        </h3>
+        <h3>Be a ROW Insider!</h3>
         <p>
-          BE A ROW INSIDER! SIGN UP FOR EXCITING EVENTS, UPCOMING OPENINGS, ANNOUNCEMENTS, SPECIAL PROMOTIONS AND
-          GIVEAWAYS DELIVERED STRAIGHT TO YOUR INBOX.
+          SIGN UP FOR EXCITING EVENTS, UPCOMING OPENINGS, ANNOUNCEMENTS, SPECIAL PROMOTIONS AND GIVEAWAYS DELIVERED
+          STRAIGHT TO YOUR INBOX.
         </p>
         <SubscribeForm />
       </ModalInner>
