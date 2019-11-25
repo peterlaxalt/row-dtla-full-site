@@ -42,7 +42,6 @@ const EventShow = ({ data }) => {
               <h1>{title}</h1>
               <h2>{`${startTime} - ${endTime}`}</h2>
               <RichText richText={JSON.parse(body.body)} />
-              <p className="spacer" />
             </Copy>
           </CopyColumn>
           <ImageColumn>
