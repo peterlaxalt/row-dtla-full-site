@@ -185,7 +185,7 @@ const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
     body,
     videoUrl,
     videoType,
-    // videoPlaceholder,
+    videoPlaceholder,
     autoplay,
     order,
     quoteAttribution,
@@ -226,8 +226,9 @@ const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
         height="100%"
         controls
         playsinline
-        playing={currentSlide === slideIdx}
-        loop={autoplay}
+        playing={window.innerWidth > 1024 ? currentSlide === slideIdx : false}
+        loop={window.innerWidth > 1024 ? autoplay : false}
+        light={window.innerWidth > 1024 ? false : videoPlaceholder}
       />
     );
   };
