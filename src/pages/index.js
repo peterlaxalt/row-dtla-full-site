@@ -29,6 +29,7 @@ export const query = graphql`
         body
         autoplay
         videoUrl
+        videoType
         videoPlaceholder {
           file {
             url

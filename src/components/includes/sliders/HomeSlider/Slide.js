@@ -184,6 +184,7 @@ const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
     sectionName,
     body,
     videoUrl,
+    videoType,
     // videoPlaceholder,
     autoplay,
     order,
@@ -207,25 +208,37 @@ const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
     };
   }, []);
 
+  const renderVideoSlide = () => {
+    console.log(videoType === 'background');
+    const isBackground = videoType === 'background';
+
+    return (
+      <ReactPlayer
+        url={videoUrl}
+        config={{
+          vimeo: {
+            playerOptions: {
+              background: isBackground
+            }
+          },
+          preload: true
+        }}
+        width="100%"
+        height="100%"
+        controls
+        playsinline
+        playing={currentSlide === slideIdx}
+        loop={autoplay}
+      />
+    );
+  };
+
   return (
     <SliderSlide ref={SlideRef} slideStyle={style} slideHeight={slideHeight}>
-      {style === 'Video' && (
-        <ReactPlayer
-          url={videoUrl}
-          config={{ preload: true }}
-          width="100%"
-          height="100%"
-          controls
-          playsinline
-          playing={currentSlide === slideIdx}
-          loop={autoplay}
-        />
-      )}
-
+      {style === 'Video' && renderVideoSlide()}
       {(style === 'Quote Full' || style === 'Quote Left') && (
         <QuoteSlide slideStyle={style} quote={quote.quote} quoteAttribution={quoteAttribution} />
       )}
-
       {style !== 'Video' &&
         style !== 'Quote Full' &&
         (style !== 'Quote Left' && (
