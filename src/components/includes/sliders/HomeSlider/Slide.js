@@ -209,7 +209,6 @@ const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
   }, []);
 
   const renderVideoSlide = () => {
-    console.log(videoType === 'background');
     const isBackground = videoType === 'background';
 
     return (
