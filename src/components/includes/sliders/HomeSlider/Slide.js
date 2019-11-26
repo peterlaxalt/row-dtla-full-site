@@ -244,7 +244,7 @@ const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
         playsinline
         playing={!isMobile ? currentSlide === slideIdx : false}
         loop={!isMobile ? autoplay : false}
-        light={!isMobile ? false : videoPlaceholder}
+        light={!isMobile ? false : videoPlaceholder.file.url}
       />
     );
   };
