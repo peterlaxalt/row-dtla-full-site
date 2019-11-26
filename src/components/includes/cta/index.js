@@ -47,9 +47,12 @@ const CloseButton = styled.button`
   top: 24px;
   right: 24px;
   border: none;
+  padding: 0;
+  height: 24px;
+  width: 24px;
   svg {
-    height: 24px;
-    width: 24px;
+    height: 100%;
+    width: 100%;
   }
 `;
 

@@ -21,7 +21,7 @@ const Form = styled.form`
       letter-spacing: 1px;
       display: flex;
       flex-direction: column;
-      width: 70%;
+      width: 60%;
       span {
         height: 30%;
       }
@@ -33,6 +33,8 @@ const Form = styled.form`
         font-size: 1.5em;
         padding: 0.5em;
         height: 48px;
+        border-radius: 0;
+        margin: 0;
       }
     }
 
@@ -143,7 +145,7 @@ const SubscribeForm = () => {
             <input type="email" name="email" onChange={handleInput} required />
           </label>
           <button type="submit" disabled={disableSubmit}>
-            SIGN UP
+            SIGN&nbsp;UP
           </button>
         </div>
         <div className="thank-you-row">
