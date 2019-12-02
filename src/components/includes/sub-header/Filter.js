@@ -64,7 +64,7 @@ const Filter = ({ filters, title, contextTitle }) => {
           }}
           key={filter}
           dangerouslySetInnerHTML={{ __html: filter }}
-        ></FilterButton>
+        />
       );
     });
   };
