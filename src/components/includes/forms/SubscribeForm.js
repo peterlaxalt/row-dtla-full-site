@@ -149,7 +149,7 @@ const SubscribeForm = () => {
           </button>
         </div>
         <div className="thank-you-row">
-          <h2>You are now on the list!</h2>
+          <h2>You&apos;re on the list!</h2>
         </div>
       </Form>
     </>
