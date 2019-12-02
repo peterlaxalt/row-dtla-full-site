@@ -12,6 +12,9 @@ const containers = css`
     &.dark {
       background-color: #000;
     }
+    main {
+      height: 100%;
+    }
   }
 
   .ReactModal__Overlay {

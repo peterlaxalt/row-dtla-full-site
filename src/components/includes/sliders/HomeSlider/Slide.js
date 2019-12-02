@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback, useState } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import styled from '@emotion/styled';
 import ReactPlayer from 'react-player';
 
@@ -175,7 +175,6 @@ const QuoteSlide = ({ slideStyle, quote, quoteAttribution }) => {
 
 const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
   const SlideRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
   const {
     heroImage,
     linkName,
@@ -193,14 +192,6 @@ const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
     quote
   } = slide;
 
-  const checkWindow = () => {
-    if (window.innerWidth > 1024) {
-      setIsMobile(false);
-    } else {
-      setIsMobile(true);
-    }
-  };
-
   const setSliderDivHeight = useCallback(() => {
     if (window.innerWidth > 1024) {
       SlideRef.current.parentElement.style.height = '100%';
@@ -210,16 +201,13 @@ const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
   }, [SlideRef]);
 
   useEffect(() => {
-    checkWindow();
     setSliderDivHeight();
     document.addEventListener('resize', () => {
       setSliderDivHeight();
-      checkWindow();
     });
     return () => {
       document.removeEventListener('resize', () => {
         setSliderDivHeight();
-        checkWindow();
       });
     };
   }, []);
@@ -242,9 +230,9 @@ const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
         height="100%"
         controls
         playsinline
-        playing={!isMobile ? currentSlide === slideIdx : false}
-        loop={!isMobile ? autoplay : false}
-        light={!isMobile ? false : videoPlaceholder.file.url}
+        playing={currentSlide === slideIdx}
+        loop={autoplay}
+        light={false}
       />
     );
   };

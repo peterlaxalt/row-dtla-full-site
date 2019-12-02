@@ -110,9 +110,11 @@ const HomeSlider = ({ slideArray }) => {
   }, [tallestSlide, slideArray, currentSlide]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setTallestSlide(getTallestSlide(SliderRef.current.innerSlider.list.children[0].children));
-    }, 500);
+    if (window && window.innerWidth > 1024) {
+      setTimeout(() => {
+        setTallestSlide(getTallestSlide(SliderRef.current.innerSlider.list.children[0].children));
+      }, 500);
+    }
     document.addEventListener('resize', () => {
       setTallestSlide(getTallestSlide(SliderRef.current.innerSlider.list.children[0].children));
     });
