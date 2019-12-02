@@ -96,7 +96,7 @@ const CollectivePage = ({ data }) => {
         <Filter
           title={'Discover\nROW DTLA'}
           contextTitle="collective"
-          filters={['ALL', 'DINE', 'SHOP', 'LIFESTYLE', 'POP-UP']}
+          filters={['ALL', 'DINE', 'SHOP', 'LIFESTYLE', 'POP&#8209;UP']}
         />
         <Masonry options={masonryOptions} className="masonry">
           {collectiveList}

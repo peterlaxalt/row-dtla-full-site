@@ -14,6 +14,7 @@ const modal = css`
     ${mediaMin('tabletLandscape')} {
       padding: 20px;
       width: 50%;
+      max-width: 650px;
     }
   }
 
