@@ -185,7 +185,6 @@ const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
     body,
     videoUrl,
     videoType,
-    videoPlaceholder,
     autoplay,
     order,
     quoteAttribution,

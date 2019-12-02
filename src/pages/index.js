@@ -9,7 +9,6 @@ const IndexPage = ({ data }) => {
   const { allContentfulHomeSlides } = data;
   const [isMobile, setIsMobile] = useState(false);
   const checkWindow = () => {
-    console.log('checking');
     if (window && window.innerWidth > 1024) {
       setIsMobile(false);
     } else {

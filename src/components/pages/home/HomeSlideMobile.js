@@ -6,7 +6,7 @@ import ReactPlayer from 'react-player';
 import HomeSlideInner from './HomeSlideInner';
 
 const HomeSlide = styled.div`
-  margin-bottom: calc(64px / 3);
+  margin-bottom: 14px;
   padding: 0;
   width: 100%;
   border: 1px solid #000;

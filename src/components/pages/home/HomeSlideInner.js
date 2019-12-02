@@ -70,11 +70,10 @@ const ContentBlock = ({ title, sectionName, body, linkName, linkUrl }) => {
 };
 
 const HomeSlideInner = ({ slide }) => {
-  console.log(slide);
   const { style, sectionName, title, body, linkName, linkUrl, heroImage } = slide;
   return (
     <HomeContainer slideStyle={style}>
-      <MobileImage src={heroImage.file.url} alt={heroImage.description} />
+      <MobileImage slideStyle={style} src={heroImage.file.url} alt={heroImage.description} />
       {style !== 'Image Full' && (
         <ContentBlock sectionName={sectionName} title={title} body={body} linkName={linkName} linkUrl={linkUrl} />
       )}

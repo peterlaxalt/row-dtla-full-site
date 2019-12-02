@@ -7,14 +7,6 @@ const HomeList = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  .masonry {
-    margin: calc(64px / 3) 0 0 0;
-    padding: 0;
-    list-style-type: none;
-    .gutter-sizer {
-      width: calc(64px / 3);
-    }
-  }
 `;
 
 const HomeMobile = ({ slideArray }) => {
