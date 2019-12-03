@@ -115,10 +115,10 @@ const MobileNavigation = () => {
 
     navigation.push(
       <SocialMedia key="social-media">
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.instagram.com/rowdtla" target="_blank" rel="noopener noreferrer">
           <img src={InstagramLogo} alt="instagram logo" />
         </a>
-        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.facebook.com/ROWDTLA/" target="_blank" rel="noopener noreferrer">
           <img src={FacebookLogo} alt="facebook logo" />
         </a>
       </SocialMedia>

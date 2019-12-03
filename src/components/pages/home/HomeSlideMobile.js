@@ -6,14 +6,19 @@ import ReactPlayer from 'react-player';
 import HomeSlideInner from './HomeSlideInner';
 
 const HomeSlide = styled.div`
-  margin-bottom: 14px;
+  margin-bottom: 18px;
   padding: 0;
   width: 100%;
-  border: 1px solid #000;
+  border: 0px solid #000;
   overflow: hidden;
   min-height: calc(((100vw - 24px) * 9) / 16);
   display: flex;
-
+  padding-bottom: 18px;
+  border-bottom: 1px solid #000;
+  &:last-child {
+    border: none;
+    margin-bottom: 64px;
+  }
   .react-reveal {
     height: 100%;
     width: 100%;

@@ -3,14 +3,11 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Masonry from 'react-masonry-component';
 
-import SEO from '~/components/seo';
-
 import Context from '~/context/Context';
-
-import { mediaMin } from '~/styles/mediaQueries';
-
+import SEO from '~/components/seo';
 import Filter from '~/components/includes/sub-header/Filter';
 import CollectiveItemCard from '~/components/pages/collective/CollectiveItemCard';
+import { mediaMin } from '~/styles/mediaQueries';
 
 const CollectiveWrapper = styled.div`
   display: flex;

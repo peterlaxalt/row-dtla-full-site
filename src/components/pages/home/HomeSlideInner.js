@@ -21,10 +21,10 @@ const ContentColumn = styled.div`
   justify-content: center;
   text-align: left;
   max-width: 100%;
-  padding: 24px 8px;
+  padding: 8px 0 0 0;
   height: 50%;
   span {
-    margin: 20px 0;
+    margin: 0 0 8px 0;
     font-size: 15px;
     letter-spacing: 1px;
     line-height: 20px;
