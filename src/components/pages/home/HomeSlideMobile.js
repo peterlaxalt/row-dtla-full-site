@@ -33,8 +33,8 @@ const HomeSlide = styled.div`
 `;
 
 const HomeSlideMobile = ({ slide }) => {
-  const { style, videoUrl, videoPlaceholder } = slide;
-
+  const { style, videoUrl, videoPlaceholder, autoplay } = slide;
+  console.log(slide);
   return (
     <HomeSlide>
       <Fade>
@@ -48,9 +48,9 @@ const HomeSlideMobile = ({ slide }) => {
             height="100%"
             controls
             playsinline
-            playing={false}
-            loop={false}
-            light={videoPlaceholder.file.url}
+            playing={autoplay}
+            loop={autoplay}
+            light={autoplay ? false : videoPlaceholder.file.url}
           />
         ) : (
           <HomeSlideInner slide={slide} />
