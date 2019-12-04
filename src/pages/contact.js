@@ -142,8 +142,8 @@ const ContactPage = () => {
             <ContactSection>
               <h6>Event & Shoot Inquiries</h6>
               <div className="contact">
-                <a href="mailto:ROWDTLA@WAGSTAFFWORLDWIDE.COM">
-                  <span>NAME@EMAIL.COM</span>
+                <a href="mailto:events@rowdtla.com">
+                  <span>EVENTS@ROWDTLA.COM</span>
                 </a>
               </div>
             </ContactSection>
