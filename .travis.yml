@@ -32,4 +32,4 @@ after_deploy:
   echo "Hello World"
   echo $TRAVIS_BRANCH
   echo $AWS_CLOUDFRONT_DIST_ID
-after_deploy: clear_cf_cache.sh
+after_deploy: ./clear_cf_cache.sh
