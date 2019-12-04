@@ -1,7 +1,8 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import styled from '@emotion/styled';
 import ReactPlayer from 'react-player';
 
+import VideoLoading from './VideoLoading';
 import { mediaMin } from '~/styles/mediaQueries';
 import PlayIcon from '~/images/icons/videoplay_icon.svg';
 
@@ -12,6 +13,7 @@ const SliderSlide = styled.div`
   flex-direction: column;
   min-height: 100%;
   height: 100%;
+  position: relative;
   ${props => (props.videoPlaceholder ? `background-image: url(${props.videoPlaceholder});` : '')}
   ${mediaMin('tabletLandscape')} {
     min-width: 100%;
@@ -153,6 +155,25 @@ const Progress = styled.span`
   }
 `;
 
+const VideoContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  opacity: ${props => (props.videoLoaded ? 1 : 0)};
+  visibility: ${props => (props.videoLoaded ? 'visible' : 'hidden')};
+  transition: all 500ms ease;
+  cursor: pointer;
+  video {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    object-position: 50% 40%;
+  }
+`;
+
 const ContentBlock = ({ title, sectionName, body, linkName, linkUrl }) => {
   return (
     <ContentColumn>
@@ -175,6 +196,7 @@ const QuoteSlide = ({ slideStyle, quote, quoteAttribution }) => {
 
 const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
   const SlideRef = useRef(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const {
     heroImage,
     linkName,
@@ -201,6 +223,7 @@ const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
 
   useEffect(() => {
     setSliderDivHeight();
+
     document.addEventListener('resize', () => {
       setSliderDivHeight();
     });
@@ -215,24 +238,32 @@ const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
     const isBackground = videoType === 'background';
 
     return (
-      <ReactPlayer
-        url={videoUrl}
-        config={{
-          vimeo: {
-            playerOptions: {
-              background: isBackground
-            }
-          },
-          preload: true
-        }}
-        width="100%"
-        height="100%"
-        controls
-        playsinline
-        playing={currentSlide === slideIdx}
-        loop={autoplay}
-        light={false}
-      />
+      <>
+        <VideoLoading videoLoaded={videoLoaded} />
+        <VideoContainer videoLoaded={videoLoaded}>
+          <ReactPlayer
+            onStart={() => {
+              setVideoLoaded(true);
+            }}
+            url={videoUrl}
+            config={{
+              vimeo: {
+                playerOptions: {
+                  background: isBackground
+                }
+              },
+              preload: true
+            }}
+            width="100%"
+            height="100%"
+            controls
+            playsinline
+            playing={currentSlide === slideIdx}
+            loop={autoplay}
+            light={false}
+          />
+        </VideoContainer>
+      </>
     );
   };
 

@@ -43,7 +43,7 @@ const ContextProvider = props => {
   const closeCTA = () => {
     setCTAActive(false);
     setCTAViewed(true);
-    setCookie('ctaSubmitted', true, 10);
+    setCookie('ctaSubmitted', true, 30);
   };
 
   useEffect(() => {
