@@ -28,6 +28,13 @@ dist: trusty
 install: npm install && npm install -g gatsby-cli
 script: npm run build
 before_deploy: npm test
-after_deploy: 
+after_deploy:
   echo "Hello World"
   echo $TRAVIS_BRANCH
+  echo $AWS_CLOUDFRONT_DIST_ID
+after_deploy:
+  if [ "$TRAVIS_BRANCH" = "master" ]; then
+    travis-ci-cloudfront-invalidation -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -c $AWS_CLOUDFRONT_DIST_ID -i '/*' -b $TRAVIS_BRANCH -p $TRAVIS_PULL_REQUEST
+  else
+    echo "Skipping Cloudfront Invalidation on branch ${TRAVIS_BRANCH}"
+  fi
