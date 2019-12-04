@@ -239,7 +239,7 @@ const Slide = ({ slide, arrayLength, slideHeight, currentSlide, slideIdx }) => {
 
     return (
       <>
-        <VideoLoading videoLoaded={videoLoaded} />
+        {currentSlide === slideIdx && <VideoLoading videoLoaded={videoLoaded} />}
         <VideoContainer videoLoaded={videoLoaded}>
           <ReactPlayer
             onStart={() => {
