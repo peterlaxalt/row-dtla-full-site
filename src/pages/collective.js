@@ -65,9 +65,14 @@ const CollectivePage = ({ data }) => {
       return a.title.localeCompare(b.title);
     });
 
+    const filterCallback = collectiveItem => {
+      return collectiveItem.type === filter.replace('&#8209;', '-');
+    };
+
     if (filter !== 'ALL') {
-      filteredCollectiveItems = filteredCollectiveItems.filter(collectiveItem => collectiveItem.type === filter);
+      filteredCollectiveItems = filteredCollectiveItems.filter(filterCallback);
     }
+
     setListLength(filteredCollectiveItems.length);
     if (typeof window !== `undefined`) {
       return filteredCollectiveItems
