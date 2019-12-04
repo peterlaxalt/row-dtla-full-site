@@ -89,8 +89,8 @@ const SubscribeForm = () => {
   const { CTAActive, closeCTA } = context;
 
   const [email, setEmail] = useState('');
-  const [disableSubmit, toggleDisableSubmit] = useState(false);
-  const [formSubmitted, toggleFormSubmit] = useState(false);
+  const [disableSubmit, setDisableSubmit] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleInput = e => {
     const { value } = e.target;
@@ -101,7 +101,7 @@ const SubscribeForm = () => {
     e.preventDefault();
 
     // Disable submit button on sign up
-    toggleDisableSubmit(true);
+    setDisableSubmit(true);
 
     fetch('https://form.api.dbxd.com/add-mailchimp-subscriber?projectname=rowdtla', {
       method: 'POST',
@@ -116,7 +116,7 @@ const SubscribeForm = () => {
     })
       .then(response => response.json())
       .then(() => {
-        toggleFormSubmit(true);
+        setFormSubmitted(true);
 
         if (CTAActive) {
           setTimeout(() => {
@@ -127,13 +127,13 @@ const SubscribeForm = () => {
         setEmail('');
 
         setTimeout(() => {
-          toggleFormSubmit(false);
-          toggleDisableSubmit(false);
+          setFormSubmitted(false);
+          setDisableSubmit(false);
         }, 10000);
       })
       .catch(error => {
         console.log('error posting email address', error);
-        toggleDisableSubmit(false);
+        setDisableSubmit(false);
       });
   };
 
