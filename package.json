@@ -37,7 +37,8 @@
     "eslint-plugin-react": "^7.12.4",
     "gatsby-plugin-root-import": "^2.0.5",
     "gatsby-source-contentful": "^2.1.50",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "travis-ci-cloudfront-invalidation": "^1.1.0"
   },
   "keywords": [
     "gatsby"
