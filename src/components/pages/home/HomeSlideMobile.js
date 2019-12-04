@@ -34,7 +34,6 @@ const HomeSlide = styled.div`
 
 const HomeSlideMobile = ({ slide }) => {
   const { style, videoUrl, videoPlaceholder, autoplay } = slide;
-  console.log(slide);
   return (
     <HomeSlide>
       <Fade>
