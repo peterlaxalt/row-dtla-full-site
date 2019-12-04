@@ -56,7 +56,7 @@ const LoadMoreButton = styled.button`
 const EventsPage = ({ data }) => {
   const { activeFilters } = useContext(Context);
 
-  const [loaded, setLoaded] = useState(8);
+  const [loaded, setLoaded] = useState(12);
   const [listLength, setListLength] = useState(0);
   const [eventList, setEventList] = useState([]);
   const events = data.allContentfulEvent.nodes;
@@ -160,5 +160,3 @@ export const query = graphql`
     }
   }
 `;
-
-// (sort: { fields: date, order: ASC })
