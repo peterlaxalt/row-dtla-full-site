@@ -389,6 +389,14 @@ const buildings = [
       {
         imgUrl: '/static/images/buildings/6_155_AoA/2_Carousel/9',
         imgAlt: 'Updated amenities at 155 Avenue of the Americas'
+      },
+      {
+        imgUrl: '/static/images/buildings/6_155_AoA/2_Carousel/10',
+        imgAlt: 'Private Roof Deck Opportunity (Currently Under Construction)'
+      },
+      {
+        imgUrl: '/static/images/buildings/6_155_AoA/2_Carousel/11',
+        imgAlt: 'Private Roof Deck Opportunity (Currently Under Construction)'
       }
     ],
     beforeAfter: {
