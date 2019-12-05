@@ -4,9 +4,11 @@ module.exports = {
   siteMetadata: {
     title: `ROW DTLA`,
     description: `ROW DTLA’s entrepreneurial innovators who are pushing LA culture forward with concepts designed to make a global impact.`,
-    author: `YOUR_NAME`
+    author: `YOUR_NAME`,
+    siteUrl: `https://www.rowdtla.com`,
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
