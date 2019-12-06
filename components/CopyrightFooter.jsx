@@ -9,6 +9,7 @@ const CopyrightFooterContainer = styled.div`
   padding: 20% 5% 10px 5%;
   justify-content: center;
   text-align: center;
+  max-width: 100%;
   ${mediaMin.tablet`
     padding: 10% 5% 10px 5%;
   `}

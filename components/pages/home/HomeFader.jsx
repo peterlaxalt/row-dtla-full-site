@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import ResponsiveImage from '~/components/ResponsiveImage';
+import Context from '~/config/Context';
+
+import ResponsiveImage from '~/components/images/ResponsiveImage';
+import BackgroundImage from '~/components/images/BackgroundImage';
+
 import { mediaMin } from '~/styles/MediaQueries';
 
 const SliderContainer = styled.div`
@@ -128,19 +132,20 @@ const DesktopSliderContainer = styled.div`
     background: rgba(256, 256, 256, 0);
     cursor: pointer;
     z-index: 11;
+    background: rgba(256, 256, 256, 0);
   }
 
   .prev-arrow {
     left: 0;
     &:hover {
-      background: linear-gradient(to right, #03a8f442, #ffff0000);
+      background: linear-gradient(to left, rgba(256,256,256,0), rgba(54,155,247,0.3));
     }
   }
 
   .next-arrow {
     right: 0;
     &:hover {
-      background: linear-gradient(to left, #03a8f442, #ffff0000);
+      background: linear-gradient(to right, rgba(256,256,256,0), rgba(54,155,247,0.3));
     }
   }
 
@@ -199,7 +204,7 @@ export default class HomeFader extends React.Component {
   }
 
   startRotation = () => {
-    this.outerFadeInterval = setInterval(this.nextSlide, 9000);
+    this.outerFadeInterval = setInterval(this.nextSlide, 8100);
   };
 
   nextSlide = () => {
@@ -312,7 +317,6 @@ export default class HomeFader extends React.Component {
 
   render() {
     const { loaded } = this.props;
-
     return (
       <SliderContainer loaded={loaded}>
         {this.props.windowWidth > 1024 ? (
@@ -343,12 +347,11 @@ const InnerImageFader = styled.div`
     height: 100%;
     width: 100%;
     object-fit: cover;
-  }
-  .active {
-    opacity: 1;
+    &.active {
+      opacity: 1;
+    }
   }
 `;
-
 class InnerFader extends React.Component {
   constructor(props) {
     super(props);
@@ -374,7 +377,7 @@ class InnerFader extends React.Component {
   }
 
   startRotation = () => {
-    this.sliderInterval = setInterval(this.nextImage, 3000);
+    this.sliderInterval = setInterval(this.nextImage, 2700);
     this.setState({ active: true });
   };
 
@@ -399,20 +402,32 @@ class InnerFader extends React.Component {
     });
   };
 
-  createImages = () => {
-    return this.props.imgArray.map((el, key) => {
-      return (
-        <ResponsiveImage
-          key={key}
-          imgClass={this.state.currentImage >= key ? 'active' : ''}
+  createImages = context => {
+    const browserName = context.browserName || context.state.appData.browserName;
+    if (browserName === 'IE') {
+      return this.props.imgArray.map((el, idx) => (
+        <BackgroundImage
+          key={idx}
+          className={this.state.currentImage >= idx ? 'active' : undefined}
           srcPath={el.imgUrl}
           imgAlt={el.alt}
         />
-      );
-    });
+      ));
+    } else {
+      return this.props.imgArray.map((el, idx) => (
+        <ResponsiveImage
+          key={idx}
+          imgClass={this.state.currentImage >= idx ? 'active' : ''}
+          srcPath={el.imgUrl}
+          imgAlt={el.alt}
+        />
+      ));
+    }
   };
 
   render() {
-    return <InnerImageFader>{this.createImages()}</InnerImageFader>;
+    return (
+      <Context.Consumer>{context => <InnerImageFader>{this.createImages(context)}</InnerImageFader>}</Context.Consumer>
+    );
   }
 }

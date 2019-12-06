@@ -8,7 +8,7 @@ import Context from '~/config/Context';
 import { buildings } from '~/data/buildings';
 import { mediaMin } from '~/styles/MediaQueries';
 import FloorplanSection from '~/components/pages/listing/FloorplanSection';
-import NonResponsiveSlider from '~/components/NonResponsiveSlider';
+import NonResponsiveSlider from '~/components/sliders/NonResponsiveSlider';
 import ContactSection from '~/components/pages/listing/ContactSection';
 import ScrollUp from '~/components/ScrollUp';
 import CopyrightFooter from '~/components/CopyrightFooter';
@@ -42,6 +42,7 @@ const ListingWrapper = styled.div`
 
     img.building-logo {
       width: 40%;
+      max-height: 100%;
       ${mediaMin.tablet`
         width: auto;
         height: 32px;
@@ -143,6 +144,7 @@ const ListingWrapper = styled.div`
         display: block;
         margin: 0 auto;
         max-width: 100%;
+        align-self: center;
       }
     }
   }

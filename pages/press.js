@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Fade from 'react-reveal/Fade';
 
 import Context from '~/config/Context';
+
 import CopyrightFooter from '~/components/CopyrightFooter';
 import ScrollUp from '~/components/ScrollUp';
 import { mediaMin } from '~/styles/MediaQueries';
@@ -102,7 +103,7 @@ export default class Press extends React.Component {
           <React.Fragment>
             <BackButton />
             <Fade>
-              <PressList>{this.createPressItems(context.pressData)}</PressList>
+              <PressList>{this.createPressItems(context.pressData || context.state.appData.pressData)}</PressList>
             </Fade>
             <ScrollUp />
             <CopyrightFooter />

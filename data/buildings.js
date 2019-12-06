@@ -100,7 +100,7 @@ const buildings = [
     numFloors: '12',
     totalBuildingArea: '343,020 SF',
     floorSizes: '3,388 – 29,096 SF',
-    factSheet: '/static/images/buildings/2_160_Varick/160Varick_Building_1.9.19 .pdf',
+    factSheet: '/static/images/buildings/2_160_Varick/160Varick_Building_2019.pdf',
     ceilingHeights: ['12′-4″'],
     about:
       '160 Varick Street is conveniently situated in the heart of Hudson Square, between Charlton and Vandam Streets and close to the no.1, A, C and E subway stations. The building has an industrial history, as evidenced by its structure, large windows and high, loft-like ceilings. A newly renovated lobby designed by Studios Architecture, opened in the fall of 2018 featuring soft seating and rotating art installations. 160 Varick Street is home to WeWork and New York Public Radio.',
@@ -286,7 +286,7 @@ const buildings = [
     numFloors: '18 + Penthouse',
     totalBuildingArea: '1,123,659 SF',
     floorSizes: '34,000 – 71,000 SF',
-    factSheet: '/static/images/buildings/5_375_Hudson/375Hudson_Building_1.9.19.pdf',
+    factSheet: '/static/images/buildings/5_375_Hudson/375Hudson_Building.pdf',
     ceilingHeights: ['11′-6″ typical'],
     about:
       '375 Hudson Street, originally known as the Saatchi & Saatchi building, was completed in 1987, designed in a collaborative effort between Emery Roth & Sons, Lee Harris Pomeroy Associates, and Skidmore, Owings and Merrill. The 18-story building is over 1.12 million square feet and features rotating lobby art exhibitions. In 2010, after a top-to-bottom “green” retro-fit, the building became the first existing office building in New York City to achieve LEED Gold certification for sustainability and energy efficiency. 375 Hudson Street is the downtown headquarters of media conglomerate Publicis and Turner Construction Company.',
@@ -389,6 +389,14 @@ const buildings = [
       {
         imgUrl: '/static/images/buildings/6_155_AoA/2_Carousel/9',
         imgAlt: 'Updated amenities at 155 Avenue of the Americas'
+      },
+      {
+        imgUrl: '/static/images/buildings/6_155_AoA/2_Carousel/10',
+        imgAlt: 'Private Roof Deck Opportunity (Currently Under Construction)'
+      },
+      {
+        imgUrl: '/static/images/buildings/6_155_AoA/2_Carousel/11',
+        imgAlt: 'Private Roof Deck Opportunity (Currently Under Construction)'
       }
     ],
     beforeAfter: {
@@ -476,7 +484,7 @@ const buildings = [
     numFloors: '12',
     totalBuildingArea: '380,971 SF',
     floorSizes: '32,140 – 32,243 SF',
-    factSheet: '/static/images/buildings/8_200_Hudson/200Hudson_Building_1.9.19.pdf',
+    factSheet: '/static/images/buildings/8_200_Hudson/200Hudson_Building_2019.pdf',
     ceilingHeights: ['11′-5″ typical'],
     about:
       'Nestled on the northern border of Tribeca and well within walking distance of the no.1, A, C, and E subway lines at Canal Street, 200 Hudson Street offers tenants a premier office location. The total building area spans 380,971 square feet across 12 floors. Upper floors offer spectacular views of both downtown and the Hudson River. Individual floor plates range from 32,140 to 32,243 square feet, while the slab-to- slab heights are 11 feet-5 inches. Prominent tenants of the building include French media conglomerate Havas.',
@@ -532,7 +540,7 @@ const buildings = [
     numFloors: '12',
     totalBuildingArea: '395,108 SF',
     floorSizes: '31,201 – 31,580 SF',
-    factSheet: '/static/images/buildings/9_205_Hudson/205Hudson_Building_1.9.19.pdf',
+    factSheet: '/static/images/buildings/9_205_Hudson/205Hudson_Building.pdf',
     ceilingHeights: ['13′-0″'],
     about:
       '205 Hudson Street’s prominent location within the northern portion of Tribeca promises one of Manhattan’s most exciting office environments. Rising 12 stories, 205 Hudson is located at the intersection of Canal and Hudson Streets, well within walking distance of the no.1, A, C, and E subway lines. 205 Hudson’s floor plates offer between 31,201 and 31,580 square feet per floor, while ceiling heights measure 13 feet. Long, wide, and newly replaced windows afford abundant natural light, as well as stunning views of Midtown Manhattan and landmarked townhomes to the north. Notable tenants include WeWork and event space Tribeca Rooftop.',
@@ -719,7 +727,7 @@ const buildings = [
     numFloors: '9',
     totalBuildingArea: '287,586 SF',
     floorSizes: '30,755 – 31,579 SF',
-    factSheet: '/static/images/buildings/12_435_Hudson/435Hudson_Building_1.9.19.pdf',
+    factSheet: '/static/images/buildings/12_435_Hudson/435Hudson_Building.pdf',
     ceilingHeights: ['14′-5″ – 16′-0″'],
     about:
       '435 Hudson Street, located in the West Village between Morton and Leroy Streets, provides tenants with one of Manhattan’s most unique office environments. Slab-to-slab heights range from 14 feet-5 inches to over 16 feet at the top of the building, creating a loft-style office environment sought after by a wide variety of tenants. Lower views overlook landmarked West Village townhomes, while the upper floors provide views north, west towards the Hudson River or east towards Soho. A building repositioning will provide tenants with a renovated lobby and roof deck amenity in 2019, both designed by the architectural firm A+I. Notable tenants include @Radical Media and Adidas.',
@@ -733,6 +741,14 @@ const buildings = [
     },
     sliderArray: [
       {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/lobby_1',
+        imgAlt: '435 Hudson Street Lobby'
+      },
+      {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/lobby_2',
+        imgAlt: '435 Hudson Street Lobby'
+      },
+      {
         imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/1',
         imgAlt: '435 Hudson Street white boxed space'
       },
@@ -741,16 +757,20 @@ const buildings = [
         imgAlt: 'View from 435 Hudson Street'
       },
       {
-        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/3',
-        imgAlt: 'Tenant Amenity Roof Deck (Currently Under Construction)'
-      },
-      {
         imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/4',
         imgAlt: 'View from 435 Hudson Street'
       },
       {
         imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/5',
         imgAlt: 'View from 435 Hudson Street'
+      },
+      {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/6',
+        imgAlt: 'Tenant Amenity Roof Deck'
+      },
+      {
+        imgUrl: '/static/images/buildings/12_435_Hudson/2_Carousel/7',
+        imgAlt: 'Tenant Amenity Roof Deck'
       }
     ],
     beforeAfter: false,

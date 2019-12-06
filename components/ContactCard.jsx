@@ -17,7 +17,7 @@ const ContactCardWrapper = styled.div`
     width: 25%;
   `}
   .contact-name {
-    font-weight: 700;
+    font-weight: 500;
     margin-bottom: 15px;
   }
   .contact-phone {
