@@ -145,7 +145,7 @@ const Story = () => (
           <Spacer height="100px" />
           <Fade>
             <Heading bold>
-              Hudson Square Properties is a joint venture of Trinity Church Wall Street and Norges Bank Real Estate
+              Hudson Square Properties is a joint venture of Trinity Church Wall Street and Norges Bank Investment
               Management with Hines, the operating partner, of a 12 building portfolio of approximately 6 million
               rentable square feet.
             </Heading>
@@ -190,7 +190,7 @@ const Story = () => (
                     City and around the world.
                     <br />
                     <br />
-                    In December 2015, Trinity and Norges Bank Real Estate Management formed a joint venture partnership
+                    In December 2015, Trinity and Norges Bank Investment Management formed a joint venture partnership
                     comprising 11 office buildings with 4.9 million square feet of commercial space in Hudson Square. In
                     April 2016, the joint venture selected Hines as the operating partner for the portfolio. The office
                     buildings on the properties are being redeveloped into a hub for creative industries and businesses
@@ -245,7 +245,7 @@ const Story = () => (
           </Fade>
           <Spacer id="section-story-norges" />
           <Fade>
-            <Heading bold>NORGES BANK REAL ESTATE MANAGEMENT</Heading>
+            <Heading bold>NORGES BANK INVESTMENT MANAGEMENT</Heading>
             <SubHeading>
               “The fund owns direct real estate investments totaling nearly 800 assets across 13 countries.”
             </SubHeading>
@@ -255,15 +255,15 @@ const Story = () => (
               <InnerCol>
                 <Spacer height="300px" />
                 <TextSection>
-                  <h3 className="text-heading">ABOUT NORGES BANK REAL ESTATE MANAGEMENT</h3>
+                  <h3 className="text-heading">ABOUT NORGES BANK INVESTMENT MANAGEMENT</h3>
                   <p className="text-body">
-                    Norges Bank Real Estate Management manages approximately $27 billion in direct real estate
+                    Norges Bank Investment Management manages approximately $27 billion in direct real estate
                     investments on behalf of the Norwegian Government Pension Fund Global, totaling $1,020 billion of
                     assets across equity, fixed income and real estate. The fund’s mission is to safeguard financial
-                    wealth for future generations. Norges Bank Real Estate Management continues to invest in three
-                    target asset classes – office, retail and logistics. Investments in office and retail are focused
-                    across a limited number of global cities in Europe, the US and Asia that have key fundamentals
-                    including transparency, liquidity, supply restrictions and the potential for economic growth.
+                    wealth for future generations. Norges Bank Investment Management continues to invest in three target
+                    asset classes – office, retail and logistics. Investments in office and retail are focused across a
+                    limited number of global cities in Europe, the US and Asia that have key fundamentals including
+                    transparency, liquidity, supply restrictions and the potential for economic growth.
                   </p>
                 </TextSection>
                 <ResponsiveImage srcPath="/static/images/story/4_Norges/bg-story-norges-left" imgAlt="" />
@@ -337,7 +337,7 @@ const Story = () => (
           <Fade>
             <MobileHeading>Story</MobileHeading>
             <Heading>
-              Hudson Square Properties is a joint venture of Trinity Church Wall Street and Norges Bank Real Estate
+              Hudson Square Properties is a joint venture of Trinity Church Wall Street and Norges Bank Investment
               Management with Hines, the operating partner, of a 12 building portfolio of approximately 6 million
               rentable square feet.
             </Heading>
@@ -357,7 +357,7 @@ const Story = () => (
                     City and around the world.
                     <br />
                     <br />
-                    In December 2015, Trinity and Norges Bank Real Estate Management formed a joint venture partnership
+                    In December 2015, Trinity and Norges Bank Investment Management formed a joint venture partnership
                     comprising 11 office buildings with 4.9 million square feet of commercial space in Hudson Square. In
                     April 2016, the joint venture selected Hines as the operating partner for the portfolio. The office
                     buildings on the properties are being redeveloped into a hub for creative industries and businesses
@@ -430,24 +430,24 @@ const Story = () => (
             <MainCol id="section-story-norges">
               <InnerCol>
                 <TextSection>
-                  <h3 className="text-heading">NORGES BANK REAL ESTATE MANAGEMENT</h3>
+                  <h3 className="text-heading">NORGES BANK INVESTMENT MANAGEMENT</h3>
                   <p className="text-body">
                     “The fund owns direct real estate investments totaling nearly 800 assets across 13 countries.”
                   </p>
                 </TextSection>
                 <ResponsiveImage srcPath="/static/images/story/4_Norges/story-norges-banner-mobile" imgAlt="" />
                 <TextSection>
-                  <h3 className="text-heading">ABOUT NORGES BANK REAL ESTATE MANAGEMENT</h3>
+                  <h3 className="text-heading">ABOUT NORGES BANK INVESTMENT MANAGEMENT</h3>
                   <p className="text-body">
-                    Norges Bank Real Estate Management manages approximately $27 billion in direct real estate
+                    Norges Bank Investment Management manages approximately $27 billion in direct real estate
                     investments on behalf of the Norwegian Government Pension Fund Global, totaling $1,020 billion of
                     assets across equity, fixed income and real estate. The fund’s mission is to safeguard financial
-                    wealth for future generations. Norges Bank Real Estate Management continues to invest in three
-                    target asset classes – office, retail and logistics. Investments in office and retail are focused
-                    across a limited number of global cities in Europe, the US and Asia that have key fundamentals
-                    including transparency, liquidity, supply restrictions and the potential for economic growth.
-                    Investments in logistics are located across Europe and the US with a strategic focus on proximity to
-                    large metropolitan markets and key global distribution networks. The fund owns direct real estate
+                    wealth for future generations. Norges Bank Investment Management continues to invest in three target
+                    asset classes – office, retail and logistics. Investments in office and retail are focused across a
+                    limited number of global cities in Europe, the US and Asia that have key fundamentals including
+                    transparency, liquidity, supply restrictions and the potential for economic growth. Investments in
+                    logistics are located across Europe and the US with a strategic focus on proximity to large
+                    metropolitan markets and key global distribution networks. The fund owns direct real estate
                     investments totaling nearly 800 assets across 13 countries. In the US, the fund owns direct real
                     estate investments across 22 million square feet of office and retail properties in New York City,
                     Boston, Washington DC and San Francisco. Visit&nbsp;
