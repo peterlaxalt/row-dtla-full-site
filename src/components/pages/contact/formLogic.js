@@ -30,10 +30,8 @@ const formLogic = () => {
 
       const directory = {
         general: {
-          // recipientEmail: 'info@rowdtla.com',
-          recipientEmail: 'joel.hoelting@dbox.com',
-          // recipientName: 'ROWDTLA Info'
-          recipientName: 'Joel Hoelting'
+          recipientEmail: 'info@rowdtla.com',
+          recipientName: 'ROWDTLA Info'
         },
         retail: {
           recipientEmail: 'info@runyongroup.com',
