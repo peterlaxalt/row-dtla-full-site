@@ -6,6 +6,6 @@ Hosting is on an EC2 instance. The server uses PM2 (node production process mana
 
 After pushing cod you need to run the following commands on the server:
 
-- git pull
-- npm run build
-- pm2 restart 0
+- `git pull`
+- `npm run build`
+- `pm2 restart 0`
