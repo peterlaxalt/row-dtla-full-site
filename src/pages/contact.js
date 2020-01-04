@@ -112,38 +112,32 @@ const ContactPage = () => {
             <ContactSection>
               <h6>Creative Office Leasing</h6>
               <div className="contact">
-                <span>Jeff Pion</span>
+                <span>Joshua Wrobel</span>
                 <a href="mailto:JEFF.PION@CBRE.COM">
-                  <span>JEFF.PION@CBRE.COM</span>
+                  <span>JOSH.WROBEL@AM.JLL.COM</span>
                 </a>
-                <a href="tel:3105502537">
-                  <span>310.550.2537</span>
+                <a href="tel:2132396001">
+                  <span>213.239.6001</span>
                 </a>
               </div>
               <div className="contact">
-                <span>Michelle Esquivel</span>
+                <span>Jaclyn Ward</span>
                 <a href="mailto:MICHELLE.ESQUIVEL@CBRE.COM">
-                  <span>MICHELLE.ESQUIVEL@CBRE.COM</span>
+                  <span>JACLYN.WARD@AM.JLL.COM</span>
                 </a>
-                <a href="tel:3105502525">
-                  <span>310.550.2525</span>
-                </a>
-              </div>
-              <div className="contact">
-                <span>Chris Penrose</span>
-                <a href="mailto:CHRIS.PENROSE@CBRE.COM">
-                  <span>CHRIS.PENROSE@CBRE.COM</span>
-                </a>
-                <a href="tel:2136133108">
-                  <span>213.613.3108</span>
+                <a href="tel:3105953618">
+                  <span>310.595.3618</span>
                 </a>
               </div>
             </ContactSection>
             <ContactSection>
-              <h6>Event & Shoot Inquiries</h6>
+              <h6>Venue Leasing</h6>
               <div className="contact">
                 <a href="mailto:events@rowdtla.com">
                   <span>EVENTS@ROWDTLA.COM</span>
+                </a>
+                <a href="tel:2139888890">
+                  <span>213.988.8890</span>
                 </a>
               </div>
             </ContactSection>
@@ -151,9 +145,6 @@ const ContactPage = () => {
               <h6>PR & Media Inquiries</h6>
               <a href="mailto:ROWDTLA@WAGSTAFFWORLDWIDE.COM">
                 <span>ROWDTLA@WAGSTAFFWORLDWIDE.COM</span>
-              </a>
-              <a href="tel:3238711151">
-                <span>323.871.1151</span>
               </a>
             </ContactSection>
           </ContactColumn>
