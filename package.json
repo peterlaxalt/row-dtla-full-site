@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=develop node server.js",
+    "dev": "node server.js",
     "inspect": "node --inspect server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "start-dev": "NODE_ENV=production PORT=8080 node server.js"
   },
   "keywords": [],
   "author": "",
