@@ -520,8 +520,6 @@ const places = {
   RESTAURANTS: {
     ChIJn_RrhTNZwokRpwLrOqB2Mnw: { position: { lat: 40.725117, lng: -74.007875 }, name: 'Whitmans' },
     ChIJ4594sIxZwokRrTNHEMnX6MY: { position: { lat: 40.724489, lng: -74.005737 }, name: 'Amelia’s Diner' },
-    ChIJ5QAkFvNZwokRM9nZI3ypnFk: { position: { lat: 40.725769, lng: -74.007954 }, name: 'Union Bar & Kitchen' },
-    ChIJ7UcN1vJZwokRhdf9LtldRPQ: { position: { lat: 40.726487, lng: -74.006971 }, name: 'Mae Mae' },
     ChIJu7pIuopZwokRvIsndYhPg4U: { position: { lat: 40.719607, lng: -74.00563369999998 }, name: 'Frenchette' },
     'ChIJaTJH1uxZwokRbKmafyGI-sk': { position: { lat: 40.73140799999999, lng: -74.00699199999997 }, name: 'Kish-Kash' },
     ChIJZRslaJRZwokRgVlMzbgFTus: {
@@ -691,6 +689,9 @@ const places = {
     ChIJkYlCnpJZwokRuQzFWh0dgRE: { position: { lat: 40.728801, lng: -74.00471900000002 }, name: 'Houston Hall' }
   },
   'CAFES + BAKERIES': {
+    ChIJM9bY8Q5ZwokR2_Xwo82dQd8: { position: { lat: 40.728255, lng: -74.005158 }, name: 'Chopt' },
+    ChIJy5ELovJZwokRY8JOVZbnN7Q: { position: { lat: 40.728699, lng: -74.007682 }, name: 'Chalait' },
+    ChIJk0szpPJZwokRQ0Tuv1t1N34: { position: { lat: 40.728523, lng: -74.007919 }, name: 'Le Pain Quotidien' },
     ChIJiR2mx_JZwokRwvQNkTjxjOg: { position: { lat: 40.727631, lng: -74.007483 }, name: 'Starbucks' },
     ChIJ95Cz24xZwokR7UvY056lTb0: { position: { lat: 40.725778, lng: -74.005556 }, name: 'Starbucks' },
     ChIJISgzNo1ZwokRg5ZO8ZTBKkw: { position: { lat: 40.727424, lng: -74.005954 }, name: 'Seven Grams Caffè' },
@@ -763,6 +764,8 @@ const places = {
     ChIJdd0pXvNZwokRz8BpXhB0XAc: { position: { lat: 40.7242469, lng: -74.00809040000001 }, name: 'Concepts NYC' }
   },
   'HEALTH + FITNESS': {
+    ChIJDblDpiBawokR2Qp9A5Wx9h8: { position: { lat: 40.730529, lng: -74.007383 }, name: 'S10' },
+    'ChIJV_-5n4ZZwokRSL8e4VJZTg8': { position: { lat: 40.723519, lng: -74.00682 }, name: 'Chillhouse' },
     'ChIJxQfx-4xZwokR39Iby7aaIiI': { position: { lat: 40.72584, lng: -74.004285 }, name: 'CVS Pharmacy' },
     'ChIJhWOHuPJZwokRHxhy5M-iL_w': { position: { lat: 40.728011, lng: -74.007457 }, name: 'Hudson Square Pharmacy' },
     ChIJM8LZY_NZwokRJOREfXxL5yQ: { position: { lat: 40.724303, lng: -74.008362 }, name: 'Cryofuel' },

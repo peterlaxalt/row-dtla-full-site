@@ -87,6 +87,14 @@ const MobileNav = styled.div`
       color: #000;
     }
   }
+
+  .social-links {
+    padding-top: 20px;
+    text-align: center;
+    a {
+      margin: 0 10px;
+    }
+  }
 `;
 
 const setActive = (route, linkPath) => {
@@ -157,7 +165,17 @@ const MobileNavigation = props => {
           </MobileHamburgerContainer>
           <MobileNav active={context.state.navigation.mobileNavActive}>
             <MobileClose />
-            <ul className="main-nav-ul">{generateLinks}</ul>
+            <ul className="main-nav-ul">
+              {generateLinks}
+              <div className="social-links">
+                <a href="https://www.instagram.com/hudsonsquareproperties/">
+                  <img src="/static/images/icons/insta.svg" alt="insta icon" />
+                </a>
+                <a href="https://www.facebook.com/HudsonSquareProperties/">
+                  <img src="/static/images/icons/fb.svg" alt="fb icon" />
+                </a>
+              </div>
+            </ul>
           </MobileNav>
           {context.state.windowDimensions.width < 1250 && (
             <MobileOverlay onClick={context.closeMobileNav} active={context.state.navigation.mobileNavActive} />

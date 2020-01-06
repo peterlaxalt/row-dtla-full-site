@@ -2,6 +2,7 @@ const express = require('express');
 const next = require('next');
 
 const dev = process.env.NODE_ENV !== 'production';
+const port = dev ? 8080 : 3000;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
@@ -40,10 +41,10 @@ app
       return handle(req, res);
     });
 
-    server.listen(3000, err => {
+    server.listen(port, err => {
       if (err) throw err;
       /* eslint-disable no-console */
-      console.log('> Ready on http://localhost:3000');
+      console.log(`> Ready on http://localhost:${port}`);
       /* eslint-enable no-console */
     });
   })

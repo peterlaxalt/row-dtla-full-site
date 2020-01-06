@@ -31,11 +31,11 @@ const buildings = [
       },
       {
         imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/3-75varick',
-        imgAlt: 'Tenant Amenity Roof Deck (Currently Under Construction)'
+        imgAlt: 'Tenant Amenity Roof Deck'
       },
       {
         imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/4-75varick',
-        imgAlt: 'Tenant Amenity Roof Deck (Currently Under Construction)'
+        imgAlt: 'Tenant Amenity Roof Deck'
       },
       {
         imgUrl: '/static/images/buildings/1_75_Varick/2_Carousel/5-75varick',

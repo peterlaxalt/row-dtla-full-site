@@ -34,6 +34,7 @@ const NavUnorderedList = styled.ul`
   transition: all 200ms ease;
   opacity: ${props => (isDesktopNavVisible(props) ? 1 : 0)};
   visibility: ${props => (isDesktopNavVisible(props) ? 'visible' : 'hidden')};
+  padding-right: 40px;
   li {
     color: inherit;
     cursor: pointer;
@@ -53,6 +54,14 @@ const NavUnorderedList = styled.ul`
         color: ${variables.colors.babyBlue};
       }
     }
+  }
+  li.social-icon {
+    padding: 0;
+    padding-right: 12px;
+    padding-top: 5px;
+  }
+  li:nth-of-type(10) {
+    padding-left: 15px;
   }
   li.active a {
     color: ${variables.colors.babyBlue};
@@ -103,6 +112,16 @@ export const DesktopNavigation = props => {
         <DesktopNavWrapper>
           <NavUnorderedList route={props.route} active={context.state.navigation.desktopNavActive}>
             {generateLinks(context)}
+            <li className="social-icon">
+              <a href="https://www.instagram.com/hudsonsquareproperties/">
+                <img src="/static/images/icons/insta.svg" alt="insta icon" />
+              </a>
+            </li>
+            <li className="social-icon">
+              <a href="https://www.facebook.com/HudsonSquareProperties/">
+                <img src="/static/images/icons/fb.svg" alt="fb icon" />
+              </a>
+            </li>
           </NavUnorderedList>
           {props.route === 'home' && (
             <DesktopHamburger
