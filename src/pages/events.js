@@ -66,10 +66,10 @@ const EventsPage = ({ data }) => {
 
     let filteredEvents = events;
     if (filter === 'ARCHIVE') {
-      filteredEvents = filteredEvents.filter(newsItem => {
+      filteredEvents = filteredEvents.filter(event => {
         const today = new Date();
         const yesterday = today.setDate(today.getDate() - 1);
-        const compareDate = newsItem.endDate || newsItem.date;
+        const compareDate = event.endDate || event.date;
         return moment(yesterday).isSameOrAfter(compareDate);
       });
       filteredEvents = filteredEvents.sort((a, b) => {
@@ -78,19 +78,19 @@ const EventsPage = ({ data }) => {
         return new Date(bCompare) - new Date(aCompare);
       });
     } else {
-      filteredEvents = filteredEvents.filter(newsItem => {
+      filteredEvents = filteredEvents.filter(event => {
         const today = new Date();
         const yesterday = today.setDate(today.getDate() - 1);
-        const compareDate = newsItem.endDate || newsItem.date;
+        const compareDate = event.endDate || event.date;
         return moment(yesterday).isSameOrBefore(compareDate);
       });
       filteredEvents = filteredEvents.sort((a, b) => {
-        const aCompare = a.endDate || a.date;
-        const bCompare = b.endDate || b.date;
+        const aCompare = a.date;
+        const bCompare = b.date;
         return new Date(aCompare) - new Date(bCompare);
       });
       if (filter !== 'ALL') {
-        filteredEvents = filteredEvents.filter(newsItem => newsItem.type === filter);
+        filteredEvents = filteredEvents.filter(event => event.type === filter);
       }
     }
     setListLength(filteredEvents.length);
