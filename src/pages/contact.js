@@ -112,7 +112,7 @@ const ContactPage = () => {
             <ContactSection>
               <h6>Creative Office Leasing</h6>
               <div className="contact">
-                <span>Joshua Wrobel</span>
+                <span>Joshua Wrobel (License #01237972)</span>
                 <a href="mailto:JEFF.PION@CBRE.COM">
                   <span>JOSH.WROBEL@AM.JLL.COM</span>
                 </a>
@@ -121,7 +121,7 @@ const ContactPage = () => {
                 </a>
               </div>
               <div className="contact">
-                <span>Jaclyn Ward</span>
+                <span>Jaclyn Ward (License #01912455)</span>
                 <a href="mailto:MICHELLE.ESQUIVEL@CBRE.COM">
                   <span>JACLYN.WARD@AM.JLL.COM</span>
                 </a>
