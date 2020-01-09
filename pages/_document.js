@@ -17,12 +17,35 @@ export default class MyDocument extends Document {
     return { ...page, styleTags, browserName };
   }
 
+  //   <!-- Global site tag (gtag.js) - Google Analytics -->
+  // <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141014767-1"></script>
+  // <script>
+  //   window.dataLayer = window.dataLayer || [];
+  //   function gtag(){dataLayer.push(arguments);}
+  //   gtag('js', new Date());
+
+  //   gtag('config', 'UA-141014767-1');
+  // </script>
+
+  setGoogleTags() {
+    return {
+      __html: `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-141014767-1');
+    `
+    };
+  }
+
   render() {
     const { browserName } = this.props;
 
     return (
       <html lang="en">
         <Head>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141014767-1" />
+          <script dangerouslySetInnerHTML={this.setGoogleTags()} />
           {this.props.styleTags}
           <meta property="og:locale" content="en_US" />
           <meta property="og:type" content="website" />

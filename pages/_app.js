@@ -9,6 +9,8 @@ import parser from 'ua-parser-js';
 
 import Layout from '~/components/layouts/default';
 
+import { trackPageView } from '~/utils/analytics';
+
 import GlobalStyles from '~/styles/global/Global';
 import TypographyStyles from '~/styles/global/Typography';
 import MapStyles from '~/styles/global/Map';
@@ -20,8 +22,9 @@ Router.onRouteChangeStart = () => {
   NProgress.start();
 };
 
-Router.onRouteChangeComplete = () => {
+Router.onRouteChangeComplete = url => {
   NProgress.done();
+  trackPageView(url);
 };
 
 Router.onRouteChangeError = () => {
