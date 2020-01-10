@@ -78,7 +78,6 @@ export const pageQuery = graphql`
       }
       startTime
       title
-      subtitle
       type
       slug
     }
