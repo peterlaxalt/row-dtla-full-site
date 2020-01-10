@@ -73,7 +73,7 @@ export const indexArray = [
   },
   {
     titleText: 'AVAILABILITY',
-    link: '/availability/',
+    link: '/availabilities/',
     imgArray: [
       {
         imgUrl: '/static/images/landing_page/5_Availability/1_160Varick_11FL',

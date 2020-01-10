@@ -612,6 +612,11 @@ const places = {
     }
   },
   'EVENT SPACES': {
+    ChIJ9Z4538hZwokRT0Mff1zu5Vs: { position: { lat: 40.730655, lng: -74.007155 }, name: '435 Hudson' },
+    ChIJ1V4yasdZwokRG9CWuyircIE: { position: { lat: 40.723347, lng: -74.004344 }, name: '100 AoA' },
+    ChIJMZy76qBZwokRVguU6rESYUA: { position: { lat: 40.726730, lng: -74.005254 }, name: '160 Varick' },
+    ChIJKUqCjmFZwokRa1knVTe95jI: { position: { lat: 40.723470, lng: -74.006820 }, name: '75 Varick' },
+    ChIJaYYXZh9ZwokRyzOtunLlHaE: { position: { lat: 40.728568, lng: -74.007439 }, name: '375 Hudson' },
     ChIJ84m3kPRZwokROFqq5MahX0Q: { position: { lat: 40.7234427, lng: -74.00834909999998 }, name: 'Tribeca Rooftop' },
     ChIJqUo0iZJZwokRz3Kh2odq2rU: {
       position: { lat: 40.7293723, lng: -74.00418150000002 },
