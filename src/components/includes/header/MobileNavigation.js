@@ -42,6 +42,9 @@ const MobileMenu = styled.div`
     justify-content: space-around;
     height: 100%;
     margin: 0;
+    ${mediaMin('tablet')} {
+      justify-content: center;
+    }
     li {
       opacity: ${props => (props.navActive ? '1' : '0')};
       transform: ${props => (props.navActive ? 'translateX(0)' : 'translateX(-16px)')};
@@ -73,12 +76,18 @@ const MobileMenu = styled.div`
         font-size: 28px;
         letter-spacing: -0.3px;
         line-height: 43px;
+        ${mediaMin('tablet')} {
+          font-size: 36px;
+        }
         .creative-btn {
           background: none;
           border: 1px solid #fff;
           color: #fff;
-          font-size: 24px;
+          font-size: 16px;
           padding: 20px 10px;
+          ${mediaMin('tablet')} {
+            font-size: 24px;
+          }
         }
         &:visited {
           color: #fff;
