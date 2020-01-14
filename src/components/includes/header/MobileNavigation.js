@@ -8,15 +8,6 @@ import FacebookLogo from '~/assets/images/icons/fb-white.svg';
 import InstagramLogo from '~/assets/images/icons/insta-white.svg';
 import Hamburger from './Hamburger';
 
-const SocialMedia = styled.li`
-  a {
-    margin-left: 16px;
-  }
-  a:first-of-type {
-    margin-left: 0;
-  }
-`;
-
 const MobileMenu = styled.div`
   position: fixed;
   top: 0;
@@ -30,7 +21,7 @@ const MobileMenu = styled.div`
   background-color: #000;
   justify-content: center;
   align-items: center;
-  padding: 84px 14px 34px 14px;
+  padding: 84px 14px 14px 14px;
   opacity: ${props => (props.navActive ? '1' : '0')};
   visibility: ${props => (props.navActive ? 'visible' : 'hidden')};
   transition: opacity 0.5s ease, visibility 0.5s ease;
@@ -44,14 +35,14 @@ const MobileMenu = styled.div`
   }
   ul {
     width: 100%;
-    padding: 0;
+    padding: 0 0 30px;
     list-style-type: none;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     height: 100%;
+    margin: 0;
     li {
-      margin-bottom: 15%;
       opacity: ${props => (props.navActive ? '1' : '0')};
       transform: ${props => (props.navActive ? 'translateX(0)' : 'translateX(-16px)')};
       transition: opacity 0.5s ease, transform 0.5s ease;
@@ -70,15 +61,25 @@ const MobileMenu = styled.div`
       &:nth-child(5) {
         transition-delay: 0.6s;
       }
+      &:nth-child(5) {
+        transition-delay: 0.75s;
+      }
       &:last-child {
         margin-bottom: 0;
       }
       a {
         color: #fff;
         text-decoration: none;
-        font-size: 34px;
+        font-size: 28px;
         letter-spacing: -0.3px;
         line-height: 43px;
+        .creative-btn {
+          background: none;
+          border: 1px solid #fff;
+          color: #fff;
+          font-size: 24px;
+          padding: 20px 10px;
+        }
         &:visited {
           color: #fff;
         }
@@ -87,6 +88,19 @@ const MobileMenu = styled.div`
         }
       }
     }
+  }
+`;
+
+const NavFooter = styled.div`
+  width: 100%;
+`;
+
+const SocialMedia = styled.div`
+  a {
+    margin-left: 16px;
+  }
+  a:first-of-type {
+    margin-left: 0;
   }
 `;
 
@@ -114,15 +128,13 @@ const MobileNavigation = () => {
     });
 
     navigation.push(
-      <SocialMedia key="social-media">
-        <a href="https://www.instagram.com/rowdtla" target="_blank" rel="noopener noreferrer">
-          <img src={InstagramLogo} alt="instagram logo" />
+      <li>
+        <a href="https://office-brochure.rowdtla.com/" target="_blank" rel="noopener noreferrer">
+          <button className="creative-btn">Creative Office</button>
         </a>
-        <a href="https://www.facebook.com/ROWDTLA/" target="_blank" rel="noopener noreferrer">
-          <img src={FacebookLogo} alt="facebook logo" />
-        </a>
-      </SocialMedia>
+      </li>
     );
+
     return navigation;
   }, []);
 
@@ -131,7 +143,17 @@ const MobileNavigation = () => {
       <Hamburger navActive={navActive} toggleActive={toggleActive} />
       <MobileMenu navActive={navActive}>
         <ul>{generateNav()}</ul>
-        <span>© 2019 ROW DTLA</span>
+        <NavFooter>
+          <SocialMedia>
+            <a href="https://www.instagram.com/rowdtla" target="_blank" rel="noopener noreferrer">
+              <img src={InstagramLogo} alt="instagram logo" />
+            </a>
+            <a href="https://www.facebook.com/ROWDTLA/" target="_blank" rel="noopener noreferrer">
+              <img src={FacebookLogo} alt="facebook logo" />
+            </a>
+          </SocialMedia>
+          <span>© 2019 ROW DTLA</span>
+        </NavFooter>
       </MobileMenu>
     </>
   );

@@ -33,6 +33,19 @@ const NavRow = styled.nav`
         height: 100%;
         display: flex;
         transition: border-top 400ms ease, color 400ms ease;
+        align-items: center;
+        .creative-btn {
+          border: ${props => (props.dark ? '1px solid #fff' : '1px solid #000')};
+          background: none;
+          padding: 12px 15px 10px;
+          cursor: pointer;
+          transition: all 200ms ease;
+          color: ${props => (props.dark ? '#fff' : '#000')};
+          &:hover {
+            background: ${props => (props.dark ? '#fff' : '#000')};
+            color: ${props => (props.dark ? '#000' : '#fff')};
+          }
+        }
         span {
           display: flex;
           align-items: center;
@@ -82,6 +95,14 @@ const DesktopNavigation = () => {
         </li>
       );
     });
+
+    navigation.push(
+      <li>
+        <a href="https://office-brochure.rowdtla.com/" target="_blank" rel="noopener noreferrer">
+          <button className="creative-btn">Creative Office</button>
+        </a>
+      </li>
+    );
 
     navigation.push(
       <SocialMedia key="social-media">
