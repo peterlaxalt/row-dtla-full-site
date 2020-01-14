@@ -45,24 +45,24 @@ const MobileMenu = styled.div`
     li {
       opacity: ${props => (props.navActive ? '1' : '0')};
       transform: ${props => (props.navActive ? 'translateX(0)' : 'translateX(-16px)')};
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition: opacity 0.3s ease, transform 0.5s ease;
       ${mediaMin('tablet')} {
         margin-bottom: 10%;
       }
       &:nth-child(2) {
-        transition-delay: 0.15s;
+        transition-delay: 0.1s;
       }
       &:nth-child(3) {
-        transition-delay: 0.3s;
+        transition-delay: 0.2s;
       }
       &:nth-child(4) {
-        transition-delay: 0.45s;
+        transition-delay: 0.3s;
       }
       &:nth-child(5) {
-        transition-delay: 0.6s;
+        transition-delay: 0.4s;
       }
       &:nth-child(5) {
-        transition-delay: 0.75s;
+        transition-delay: 0.5s;
       }
       &:last-child {
         margin-bottom: 0;
