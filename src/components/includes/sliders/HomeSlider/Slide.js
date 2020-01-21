@@ -112,6 +112,7 @@ const ContentColumn = styled.div`
     font-weight: 500;
     transition: background 200ms ease, color 200ms ease;
     font-size: 15px;
+    text-transform: uppercase;
 
     &:hover {
       background: #000;
