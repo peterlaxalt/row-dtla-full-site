@@ -10,6 +10,7 @@ const contentfulConfig = {
 };
 
 process.env.CONTENTFUL_HOST ? (contentfulConfig.host = process.env.CONTENTFUL_HOST) : null;
+console.log(contentfulConfig);
 
 const { spaceId, accessToken } = contentfulConfig;
 
