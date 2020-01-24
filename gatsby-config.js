@@ -3,6 +3,7 @@ const path = require('path');
 require('dotenv').config({
   path: `.env.${process.env.CONTENTFUL_ENV || 'development'}`
 });
+console.log(`Environment: ${process.env.CONTENTFUL_ENV}`);
 
 const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
