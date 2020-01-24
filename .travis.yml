@@ -26,10 +26,17 @@ cache:
     - node_modules
 dist: trusty
 install: npm install && npm install -g gatsby-cli
-script: npm run build
+script:
+  - |
+  if [ $TRAVIS_BRANCH == "develop" ]; then
+    echo "Building with Contentful Preview API"
+    CONTENTFUL_ENV=development npm run build-dev
+  elif [ $TRAVIS_BRANCH == "master" ]; then
+    echo "Building with Contentful Content API"
+    CONTENTFUL_ENV=production npm run build
+  fi
 before_deploy: npm test
 after_deploy:
-  echo "Hello World"
   echo $TRAVIS_BRANCH
   echo $AWS_CLOUDFRONT_DIST_ID
 after_deploy: ./clear_cf_cache.sh

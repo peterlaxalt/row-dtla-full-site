@@ -56,7 +56,7 @@ const CollectiveShow = ({ data }) => {
             <Copy mounted={mounted} ref={CopyRef} numChildren={CopyRef.current ? CopyRef.current.children.length : 50}>
               <h2 className="subtitle">{subtitle}</h2>
               <h1 className="title">{title}</h1>
-              <RichText richText={JSON.parse(body.body)} />
+              {body && <RichText richText={JSON.parse(body.body)} />}
               {parkingLink && parkingText && (
                 <>
                   <span>{parkingText}</span>

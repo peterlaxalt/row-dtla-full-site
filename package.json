@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
+    "dotenv": "^8.2.0",
     "eslint": "^4.0.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
@@ -47,8 +48,9 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
+    "build": "CONTENTFUL_ENV=production gatsby build",
+    "build-dev": "CONTENTFUL_ENV=development gatsby build",
+    "develop": "CONTENTFUL_ENV=development gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "gatsby clean && gatsby develop -H 0.0.0.0",
     "serve": "gatsby serve",

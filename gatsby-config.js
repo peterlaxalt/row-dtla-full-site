@@ -1,11 +1,30 @@
 const path = require('path');
 
+require('dotenv').config({
+  path: `.env.${process.env.CONTENTFUL_ENV}`
+});
+
+const contentfulConfig = {
+  spaceId: process.env.CONTENTFUL_SPACE_ID,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+};
+
+process.env.CONTENTFUL_HOST ? (contentfulConfig.host = process.env.CONTENTFUL_HOST) : null;
+
+console.log(contentfulConfig);
+
+const { spaceId, accessToken } = contentfulConfig;
+
+if (!spaceId || !accessToken) {
+  throw new Error('Contentful spaceId and the access token need to be provided.');
+}
+
 module.exports = {
   siteMetadata: {
     title: `ROW DTLA`,
     description: `ROW DTLA’s entrepreneurial innovators who are pushing LA culture forward with concepts designed to make a global impact.`,
     author: `YOUR_NAME`,
-    siteUrl: `https://www.rowdtla.com`,
+    siteUrl: `https://www.rowdtla.com`
   },
   plugins: [
     `gatsby-plugin-sitemap`,
@@ -46,11 +65,7 @@ module.exports = {
     },
     {
       resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: `v5y5potka9e9`,
-        accessToken: `U4Qe0URgCsIQHgoRvVnjwLRAc5auF9sC-GSidrRi86Y`
-        // environment: `develop`,
-      }
+      options: contentfulConfig
     },
     {
       resolve: `gatsby-plugin-google-analytics`,
