@@ -1,7 +1,7 @@
 const path = require('path');
 
 require('dotenv').config({
-  path: `.env.${process.env.CONTENTFUL_ENV}`
+  path: `.env.${process.env.CONTENTFUL_ENV || 'development'}`
 });
 
 const contentfulConfig = {
@@ -10,8 +10,6 @@ const contentfulConfig = {
 };
 
 process.env.CONTENTFUL_HOST ? (contentfulConfig.host = process.env.CONTENTFUL_HOST) : null;
-
-console.log(contentfulConfig);
 
 const { spaceId, accessToken } = contentfulConfig;
 

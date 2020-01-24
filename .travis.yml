@@ -1,6 +1,5 @@
 deploy:
   - provider: s3
-    cache_control: 'no-cache, max-age=0' # no cache and revalidate
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: $BUCKET_DEV
@@ -10,7 +9,6 @@ deploy:
     on:
       branch: 'develop'
   - provider: s3
-    cache_control: 'max-age=0' # 1 month
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: $BUCKET_PROD
@@ -26,15 +24,7 @@ cache:
     - node_modules
 dist: trusty
 install: npm install && npm install -g gatsby-cli
-script:
-  - |
-    if [ "$TRAVIS_BRANCH" = "develop" ]; then
-      echo "Building with Contentful Preview API"
-      CONTENTFUL_ENV=development npm run build-dev
-    elif [ "$TRAVIS_BRANCH" = "master" ]; then
-      echo "Building with Contentful Content API"
-      CONTENTFUL_ENV=production npm run build
-    fi
+script: npm run build
 before_deploy: npm test
 after_deploy:
   echo $TRAVIS_BRANCH

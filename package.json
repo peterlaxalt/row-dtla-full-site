@@ -49,8 +49,7 @@
   "license": "MIT",
   "scripts": {
     "build": "CONTENTFUL_ENV=production gatsby build",
-    "build-dev": "CONTENTFUL_ENV=development gatsby build",
-    "develop": "CONTENTFUL_ENV=development gatsby develop",
+    "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "gatsby clean && gatsby develop -H 0.0.0.0",
     "serve": "gatsby serve",
