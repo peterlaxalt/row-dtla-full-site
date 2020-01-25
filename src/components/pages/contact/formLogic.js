@@ -38,8 +38,8 @@ const formLogic = () => {
           recipientName: 'Runyon Group'
         },
         creative: {
-          recipientEmail: 'jeff.pion@cbre.com',
-          recipientName: 'Jeff Pion'
+          recipientEmail: 'rowdtlaoffice@atlas-cap.com',
+          recipientName: 'ROWDTLA Creative Office'
         },
         event: {
           recipientEmail: 'events@rowdtla.com',
