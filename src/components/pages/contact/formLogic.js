@@ -20,7 +20,7 @@ const formLogic = () => {
     setErrors(newErrors);
 
     if (Object.keys(errors).length === 0) {
-      const text = `New inquiry from the Row DTLA Website (main site).
+      const text = `New inquiry from the Row DTLA main site.
         \n\nRegistrant Details:
         \nName: ${firstName} ${lastName}
         \nEmail: ${email}
