@@ -20,12 +20,13 @@ const formLogic = () => {
     setErrors(newErrors);
 
     if (Object.keys(errors).length === 0) {
-      const text = `Hi,\n\nRegistrant Details:\n\n
-        \n\nName: ${firstName} ${lastName}
-        \n\nEmail: ${email}
-        \n\nPhone: ${phone}
-        \n\nNature of Inquiry: ${inquiryType}
-        \n\nHow can we help: ${canWeHelp}
+      const text = `New inquiry from the Row DTLA Website (main site).
+        \n\nRegistrant Details:
+        \nName: ${firstName} ${lastName}
+        \nEmail: ${email}
+        \nPhone: ${phone}
+        \nNature of Inquiry: ${inquiryType}
+        \nHow can we help: ${canWeHelp}
       `;
 
       const directory = {
